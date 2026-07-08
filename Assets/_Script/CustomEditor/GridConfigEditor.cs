@@ -28,7 +28,7 @@ public class GridConfigEditor : Editor
 
         if (config.BaseGrid != null && config.BaseGrid.Length == config.Size.y)
         {
-            for (int y = 0; y < config.Size.y; y++)
+            for (int y = config.Size.y - 1; y >= 0; y--)
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();

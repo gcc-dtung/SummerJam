@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f507a3b80e28c41b255fce39241b5d, type: 3}
   m_Name: GridConfig
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
-  <Size>k__BackingField: {x: 0, y: 0}
-  <CellSize>k__BackingField: {x: 0, y: 0}
-  <OriginPosition>k__BackingField: {x: 0, y: 0}
-  <CellDistance>k__BackingField: {x: 0, y: 0}
+  <Size>k__BackingField: {x: 3, y: 3}
+  <CellSize>k__BackingField: {x: 1, y: 1}
+  <CellDistance>k__BackingField: {x: 0.5, y: 0.5}
+  OriginPosition: {x: 0, y: 0}

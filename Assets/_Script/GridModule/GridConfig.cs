@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Grid/Config", fileName = "GridConfig")]
 public class GridConfig : ScriptableObject
@@ -8,7 +9,24 @@ public class GridConfig : ScriptableObject
     [field:SerializeField] public Vector2 CellDistance { get; private set; }
     [Header("Grid Position")]
     [SerializeField] private Vector2 OriginPosition;
+    [HideInInspector]
+    public Wrapper<CellType>[] BaseGrid;
     
+    private void OnEnable()
+    {
+      if(BaseGrid == null)   ResetGrid();
+    }
+
+    public void ResetGrid()
+    {
+        BaseGrid = new Wrapper<CellType>[Size.x];
+        for (int y = 0; y < Size.y; y++)
+        {
+            BaseGrid[y] = new Wrapper<CellType>();
+            BaseGrid[y].Values = new CellType[Size.y];
+        }
+    }
+
     public Vector2 GetStartWorldPosition()
     {
         Vector2 offSet = new Vector2(
@@ -24,5 +42,8 @@ public class GridConfig : ScriptableObject
         return GetStartWorldPosition() + new Vector2(x * step.x, y * step.y);
     }
     
-    
 }
+
+
+
+

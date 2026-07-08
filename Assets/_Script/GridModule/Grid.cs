@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Grid<T>
@@ -7,17 +8,34 @@ public class Grid<T>
     private Vector2 cellOffSet;
     private T[,] grid;
 
-    public Grid(GridConfig config)
+    public Grid(GridConfig config,Func<int,int,T> createGridObject)
     {
-        ReloadNewData(config);
+        ReloadNewData(config,createGridObject);
     }
 
-    void ReloadNewData(GridConfig config)
+    void ReloadNewData(GridConfig config,Func<int,int,T> createGridObject)
     {
         this.config = config;
         grid = new T[config.Size.x, config.Size.y];
         startPosition = config.GetStartWorldPosition();
         cellOffSet = 0.5f * config.CellSize;
+
+        for (int x = 0; x < config.Size.x; x++)
+        {
+            for (int y = 0; y < config.Size.y; y++)
+            {
+                SetValue(x,y,createGridObject(x,y));
+            }
+        }
+    }
+
+    public void MatrixTraversal(Action<int,int,T> action)
+    {
+        for(int x = 0;x<config.Size.x;x++)
+        for (int y = 0; y < config.Size.y; y++)
+        {
+            action(x, y, grid[x, y]);
+        }
     }
 
     public void SetValue(int x,int y,T value)
@@ -72,5 +90,15 @@ public class Grid<T>
         bool insideY = Mathf.Abs(worldPos.y - cellCenter.y) <= config.CellSize.y * 0.5f;
 
         return insideX && insideY;
+    }
+
+    public Vector2 GetWorldPosition(int x,int y)
+    {
+        if (!IsOnRange(x, y))
+        {
+            Debug.LogWarning("GetWorldPosition + Grid:  IndexOutOfRange");
+        }
+        Vector2 step = config.CellSize + config.CellDistance;
+        return startPosition + new Vector2(x * step.x, y * step.y);
     }
 }

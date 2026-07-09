@@ -9,7 +9,6 @@ public class GridConfig : ScriptableObject
     [field:SerializeField] public Vector2 CellDistance { get; private set; }
     [Header("Grid Position")]
     [SerializeField] private Vector2 OriginPosition;
-    //[HideInInspector]
     [SerializeField] private Cell Blocked;
     public Wrapper<Cell>[] BaseGrid;
     
@@ -51,6 +50,12 @@ public class GridConfig : ScriptableObject
         return GetStartWorldPosition() + new Vector2(x * step.x, y * step.y);
     }
     
+}
+
+[Serializable]
+public class Wrapper<T>
+{
+    public T[] Values;
 }
 
 

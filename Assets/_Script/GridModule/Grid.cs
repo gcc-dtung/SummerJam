@@ -80,10 +80,7 @@ public class Grid<T>
         x = Mathf.FloorToInt(((worldPos - startPosition).x + cellOffSet.x) / step.x);
         y = Mathf.FloorToInt(((worldPos - startPosition).y + cellOffSet.y) / step.y);
 
-        if (x < 0 || y < 0 || x >= config.Size.x || y >= config.Size.y)
-        {
-            return false;
-        }
+        if (!IsOnRange(x,y)) return false;
 
         Vector2 cellCenter = startPosition + new Vector2(x * step.x, y * step.y);
         bool insideX = Mathf.Abs(worldPos.x - cellCenter.x) <= config.CellSize.x * 0.5f;

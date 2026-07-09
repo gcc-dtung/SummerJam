@@ -22,26 +22,28 @@ public class DragAndDropController : MonoBehaviour
             Detect();
             currentDragItem?.StartDrag();
         }
-
+    
         if (Input.GetMouseButton(0))
         {
            currentDragItem?.Drag(currentPosition);
         }
-
+    
         if (Input.GetMouseButtonUp(0))
         {
            currentDragItem?.Drop(currentPosition);
            currentDragItem = null;
         }
     }
-
+    
     void Detect()
     {
       Collider2D col =  Physics2D.OverlapPoint(currentPosition,draggableLayer,-depthDistance,depthDistance);
+      if(col!=null) Debug.Log(col.gameObject.name);
       if (col != null && col.TryGetComponent<IDraggable>(out var draggable))
       {
           currentDragItem = draggable;
       }
     }
-    
+
+
 }

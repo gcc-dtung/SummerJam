@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 4e69d1ef080d64f4b81aa59adc6f0bbf, type: 2}
-  conditions: {fileID: 11400000, guid: b9ec0403a283ebc41b4b76135679f2b6, type: 2}
+  conditions: {fileID: 0}
 --- !u!61 &108378356
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 108378352}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22, y: -1.92, z: 0}
+  m_LocalPosition: {x: -1.22, y: -2.31, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 424533881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.78344, y: -1.12675, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -668,7 +668,7 @@ Transform:
   m_GameObject: {fileID: 440884001}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: -1.92, z: 0}
+  m_LocalPosition: {x: 0.56, y: -2.32, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 4e69d1ef080d64f4b81aa59adc6f0bbf, type: 2}
-  conditions: {fileID: 11400000, guid: b9ec0403a283ebc41b4b76135679f2b6, type: 2}
+  conditions: {fileID: 0}
 --- !u!114 &440884006
 MonoBehaviour:
   m_ObjectHideFlags: 0

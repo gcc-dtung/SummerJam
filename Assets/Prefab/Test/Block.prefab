@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625833450055014861}
   - component: {fileID: 3636424111529337635}
-  - component: {fileID: 1099452618160583168}
+  - component: {fileID: 3024978029204799802}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1099452618160583168
+--- !u!114 &3024978029204799802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2187200067970912116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e94c9d30c2a966342bc0c1fcde453bcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 07bff22e6fe6ed04e817764b00f99a36, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test
-  type: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Blocked

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ff7633046baec44927a0893a660647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridRenderer
-  config: {fileID: 11400000, guid: 6529acb4eb5f25049a3cb1c332d895d1, type: 2}
+  config: {fileID: 11400000, guid: 375f325449bcdca4f8910abae470256f, type: 2}
 --- !u!114 &237596390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed08fd37c907ca4092fa61d9d18f628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  config: {fileID: 11400000, guid: 6529acb4eb5f25049a3cb1c332d895d1, type: 2}
+  config: {fileID: 11400000, guid: 375f325449bcdca4f8910abae470256f, type: 2}
+  Prefab:
+  - {fileID: 1099452618160583168, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+  - {fileID: 7041771212119230730, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+  - {fileID: 5745230715645618400, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
 --- !u!1 &336881587
 GameObject:
   m_ObjectHideFlags: 0

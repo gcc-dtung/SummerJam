@@ -16,3 +16,7 @@ MonoBehaviour:
   <CellSize>k__BackingField: {x: 1, y: 1}
   <CellDistance>k__BackingField: {x: 0.5, y: 0.5}
   OriginPosition: {x: 0, y: 0}
+  BaseGrid:
+  - Values: 000000000000000000000000
+  - Values: 000000000000000000000000
+  - Values: 000000000000000000000000

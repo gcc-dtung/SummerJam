@@ -4,26 +4,25 @@ using UnityEditor;
 [CustomEditor(typeof(GridConfig))] 
 public class GridConfigEditor : Editor
 {
-    public override void OnInspectorGUI()
+   public override void OnInspectorGUI()
     {
         GridConfig config = (GridConfig)target;
+        
         EditorGUI.BeginChangeCheck();
         DrawDefaultInspector();
-        if (EditorGUI.EndChangeCheck())
+        if (EditorGUI.EndChangeCheck() || NeedsResize(config))
         {
             ResizeGrid(config);
         }
-        if (NeedsResize(config))
-        {
-            ResizeGrid(config);
-        }
+        
         GUILayout.Space(20);
-        GUILayout.Label("Grid", EditorStyles.boldLabel);
+        GUILayout.Label("Grid Preview", EditorStyles.boldLabel);
 
-        GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
+        GUIStyle boxStyle = new GUIStyle(GUI.skin.box)
         {
             fontSize = 20,
-            fontStyle = FontStyle.Bold
+            fontStyle = FontStyle.Bold,
+            alignment = TextAnchor.MiddleCenter
         };
 
         if (config.BaseGrid != null && config.BaseGrid.Length == config.Size.y)
@@ -34,37 +33,33 @@ public class GridConfigEditor : Editor
                 GUILayout.FlexibleSpace();
                 for (int x = 0; x < config.Size.x; x++)
                 {
-                    CellType currentType = config.BaseGrid[y].Values[x];
+                    Cell currentCell = config.BaseGrid[y].Values[x];
                     
-                    string btnText = "";
-                    Color btnColor = Color.white;
-
-                    switch (currentType)
+                    string boxText = ".";
+                    Color boxColor = Color.gray; 
+                    if (currentCell != null)
                     {
-                        case CellType.Block:
-                            btnText = "X";
-                            btnColor = Color.red;
-                            break;
-                        case CellType.Dish:
-                            btnText = "D";
-                            btnColor = new Color(0.6f, 0f, 0.8f); 
-                            break;
-                        case CellType.Seat:
-                            btnText = "S";
-                            btnColor = new Color(0.2f, 0f, 0.8f); 
-                            break;
+                        switch (currentCell.Type)
+                        {
+                            case CellType.Block:
+                                boxText = "X";
+                                boxColor = Color.red;
+                                break;
+                            case CellType.Dish:
+                                boxText = "D";
+                                boxColor = new Color(0.6f, 0f, 0.8f);
+                                break;
+                            case CellType.Seat:
+                                boxText = "S";
+                                boxColor = new Color(0.2f, 0f, 0.8f);
+                                break;
+                        }
                     }
 
-                    GUI.contentColor = btnColor;
-
-                    if (GUILayout.Button(btnText, buttonStyle, GUILayout.Width(40), GUILayout.Height(40)))
-                    {
-                        Undo.RecordObject(config, "Change Cell Type");
-                        config.BaseGrid[y].Values[x] = (CellType)(((int)currentType + 1) % 3);
-                        EditorUtility.SetDirty(config);
-                    }
+                    GUI.backgroundColor = boxColor;
+                    GUILayout.Box(boxText, boxStyle, GUILayout.Width(40), GUILayout.Height(40));
                     
-                    GUI.contentColor = Color.white;
+                    GUI.backgroundColor = Color.white;
                 }
                 GUILayout.FlexibleSpace();
                 GUILayout.EndHorizontal();
@@ -98,12 +93,12 @@ public class GridConfigEditor : Editor
     {
         Undo.RecordObject(config, "Resize Grid");
         
-        Wrapper<CellType>[] newGrid = new Wrapper<CellType>[config.Size.y];
+        Wrapper<Cell>[] newGrid = new Wrapper<Cell>[config.Size.y];
 
         for (int y = 0; y < config.Size.y; y++)
         {
-            newGrid[y] = new Wrapper<CellType>();
-            newGrid[y].Values = new CellType[config.Size.x];
+            newGrid[y] = new Wrapper<Cell>();
+            newGrid[y].Values = new Cell[config.Size.x];
 
             if (config.BaseGrid != null && y < config.BaseGrid.Length && config.BaseGrid[y] != null && config.BaseGrid[y].Values != null)
             {

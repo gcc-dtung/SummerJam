@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
-    [field:SerializeField] public string ID { get; private set; }
-    [field:SerializeField] public TraitType Trait { get; private set; }
+    [SerializeField] private PersonDataSO data;
+    [SerializeField] private ConditionsSO conditions;
+    
+    public string ID => data.ID;
+    public TraitType Trait => data.Trait;
+    
     public bool OutSide { get; private set; }
     public bool Seated { get; private set; }
-    [SerializeField] private ConditionsSO conditions;
+    
 
     public void SetOutSideState(bool condition) => OutSide = condition;
     public void SetSeatedState(bool condition) => Seated = condition;

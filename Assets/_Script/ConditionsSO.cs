@@ -12,6 +12,6 @@ public class ConditionsSO : ScriptableObject
 [Serializable]
 public class ConditionWrapper<T>
 {
- [field:SerializeField] public List<T> Like { get; private set; }
- [field:SerializeField] public List<T> Hate { get; private set; }
+ [field: SerializeField] public List<T> Like { get; private set; } = new List<T>();
+ [field: SerializeField] public List<T> Hate { get; private set; } = new List<T>();
 }

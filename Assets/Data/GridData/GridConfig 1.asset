@@ -12,15 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f507a3b80e28c41b255fce39241b5d, type: 3}
   m_Name: GridConfig 1
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
-  <Size>k__BackingField: {x: 5, y: 7}
+  <Size>k__BackingField: {x: 5, y: 5}
   <CellSize>k__BackingField: {x: 0.7, y: 0.7}
   <CellDistance>k__BackingField: {x: 0, y: 0}
   OriginPosition: {x: 0, y: 1.56}
+  Blocked: {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
   BaseGrid:
-  - Values: 0100000000000000000000000000000001000000
-  - Values: 0000000000000000020000000000000000000000
-  - Values: 0100000000000000010000000000000001000000
-  - Values: 0000000000000000000000000000000000000000
-  - Values: 0000000001000000010000000100000000000000
-  - Values: 0000000000000000000000000000000000000000
-  - Values: 0000000000000000010000000000000000000000
+  - Values:
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+  - Values:
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+  - Values:
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+  - Values:
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+  - Values:
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 5239383168556046599, guid: a5987a43fd6727a4b842323c50fbd4cb, type: 3}
+    - {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}

@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: Person1
+  m_Name: Condition1
   m_EditorClassIdentifier: Assembly-CSharp::ConditionsSO
-  <LikePerson>k__BackingField: {fileID: 0}
-  <HatePerson>k__BackingField: {fileID: 0}
-  <LikeFood>k__BackingField: 0
-  <HateFood>k__BackingField: 0
-  <LikeTrait>k__BackingField: 0
-  <HateTrait>k__BackingField: 0
+  <PersonID>k__BackingField:
+    <Like>k__BackingField: []
+    <Hate>k__BackingField: []
+  <Food>k__BackingField:
+    <Like>k__BackingField: 
+    <Hate>k__BackingField: 
+  <Trait>k__BackingField:
+    <Like>k__BackingField: 
+    <Hate>k__BackingField: 
+  <Description>k__BackingField: Chll Guy

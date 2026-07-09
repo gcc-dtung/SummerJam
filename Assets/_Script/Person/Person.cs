@@ -12,9 +12,9 @@ public class Person : MonoBehaviour
     public bool OutSide { get; private set; }
     public bool Seated { get; private set; }
     
-
     public void SetOutSideState(bool condition) => OutSide = condition;
     public void SetSeatedState(bool condition) => Seated = condition;
+    
     public bool IsHappy(List<Cell> adjacentCells)
     {
         if (conditions == null) return true;
@@ -89,4 +89,5 @@ public class Person : MonoBehaviour
         
         return true;
     }
+    
 }

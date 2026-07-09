@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager : Singleton<GridManager>
 {
    [SerializeField] private GridConfig boardConfig;
    [SerializeField] private GridConfig waitConfig;
@@ -10,8 +10,9 @@ public class GridManager : MonoBehaviour
    public Grid<Cell> Board { get; private set; }
    public Grid<Cell> WaitLine { get; private set; }
 
-   private void Awake()
+   protected override void Awake()
    {
+      base.Awake();
       Board = new Grid<Cell>(boardConfig,InitializeBoard);
       WaitLine = new Grid<Cell>(waitConfig, InitializeWaitLine);
    }

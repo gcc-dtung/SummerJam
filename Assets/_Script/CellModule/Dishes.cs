@@ -1,10 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dishes : Cell
+
+[CreateAssetMenu(menuName = "CellData/Dish")]
+public class Dishes : CellDataSO
 {
-    public override CellType Type { get; } = CellType.Dish;
-    public override bool CanSeat { get; protected set; } = false;
-    public override bool CanInteract { get; protected set; } = false;
+    [field: SerializeField] public override string Name { get; protected set; }
+    [field: SerializeField] public override CellType Type { get; protected set; } = CellType.Dish;
+    [field: SerializeField] public override bool DefaultCanSeat { get; protected set; } = false;
+    [field: SerializeField] public override bool DefaultCanInteract { get; protected set; } = false;
+    [field: SerializeField] public override Sprite sprite { get; protected set; }
     [field: SerializeField] public List<Food> Tags { get; private set; }
+
+    private void OnEnable()
+    {
+        if (Tags == null) Tags = new List<Food>();
+    }
 }

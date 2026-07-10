@@ -1,16 +1,19 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Seat : Cell
+[CreateAssetMenu(menuName = "CellData/Seat")]
+public class Seat : CellDataSO
 {
-    public override CellType Type { get; } = CellType.Seat;
-    public override bool CanSeat { get; protected set; } = true;
-    public override bool CanInteract { get; protected set; } = false;
-    public Person CurrentPerson { get; private set; }
+    [field: SerializeField] public override string Name { get; protected set; }
+    [field: SerializeField] public override CellType Type { get; protected set; } = CellType.Seat;
+    [field: SerializeField] public override bool DefaultCanSeat { get; protected set; } = true;
+    [field: SerializeField] public override bool DefaultCanInteract { get; protected set; } = true;
+    [field: SerializeField] public override Sprite sprite { get; protected set; }
+    [field: SerializeField] public Person DefaultPerson { get; private set; }
 
-    public void SetPersonToSeat(Person person)
+    public void OnValidate()
     {
-        CurrentPerson = person;
+        if (DefaultPerson != null) DefaultCanSeat = false;
     }
-
-    public void SetSeatState(bool conditions) => CanSeat = conditions;
 }

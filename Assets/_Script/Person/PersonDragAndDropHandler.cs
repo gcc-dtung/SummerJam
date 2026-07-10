@@ -27,7 +27,7 @@ public class PersonDragAndDropHandler : MonoBehaviour,IDraggable
                 return;
             }
         }
-
+        
         if (GridManager.Instance.WaitLine.TryGetCellFromWorldPos(endPosition, out x, out y))
         {
             if (SetSeat(x, y, GridManager.Instance.WaitLine))
@@ -36,24 +36,24 @@ public class PersonDragAndDropHandler : MonoBehaviour,IDraggable
                 return;
             }
         }
-
+        
         movement.MoveToPosition(oldPosition);
     }
 
     private bool SetSeat(int x,int y,Grid<Cell> hold)
     {
         Cell cell = hold.GetValue(x, y);
-        if (cell is Seat seat)
+        if (cell.Type == CellType.Seat)
         {
-            if (seat.CanSeat)
+            if (cell.CanSeat)
             {
-                seat.SetSeatState(false);
-                seat.SetPersonToSeat(person);
+                cell.CanSeat = false;
+                cell.SetPersonToSeat(person);
                 movement.MoveToPosition( hold.GetWorldPosition(x, y));
                 return true;
             }
         }
-        return false;
+         return false;
     }
 
     private void ResetOldSeat(Vector3 position)
@@ -63,10 +63,11 @@ public class PersonDragAndDropHandler : MonoBehaviour,IDraggable
         {
             cell = GridManager.Instance.WaitLine.GetValueInScreenPosition(position);
         }
-        if (cell is Seat seat)
+        if(cell == null) return;
+        if (cell.Type == CellType.Seat)
         {
-            seat.SetSeatState(true);
-            seat.SetPersonToSeat(null);
+            cell.CanSeat = true;
+            cell.SetPersonToSeat(null);
         }
     }
 

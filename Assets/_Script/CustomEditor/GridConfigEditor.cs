@@ -33,7 +33,7 @@ public class GridConfigEditor : Editor
                 GUILayout.FlexibleSpace();
                 for (int x = 0; x < config.Size.x; x++)
                 {
-                    Cell currentCell = config.BaseGrid[y].Values[x];
+                    CellDataSO currentCell = config.BaseGrid[y].Values[x];
                     
                     string boxText = ".";
                     Color boxColor = Color.gray; 
@@ -93,12 +93,12 @@ public class GridConfigEditor : Editor
     {
         Undo.RecordObject(config, "Resize Grid");
         
-        Wrapper<Cell>[] newGrid = new Wrapper<Cell>[config.Size.y];
+        Wrapper<CellDataSO>[] newGrid = new Wrapper<CellDataSO>[config.Size.y];
 
         for (int y = 0; y < config.Size.y; y++)
         {
-            newGrid[y] = new Wrapper<Cell>();
-            newGrid[y].Values = new Cell[config.Size.x];
+            newGrid[y] = new Wrapper<CellDataSO>();
+            newGrid[y].Values = new CellDataSO[config.Size.x];
 
             if (config.BaseGrid != null && y < config.BaseGrid.Length && config.BaseGrid[y] != null && config.BaseGrid[y].Values != null)
             {

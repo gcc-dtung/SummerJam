@@ -9,8 +9,8 @@ public class GridConfig : ScriptableObject
     [field:SerializeField] public Vector2 CellDistance { get; private set; }
     [Header("Grid Position")]
     [SerializeField] private Vector2 OriginPosition;
-    [SerializeField] private Cell Blocked;
-    public Wrapper<Cell>[] BaseGrid;
+    [SerializeField] private CellDataSO Blocked;
+    public Wrapper<CellDataSO>[] BaseGrid;
     
     private void OnEnable()
     {
@@ -19,11 +19,11 @@ public class GridConfig : ScriptableObject
 
     public void ResetGrid()
     {
-        BaseGrid = new Wrapper<Cell>[Size.y];
+        BaseGrid = new Wrapper<CellDataSO>[Size.y];
         for (int y = 0; y < Size.y; y++)
         {
-            BaseGrid[y] = new Wrapper<Cell>();
-            BaseGrid[y].Values = new Cell[Size.x];
+            BaseGrid[y] = new Wrapper<CellDataSO>();
+            BaseGrid[y].Values = new CellDataSO[Size.x];
         }
 
         for (int y = 0; y < Size.y; y++)

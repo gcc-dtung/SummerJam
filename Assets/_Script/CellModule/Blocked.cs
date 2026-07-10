@@ -1,8 +1,13 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Blocked : Cell
+[CreateAssetMenu(menuName = "CellData/Block")]
+public class Blocked : CellDataSO
 {
-    public override CellType Type { get; } = CellType.Block;
-    public override bool CanSeat { get; protected set; } = false;
-    public override bool CanInteract { get; protected set; } = false;
+    [field: SerializeField] public override string Name { get; protected set; } = "Blocked";
+    [field: SerializeField] public override CellType Type { get; protected set; } = CellType.Block;
+    [field: SerializeField] public override bool DefaultCanSeat { get; protected set; } = false;
+    [field: SerializeField] public override bool DefaultCanInteract { get; protected set; } = false;
+    [field: SerializeField] public override Sprite sprite { get; protected set; }
 }

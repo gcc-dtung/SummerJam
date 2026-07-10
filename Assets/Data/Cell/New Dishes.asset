@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c79adc4f872ecc46bb1fc1f561a99fd, type: 3}
   m_Name: New Dishes
   m_EditorClassIdentifier: Assembly-CSharp::Dishes
-  <Name>k__BackingField: 
+  <Name>k__BackingField: HotCoffee
   <Type>k__BackingField: 1
   <DefaultCanSeat>k__BackingField: 0
   <DefaultCanInteract>k__BackingField: 0
-  <sprite>k__BackingField: {fileID: 0}
-  <Tags>k__BackingField: 
+  <sprite>k__BackingField: {fileID: -7887002569616350318, guid: 2f098c9c152eaaf4ba921a3e7ac247ed, type: 3}
+  <Tags>k__BackingField: 01000000

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b0a127844e225478f8e8ebc18541dd, type: 3}
   m_Name: NozmalSeat
   m_EditorClassIdentifier: Assembly-CSharp::Seat
-  <Name>k__BackingField: 
+  <Name>k__BackingField: Sofa
   <Type>k__BackingField: 2
   <DefaultCanSeat>k__BackingField: 1
   <DefaultCanInteract>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 8957324059118975939, guid: 7d2fc12befb8f114e9a82487a96e8632, type: 3}
   <DefaultPerson>k__BackingField: {fileID: 0}

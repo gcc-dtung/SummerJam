@@ -16,11 +16,11 @@ MonoBehaviour:
   <CellSize>k__BackingField: {x: 0.7, y: 0.7}
   <CellDistance>k__BackingField: {x: 0.21, y: 0}
   OriginPosition: {x: 0, y: -3.39}
-  Blocked: {fileID: 3024978029204799802, guid: 534229dae16094546bbf02daaf49f7bc, type: 3}
+  Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
   BaseGrid:
   - Values:
-    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
-    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
-    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
-    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
-    - {fileID: 6199161318531776065, guid: eb1cbba39b59c5a49bbc8e8ea23056f7, type: 3}
+    - {fileID: 11400000, guid: 7892a3869d9eb1b4496de511795c2529, type: 2}
+    - {fileID: 11400000, guid: 7892a3869d9eb1b4496de511795c2529, type: 2}
+    - {fileID: 11400000, guid: 7892a3869d9eb1b4496de511795c2529, type: 2}
+    - {fileID: 11400000, guid: 7892a3869d9eb1b4496de511795c2529, type: 2}
+    - {fileID: 11400000, guid: 7892a3869d9eb1b4496de511795c2529, type: 2}

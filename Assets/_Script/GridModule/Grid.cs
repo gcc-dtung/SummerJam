@@ -60,14 +60,14 @@ public class Grid<T>
         return grid[x, y];
     }
 
-    public T GetValueInScreenPosition(Vector2 worldPos)
+    public T GetValueFromWorldPosition(Vector2 worldPos)
     {
         int x, y;
         if (TryGetCellFromWorldPos(worldPos, out x, out y)) return GetValue(x, y);
         return default(T);
     }
 
-    private bool IsOnRange(int x,int y)
+    public bool IsOnRange(int x,int y)
     {
         if (x < 0 || y < 0 || x >= config.Size.x || y >= config.Size.y) return false;
         return true;

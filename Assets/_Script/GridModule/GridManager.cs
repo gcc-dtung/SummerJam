@@ -28,6 +28,7 @@ public class GridManager : Singleton<GridManager>
    {
        Cell tmp = Instantiate<Cell>(Template,holder);
        tmp.Initialize(boardConfig.BaseGrid[y].Values[x]);
+       tmp.SetGridIndex(x, y);
        return tmp;
    }   
    
@@ -36,6 +37,7 @@ public class GridManager : Singleton<GridManager>
       Cell tmp = Instantiate<Cell>(Template,holder);
       tmp.Initialize(waitConfig.BaseGrid[y].Values[x]);
       InitializePerson(tmp,waitConfig.BaseGrid[y].Values[x]);
+      tmp.SetGridIndex(x, y);
       return tmp;
    }
    

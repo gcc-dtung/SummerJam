@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;   
 using UnityEngine;
 
@@ -19,5 +20,10 @@ public class Person : MonoBehaviour
     {
         conditions = condition;
         ConditionChecking.SwitchConditions(condition);
+    }
+
+    private void Awake()
+    {
+        ConditionChecking = new PersonConditionCheck(conditions);
     }
 }

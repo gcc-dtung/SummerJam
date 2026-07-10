@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7446964857329355155}
   - component: {fileID: 1164593468849941562}
   - component: {fileID: 5911569556449404275}
+  - component: {fileID: 4602908509593967819}
   m_Layer: 6
   m_Name: Person
   m_TagString: Untagged
@@ -183,3 +184,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersonMovement
   Duration: 0.2
+--- !u!114 &4602908509593967819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761764921843794698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d14f4ee036e114e85d0ceba1b32f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersonVisual

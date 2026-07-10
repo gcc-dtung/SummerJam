@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 public abstract class CellDataSO : ScriptableObject
 {
     public abstract string Name { get; protected set; }

@@ -7,11 +7,16 @@ public class GridConfig : ScriptableObject
     [field:SerializeField] public Vector2Int Size { get; private set; }
     [field:SerializeField] public Vector2 CellSize { get; private set; }
     [field:SerializeField] public Vector2 CellDistance { get; private set; }
+    
+    private Vector2 originalCellSize;
+    private Vector2 originalCellDistance;
+    
     [Header("Grid Position")]
-    [SerializeField] private Vector2 OriginPosition;
+    [SerializeField] private Vector2 Anchor;
     [SerializeField] private CellDataSO Blocked;
     public Wrapper<CellDataSO>[] BaseGrid;
     
+
     private void OnEnable()
     {
       if(BaseGrid == null)   ResetGrid();
@@ -35,19 +40,19 @@ public class GridConfig : ScriptableObject
         }
     }
 
-    public Vector2 GetStartWorldPosition()
+    public Vector2 GetAnchor()
     {
         Vector2 offSet = new Vector2(
             -0.5f * (CellSize.x + CellDistance.x) * (Size.x - 1),
             -0.5f * (CellSize.y + CellDistance.y) * (Size.y - 1)
         );
-        return OriginPosition + offSet;
+        return Anchor + offSet;
     }
     
     public Vector2 GetCellWorldPosition(int x, int y)
     {
         Vector2 step = CellSize + CellDistance;
-        return GetStartWorldPosition() + new Vector2(x * step.x, y * step.y);
+        return GetAnchor() + new Vector2(x * step.x, y * step.y);
     }
     
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Grid<T>
 {
     private GridConfig config;
-    private Vector2 startPosition;
+    private Vector2 anchor;
     private Vector2 cellOffSet;
     private T[,] grid;
 
@@ -17,7 +17,7 @@ public class Grid<T>
     {
         this.config = config;
         grid = new T[config.Size.x, config.Size.y];
-        startPosition = config.GetStartWorldPosition();
+        anchor = config.GetAnchor();
         cellOffSet = 0.5f * config.CellSize;
 
         for (int x = 0; x < config.Size.x; x++)
@@ -77,12 +77,12 @@ public class Grid<T>
     {
         Vector2 step = config.CellSize + config.CellDistance;
 
-        x = Mathf.FloorToInt(((worldPos - startPosition).x + cellOffSet.x) / step.x);
-        y = Mathf.FloorToInt(((worldPos - startPosition).y + cellOffSet.y) / step.y);
+        x = Mathf.FloorToInt(((worldPos - anchor).x + cellOffSet.x) / step.x);
+        y = Mathf.FloorToInt(((worldPos - anchor).y + cellOffSet.y) / step.y);
 
         if (!IsOnRange(x,y)) return false;
 
-        Vector2 cellCenter = startPosition + new Vector2(x * step.x, y * step.y);
+        Vector2 cellCenter = anchor + new Vector2(x * step.x, y * step.y);
         bool insideX = Mathf.Abs(worldPos.x - cellCenter.x) <= config.CellSize.x * 0.5f;
         bool insideY = Mathf.Abs(worldPos.y - cellCenter.y) <= config.CellSize.y * 0.5f;
 
@@ -96,6 +96,6 @@ public class Grid<T>
             Debug.LogWarning("GetWorldPosition + Grid:  IndexOutOfRange");
         }
         Vector2 step = config.CellSize + config.CellDistance;
-        return startPosition + new Vector2(x * step.x, y * step.y);
+        return anchor + new Vector2(x * step.x, y * step.y);
     }
 }

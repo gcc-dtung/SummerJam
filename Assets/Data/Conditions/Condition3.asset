@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Condition3
   m_EditorClassIdentifier: Assembly-CSharp::ConditionsSO
   <Type>k__BackingField: 0
-  <Target>k__BackingField: 0
+  <Target>k__BackingField: 1
   <DishTags>k__BackingField: 
-  <PersonTags>k__BackingField: 
+  <PersonTags>k__BackingField: 02000000
   <Description>k__BackingField: 

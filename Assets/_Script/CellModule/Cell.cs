@@ -9,7 +9,6 @@ public class Cell : MonoBehaviour
     public CellType Type { get; private set; }
     public bool CanSeat { get; set; }
     public bool CanInteract { get; set; }
-
     public CellDataSO Data { get; private set; }
     public Person CurrentPerson { get; private set; }
     private SpriteRenderer _spriteRenderer;

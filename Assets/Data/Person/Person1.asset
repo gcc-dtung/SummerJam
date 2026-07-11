@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23cbfc880e8ff44d927537020ad887f, type: 3}
   m_Name: Person1
   m_EditorClassIdentifier: Assembly-CSharp::PersonDataSO
+  <Name>k__BackingField: 
   <ID>k__BackingField: 1
-  <Trait>k__BackingField: 0
+  <Trait>k__BackingField: 00000000

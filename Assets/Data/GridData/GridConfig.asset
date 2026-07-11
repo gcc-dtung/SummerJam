@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <Size>k__BackingField: {x: 3, y: 3}
   <CellSize>k__BackingField: {x: 1, y: 1}
-  <CellDistance>k__BackingField: {x: 0.5, y: 0.5}
+  <CellDistance>k__BackingField: {x: 0, y: 0}
   OriginPosition: {x: 0, y: 0}
   Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
   BaseGrid:

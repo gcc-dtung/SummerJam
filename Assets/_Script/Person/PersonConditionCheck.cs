@@ -57,6 +57,7 @@ public class PersonConditionCheck
         {
             if (condition.DishTags == null || condition.DishTags.Count == 0) return false;
             Dishes dish = cell.Data as Dishes;
+
             if (dish == null)
             {
                 Debug.LogError("One of the (Dish) conditionSOs had incorrect data pulled. ");

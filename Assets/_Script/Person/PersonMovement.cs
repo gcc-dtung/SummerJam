@@ -1,12 +1,16 @@
-using DG.Tweening;
 using UnityEngine;
+using PrimeTween;
 
 public class PersonMovement : MonoBehaviour
 {
    [SerializeField] private float Duration;
+
+   private Tween tweenPosition;
    public void MoveToPosition(Vector3 position)
    {
-      transform.DOMove(position, Duration).SetEase(Ease.OutQuad);
+      if(tweenPosition.isAlive)
+         tweenPosition.Stop();
+      tweenPosition = Tween.Position(transform, position, duration: Duration);
    }
    
    

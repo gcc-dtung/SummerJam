@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 [CreateAssetMenu(menuName = "CellData/Seat")]

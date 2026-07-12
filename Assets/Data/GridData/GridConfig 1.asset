@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GridConfig 1
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <Size>k__BackingField: {x: 5, y: 5}
-  <CellSize>k__BackingField: {x: 0.7, y: 0.7}
-  <CellDistance>k__BackingField: {x: 0, y: 0}
-  OriginPosition: {x: 0, y: 1.14}
+  originalCellSize: {x: 0.7, y: 0.7}
+  originalCellDistance: {x: 0, y: 0}
+  PosX: 0.5
+  PosY: 0.671
   Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
   BaseGrid:
   - Values:

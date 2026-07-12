@@ -16,7 +16,9 @@ public class DragAndDropController : MonoBehaviour
 
     private void Update()
     {
-        currentPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 screenMousePos = Input.mousePosition;
+        screenMousePos.z = depthDistance; 
+        currentPosition = mainCam.ScreenToWorldPoint(screenMousePos);
         if (Input.GetMouseButtonDown(0))
         {
             Detect();

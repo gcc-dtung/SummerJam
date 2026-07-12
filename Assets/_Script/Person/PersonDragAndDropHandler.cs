@@ -5,10 +5,13 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     [SerializeField] private Person person;
     [SerializeField] private PersonMovement movement;
     private Vector3 oldPosition;
-
+    private Cell currentCell;
     public void StartDrag()
     {
+        this.transform.SetParent(null);
         oldPosition = this.transform.position;
+        currentCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
+        if (currentCell == null) currentCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
     }
 
     public void Drag(Vector3 dragPosition)
@@ -57,8 +60,11 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                 }
             }
         }
-
+ 
+        this.transform.SetParent(currentCell.transform);
+        transform.localScale = Vector3.one;
         movement.MoveToPosition(oldPosition);
+        currentCell = null;
     }
 
     private bool IsEmptySeat(int x, int y, Grid<Cell> hold)
@@ -75,6 +81,9 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         cell.CanSeat = false;
         cell.SetPersonToSeat(person);
         
+        transform.SetParent(cell.transform);
+        transform.localScale = Vector3.one;
+        
         movement.MoveToPosition(hold.GetWorldPosition(x, y));
         return;
     }
@@ -86,10 +95,17 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         if (cell1 == null) cell1 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(origin);
         if (cell2 == null) cell2 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(target);
         if(cell1 == null || cell2 == null || cell1 == cell2) return false;
+        
         Person tmp1 = cell1.CurrentPerson;
         Person tmp2 = cell2.CurrentPerson;
         cell1.SetPersonToSeat(cell2.CurrentPerson);
         cell2.SetPersonToSeat(tmp1);
+        
+        this.transform.SetParent(cell2.transform);
+        this.transform.localScale = Vector3.one;
+        tmp2.transform.SetParent(cell1.transform);
+        tmp2.transform.localScale = Vector3.one;
+        
         
         movement.MoveToPosition(target);
         tmp2.GetComponent<PersonMovement>().MoveToPosition(origin);

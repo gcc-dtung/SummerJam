@@ -58,6 +58,8 @@ public class GridManager : Singleton<GridManager>
        if(cell.Type != CellType.Seat || cell.CanSeat || cell.CurrentPerson == null) return;
        Person person = cell.CurrentPerson;
        person.transform.position = WaitLine.GetWorldPosition(x, y);
+       person.transform.SetParent(cell.transform);
+       person.transform.localScale = Vector3.one;
    }
    
 

@@ -4,8 +4,8 @@ using UnityEngine;
 public class Grid<T>
 {
     private GridConfig config;
-    private Vector2 anchor;
-    private Vector2 cellOffSet;
+    private Vector2 anchor => config.GetWorldPosition();
+    private Vector2 cellOffSet => 0.5f * config.CellSize;
     private T[,] grid;
 
     public Grid(GridConfig config,Func<int,int,T> createGridObject)
@@ -17,8 +17,6 @@ public class Grid<T>
     {
         this.config = config;
         grid = new T[config.Size.x, config.Size.y];
-        anchor = config.GetAnchor();
-        cellOffSet = 0.5f * config.CellSize;
 
         for (int x = 0; x < config.Size.x; x++)
         {

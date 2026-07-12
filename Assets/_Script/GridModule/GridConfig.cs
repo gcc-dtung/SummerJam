@@ -5,21 +5,21 @@ public class GridConfig : ScriptableObject
 {
     [Header("Config Grid")]
     [field:SerializeField] public Vector2Int Size { get; private set; }
-    [field:SerializeField] public Vector2 CellSize { get; private set; }
-    [field:SerializeField] public Vector2 CellDistance { get; private set; }
+    [SerializeField] private Vector2 originalCellSize;
+    [SerializeField] private Vector2 originalCellDistance;
     
-    private Vector2 originalCellSize;
-    private Vector2 originalCellDistance;
-    
-    [Header("Grid Position")]
-    [SerializeField] private Vector2 Anchor;
+    public Vector2 CellSize => originalCellSize * ScalerCalculation.ScaleFactor;
+    public Vector2 CellDistance => originalCellDistance * ScalerCalculation.ScaleFactor;
+
+    [Header("Grid Position")] 
+    [SerializeField,Range(0,1)] private float PosX;
+    [SerializeField,Range(0,1)] private float PosY;
     [SerializeField] private CellDataSO Blocked;
     public Wrapper<CellDataSO>[] BaseGrid;
     
-
     private void OnEnable()
-    {
-      if(BaseGrid == null)   ResetGrid();
+    { 
+        if(BaseGrid == null)   ResetGrid();
     }
 
     public void ResetGrid()
@@ -40,19 +40,26 @@ public class GridConfig : ScriptableObject
         }
     }
 
-    public Vector2 GetAnchor()
+    public Vector2 GetWorldPosition()
     {
+        Camera mainCam = Camera.main;
+        if (mainCam == null)
+        {
+            Debug.LogWarning("Cannot find camera, Base Position return to Vector2.zero");
+            return Vector2.zero;
+        }
+        Vector2 originalPosition = mainCam.ViewportToWorldPoint(new Vector3(PosX,PosY,mainCam.nearClipPlane+1f));
         Vector2 offSet = new Vector2(
             -0.5f * (CellSize.x + CellDistance.x) * (Size.x - 1),
             -0.5f * (CellSize.y + CellDistance.y) * (Size.y - 1)
         );
-        return Anchor + offSet;
+        return originalPosition + offSet;
     }
     
     public Vector2 GetCellWorldPosition(int x, int y)
     {
         Vector2 step = CellSize + CellDistance;
-        return GetAnchor() + new Vector2(x * step.x, y * step.y);
+        return GetWorldPosition() + new Vector2(x * step.x, y * step.y);
     }
     
 }

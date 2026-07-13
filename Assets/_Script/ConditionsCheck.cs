@@ -40,7 +40,7 @@ public class ConditionsCheck : MonoBehaviour
             }
             cellHolder[i].CurrentPerson.ConditionChecking.CheckConditions(adjacency);
         }
-        EventBus.Instance.Notify("Checking");
+        EventBus.Notify(GameEventType.Checking);
     }
 
     private void GetPerson()

@@ -5,8 +5,14 @@ public class PersonEventHandler : MonoBehaviour
 {
    public event Action<Vector3> OnDragging;
    public event Action<Vector3> OnMoveToSeat;
+   public event Action OnPress;
    public event Action OnStartDrag;
    public event Action OnDrop;
+
+   public void OnPressNotify()
+   {
+      OnPress?.Invoke();
+   }
 
    public void OnDraggingNotify(Vector3 position)
    {

@@ -7,6 +7,12 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     private Vector3 oldPosition;
     private Cell oldCell;
     private Cell hoveredCell;
+    
+    public void Press()
+    {
+        eventHandler.OnPressNotify();
+    }
+
     public void StartDrag()
     {
         this.transform.SetParent(null);

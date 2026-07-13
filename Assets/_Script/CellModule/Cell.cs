@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Cell : MonoBehaviour
 {
     public int X { get; private set; }
@@ -14,7 +13,7 @@ public class Cell : MonoBehaviour
     public CellEventHandler CellEventHandler { get; private set; }
     private void Awake()
     {
-        _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        _spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
         CellEventHandler = this.GetComponent<CellEventHandler>();
     }
 

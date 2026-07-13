@@ -20,21 +20,21 @@ public class PersonVisual : MonoBehaviour
     private void Awake()
     {
         sprite = this.GetComponent<SpriteRenderer>();
-        person = this.GetComponent<Person>();
+        person = this.GetComponentInParent<Person>();
         baseColor = sprite.color;
         // if(sprite == null) Debug.LogError("No sprite renderer");
     }
 
     private void OnEnable()
     {
-        EventBus.Instance.AddListener("Checking",ChangeStatus);
+        EventBus.AddListener(GameEventType.Checking,ChangeStatus);
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
         eventHandler.OnDrop += ChangeVisualEndDrag;
     }
     
     private void OnDisable()
     {
-        EventBus.Instance.RemoveListener("Checking",ChangeStatus);
+        EventBus.RemoveListener(GameEventType.Checking,ChangeStatus);
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
     }

@@ -1,40 +1,122 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventBus :  Singleton<EventBus>
+public static class EventBus
 {
-    Dictionary<string, List<Action>> list = new Dictionary<string, List<Action>>();
-    public void AddListener(string key, Action value)
+    private static readonly Dictionary<GameEventType, Delegate> list = new Dictionary<GameEventType, Delegate>();
+
+    public static void AddListener(GameEventType key, Action value)
     {
-        if (!list.ContainsKey(key))
-        {
-            list.Add(key, new List<Action>());
-        }
-        list[key].Add(value);
+        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
     }
-    public void Notify(string key)
+
+    public static void AddListener<T>(GameEventType key, Action<T> value)
     {
-        if(!list.ContainsKey(key)) {Debug.LogError("Not have that key"); return;}
-        foreach(var it in list[key])
+        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
+    }
+
+    public static void AddListener<T1, T2>(GameEventType key, Action<T1, T2> value)
+    {
+        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
+    }
+
+    public static void Notify(GameEventType key)
+    {
+        if (!list.TryGetValue(key, out var del) || del == null) return;
+        
+        var invocationList = del.GetInvocationList();
+        foreach (var callback in invocationList)
         {
-            try
+            if (callback is Action action)
             {
-                it?.Invoke();
-            }
-            catch(Exception e)
-            {
-                Debug.LogError("Invoke action fail! error: "+e.ToString());
+                try
+                {
+                    action();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Invoke action fail for event {key}! error: {e}");
+                }
             }
         }
     }
-    public void RemoveListener(string key,Action value)
+
+    public static void Notify<T>(GameEventType key, T data)
     {
-        if (!list.ContainsKey(key))
+        if (!list.TryGetValue(key, out var del) || del == null) return;
+        
+        var invocationList = del.GetInvocationList();
+        foreach (var callback in invocationList)
         {
-            list.Add(key,new List<Action>());
+            if (callback is Action<T> action)
+            {
+                try
+                {
+                    action(data);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Invoke action fail for event {key} with parameter {typeof(T)}! error: {e}");
+                }
+            }
         }
-        list[key].Remove(value);
+    }
+
+    public static void Notify<T1, T2>(GameEventType key, T1 data1, T2 data2)
+    {
+        if (!list.TryGetValue(key, out var del) || del == null) return;
+        
+        var invocationList = del.GetInvocationList();
+        foreach (var callback in invocationList)
+        {
+            if (callback is Action<T1, T2> action)
+            {
+                try
+                {
+                    action(data1, data2);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Invoke action fail for event {key} with parameters {typeof(T1)}, {typeof(T2)}! error: {e}");
+                }
+            }
+        }
+    }
+
+    public static void RemoveListener(GameEventType key, Action value)
+    {
+        if (list.TryGetValue(key, out var del))
+        {
+            var newDel = Delegate.Remove(del, value);
+            if (newDel == null) list.Remove(key);
+            else list[key] = newDel;
+        }
+    }
+
+    public static void RemoveListener<T>(GameEventType key, Action<T> value)
+    {
+        if (list.TryGetValue(key, out var del))
+        {
+            var newDel = Delegate.Remove(del, value);
+            if (newDel == null) list.Remove(key);
+            else list[key] = newDel;
+        }
+    }
+
+    public static void RemoveListener<T1, T2>(GameEventType key, Action<T1, T2> value)
+    {
+        if (list.TryGetValue(key, out var del))
+        {
+            var newDel = Delegate.Remove(del, value);
+            if (newDel == null) list.Remove(key);
+            else list[key] = newDel;
+        }
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    public static void Clear()
+    {
+        list.Clear();
     }
 }

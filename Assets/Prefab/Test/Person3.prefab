@@ -124,7 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonDragAndDropHandler
   eventHandler: {fileID: 2093571436841312829}
   person: {fileID: 6466923299377600956}
-  movement: {fileID: 5509800066030360956}
 --- !u!114 &5509800066030360956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,4 +244,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonVisual
   eventHandler: {fileID: 2093571436841312829}
   changeViewDuration: 0.1
-  changeViewScale: 0.8
+  changeViewScale: 1.2

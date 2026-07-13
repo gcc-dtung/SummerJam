@@ -38,7 +38,7 @@ public class DragAndDropController : MonoBehaviour
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
             currentDragItem.Drop(worldPosition);
         }
-        
+
         isDragging = false;
         currentDragItem = null;
 
@@ -73,8 +73,11 @@ public class DragAndDropController : MonoBehaviour
     private void OnHoldCanceled(InputAction.CallbackContext context)
     {
         isDragging = false;
+        if (currentDragItem == null) return;
+        
         Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+        
         currentDragItem?.Drop(worldPosition);
         currentDragItem = null;
         EventBus.Notify(GameEventType.StopDrag);

@@ -66,7 +66,9 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
             {
                 SetSeat(x,y,GridManager.Instance.Board);
                 ResetOldSeat(oldPosition);
+                person.SetOutSideState(false);
                 eventHandler.OnDropNotify();
+                EventBus.Notify(GameEventType.OnPlace);
                 return;
             }
             else
@@ -76,6 +78,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                     Vector3 snappedTargetPos = GridManager.Instance.Board.GetWorldPosition(x, y);
                     if (SwapSeat(oldPosition, snappedTargetPos))
                     {
+                        EventBus.Notify(GameEventType.OnPlace);
                         eventHandler.OnDropNotify();
                         return;
                     }
@@ -89,6 +92,8 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
             {
                 SetSeat(x,y,GridManager.Instance.WaitLine);
                 ResetOldSeat(oldPosition);
+                person.SetOutSideState(true);
+                EventBus.Notify(GameEventType.OnPlace);
                 eventHandler.OnDropNotify();
                 return;
             }
@@ -99,6 +104,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                     Vector3 snappedTargetPos = GridManager.Instance.WaitLine.GetWorldPosition(x, y);
                     if (SwapSeat(oldPosition, snappedTargetPos))
                     {
+                        EventBus.Notify(GameEventType.OnPlace);
                         eventHandler.OnDropNotify();
                         return;
                     }
@@ -136,16 +142,39 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
 
     private bool SwapSeat(Vector3 origin,Vector3 target)
     {
+        bool cell1OutSide = false, cell2OutSide = false;
         Cell cell1 = GridManager.Instance.Board.GetValueFromWorldPosition(origin);
         Cell cell2 = GridManager.Instance.Board.GetValueFromWorldPosition(target);
-        if (cell1 == null) cell1 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(origin);
-        if (cell2 == null) cell2 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(target);
+        if (cell1 == null)
+        {
+            cell1 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(origin);
+            cell1OutSide = true;
+        }
+
+        if (cell2 == null)
+        {
+            cell2 = GridManager.Instance.WaitLine.GetValueFromWorldPosition(target);
+            cell2OutSide = true;
+        }
+        
         if(cell1 == null || cell2 == null || cell1 == cell2) return false;
         
         Person tmp1 = cell1.CurrentPerson;
         Person tmp2 = cell2.CurrentPerson;
         cell1.SetPersonToSeat(cell2.CurrentPerson);
         cell2.SetPersonToSeat(tmp1);
+
+        if (cell1OutSide && !cell2OutSide)
+        {
+            tmp2.SetOutSideState(true);
+            tmp1.SetOutSideState(false);
+        }
+        else if (!cell1OutSide && cell2OutSide)
+        {
+            tmp2.SetOutSideState(false);
+            tmp1.SetOutSideState(true);
+        }
+        
         
         this.transform.SetParent(cell2.transform);
         this.transform.localScale = Vector3.one;
@@ -157,7 +186,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         tmp2.GetComponent<PersonEventHandler>().OnMoveToSeatNotify(origin);
         return true;
     }
-
+ 
     private void ResetOldSeat(Vector3 position)
     {
         Cell cell = GridManager.Instance.Board.GetValueFromWorldPosition(position);

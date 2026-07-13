@@ -10,13 +10,13 @@ public class PersonMovement : MonoBehaviour
 
    private void OnEnable()
    {
-      eventHandler.OnDragging += MoveToPosition;
+      eventHandler.OnDraggingWithMousePosition += MoveToPosition;
       eventHandler.OnMoveToSeat += MoveToPosition; // nếu có thêm transition onSeat thì đky event lại
    }
 
    private void OnDisable()
    {
-      eventHandler.OnDragging -= MoveToPosition;
+      eventHandler.OnDraggingWithMousePosition -= MoveToPosition;
       eventHandler.OnMoveToSeat -= MoveToPosition;
    }
 

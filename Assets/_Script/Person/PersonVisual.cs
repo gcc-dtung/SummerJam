@@ -29,6 +29,7 @@ public class PersonVisual : MonoBehaviour
     {
         EventBus.AddListener(GameEventType.Checking,ChangeStatus);
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
+        eventHandler.OnDraggingWithoutMousePosition += Normal;
         eventHandler.OnDrop += ChangeVisualEndDrag;
     }
     
@@ -37,6 +38,7 @@ public class PersonVisual : MonoBehaviour
         EventBus.RemoveListener(GameEventType.Checking,ChangeStatus);
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
+        eventHandler.OnDraggingWithoutMousePosition -= Normal;
     }
 
     private void Start()
@@ -49,6 +51,7 @@ public class PersonVisual : MonoBehaviour
 
     private void ChangeStatus()
     {
+        if(person.OutSide) {Normal(); return;}
         if(person.ConditionChecking.IsHappy) Happy();
         else Sad();
     }

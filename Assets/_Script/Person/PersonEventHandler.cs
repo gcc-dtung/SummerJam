@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PersonEventHandler : MonoBehaviour
 {
-   public event Action<Vector3> OnDragging;
+   public event Action<Vector3> OnDraggingWithMousePosition;
+   public event Action OnDraggingWithoutMousePosition;
    public event Action<Vector3> OnMoveToSeat;
    public event Action OnPress;
    public event Action OnStartDrag;
@@ -16,7 +17,8 @@ public class PersonEventHandler : MonoBehaviour
 
    public void OnDraggingNotify(Vector3 position)
    {
-      OnDragging?.Invoke(position);
+      OnDraggingWithMousePosition?.Invoke(position);
+      OnDraggingWithoutMousePosition?.Invoke();
    }
 
    public void OnStartDragNotify()

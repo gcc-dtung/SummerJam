@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test :  Singleton<Test>
+public class EventBus :  Singleton<EventBus>
 {
     Dictionary<string, List<Action>> list = new Dictionary<string, List<Action>>();
     public void AddListener(string key, Action value)

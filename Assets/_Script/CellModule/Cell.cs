@@ -11,10 +11,11 @@ public class Cell : MonoBehaviour
     public CellDataSO Data { get; private set; }
     public Person CurrentPerson { get; private set; }
     private SpriteRenderer _spriteRenderer;
-
+    public CellEventHandler CellEventHandler { get; private set; }
     private void Awake()
     {
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        CellEventHandler = this.GetComponent<CellEventHandler>();
     }
 
     public void Initialize(CellDataSO data)

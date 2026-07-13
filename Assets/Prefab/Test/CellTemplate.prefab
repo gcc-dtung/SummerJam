@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8494547447977979683}
   - component: {fileID: 4134166709793070471}
   - component: {fileID: 7204608856450553470}
+  - component: {fileID: 2650220930860692941}
+  - component: {fileID: 1777799852103934589}
   m_Layer: 0
   m_Name: CellTemplate
   m_TagString: Untagged
@@ -104,3 +106,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f25bdeaaf701f4a97787c2840806ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cell
+--- !u!114 &2650220930860692941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817100485411959711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdb7028496ec2b4795cd6bb2ec7b963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CellEventHandler
+--- !u!114 &1777799852103934589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817100485411959711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814e20868c0e55841919a6e1d4580c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CellVisual
+  eventHandler: {fileID: 2650220930860692941}
+  changeViewDuration: 0.1
+  changeViewScale: 1.2

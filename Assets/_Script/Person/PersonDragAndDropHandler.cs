@@ -2,26 +2,57 @@ using UnityEngine;
 
 public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
 {
+    [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private Person person;
-    [SerializeField] private PersonMovement movement;
     private Vector3 oldPosition;
-    private Cell currentCell;
+    private Cell oldCell;
+    private Cell hoveredCell;
     public void StartDrag()
     {
         this.transform.SetParent(null);
         oldPosition = this.transform.position;
-        currentCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
-        if (currentCell == null) currentCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
+        
+        oldCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
+        if (oldCell == null) oldCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
+        
+        eventHandler.OnStartDragNotify();
     }
 
     public void Drag(Vector3 dragPosition)
     {
         dragPosition.z = 0f;
-        this.transform.position = dragPosition;
+        eventHandler.OnDraggingNotify(dragPosition);
+        
+        Cell currentCell = GridManager.Instance.Board.GetValueFromWorldPosition(this.transform.position);
+        if(currentCell == null)  currentCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(this.transform.position);
+        
+        if (currentCell ==null || !currentCell.CanSeat)
+        {
+            if (hoveredCell != null)
+            {
+                hoveredCell.CellEventHandler.OnDeselectedNotify();
+                hoveredCell = null;
+            }
+            return;
+        }
+        
+        if (currentCell != hoveredCell)
+        {
+            hoveredCell?.CellEventHandler.OnDeselectedNotify();
+            hoveredCell = currentCell;
+            hoveredCell?.CellEventHandler.OnSelectedNotify();
+        }
+        
     }
 
     public void Drop(Vector3 endPosition)
     {
+        if (hoveredCell != null)
+        {
+            hoveredCell.CellEventHandler.OnDeselectedNotify();
+            hoveredCell = null;
+        }
+        
         int x, y;
         if (GridManager.Instance.Board.TryGetCellFromWorldPos(endPosition, out x, out y))
         {
@@ -29,6 +60,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
             {
                 SetSeat(x,y,GridManager.Instance.Board);
                 ResetOldSeat(oldPosition);
+                eventHandler.OnDropNotify();
                 return;
             }
             else
@@ -36,8 +68,11 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                 if (GridManager.Instance.Board.GetValue(x, y).Type == CellType.Seat)
                 {
                     Vector3 snappedTargetPos = GridManager.Instance.Board.GetWorldPosition(x, y);
-                   if(SwapSeat(oldPosition,snappedTargetPos))
-                    return;
+                    if (SwapSeat(oldPosition, snappedTargetPos))
+                    {
+                        eventHandler.OnDropNotify();
+                        return;
+                    }
                 }
             }
         }
@@ -48,6 +83,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
             {
                 SetSeat(x,y,GridManager.Instance.WaitLine);
                 ResetOldSeat(oldPosition);
+                eventHandler.OnDropNotify();
                 return;
             }
             else
@@ -55,16 +91,20 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                 if (GridManager.Instance.WaitLine.GetValue(x, y).Type == CellType.Seat)
                 {
                     Vector3 snappedTargetPos = GridManager.Instance.WaitLine.GetWorldPosition(x, y);
-                    if(SwapSeat(oldPosition,snappedTargetPos))
-                    return;
+                    if (SwapSeat(oldPosition, snappedTargetPos))
+                    {
+                        eventHandler.OnDropNotify();
+                        return;
+                    }
                 }
             }
         }
  
-        this.transform.SetParent(currentCell.transform);
+        this.transform.SetParent(oldCell.transform);
         transform.localScale = Vector3.one;
-        movement.MoveToPosition(oldPosition);
-        currentCell = null;
+        eventHandler.OnMoveToSeatNotify(oldPosition);
+        eventHandler.OnDropNotify();
+        oldCell = null;
     }
 
     private bool IsEmptySeat(int x, int y, Grid<Cell> hold)
@@ -84,7 +124,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         transform.SetParent(cell.transform);
         transform.localScale = Vector3.one;
         
-        movement.MoveToPosition(hold.GetWorldPosition(x, y));
+        eventHandler.OnMoveToSeatNotify( hold.GetWorldPosition(x, y));
         return;
     }
 
@@ -107,8 +147,8 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         tmp2.transform.localScale = Vector3.one;
         
         
-        movement.MoveToPosition(target);
-        tmp2.GetComponent<PersonMovement>().MoveToPosition(origin);
+        eventHandler.OnMoveToSeatNotify(target);
+        tmp2.GetComponent<PersonEventHandler>().OnMoveToSeatNotify(origin);
         return true;
     }
 

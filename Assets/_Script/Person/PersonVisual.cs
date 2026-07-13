@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PersonVisual : MonoBehaviour
 {
+    [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private float changeViewDuration;
     [SerializeField] private float changeViewScale;
     
@@ -15,6 +16,7 @@ public class PersonVisual : MonoBehaviour
     private int baseOrderInLayer;
     
     private Tween scaleTween;
+    
     private void Awake()
     {
         sprite = this.GetComponent<SpriteRenderer>();
@@ -25,7 +27,16 @@ public class PersonVisual : MonoBehaviour
 
     private void OnEnable()
     {
-        Test.Instance.AddListener("Checking",ChangeStatus);
+        EventBus.Instance.AddListener("Checking",ChangeStatus);
+        eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
+        eventHandler.OnDrop += ChangeVisualEndDrag;
+    }
+    
+    private void OnDisable()
+    {
+        EventBus.Instance.RemoveListener("Checking",ChangeStatus);
+        eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
+        eventHandler.OnDrop -= ChangeVisualEndDrag;
     }
 
     private void Start()
@@ -34,10 +45,7 @@ public class PersonVisual : MonoBehaviour
         baseOrderInLayer = sprite.sortingOrder;
     }
 
-    private void OnDisable()
-    {
-        Test.Instance.RemoveListener("Checking",ChangeStatus);
-    }
+
 
     private void ChangeStatus()
     {

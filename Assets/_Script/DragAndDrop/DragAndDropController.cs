@@ -77,6 +77,7 @@ public class DragAndDropController : MonoBehaviour
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
         currentDragItem?.Drop(worldPosition);
         currentDragItem = null;
+        EventBus.Notify(GameEventType.StopDrag);
     }
 
     private void Update()

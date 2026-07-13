@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +19,16 @@ public class ConditionsCheck : MonoBehaviour
         new Vector2Int(-1, 1) // top left
     };
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-            Check();
+        EventBus.AddListener(GameEventType.StopDrag,Check);
     }
+
+    private void OnDisable()
+    {
+        EventBus.RemoveListener(GameEventType.StopDrag,Check);
+    }
+
 
     public void Check()
     {

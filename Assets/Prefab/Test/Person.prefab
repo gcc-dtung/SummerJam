@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7446964857329355155}
   - component: {fileID: 1164593468849941562}
   - component: {fileID: 5911569556449404275}
-  - component: {fileID: 3843104134277519279}
+  - component: {fileID: 4450424204300378752}
   m_Layer: 6
   m_Name: Person
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonMovement
   eventHandler: {fileID: 6701688704771978838}
   Duration: 0.2
---- !u!114 &3843104134277519279
+--- !u!114 &4450424204300378752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,4 +261,4 @@ MonoBehaviour:
   eventHandler: {fileID: 6701688704771978838}
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  dragStretch: {fileID: 3843104134277519279}
+  dragStretch: {fileID: 0}

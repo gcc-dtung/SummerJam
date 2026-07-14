@@ -8,6 +8,7 @@ public class PersonVisual : MonoBehaviour
     [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private float changeViewDuration;
     [SerializeField] private float changeViewScale;
+    [SerializeField] private DragStretch dragStretch;
     
     private Person person;
     private SpriteRenderer sprite;
@@ -31,6 +32,9 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
         eventHandler.OnDraggingWithoutMousePosition += Normal;
         eventHandler.OnDrop += ChangeVisualEndDrag;
+        eventHandler.OnPress += dragStretch.OnMouseDown;
+        eventHandler.OnStartDrag += dragStretch.OnMouseUp;
+        eventHandler.OnDrop += dragStretch.OnMouseUp;
     }
     
     private void OnDisable()
@@ -39,6 +43,9 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
         eventHandler.OnDraggingWithoutMousePosition -= Normal;
+        eventHandler.OnPress -= dragStretch.OnMouseDown;
+        eventHandler.OnStartDrag -= dragStretch.OnMouseUp;
+        eventHandler.OnDrop -= dragStretch.OnMouseUp;
     }
 
     private void Start()

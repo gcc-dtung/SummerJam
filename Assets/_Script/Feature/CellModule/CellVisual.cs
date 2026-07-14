@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using PrimeTween;
+using Unity.VisualScripting.Dependencies.NCalc;
 
 public class CellVisual : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)
     {
-        if (cell.Type != CellType.Seat) return;
+        if(!CanChange()) return;
         if (scaleTween.isAlive)
             scaleTween.Stop();
         if (hoverSprite.transform.localScale == Vector3.one * viewScale) return;
@@ -58,7 +59,7 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualBackGround(Color c)
     {
-        if (cell.Type != CellType.Seat) return;
+        if(!CanChange()) return;
         if (backgroundSprite.color == c) return;
         Color newColor = c;
         newColor.a = 1;
@@ -67,13 +68,12 @@ public class CellVisual : MonoBehaviour
 
     private void TurnOnHoverSprite()
     {
-        if (cell.Type != CellType.Seat) return;
+        if(!CanChange()) return;
         hoverSprite.enabled = true;
     }
     
     private void TurnOffHoverSprite()
     {
-        if (cell.Type != CellType.Seat) return;
         hoverSprite.enabled = false;
     }
 
@@ -88,4 +88,6 @@ public class CellVisual : MonoBehaviour
         ChangeVisualHover(baseScale, baseOrderInLayer);
         ChangeVisualBackGround(baseColor);
     }
+
+    private bool CanChange() => cell.Type == CellType.Seat && cell.CanSeat;
 }

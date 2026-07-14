@@ -15,7 +15,13 @@ public class CellVisual : MonoBehaviour
     private float baseScale;
     private int baseOrderInLayer;
     private Color baseColor;
-    
+    private Cell cell;
+
+    private void Awake()
+    {
+        cell = gameObject.GetComponent<Cell>();
+    }
+
     private void Start()
     {
         baseScale = hoverSprite.transform.localScale.x;
@@ -28,20 +34,21 @@ public class CellVisual : MonoBehaviour
     {
         eventHandler.OnSelected += ChangeVisualOnSelected;
         eventHandler.OnDeselected += ChangeVisualOnDeselected;
-        EventBus.AddListener(GameEventType.StartDrag, () => hoverSprite.enabled = true);
-        EventBus.AddListener(GameEventType.StopDrag, () => hoverSprite.enabled = false);
+        EventBus.AddListener(GameEventType.StartDrag, TurnOnHoverSprite);
+        EventBus.AddListener(GameEventType.StopDrag, TurnOffHoverSprite);
     }
 
     private void OnDisable()
     {
         eventHandler.OnSelected -= ChangeVisualOnSelected;
         eventHandler.OnDeselected -= ChangeVisualOnDeselected;
-        EventBus.RemoveListener(GameEventType.StartDrag, () => hoverSprite.enabled = true);
-        EventBus.RemoveListener(GameEventType.StopDrag, () => hoverSprite.enabled = false);
+        EventBus.RemoveListener(GameEventType.StartDrag, TurnOnHoverSprite);
+        EventBus.RemoveListener(GameEventType.StopDrag, TurnOffHoverSprite);
     }
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)
     {
+        if (cell.Type != CellType.Seat) return;
         if (scaleTween.isAlive)
             scaleTween.Stop();
         if (hoverSprite.transform.localScale == Vector3.one * viewScale) return;
@@ -51,10 +58,23 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualBackGround(Color c)
     {
+        if (cell.Type != CellType.Seat) return;
         if (backgroundSprite.color == c) return;
         Color newColor = c;
         newColor.a = 1;
         backgroundSprite.color = newColor;
+    }
+
+    private void TurnOnHoverSprite()
+    {
+        if (cell.Type != CellType.Seat) return;
+        hoverSprite.enabled = true;
+    }
+    
+    private void TurnOffHoverSprite()
+    {
+        if (cell.Type != CellType.Seat) return;
+        hoverSprite.enabled = false;
     }
 
     public void ChangeVisualOnSelected()

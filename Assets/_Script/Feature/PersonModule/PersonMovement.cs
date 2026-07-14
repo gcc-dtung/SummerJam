@@ -24,6 +24,7 @@ public class PersonMovement : MonoBehaviour
    {
       if(tweenPosition.isAlive)
          tweenPosition.Stop();
+      if (transform.position == position) return;
       tweenPosition = Tween.Position(transform, position, duration: Duration);
    }
    

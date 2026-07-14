@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using PrimeTween;
 
 public class DragStretch : MonoBehaviour
 {
+    [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] float stretchStrength = 0.25f;
     [SerializeField] float maxStretch = 1.6f;
     [SerializeField] Camera gameCamera;
@@ -14,6 +16,20 @@ public class DragStretch : MonoBehaviour
     {
         if(gameCamera == null) gameCamera = Camera.main;
         baseScale = transform.localScale;
+    }
+
+    private void OnEnable()
+    {
+        eventHandler.OnPress += OnMouseDown;
+        eventHandler.OnStartDrag += OnMouseUp;
+        eventHandler.OnDrop += OnMouseUp;
+    }
+
+    private void OnDisable()
+    {
+        eventHandler.OnPress -= OnMouseDown;
+        eventHandler.OnStartDrag -= OnMouseUp;
+        eventHandler.OnDrop -= OnMouseUp;
     }
 
     public void OnMouseDown() => dragging = true;

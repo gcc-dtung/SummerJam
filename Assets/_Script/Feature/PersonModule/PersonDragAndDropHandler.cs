@@ -4,6 +4,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
 {
     [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private Person person;
+    [SerializeField] private Vector3 offset = new Vector3(0,0.5f,0);
     private Vector3 oldPosition;
     private Cell oldCell;
     private Cell hoveredCell;
@@ -17,8 +18,6 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     {
         oldCell = this.transform.parent.GetComponent<Cell>();
         this.transform.SetParent(null);
-        //
-        //
         // oldCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
         // if (oldCell == null) oldCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
         oldPosition = oldCell.transform.position;
@@ -28,7 +27,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     public void Drag(Vector3 dragPosition)
     {
         dragPosition.z = 0f;
-        eventHandler.OnDraggingNotify(dragPosition);
+        eventHandler.OnDraggingNotify(dragPosition + offset);
         
         Cell currentCell = GridManager.Instance.Board.GetValueFromWorldPosition(this.transform.position);
         if(currentCell == null)  currentCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(this.transform.position);
@@ -61,7 +60,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
         }
         
         int x, y;
-        if (GridManager.Instance.Board.TryGetCellFromWorldPos(endPosition, out x, out y))
+        if (GridManager.Instance.Board.TryGetCellFromWorldPos(this.transform.position, out x, out y))
         {
             if (IsEmptySeat(x, y, GridManager.Instance.Board))
             {
@@ -87,7 +86,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
             }
         }
 
-        if (GridManager.Instance.WaitLine.TryGetCellFromWorldPos(endPosition, out x, out y))
+        if (GridManager.Instance.WaitLine.TryGetCellFromWorldPos(this.transform.position, out x, out y))
         {
             if (IsEmptySeat(x, y, GridManager.Instance.WaitLine))
             {

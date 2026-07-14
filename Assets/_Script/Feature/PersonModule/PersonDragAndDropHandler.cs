@@ -16,11 +16,11 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     public void StartDrag()
     {
         this.transform.SetParent(null);
-        oldPosition = this.transform.position;
+        //oldPosition = this.transform.position;
         
         oldCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
         if (oldCell == null) oldCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
-        
+        oldPosition = oldCell.transform.position;
         eventHandler.OnStartDragNotify();
     }
 

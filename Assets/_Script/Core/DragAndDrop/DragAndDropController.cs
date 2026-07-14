@@ -54,7 +54,9 @@ public class DragAndDropController : MonoBehaviour
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
         Detect(worldPosition);
         currentDragItem?.Press();
+        if(currentDragItem != null) EventBus.Notify(GameEventType.Press);
         currentDragItem = null;
+       
     }
 
     private void OnHoldStarted(InputAction.CallbackContext context)
@@ -67,6 +69,7 @@ public class DragAndDropController : MonoBehaviour
         {
             isDragging = true;
             currentDragItem?.StartDrag();
+            EventBus.Notify(GameEventType.StartDrag);
         }
     }
 

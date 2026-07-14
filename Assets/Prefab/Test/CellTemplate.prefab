@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7204608856450553470}
   - component: {fileID: 2650220930860692941}
   - component: {fileID: 1638961278975997020}
+  - component: {fileID: 4908801257741630260}
   m_Layer: 0
   m_Name: CellTemplate
   m_TagString: Untagged
@@ -118,6 +119,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4908801257741630260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817100485411959711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814e20868c0e55841919a6e1d4580c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CellVisual
+  eventHandler: {fileID: 2650220930860692941}
+  changeViewDuration: 0.25
+  changeViewScale: 1.2
+  hoverSprite: {fileID: 1598113066198511301}
+  backgroundSprite: {fileID: 1638961278975997020}
+  backgroundColorWhenChange: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &9208349702107975430
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +147,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1455692247839218737}
   - component: {fileID: 1598113066198511301}
-  - component: {fileID: 7377284150848481400}
   m_Layer: 0
   m_Name: CellVisual
   m_TagString: Untagged
@@ -210,21 +228,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7377284150848481400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9208349702107975430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814e20868c0e55841919a6e1d4580c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CellVisual
-  eventHandler: {fileID: 2650220930860692941}
-  changeViewDuration: 0.25
-  changeViewScale: 1.2
-  hoverSprite: {fileID: 1598113066198511301}
-  backgroundSprite: {fileID: 1638961278975997020}
-  backgroundColorWhenChange: {r: 1, g: 0, b: 0, a: 0}

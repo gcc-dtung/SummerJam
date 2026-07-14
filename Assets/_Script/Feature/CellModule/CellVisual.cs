@@ -21,18 +21,23 @@ public class CellVisual : MonoBehaviour
         baseScale = hoverSprite.transform.localScale.x;
         baseOrderInLayer = hoverSprite.sortingOrder;
         baseColor = backgroundSprite.color;
+        hoverSprite.enabled = false;
     }
 
     private void OnEnable()
     {
         eventHandler.OnSelected += ChangeVisualOnSelected;
         eventHandler.OnDeselected += ChangeVisualOnDeselected;
+        EventBus.AddListener(GameEventType.StartDrag, () => hoverSprite.enabled = true);
+        EventBus.AddListener(GameEventType.StopDrag, () => hoverSprite.enabled = false);
     }
 
     private void OnDisable()
     {
         eventHandler.OnSelected -= ChangeVisualOnSelected;
         eventHandler.OnDeselected -= ChangeVisualOnDeselected;
+        EventBus.RemoveListener(GameEventType.StartDrag, () => hoverSprite.enabled = true);
+        EventBus.RemoveListener(GameEventType.StopDrag, () => hoverSprite.enabled = false);
     }
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)

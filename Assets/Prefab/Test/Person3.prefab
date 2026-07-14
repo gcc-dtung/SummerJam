@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6466923299377600956}
   - component: {fileID: 9001291267059678432}
   - component: {fileID: 5509800066030360956}
-  - component: {fileID: -1073444474481893901}
   m_Layer: 6
   m_Name: Person3
   m_TagString: Untagged
@@ -139,21 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonMovement
   eventHandler: {fileID: 2093571436841312829}
   Duration: 0.2
---- !u!114 &-1073444474481893901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6742994738431466870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f97f27ea16d2643919209fd96e93ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DragStretch
-  stretchStrength: 0.25
-  maxStretch: 1.6
-  gameCamera: {fileID: 0}
 --- !u!1 &9164701172244665886
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +149,7 @@ GameObject:
   - component: {fileID: 8504886843598020558}
   - component: {fileID: 260043595417772706}
   - component: {fileID: 7970344072032211631}
+  - component: {fileID: 2441001838325029599}
   m_Layer: 6
   m_Name: PersonVisual
   m_TagString: Untagged
@@ -261,4 +246,20 @@ MonoBehaviour:
   eventHandler: {fileID: 2093571436841312829}
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  dragStretch: {fileID: -1073444474481893901}
+  dragStretch: {fileID: 2441001838325029599}
+--- !u!114 &2441001838325029599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164701172244665886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f97f27ea16d2643919209fd96e93ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragStretch
+  eventHandler: {fileID: 2093571436841312829}
+  stretchStrength: 0.25
+  maxStretch: 1.6
+  gameCamera: {fileID: 0}

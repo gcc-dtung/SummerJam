@@ -55,8 +55,8 @@ public class DragAndDropController : MonoBehaviour
         Detect(worldPosition);
         currentDragItem?.Press();
         if(currentDragItem != null) EventBus.Notify(GameEventType.Press);
+        else EventBus.Notify(GameEventType.PressOutSide);
         currentDragItem = null;
-       
     }
 
     private void OnHoldStarted(InputAction.CallbackContext context)
@@ -83,6 +83,7 @@ public class DragAndDropController : MonoBehaviour
         
         currentDragItem?.Drop(worldPosition);
         currentDragItem = null;
+        
         EventBus.Notify(GameEventType.StopDrag);
     }
 

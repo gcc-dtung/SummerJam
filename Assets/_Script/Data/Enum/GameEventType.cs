@@ -8,6 +8,5 @@ public enum GameEventType
     StopDrag = 3,
     Checking = 4,
     OnPlace = 5,
-    Win = 6,
-    Lose = 7
+    PressOutSide = 6
 }

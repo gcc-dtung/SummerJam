@@ -246,7 +246,6 @@ MonoBehaviour:
   eventHandler: {fileID: 2093571436841312829}
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  dragStretch: {fileID: 2441001838325029599}
 --- !u!114 &2441001838325029599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,3 +262,4 @@ MonoBehaviour:
   stretchStrength: 0.25
   maxStretch: 1.6
   gameCamera: {fileID: 0}
+  hoverTransform: {fileID: 8504886843598020558}

@@ -108,8 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 4e69d1ef080d64f4b81aa59adc6f0bbf, type: 2}
-  conditions:
-  - {fileID: 11400000, guid: b9ec0403a283ebc41b4b76135679f2b6, type: 2}
+  conditions: {fileID: 11400000, guid: ee98a45998f2f8b4aa682f862c480887, type: 2}
 --- !u!114 &1164593468849941562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,5 +261,8 @@ MonoBehaviour:
   eventHandler: {fileID: 6701688704771978838}
   stretchStrength: 0.25
   maxStretch: 1.6
-  gameCamera: {fileID: 0}
+  returnDuration: 0.18
+  maxTilt: 12
+  tiltSensitivity: 250
+  followResponsiveness: 20
   hoverTransform: {fileID: 6622026478861251763}

@@ -1,9 +1,8 @@
 
 public enum Food
 {
-    Nozmal = 0,
-    Hot = 1,
-    Freeze = 2
+    Spicy = 0,
+    Cold = 1
 }
 
 public enum Trait
@@ -16,11 +15,25 @@ public enum Trait
 public enum Target
 {
     Dish = 0,
-    Person = 1
+    Person = 1,
+    Cell = 2
 }
 
-public enum ConditionType
+public enum Scope
 {
-    Like = 0,
-    Hate = 1
+    Self = 0,
+    Adjacent = 1
+}
+
+public enum Comparator
+{
+    AtLeast = 0,
+    AtMost = 1,
+    Exact = 2
+}
+
+public enum LogicalOperator
+{
+    And = 0, 
+    Or = 1
 }

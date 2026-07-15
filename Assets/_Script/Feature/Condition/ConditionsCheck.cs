@@ -44,7 +44,7 @@ public class ConditionsCheck : MonoBehaviour
                     adjacency.Add(GridManager.Instance.Board.GetValue(tmp.x, tmp.y));
                 }
             }
-            cellHolder[i].CurrentPerson.ConditionChecking.CheckConditions(adjacency);
+            cellHolder[i].CurrentPerson.CheckConditions(cellHolder[i],adjacency);
         }
         EventBus.Notify(GameEventType.Checking);
     }
@@ -54,7 +54,7 @@ public class ConditionsCheck : MonoBehaviour
         cellHolder.Clear();
         GridManager.Instance.Board.MatrixTraversal(GetPerson);
     }
-
+    
     private void GetPerson(int x, int y, Cell cell)
     {
         if (cell.Type != CellType.Seat) return;

@@ -4,8 +4,10 @@ using UnityEngine;
 public class Person : MonoBehaviour
 {
     [SerializeField] private PersonDataSO data;
-    [SerializeField] private List<ConditionsSO> conditions;
-    public PersonConditionCheck ConditionChecking { get; private set; }
+    [SerializeField] private ConditionsSO conditions;
+    public List<ConditionInfo> ConditionStatus { get; private set; } = new List<ConditionInfo>();
+    public bool IsHappy { get; private set; }
+
     public string ID => data.ID;
     public List<Trait> Trait => data.Trait;
 
@@ -15,14 +17,22 @@ public class Person : MonoBehaviour
     public void SetOutSideState(bool condition) => OutSide = condition;
     public void SetSeatedState(bool condition) => Seated = condition;
 
-    public void SetCondition(List<ConditionsSO> condition)
+    public void CheckConditions(Cell currentCell,List<Cell> adjacency)
+    {
+        ConditionStatus.Clear();
+        if(conditions == null)
+        {
+            IsHappy = true;
+            return;
+        }
+        if (conditions.CheckCondition(currentCell, adjacency)) IsHappy = true;
+        else IsHappy = false;
+        conditions.GetConditionInfo(currentCell,adjacency,ConditionStatus);
+    }
+    
+    public void SetCondition(ConditionsSO condition)
     {
         conditions = condition;
-        ConditionChecking.SwitchConditions(condition);
     }
-
-    private void Awake()
-    {
-        ConditionChecking = new PersonConditionCheck(conditions);
-    }
+    
 }

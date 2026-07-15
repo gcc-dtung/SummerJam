@@ -116,7 +116,7 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""id"": ""afb00d5b-f16d-4b4b-b944-a531c40984f2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.2)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],

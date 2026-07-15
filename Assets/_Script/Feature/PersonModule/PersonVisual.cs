@@ -54,7 +54,7 @@ public class PersonVisual : MonoBehaviour
     private void ChangeStatus()
     {
         if(person.OutSide) {Normal(); return;}
-        if(person.ConditionChecking.IsHappy) Happy();
+        if(person.IsHappy) Happy();
         else Sad();
     }
 

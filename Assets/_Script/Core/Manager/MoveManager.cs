@@ -1,7 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
-public class MoveController : MonoBehaviour
+public class MoveManager : MonoBehaviour
 {
     [SerializeField] private MoveDataSO data;
     [SerializeField] private TextMeshProUGUI text;
@@ -9,12 +9,12 @@ public class MoveController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.AddListener(GameEventType.OnPlace,DetuctMove);
+        EventBus.AddListener(GameEventType.PlacePerson,DetuctMove);
     }
 
     private void OnDisable()
     {
-        EventBus.RemoveListener(GameEventType.OnPlace,DetuctMove);
+        EventBus.RemoveListener(GameEventType.PlacePerson,DetuctMove);
     }
 
     private void Start()

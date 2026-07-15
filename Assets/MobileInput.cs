@@ -107,7 +107,7 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""id"": ""3fa27ce3-41a8-4bdc-8f63-f14c4e2daf3e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -116,7 +116,7 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""id"": ""afb00d5b-f16d-4b4b-b944-a531c40984f2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.2)"",
                     ""initialStateCheck"": false
                 }
             ],

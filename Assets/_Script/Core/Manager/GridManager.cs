@@ -63,7 +63,6 @@ public class GridManager : Singleton<GridManager>
        person.SetOutSideState(true);
    }
    
-
    private void InitializePerson(Cell cell,CellDataSO data)
    {
         if(data.Type != CellType.Seat || !(data is Seat) ) return;

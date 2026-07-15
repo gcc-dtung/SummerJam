@@ -35,16 +35,16 @@ public class CellVisual : MonoBehaviour
     {
         eventHandler.OnSelected += ChangeVisualOnSelected;
         eventHandler.OnDeselected += ChangeVisualOnDeselected;
-        EventBus.AddListener(GameEventType.StartDrag, TurnOnHoverSprite);
-        EventBus.AddListener(GameEventType.StopDrag, TurnOffHoverSprite);
+        EventBus.AddListener(GameEventType.StartDragPerson, TurnOnHoverSprite);
+        EventBus.AddListener(GameEventType.StopDragPerson, TurnOffHoverSprite);
     }
 
     private void OnDisable()
     {
         eventHandler.OnSelected -= ChangeVisualOnSelected;
         eventHandler.OnDeselected -= ChangeVisualOnDeselected;
-        EventBus.RemoveListener(GameEventType.StartDrag, TurnOnHoverSprite);
-        EventBus.RemoveListener(GameEventType.StopDrag, TurnOffHoverSprite);
+        EventBus.RemoveListener(GameEventType.StartDragPerson, TurnOnHoverSprite);
+        EventBus.RemoveListener(GameEventType.StopDragPerson, TurnOffHoverSprite);
     }
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)

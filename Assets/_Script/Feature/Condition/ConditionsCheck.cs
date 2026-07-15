@@ -21,12 +21,12 @@ public class ConditionsCheck : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.AddListener(GameEventType.StopDrag,Check);
+        EventBus.AddListener(GameEventType.StopDragPerson,Check);
     }
 
     private void OnDisable()
     {
-        EventBus.RemoveListener(GameEventType.StopDrag,Check);
+        EventBus.RemoveListener(GameEventType.StopDragPerson,Check);
     }
 
 

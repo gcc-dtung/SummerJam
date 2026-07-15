@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
+public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
 {
     [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private Person person;
@@ -11,15 +11,13 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
     
     public void Press()
     {
-        eventHandler.OnPressNotify();
+       eventHandler.OnPressNotify();
     }
 
     public void StartDrag()
     {
         oldCell = this.transform.parent.GetComponent<Cell>();
         this.transform.SetParent(null);
-        // oldCell = GridManager.Instance.Board.GetValueFromWorldPosition(oldPosition);
-        // if (oldCell == null) oldCell = GridManager.Instance.WaitLine.GetValueFromWorldPosition(oldPosition);
         oldPosition = oldCell.transform.position;
         eventHandler.OnStartDragNotify();
     }
@@ -68,7 +66,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                 ResetOldSeat(oldPosition);
                 person.SetOutSideState(false);
                 eventHandler.OnDropNotify();
-                EventBus.Notify(GameEventType.OnPlace);
+                EventBus.Notify(GameEventType.PlacePerson);
                 return;
             }
             else
@@ -78,7 +76,6 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                     Vector3 snappedTargetPos = GridManager.Instance.Board.GetWorldPosition(x, y);
                     if (SwapSeat(oldPosition, snappedTargetPos))
                     {
-                        EventBus.Notify(GameEventType.OnPlace);
                         eventHandler.OnDropNotify();
                         return;
                     }
@@ -93,7 +90,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                 SetSeat(x,y,GridManager.Instance.WaitLine);
                 ResetOldSeat(oldPosition);
                 person.SetOutSideState(true);
-                EventBus.Notify(GameEventType.OnPlace);
+                EventBus.Notify(GameEventType.PlacePerson);
                 eventHandler.OnDropNotify();
                 return;
             }
@@ -104,7 +101,6 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
                     Vector3 snappedTargetPos = GridManager.Instance.WaitLine.GetWorldPosition(x, y);
                     if (SwapSeat(oldPosition, snappedTargetPos))
                     {
-                        EventBus.Notify(GameEventType.OnPlace);
                         eventHandler.OnDropNotify();
                         return;
                     }
@@ -166,11 +162,13 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable
 
         if (cell1OutSide && !cell2OutSide)
         {
+            EventBus.Notify(GameEventType.PlacePerson);
             tmp2.SetOutSideState(true);
             tmp1.SetOutSideState(false);
         }
         else if (!cell1OutSide && cell2OutSide)
         {
+            EventBus.Notify(GameEventType.PlacePerson);
             tmp2.SetOutSideState(false);
             tmp1.SetOutSideState(true);
         }

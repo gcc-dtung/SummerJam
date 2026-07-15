@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/CellModule/CellVisual.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/CellModule/CellVisual.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonVisual.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonVisual.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000000000007" />
+      <entry key="MS500" value="1.002356819480696" />
+      <entry key="S2" value="2.0198468832352496" />
+      <entry key="S5" value="5.068528817116162" />
+      <entry key="S10" value="7.675491122700652" />
+      <entry key="S30" value="11.669761606162492" />
+      <entry key="S60" value="18.36951531792865" />
+      <entry key="M2" value="32.888235586408975" />
+      <entry key="M5" value="57.369622540818476" />
+      <entry key="M10" value="71.9006233745333" />
+      <entry key="M15" value="77.87833253446338" />
+      <entry key="M30" value="84.54778540340544" />
+      <entry key="H1" value="88.16986897881921" />
+      <entry key="H2" value="90.05810995020678" />
+      <entry key="H4" value="91.02224346406886" />
+      <entry key="D1" value="91.83608544441115" />
+      <entry key="W1" value="91.97656012438118" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="3.554806278830173E-31" />
+      <entry key="MS500" value="8.131359975509223E-7" />
+      <entry key="S2" value="0.0300303145225342" />
+      <entry key="S5" value="0.25049466144385835" />
+      <entry key="S10" value="0.5635102514070478" />
+      <entry key="S30" value="1.3276410455384848" />
+      <entry key="S60" value="2.146914816622886" />
+      <entry key="M2" value="3.4156874906380303" />
+      <entry key="M5" value="5.658357189109359" />
+      <entry key="M10" value="7.277937260602519" />
+      <entry key="M15" value="8.025332941583626" />
+      <entry key="M30" value="8.920190925708456" />
+      <entry key="H1" value="9.434248611774356" />
+      <entry key="H2" value="9.710282815708913" />
+      <entry key="H4" value="9.853380892628099" />
+      <entry key="D1" value="9.975314579504147" />
+      <entry key="W1" value="9.996467357680862" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.003129179209335142" />
+      <entry key="MS500" value="0.3178749896784374" />
+      <entry key="S2" value="1.7510402111187084" />
+      <entry key="S5" value="5.046397895142548" />
+      <entry key="S10" value="7.99577960438495" />
+      <entry key="S30" value="12.76906066633939" />
+      <entry key="S60" value="20.279267558926446" />
+      <entry key="M2" value="36.09065236452174" />
+      <entry key="M5" value="62.88892878374466" />
+      <entry key="M10" value="79.09383127402185" />
+      <entry key="M15" value="85.84302849247209" />
+      <entry key="M30" value="93.43533915351277" />
+      <entry key="H1" value="97.5871677222517" />
+      <entry key="H2" value="99.7597529658569" />
+      <entry key="H4" value="100.87126231891521" />
+      <entry key="D1" value="101.81066708498238" />
+      <entry key="W1" value="101.97292263015211" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3GUHg11gupJ8N0HbJNgjWXJCQvE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.18f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\dtun.kay\Desktop\Everything\Git\SummerJam -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\dtun.kay\Desktop\Everything\Git\SummerJam" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.18f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\dtun.kay\Desktop\Everything\Git\SummerJam -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\dtun.kay\Desktop\Everything\Git\SummerJam" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="" />
+      <created>1784019336987</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1784019336987</updated>
+      <workItem from="1784019345199" duration="5459000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -48,7 +48,7 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)
     {
-        if (cell.Type != CellType.Seat) return;
+        if (cell.Type != CellType.Seat || !cell.CanSeat) return;
         if (scaleTween.isAlive)
             scaleTween.Stop();
         if (hoverSprite.transform.localScale == Vector3.one * viewScale) return;
@@ -58,7 +58,7 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualBackGround(Color c)
     {
-        if (cell.Type != CellType.Seat) return;
+        if (cell.Type != CellType.Seat || !cell.CanSeat) return;
         if (backgroundSprite.color == c) return;
         Color newColor = c;
         newColor.a = 1;

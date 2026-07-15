@@ -24,7 +24,6 @@ public class SingleConditionsSO : ConditionsSO
     public override bool CheckCondition(Cell currentCell, List<Cell> adjacency)
     {
         int matchCount = 0;
-        Debug.Log($"{Scope} {matchCount}");
         if (Scope == Scope.Self)
         {
             if (EvaluateMatch(currentCell))

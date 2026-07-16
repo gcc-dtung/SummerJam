@@ -1,7 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
-public class MoveManager : MonoBehaviour
+public class MoveManager : Singleton<MoveManager>
 {
     [SerializeField] private MoveDataSO data;
     [SerializeField] private TextMeshProUGUI text;
@@ -27,22 +27,21 @@ public class MoveManager : MonoBehaviour
         text.text = "Move: " + StepRemain.ToString(); // để tạm
     }
 
-    void Reload()
+    public void Reload()
     {
         StepRemain = data.Limit;
     }
 
-    void DetuctMove()
+    public void DetuctMove()
     {
         if(IsOutOfMove()) return;
         StepRemain--;
     }
 
-    void IncreaseMove()
+    public void IncreaseMove()
     {
-        if(IsOutOfMove()) return;
         StepRemain = Mathf.Clamp(StepRemain + 1, 0, data.Limit);
     }
-    bool IsOutOfMove() => (StepRemain <= 0);
+    public bool IsOutOfMove() => (StepRemain <= 0);
 
 }

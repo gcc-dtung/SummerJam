@@ -62,9 +62,13 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         {
             if (IsEmptySeat(x, y, GridManager.Instance.Board))
             {
+                Cell targetCell = GridManager.Instance.Board.GetValue(x, y);
+                UndoManager.Instance.RecordMove(person, oldCell, null, targetCell, true);
+                
                 SetSeat(x,y,GridManager.Instance.Board);
                 ResetOldSeat(oldPosition);
                 person.SetOutSideState(false);
+                
                 eventHandler.OnDropNotify();
                 EventBus.Notify(GameEventType.PlacePerson);
                 return;
@@ -87,10 +91,14 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         {
             if (IsEmptySeat(x, y, GridManager.Instance.WaitLine))
             {
+                Cell targetCell = GridManager.Instance.WaitLine.GetValue(x, y);
+                UndoManager.Instance.RecordMove(person, oldCell, null, targetCell, !person.OutSide);
+               if(!person.OutSide) EventBus.Notify(GameEventType.PlacePerson);
                 SetSeat(x,y,GridManager.Instance.WaitLine);
                 ResetOldSeat(oldPosition);
                 person.SetOutSideState(true);
-                EventBus.Notify(GameEventType.PlacePerson);
+                
+                
                 eventHandler.OnDropNotify();
                 return;
             }
@@ -157,6 +165,12 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         
         Person tmp1 = cell1.CurrentPerson;
         Person tmp2 = cell2.CurrentPerson;
+        
+                
+        bool willDeductMove = (cell1OutSide && !cell2OutSide) || (!cell1OutSide && cell2OutSide);
+        UndoManager.Instance.RecordMove(tmp1, cell1, tmp2, cell2, willDeductMove);
+        
+        
         cell1.SetPersonToSeat(cell2.CurrentPerson);
         cell2.SetPersonToSeat(tmp1);
 
@@ -172,6 +186,13 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
             tmp2.SetOutSideState(false);
             tmp1.SetOutSideState(true);
         }
+        else 
+        if (!cell1OutSide && !cell2OutSide)
+        {
+            EventBus.Notify(GameEventType.PlacePerson);
+            tmp2.SetOutSideState(false);
+            tmp1.SetOutSideState(false);
+        }
         
         
         this.transform.SetParent(cell2.transform);
@@ -179,6 +200,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         tmp2.transform.SetParent(cell1.transform);
         tmp2.transform.localScale = Vector3.one;
         
+
         
         eventHandler.OnMoveToSeatNotify(target);
         tmp2.GetComponent<PersonEventHandler>().OnMoveToSeatNotify(origin);

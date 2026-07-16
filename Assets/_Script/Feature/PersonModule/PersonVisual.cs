@@ -8,6 +8,8 @@ public class PersonVisual : MonoBehaviour
     [SerializeField] private PersonEventHandler eventHandler;
     [SerializeField] private float changeViewDuration;
     [SerializeField] private float changeViewScale;
+    [SerializeField] private Vector3 handPosition;
+    [SerializeField] private SpriteRenderer handOnPerson;
     
     private Person person;
     private SpriteRenderer sprite;
@@ -31,6 +33,7 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
         eventHandler.OnDraggingWithoutMousePosition += Normal;
         eventHandler.OnDrop += ChangeVisualEndDrag;
+        eventHandler.OnDraggingWithoutMousePosition += OnHandOnDrag;
         
     }
     
@@ -40,6 +43,7 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
         eventHandler.OnDraggingWithoutMousePosition -= Normal;
+        eventHandler.OnDraggingWithoutMousePosition -= OnHandOnDrag;
         
     }
 
@@ -47,6 +51,7 @@ public class PersonVisual : MonoBehaviour
     {
         baseScale = sprite.transform.localScale.x;
         baseOrderInLayer = sprite.sortingOrder;
+        handOnPerson.enabled = false;
     }
 
 
@@ -76,12 +81,19 @@ public class PersonVisual : MonoBehaviour
     public void ChangeVisualOnStartDrag()
     {
         ChangeVisual(changeViewScale, Constaints.MAX_SORTING_LAYER);
+        handOnPerson.enabled = true;
     }
     
     [Button("VisualEndDrag")]
     public void ChangeVisualEndDrag()
     {
         ChangeVisual(baseScale, baseOrderInLayer);
+        handOnPerson.enabled = false;
+    }
+
+    public void OnHandOnDrag()
+    {
+        handOnPerson.transform.localPosition = handPosition + sprite.transform.localPosition;
     }
     #endregion
 }

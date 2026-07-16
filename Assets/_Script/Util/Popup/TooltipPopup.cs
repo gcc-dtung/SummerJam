@@ -29,15 +29,33 @@ public class TooltipPopup : MonoBehaviour
     [SerializeField] private float durationTween = 0.2f;
     
     private Sequence tooltipSequence;
+    private bool isShow = false;
 
     private void Start()
     {
         Restart();
     }
 
+    private void OnEnable()
+    {
+        EventBus.AddListener(GameEventType.PressOutSide, Hide);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.RemoveListener(GameEventType.PressOutSide, Hide);
+    }
+
 
     public void Show(string personName, string content)
     {
+        if (isShow)
+        {
+            Hide();
+            return;
+        }
+
+        isShow = true;
         tooltipTransform.gameObject.SetActive(true);
 
         nameText.text = personName;
@@ -81,6 +99,7 @@ public class TooltipPopup : MonoBehaviour
 
     public void Hide()
     {
+        isShow = false;
         PlayTransition(toScale: 0f, toAlpha: 0f,
             onComplete: () => tooltipTransform.gameObject.SetActive(false));
     }

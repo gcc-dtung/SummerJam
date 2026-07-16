@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Test2 : MonoBehaviour
 {
-    [SerializeField] string name;
+    [SerializeField] private new string name;
     [SerializeField] string content;
     [SerializeField] TooltipPopup tooltipPopup;
 

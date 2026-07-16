@@ -10,6 +10,7 @@ public class PersonVisual : MonoBehaviour
     [SerializeField] private float changeViewScale;
     [SerializeField] private Vector3 handPosition;
     [SerializeField] private SpriteRenderer handOnPerson;
+    [SerializeField] private TooltipPopup tooltipPopup;
     
     private Person person;
     private SpriteRenderer sprite;
@@ -34,6 +35,7 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnDraggingWithoutMousePosition += Normal;
         eventHandler.OnDrop += ChangeVisualEndDrag;
         eventHandler.OnDraggingWithoutMousePosition += OnHandOnDrag;
+        eventHandler.OnPress += ShowTooltip;
         
     }
     
@@ -44,6 +46,7 @@ public class PersonVisual : MonoBehaviour
         eventHandler.OnDrop -= ChangeVisualEndDrag;
         eventHandler.OnDraggingWithoutMousePosition -= Normal;
         eventHandler.OnDraggingWithoutMousePosition -= OnHandOnDrag;
+        eventHandler.OnPress -= ShowTooltip;
         
     }
 
@@ -94,6 +97,14 @@ public class PersonVisual : MonoBehaviour
     public void OnHandOnDrag()
     {
         handOnPerson.transform.localPosition = handPosition + sprite.transform.localPosition;
+    }
+
+    public void ShowTooltip()
+    {
+        string personName = person.Name;
+        string personDescription = person.BuildTooltipContent();
+        
+        tooltipPopup.Show(personName, personDescription);
     }
     #endregion
 }

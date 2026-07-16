@@ -1,4 +1,5 @@
-using System.Collections.Generic;   
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Person : MonoBehaviour
@@ -9,6 +10,7 @@ public class Person : MonoBehaviour
     public bool IsHappy { get; private set; }
 
     public string ID => data.ID;
+    public string Name => data.Name;
     public List<Trait> Trait => data.Trait;
 
     public bool OutSide { get; private set; }
@@ -34,5 +36,24 @@ public class Person : MonoBehaviour
     {
         conditions = condition;
     }
-    
+    public string BuildTooltipContent()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < ConditionStatus.Count; i++)
+        {
+            ConditionInfo info = ConditionStatus[i];
+
+            string icon = info.IsSatisfied
+                ? "<color=#4CAF50>\u2611</color>"   // ☑ xanh lá
+                : "<color=#E53935>\u2612</color>";  // ☒ đỏ
+            //TODO : Sau sửa = TMP Sprite Asset để dùng ảnh
+            sb.Append(icon).Append(" ").Append(info.Description);
+
+            if (i < ConditionStatus.Count - 1)
+                sb.Append("\n");
+        }
+
+        return sb.ToString();
+    }
 }

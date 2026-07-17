@@ -6,6 +6,7 @@ public class MoveManager : Singleton<MoveManager>
     [SerializeField] private MoveDataSO data;
     [SerializeField] private TextMeshProUGUI text;
     public int StepRemain { get; private set; }
+    public int Limit => data.Limit;
 
     private void OnEnable()
     {
@@ -19,7 +20,7 @@ public class MoveManager : Singleton<MoveManager>
 
     private void Start()
     {
-        Reload();
+        ReloadData(data);
     }
 
     private void Update()
@@ -27,8 +28,9 @@ public class MoveManager : Singleton<MoveManager>
         text.text = "Move: " + StepRemain.ToString(); // để tạm
     }
 
-    public void Reload()
+    public void ReloadData(MoveDataSO data)
     {
+        //this.data = data;
         StepRemain = data.Limit;
     }
 

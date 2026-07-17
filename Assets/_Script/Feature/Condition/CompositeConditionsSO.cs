@@ -29,19 +29,29 @@ public class CompositeConditionsSO : ConditionsSO
         
         if (logicalOperator == LogicalOperator.And)
         {
+            bool isAllSatisfied = true;
             foreach (var cond in conditions)
             {
-             if (cond!=null && !cond.CheckCondition(currentCell, adjacency)) return false;
+             if (cond!=null)
+             {
+                 bool condResult = cond.CheckCondition(currentCell, adjacency);
+                 isAllSatisfied = isAllSatisfied && condResult;
+             }
             }
 
-            return true;
-        }
-
-        foreach (var cond in conditions)
-        {
-            if (cond!=null && cond.CheckCondition(currentCell, adjacency)) return true;
+            return isAllSatisfied;
         }
         
-        return false;
+        bool isAnySatisfied = true;
+        foreach (var cond in conditions)
+        {
+            if (cond != null)
+            {
+                bool condResult = cond.CheckCondition(currentCell, adjacency);
+                isAnySatisfied = isAnySatisfied || condResult;
+            }
+        }
+        
+        return isAnySatisfied;
     }
 }

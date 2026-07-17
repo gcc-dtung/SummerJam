@@ -65,7 +65,7 @@ public class SingleConditionsSO : ConditionsSO
             if (cell.CurrentPerson == null) return false;
             if (!string.IsNullOrEmpty(Filter.Name))
             {
-                if (cell.CurrentPerson.ID != Filter.Name) return false; 
+                if (cell.CurrentPerson.Name != Filter.Name) return false; 
             }
             foreach (var requiredTrait in Filter.TraitTags)
             {

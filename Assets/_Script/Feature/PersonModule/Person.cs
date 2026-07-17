@@ -22,7 +22,11 @@ public class Person : MonoBehaviour
 
     private void Start()
     {
-        conditions?.GetConditionInfo(ConditionStatus);
+        if (conditions != null)
+        {
+            conditions = Instantiate(conditions);
+            conditions?.GetConditionInfo(ConditionStatus);
+        }
     }
 
     public void CheckConditions(Cell currentCell,List<Cell> adjacency)
@@ -41,7 +45,11 @@ public class Person : MonoBehaviour
     public void SetCondition(ConditionsSO condition)
     {
         conditions = condition;
-        conditions.GetConditionInfo(ConditionStatus);
+        if (conditions != null)
+        {
+            conditions = Instantiate(conditions);
+            conditions?.GetConditionInfo(ConditionStatus);
+        }
     }
     public string BuildTooltipContent()
     {

@@ -42,7 +42,7 @@ public class CompositeConditionsSO : ConditionsSO
             return isAllSatisfied;
         }
         
-        bool isAnySatisfied = true;
+        bool isAnySatisfied = false;
         foreach (var cond in conditions)
         {
             if (cond != null)

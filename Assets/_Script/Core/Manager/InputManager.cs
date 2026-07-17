@@ -1,16 +1,40 @@
+using System;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : DontDestroyOnLoadSingleton<InputManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public MobileInput InputAction { get; private set; }
+
+    protected override void Awake()
     {
+        base.Awake();
+        InputAction = new MobileInput();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameStateChanged += OnUI;
+        GameManager.Instance.OnGameStateChanged += OnGamePlay;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameStateChanged -= OnUI;
+        GameManager.Instance.OnGameStateChanged -= OnGamePlay;
+    }
+
+    private void OnUI(GameState state)
+    {
+        if(state == GameState.GamePlay) return;
+        InputAction.Player.Disable();
+        InputAction.UI.Enable();
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnGamePlay(GameState state)
     {
-        
+        if(state != GameState.GamePlay) return;
+        InputAction.Player.Enable();
+        InputAction.UI.Enable();
     }
 }

@@ -102,15 +102,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Tap"",
-                    ""type"": ""Button"",
-                    ""id"": ""3fa27ce3-41a8-4bdc-8f63-f14c4e2daf3e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Tap"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""HoldAndDrag"",
                     ""type"": ""Button"",
                     ""id"": ""afb00d5b-f16d-4b4b-b944-a531c40984f2"",
@@ -145,28 +136,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""64cb74ea-e91c-4076-b179-0e826eee9ac7"",
-                    ""path"": ""<Touchscreen>/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ec2016b0-68bd-4308-b68d-e00c2f5d6cdb"",
-                    ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b5e0cdeb-4148-467a-82dd-4c35b46a9630"",
                     ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
@@ -190,15 +159,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Tap"",
-                    ""type"": ""Button"",
-                    ""id"": ""c212b5c2-4dcf-4663-8472-0ea9303a1987"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""HoldAndDrag"",
@@ -235,28 +195,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2f90fd36-7699-4c3f-9e60-b02db7fc8274"",
-                    ""path"": ""<Touchscreen>/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a84086d7-8396-4331-adce-949123dd3e1d"",
-                    ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4ad71118-c248-45ae-a4f8-5939f368fdbc"",
                     ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
@@ -274,12 +212,10 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
-        m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
         m_Player_HoldAndDrag = m_Player.FindAction("HoldAndDrag", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_PointerPosition = m_UI.FindAction("PointerPosition", throwIfNotFound: true);
-        m_UI_Tap = m_UI.FindAction("Tap", throwIfNotFound: true);
         m_UI_HoldAndDrag = m_UI.FindAction("HoldAndDrag", throwIfNotFound: true);
     }
 
@@ -363,7 +299,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_PointerPosition;
-    private readonly InputAction m_Player_Tap;
     private readonly InputAction m_Player_HoldAndDrag;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -380,10 +315,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/PointerPosition".
         /// </summary>
         public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Tap".
-        /// </summary>
-        public InputAction @Tap => m_Wrapper.m_Player_Tap;
         /// <summary>
         /// Provides access to the underlying input action "Player/HoldAndDrag".
         /// </summary>
@@ -417,9 +348,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @PointerPosition.started += instance.OnPointerPosition;
             @PointerPosition.performed += instance.OnPointerPosition;
             @PointerPosition.canceled += instance.OnPointerPosition;
-            @Tap.started += instance.OnTap;
-            @Tap.performed += instance.OnTap;
-            @Tap.canceled += instance.OnTap;
             @HoldAndDrag.started += instance.OnHoldAndDrag;
             @HoldAndDrag.performed += instance.OnHoldAndDrag;
             @HoldAndDrag.canceled += instance.OnHoldAndDrag;
@@ -437,9 +365,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @PointerPosition.started -= instance.OnPointerPosition;
             @PointerPosition.performed -= instance.OnPointerPosition;
             @PointerPosition.canceled -= instance.OnPointerPosition;
-            @Tap.started -= instance.OnTap;
-            @Tap.performed -= instance.OnTap;
-            @Tap.canceled -= instance.OnTap;
             @HoldAndDrag.started -= instance.OnHoldAndDrag;
             @HoldAndDrag.performed -= instance.OnHoldAndDrag;
             @HoldAndDrag.canceled -= instance.OnHoldAndDrag;
@@ -481,7 +406,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_PointerPosition;
-    private readonly InputAction m_UI_Tap;
     private readonly InputAction m_UI_HoldAndDrag;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
@@ -498,10 +422,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/PointerPosition".
         /// </summary>
         public InputAction @PointerPosition => m_Wrapper.m_UI_PointerPosition;
-        /// <summary>
-        /// Provides access to the underlying input action "UI/Tap".
-        /// </summary>
-        public InputAction @Tap => m_Wrapper.m_UI_Tap;
         /// <summary>
         /// Provides access to the underlying input action "UI/HoldAndDrag".
         /// </summary>
@@ -535,9 +455,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @PointerPosition.started += instance.OnPointerPosition;
             @PointerPosition.performed += instance.OnPointerPosition;
             @PointerPosition.canceled += instance.OnPointerPosition;
-            @Tap.started += instance.OnTap;
-            @Tap.performed += instance.OnTap;
-            @Tap.canceled += instance.OnTap;
             @HoldAndDrag.started += instance.OnHoldAndDrag;
             @HoldAndDrag.performed += instance.OnHoldAndDrag;
             @HoldAndDrag.canceled += instance.OnHoldAndDrag;
@@ -555,9 +472,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @PointerPosition.started -= instance.OnPointerPosition;
             @PointerPosition.performed -= instance.OnPointerPosition;
             @PointerPosition.canceled -= instance.OnPointerPosition;
-            @Tap.started -= instance.OnTap;
-            @Tap.performed -= instance.OnTap;
-            @Tap.canceled -= instance.OnTap;
             @HoldAndDrag.started -= instance.OnHoldAndDrag;
             @HoldAndDrag.performed -= instance.OnHoldAndDrag;
             @HoldAndDrag.canceled -= instance.OnHoldAndDrag;
@@ -609,13 +523,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPointerPosition(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Tap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTap(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "HoldAndDrag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -637,13 +544,6 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPointerPosition(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Tap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTap(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "HoldAndDrag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -1,19 +1,43 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class RemoveConditionBooster : MonoBehaviour,IDraggable
+public class RemoveConditionBooster : MonoBehaviour
 {
     [SerializeField] private ConditionsSO noCondition;
-    public void StartDrag()
+    private Camera mainCam;
+    private void Awake()
     {
-        
+        mainCam = Camera.main;
     }
 
-    public void Drag(Vector3 dragPosition)
+    private void OnEnable()
     {
-        this.transform.position = dragPosition;
+        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled += OnHoldCanceled;
     }
 
-    public void Drop(Vector3 endPosition)
+    private void OnDisable()
+    {
+        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled -= OnHoldCanceled;
+    }
+
+    private void Update()
+    {
+        if(InputManager.Instance.InputAction.Player.enabled != true) return;
+        Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+        Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+        this.transform.position = worldPosition;
+    }
+
+    private void OnHoldCanceled(InputAction.CallbackContext context)
+    {
+        Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+        Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+        ApplyBooster(worldPosition);
+    }
+
+
+    public void ApplyBooster(Vector3 endPosition)
     {
         
         int x, y;

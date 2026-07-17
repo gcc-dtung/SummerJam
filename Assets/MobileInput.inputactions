@@ -16,15 +16,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Tap",
-                    "type": "Button",
-                    "id": "3fa27ce3-41a8-4bdc-8f63-f14c4e2daf3e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "HoldAndDrag",
                     "type": "Button",
                     "id": "afb00d5b-f16d-4b4b-b944-a531c40984f2",
@@ -59,28 +50,6 @@
                 },
                 {
                     "name": "",
-                    "id": "64cb74ea-e91c-4076-b179-0e826eee9ac7",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ec2016b0-68bd-4308-b68d-e00c2f5d6cdb",
-                    "path": "<Mouse>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b5e0cdeb-4148-467a-82dd-4c35b46a9630",
                     "path": "<Pointer>/press",
                     "interactions": "",
@@ -104,15 +73,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Tap",
-                    "type": "Button",
-                    "id": "c212b5c2-4dcf-4663-8472-0ea9303a1987",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "HoldAndDrag",
@@ -144,28 +104,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "PointerPosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2f90fd36-7699-4c3f-9e60-b02db7fc8274",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a84086d7-8396-4331-adce-949123dd3e1d",
-                    "path": "<Mouse>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

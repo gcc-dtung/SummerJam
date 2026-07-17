@@ -4,8 +4,13 @@ using UnityEngine;
 public class GameManager : DontDestroyOnLoadSingleton<GameManager>
 {
     public Action<GameState> OnGameStateChanged;
-    public GameState currentState;
-    
+    public GameState currentState { get; private set; }
+
+    private void Start()
+    {
+        UpdateGameState(GameState.GamePlay);
+    }
+
     public void UpdateGameState(GameState state)
     {
         currentState = state;
@@ -20,7 +25,7 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
             case GameState.Replay:
                 HandleReplay();
                 break;
-            case GameState.Setup:
+            case GameState.GamePlay:
                 HandleSetUp();
                 break;
         }
@@ -56,5 +61,5 @@ public enum GameState
     Win = 0,
     Lose = 1,
     Replay = 2,
-    Setup = 4,
+    GamePlay = 4,
 }

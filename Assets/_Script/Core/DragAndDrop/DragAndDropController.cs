@@ -9,6 +9,9 @@ public class DragAndDropController : MonoBehaviour
 
     [SerializeField] private LayerMask draggableLayer;
     [SerializeField] private LayerMask pressableLayer;
+    [SerializeField] private float dragThreshold = 15f;
+    private Vector3 startScreenPosition;
+    private bool isPointerDown = false;
     private float depthDistance = 10f;
     private IDraggable currentDragItem;
     private IPressable currentPressItem;
@@ -28,7 +31,6 @@ public class DragAndDropController : MonoBehaviour
     private void OnEnable()
     {
         inputAction.Player.Enable();
-        inputAction.Player.Tap.performed += OnPress;
         inputAction.Player.HoldAndDrag.performed += OnHoldStarted;
         inputAction.Player.HoldAndDrag.canceled += OnHoldCanceled;
     }
@@ -43,9 +45,9 @@ public class DragAndDropController : MonoBehaviour
         }
 
         isDragging = false;
+        isPointerDown = false;
         currentDragItem = null;
-
-        inputAction.Player.Tap.performed -= OnPress;
+        
         inputAction.Player.HoldAndDrag.performed -= OnHoldStarted;
         inputAction.Player.HoldAndDrag.canceled -= OnHoldCanceled;
         inputAction.Player.Disable();
@@ -73,44 +75,90 @@ public class DragAndDropController : MonoBehaviour
     {
         Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+        startScreenPosition = screenPosition;
+        isPointerDown = true;
+        isDragging = false;
         DetectDragItem(worldPosition);
-        
-        if (currentDragItem != null)
-        {
-            isDragging = true;
-            currentDragItem.StartDrag();
-            
-            if (currentPerson != null)
-            {
-                EventBus.Notify(GameEventType.StartDragPerson);
-                EventBus.Notify<Person>(GameEventType.StartDragPerson, currentPerson);
-            }
-        }
     }
 
     private void OnHoldCanceled(InputAction.CallbackContext context)
     {
-        isDragging = false;
-        if (currentDragItem == null) return;
-        
-        Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
-        Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
-        
-        currentDragItem?.Drop(worldPosition);
-        currentDragItem = null;
-        
-        if (currentPerson != null)
+        isPointerDown = false;
+        if (isDragging)
         {
-            EventBus.Notify(GameEventType.StopDragPerson);
-            EventBus.Notify<Person>(GameEventType.StopDragPerson,currentPerson);
-        }
+            isDragging = false;
+            if (currentDragItem == null) return;
 
-        currentPerson = null;
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+
+            currentDragItem?.Drop(worldPosition);
+            currentDragItem = null;
+
+            if (currentPerson != null)
+            {
+                EventBus.Notify(GameEventType.StopDragPerson);
+                EventBus.Notify<Person>(GameEventType.StopDragPerson, currentPerson);
+            }
+
+            currentPerson = null;
+        }
+        else
+        {
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
+            DetectPressItem(worldPosition);
+            currentPressItem?.Press();
+        
+            if (currentPressItem != null) 
+            {
+                EventBus.Notify(GameEventType.Press);
+            }
+            else 
+            {
+                EventBus.Notify(GameEventType.PressOutSide);
+            }
+        
+            if (currentPerson != null)
+            {
+                EventBus.Notify<Person>(GameEventType.Press, currentPerson);
+            }
+            currentPerson = null;
+            currentPressItem = null;
+            currentDragItem = null;
+        }
+        
 
     }
 
     private void Update()
     {
+
+        if (isPointerDown && !isDragging)
+        {
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
+            float distance = Vector2.Distance(screenPosition, startScreenPosition);
+            if (distance > dragThreshold)
+            {
+                if (currentDragItem != null)
+                {
+                    isDragging = true;
+                    currentDragItem?.StartDrag();
+                    if (currentPerson != null)
+                    {
+                        EventBus.Notify(GameEventType.StartDragPerson);
+                        EventBus.Notify<Person>(GameEventType.StartDragPerson, currentPerson);
+                    }
+                }
+                else
+                {
+                    isPointerDown = false;
+                }
+            }
+
+        }
+        
+        
         if (isDragging && currentDragItem != null)
         {
             if (currentDragItem is UnityEngine.Object unityObj && unityObj == null)

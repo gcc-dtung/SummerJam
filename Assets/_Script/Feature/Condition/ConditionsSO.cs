@@ -3,6 +3,6 @@ using UnityEngine;
 
 public abstract class ConditionsSO : ScriptableObject
 {
-   public abstract void GetConditionInfo(Cell currentCell, List<Cell> adjacency,List<ConditionInfo> results);
+   public abstract void GetConditionInfo(List<ConditionInfo> results);
    public abstract bool CheckCondition(Cell currentCell, List<Cell> adjacency);
 }

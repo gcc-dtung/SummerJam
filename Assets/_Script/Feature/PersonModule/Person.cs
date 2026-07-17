@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -19,6 +20,11 @@ public class Person : MonoBehaviour
     public void SetOutSideState(bool condition) => OutSide = condition;
     public void SetSeatedState(bool condition) => Seated = condition;
 
+    private void Start()
+    {
+        conditions?.GetConditionInfo(ConditionStatus);
+    }
+
     public void CheckConditions(Cell currentCell,List<Cell> adjacency)
     {
         ConditionStatus.Clear();
@@ -29,12 +35,13 @@ public class Person : MonoBehaviour
         }
         if (conditions.CheckCondition(currentCell, adjacency)) IsHappy = true;
         else IsHappy = false;
-        conditions.GetConditionInfo(currentCell,adjacency,ConditionStatus);
+        conditions.GetConditionInfo(ConditionStatus);
     }
     
     public void SetCondition(ConditionsSO condition)
     {
         conditions = condition;
+        conditions.GetConditionInfo(ConditionStatus);
     }
     public string BuildTooltipContent()
     {

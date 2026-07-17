@@ -10,14 +10,14 @@ public class SingleConditionsSO : ConditionsSO
     [field: SerializeField] public Comparator Comparator { get; private set; }
     [field: SerializeField] public int Value { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
-
-    public override void GetConditionInfo(Cell currentCell, List<Cell> adjacency, List<ConditionInfo> results)
+    private bool isSastified = false;
+    public override void GetConditionInfo(List<ConditionInfo> results)
     {
         if(string.IsNullOrEmpty(Description)) return;
         results.Add(new ConditionInfo()
         {
             Description = this.Description,
-            IsSatisfied =  CheckCondition(currentCell, adjacency)
+            IsSatisfied =  isSastified
         });        
     }
 
@@ -42,7 +42,7 @@ public class SingleConditionsSO : ConditionsSO
             }
         }
 
-        return Comparator switch
+        return isSastified = Comparator switch
         {
             Comparator.Exact => matchCount == Value,
             Comparator.AtLeast => matchCount >= Value,

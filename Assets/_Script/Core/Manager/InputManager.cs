@@ -3,14 +3,19 @@ using UnityEngine;
 
 public class InputManager : DontDestroyOnLoadSingleton<InputManager>
 {
-    public MobileInput InputAction { get; private set; }
-
-    protected override void Awake()
+    private MobileInput _inputAction;
+    public MobileInput InputAction
     {
-        base.Awake();
-        InputAction = new MobileInput();
+        get
+        {
+            if (_inputAction == null)
+            {
+                _inputAction = new MobileInput();
+            }
+            return _inputAction;
+        }
     }
-
+    
     private void OnEnable()
     {
         GameManager.Instance.OnGameStateChanged += OnUI;
@@ -19,8 +24,11 @@ public class InputManager : DontDestroyOnLoadSingleton<InputManager>
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= OnUI;
-        GameManager.Instance.OnGameStateChanged -= OnGamePlay;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameStateChanged -= OnUI;
+            GameManager.Instance.OnGameStateChanged -= OnGamePlay;
+        }
     }
 
     private void OnUI(GameState state)

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class DragAndDropController : MonoBehaviour
 {
     private bool isDragging = false;
-
+    private MobileInput inputAction;
     [SerializeField] private LayerMask draggableLayer;
     [SerializeField] private LayerMask pressableLayer;
     [SerializeField] private float dragThreshold = 15f;
@@ -16,23 +16,30 @@ public class DragAndDropController : MonoBehaviour
     private IPressable currentPressItem;
     private Person currentPerson;
     private Camera mainCam;
-    
+
+
+    private void Awake()
+    {
+        inputAction = InputManager.Instance.InputAction;
+    }
+
     private void Start()
     {
         mainCam = Camera.main;
+        
     }
 
     private void OnEnable()
     {
-        InputManager.Instance.InputAction.Player.HoldAndDrag.performed += OnHoldStarted;
-        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled += OnHoldCanceled;
+        inputAction.Player.HoldAndDrag.performed += OnHoldStarted;
+        inputAction.Player.HoldAndDrag.canceled += OnHoldCanceled;
     }
 
     private void OnDisable()
     {
         if (isDragging && currentDragItem != null)
         {
-            Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
             currentDragItem.Drop(worldPosition);
         }
@@ -41,14 +48,14 @@ public class DragAndDropController : MonoBehaviour
         isPointerDown = false;
         currentDragItem = null;
         
-        InputManager.Instance.InputAction.Player.HoldAndDrag.performed -= OnHoldStarted;
-        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled -= OnHoldCanceled;
+        inputAction.Player.HoldAndDrag.performed -= OnHoldStarted;
+        inputAction.Player.HoldAndDrag.canceled -= OnHoldCanceled;
     }
 
     
     private void OnHoldStarted(InputAction.CallbackContext context)
     {
-        Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+        Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
         startScreenPosition = screenPosition;
         isPointerDown = true;
@@ -64,7 +71,7 @@ public class DragAndDropController : MonoBehaviour
             isDragging = false;
             if (currentDragItem == null) return;
 
-            Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
 
             currentDragItem?.Drop(worldPosition);
@@ -80,7 +87,7 @@ public class DragAndDropController : MonoBehaviour
         }
         else
         {
-            Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
             DetectPressItem(worldPosition);
             currentPressItem?.Press();
@@ -108,10 +115,10 @@ public class DragAndDropController : MonoBehaviour
 
     private void Update()
     {
-        if(InputManager.Instance.InputAction.Player.enabled != true) return;
+        if(inputAction.Player.enabled != true) return;
         if (isPointerDown && !isDragging)
         {
-            Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             float distance = Vector2.Distance(screenPosition, startScreenPosition);
             if (distance > dragThreshold)
             {
@@ -143,7 +150,7 @@ public class DragAndDropController : MonoBehaviour
                 return;
             }
 
-            Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
+            Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
             currentDragItem?.Drag(worldPosition);
             

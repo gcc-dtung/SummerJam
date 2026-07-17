@@ -44,6 +44,7 @@ public class Person : MonoBehaviour
     
     public void SetCondition(ConditionsSO condition)
     {
+        ConditionStatus.Clear();
         conditions = condition;
         if (conditions != null)
         {

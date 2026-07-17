@@ -104,7 +104,7 @@ public class PersonVisual : MonoBehaviour
     {
         handOnPerson.transform.localPosition = handPosition + sprite.transform.localPosition;
     }
-
+    
     public void ShowTooltip()
     {
         string personName = person.Name;

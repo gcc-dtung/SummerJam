@@ -31,6 +31,7 @@ public class PersonVisual : MonoBehaviour
     private void OnEnable()
     {
         EventBus.AddListener(GameEventType.Checking,ChangeStatus);
+        EventBus.AddListener<Person>(GameEventType.Press,OnPressToAnotherPerson);
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
         eventHandler.OnDraggingWithoutMousePosition += Normal;
         eventHandler.OnDrop += ChangeVisualEndDrag;
@@ -42,6 +43,7 @@ public class PersonVisual : MonoBehaviour
     private void OnDisable()
     {
         EventBus.RemoveListener(GameEventType.Checking,ChangeStatus);
+        EventBus.RemoveListener<Person>(GameEventType.Press,OnPressToAnotherPerson);
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
         eventHandler.OnDraggingWithoutMousePosition -= Normal;
@@ -57,7 +59,11 @@ public class PersonVisual : MonoBehaviour
         handOnPerson.enabled = false;
     }
 
-
+    private void OnPressToAnotherPerson(Person person)
+    {
+        if(this.person == person) return;
+        tooltipPopup.Hide();
+    }
 
     private void ChangeStatus()
     {

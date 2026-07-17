@@ -7,7 +7,10 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="" />
+    <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Util/Popup/TooltipPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Util/Popup/TooltipPopup.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +173,7 @@
       <workItem from="1784218658946" duration="3338000" />
       <workItem from="1784254729735" duration="4656000" />
       <workItem from="1784263267277" duration="20000" />
-      <workItem from="1784268995887" duration="601000" />
+      <workItem from="1784268995887" duration="1360000" />
     </task>
     <servers />
   </component>

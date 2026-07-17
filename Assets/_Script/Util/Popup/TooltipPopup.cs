@@ -39,11 +39,13 @@ public class TooltipPopup : MonoBehaviour
     private void OnEnable()
     {
         EventBus.AddListener(GameEventType.PressOutSide, Hide);
+        EventBus.AddListener(GameEventType.StartDragPerson, Hide);
     }
 
     private void OnDisable()
     {
         EventBus.RemoveListener(GameEventType.PressOutSide, Hide);
+        EventBus.RemoveListener(GameEventType.StartDragPerson, Hide);
     }
 
 

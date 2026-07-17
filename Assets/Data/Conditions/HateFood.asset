@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: TraitCondition
+  m_Name: HateFood
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
   <Scope>k__BackingField: 1
-  <FilterTarget>k__BackingField: 1
+  <FilterTarget>k__BackingField: 0
   <Filter>k__BackingField:
     <Name>k__BackingField: 
     <FoodTags>k__BackingField: 
     <TraitTags>k__BackingField: 00000000
     <Row>k__BackingField: 0
     <Column>k__BackingField: 0
-  <Comparator>k__BackingField: 0
-  <Value>k__BackingField: 1
-  <Description>k__BackingField: "T\xF4i th\xEDch ng\u01B0\u1EDDi t\u1ED1t b\u1EE5ng"
+  <Comparator>k__BackingField: 1
+  <Value>k__BackingField: 0
+  <Description>k__BackingField: I hate foods

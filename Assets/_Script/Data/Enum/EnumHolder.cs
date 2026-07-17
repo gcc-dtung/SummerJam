@@ -9,7 +9,20 @@ public enum Trait
 {
     Kind = 0,
     Generous = 1,
-    Talkative = 2
+    Talkative = 2,
+    Handsome = 3,
+    Bad = 4,
+    Exhausted = 5,
+    Angry = 6,
+    Vegetarian = 7,
+    Female = 8,
+    Nerd = 9, 
+    Quiet = 10,
+    Smart = 11,
+    Old = 12,
+    Elegant = 13, 
+    Chill = 14,
+    Funny = 15
 }
 
 public enum Target

@@ -3,35 +3,32 @@ using TMPro;
 using UnityEngine;
 public class MoveManager : Singleton<MoveManager>
 {
-    [SerializeField] private MoveDataSO data;
+    private LevelConfig data;
     [SerializeField] private TextMeshProUGUI text;
     public int StepRemain { get; private set; }
-    public int Limit => data.Limit;
+    public int Limit => data.MoveLimit;
 
     private void OnEnable()
     {
         EventBus.AddListener(GameEventType.PlacePerson,DetuctMove);
+        LevelManager.Instance.OnLevelConfigChange += ReloadData;
     }
 
     private void OnDisable()
     {
         EventBus.RemoveListener(GameEventType.PlacePerson,DetuctMove);
+        if (LevelManager.Instance != null) LevelManager.Instance.OnLevelConfigChange -= ReloadData;
     }
-
-    private void Start()
-    {
-        ReloadData(data);
-    }
-
+    
     private void Update()
     {
         text.text = "Move: " + StepRemain.ToString(); // để tạm
     }
 
-    public void ReloadData(MoveDataSO data)
+    public void ReloadData(LevelConfig data)
     {
-        //this.data = data;
-        StepRemain = data.Limit;
+        this.data = data;
+        StepRemain = this.data.MoveLimit;
     }
 
     public void DetuctMove()
@@ -42,7 +39,7 @@ public class MoveManager : Singleton<MoveManager>
 
     public void IncreaseMove()
     {
-        StepRemain = Mathf.Clamp(StepRemain + 1, 0, data.Limit);
+        StepRemain = Mathf.Clamp(StepRemain + 1, 0, data.MoveLimit);
     }
     public bool IsOutOfMove() => (StepRemain <= 0);
 

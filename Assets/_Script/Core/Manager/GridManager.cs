@@ -4,25 +4,69 @@ using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
 {
-   [SerializeField] private GridConfig boardConfig;
-   [SerializeField] private GridConfig waitConfig;
+   private GridConfig boardConfig;
+   private GridConfig waitConfig;
    [SerializeField] private Cell Template;
    [SerializeField] private Transform holder;
    public Grid<Cell> Board { get; private set; }
    public Grid<Cell> WaitLine { get; private set; }
-   protected override void Awake()
+
+   private void OnEnable()
    {
-      base.Awake();
-      Board = new Grid<Cell>(boardConfig,InitializeBoard);
-      WaitLine = new Grid<Cell>(waitConfig, InitializeWaitLine);
+       LevelManager.Instance.OnLevelConfigChange += UpdateGrid;
    }
-   
-   private void Start()
+
+   private void OnDisable()
    {
-      Board.MatrixTraversal(FillItemToBoard);
-      WaitLine.MatrixTraversal(FillItemToWaitLine);
-      WaitLine.MatrixTraversal(FillPersonToWaitLine);
+       if (LevelManager.Instance != null) LevelManager.Instance.OnLevelConfigChange -= UpdateGrid;
    }
+
+    private void ClearGrid()
+    {
+        if (Board != null)
+        {
+            Board.MatrixTraversal((x, y, cell) =>
+            {
+                if (cell != null)
+                {
+                    if (cell.CurrentPerson != null)
+                    {
+                        Destroy(cell.CurrentPerson.gameObject);
+                    }
+                    Destroy(cell.gameObject);
+                }
+            });
+            Board = null;
+        }
+
+        if (WaitLine != null)
+        {
+            WaitLine.MatrixTraversal((x, y, cell) =>
+            {
+                if (cell != null)
+                {
+                    if (cell.CurrentPerson != null)
+                    {
+                        Destroy(cell.CurrentPerson.gameObject);
+                    }
+                    Destroy(cell.gameObject);
+                }
+            });
+            WaitLine = null;
+        }
+    }
+
+    void UpdateGrid(LevelConfig config)
+    {
+        ClearGrid();
+        boardConfig = config.BoardGrid;
+        waitConfig = config.WaitLineGrid;
+        Board = new Grid<Cell>(config.BoardGrid, InitializeBoard);
+        WaitLine = new Grid<Cell>(waitConfig, InitializeWaitLine);
+        Board.MatrixTraversal(FillItemToBoard);
+        WaitLine.MatrixTraversal(FillItemToWaitLine);
+        WaitLine.MatrixTraversal(FillPersonToWaitLine);
+    }
    
    private Cell InitializeBoard(int x,int y)
    {

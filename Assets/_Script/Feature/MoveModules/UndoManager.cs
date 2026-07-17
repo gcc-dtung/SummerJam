@@ -5,6 +5,27 @@ public class UndoManager : Singleton<UndoManager>
 {
    private Stack<MoveCommand> commandHistory = new Stack<MoveCommand>();
 
+   private void OnEnable()
+   {
+      if (LevelManager.Instance != null)
+      {
+         LevelManager.Instance.OnLevelConfigChange += OnLevelConfigChanged;
+      }
+   }
+
+   private void OnDisable()
+   {
+      if (LevelManager.Instance != null)
+      {
+         LevelManager.Instance.OnLevelConfigChange -= OnLevelConfigChanged;
+      }
+   }
+
+   private void OnLevelConfigChanged(LevelConfig config)
+   {
+      ClearHistory();
+   }
+
    public void RecordMove(Person person1,Cell from, Person person2,Cell to,bool moveDeducted )
    {
       MoveCommand command = new MoveCommand(person1,from,person2,to,moveDeducted);

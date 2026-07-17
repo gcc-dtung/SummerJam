@@ -18,31 +18,28 @@ public class InputManager : DontDestroyOnLoadSingleton<InputManager>
     
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += OnUI;
-        GameManager.Instance.OnGameStateChanged += OnGamePlay;
+        GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void OnDisable()
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.OnGameStateChanged -= OnUI;
-            GameManager.Instance.OnGameStateChanged -= OnGamePlay;
+            GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
         }
     }
 
-    private void OnUI(GameState state)
+    private void HandleGameStateChanged(GameState state)
     {
-        if(state == GameState.GamePlay) return;
-        InputAction.Player.Disable();
-        InputAction.UI.Enable();
-        
-    }
-
-    private void OnGamePlay(GameState state)
-    {
-        if(state != GameState.GamePlay) return;
-        InputAction.Player.Enable();
-        InputAction.UI.Enable();
+        if (state == GameState.GamePlay)
+        {
+            InputAction.Player.Enable();
+            InputAction.UI.Enable();
+        }
+        else
+        {
+            InputAction.Player.Disable();
+            InputAction.UI.Enable();
+        }
     }
 }

@@ -10,8 +10,8 @@ public class ScoreManager : MonoBehaviour
   
     private void Update()
     {
-        Calculate();
-        text.text = "Score: " + lastStart.ToString(); // để tạm
+        // Calculate();
+        // text.text = "Score: " + lastStart.ToString(); // để tạm
     }
 
     public void Calculate()

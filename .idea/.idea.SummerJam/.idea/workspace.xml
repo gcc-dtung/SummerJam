@@ -9,9 +9,15 @@
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/DesignPattern/Singleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/DesignPattern/Singleton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/DragAndDrop/DragAndDropController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/DragAndDrop/DragAndDropController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/MoveManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/MoveManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/GridModule/GridRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/GridModule/GridRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/MoveModules/UndoManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/MoveModules/UndoManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +121,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "XepLevel",
+    "git-widget-placeholder": "FixBug",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -180,7 +186,7 @@
       <workItem from="1784263267277" duration="20000" />
       <workItem from="1784268995887" duration="6915000" />
       <workItem from="1784278465460" duration="2054000" />
-      <workItem from="1784300184075" duration="1392000" />
+      <workItem from="1784300184075" duration="5353000" />
     </task>
     <servers />
   </component>

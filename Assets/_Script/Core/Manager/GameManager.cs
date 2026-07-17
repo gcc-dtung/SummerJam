@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : DontDestroyOnLoadSingleton<GameManager>
@@ -8,6 +9,22 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
 
     private void Start()
     {
+        StartCoroutine(StartGameFlow());
+    }
+
+    private IEnumerator StartGameFlow()
+    {
+        UpdateGameState(GameState.SetUp);
+        LevelManager.Instance.LoadNextLevel();
+        yield return null;
+        UpdateGameState(GameState.GamePlay);
+    }
+
+    private IEnumerator RestartGameFlow()
+    {
+        UpdateGameState(GameState.SetUp);
+        LevelManager.Instance.LoadCurrentLevel();
+        yield return null;
         UpdateGameState(GameState.GamePlay);
     }
 
@@ -26,7 +43,7 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
                 HandleReplay();
                 break;
             case GameState.GamePlay:
-                HandleSetUp();
+                HandleGamePlay();
                 break;
         }
         OnGameStateChanged?.Invoke(currentState);
@@ -44,10 +61,15 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
 
     private void HandleReplay()
     {
-        
+        StartCoroutine(RestartGameFlow());
     }
 
     private void HandleSetUp()
+    {
+        
+    }
+
+    private void HandleGamePlay()
     {
         
     }
@@ -61,5 +83,6 @@ public enum GameState
     Win = 0,
     Lose = 1,
     Replay = 2,
-    GamePlay = 4,
+    GamePlay = 3,
+    SetUp = 4
 }

@@ -26,7 +26,6 @@ public class DragAndDropController : MonoBehaviour
     private void Start()
     {
         mainCam = Camera.main;
-        
     }
 
     private void OnEnable()

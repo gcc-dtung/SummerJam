@@ -31,6 +31,18 @@ public class TooltipPopup : MonoBehaviour
     private Sequence tooltipSequence;
     private bool isShow = false;
 
+    private void Awake()
+    {
+        if (tooltipTransform == null)
+        {
+            tooltipTransform = transform.Find("TooltipPopup");
+            if (tooltipTransform == null && transform.childCount > 0)
+            {
+                tooltipTransform = transform.GetChild(0);
+            }
+        }
+    }
+
     private void Start()
     {
         Restart();

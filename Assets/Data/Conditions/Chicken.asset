@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: NoCondition
+  m_Name: Chicken
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
-  <Scope>k__BackingField: 0
+  <Scope>k__BackingField: 1
   <FilterTarget>k__BackingField: 0
   <Filter>k__BackingField:
     <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 
+    <FoodTags>k__BackingField: 04000000
     <TraitTags>k__BackingField: 
     <Row>k__BackingField: 0
     <Column>k__BackingField: 0
   <Comparator>k__BackingField: 0
-  <Value>k__BackingField: 0
-  <Description>k__BackingField: Anythings
+  <Value>k__BackingField: 1
+  <Description>k__BackingField: Those chickens look delicious

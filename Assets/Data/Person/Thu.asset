@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23cbfc880e8ff44d927537020ad887f, type: 3}
-  m_Name: TungBo
+  m_Name: Thu
   m_EditorClassIdentifier: Assembly-CSharp::PersonDataSO
-  <Name>k__BackingField: "T\xF9ng Cow"
-  <ID>k__BackingField: 1
-  <Trait>k__BackingField: 050000000700000006000000
+  <Name>k__BackingField: Thu
+  <ID>k__BackingField: 3
+  <Trait>k__BackingField: 0a00000008000000

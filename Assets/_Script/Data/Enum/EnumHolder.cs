@@ -2,7 +2,11 @@
 public enum Food
 {
     Spicy = 0,
-    Cold = 1
+    Cold = 1,
+    Hot = 2,
+    Vegetarian = 3,
+    Chicken = 4,
+
 }
 
 public enum Trait

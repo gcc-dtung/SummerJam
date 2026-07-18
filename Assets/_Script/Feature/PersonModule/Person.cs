@@ -61,8 +61,8 @@ public class Person : MonoBehaviour
             ConditionInfo info = ConditionStatus[i];
 
             string icon = info.IsSatisfied
-                ? "<color=#4CAF50>\u2611</color>"   // ☑ xanh lá
-                : "<color=#E53935>\u2612</color>";  // ☒ đỏ
+                ? "<color=#4CAF50>[V]</color>"   // [V] xanh lá
+                : "<color=#E53935>[X]</color>";  // [X] đỏ
             //TODO : Sau sửa = TMP Sprite Asset để dùng ảnh
             sb.Append(icon).Append(" ").Append(info.Description);
 

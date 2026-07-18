@@ -6,7 +6,11 @@ public enum Food
     Hot = 2,
     Vegetarian = 3,
     Chicken = 4,
-
+    Savory = 5,
+    Pork = 6,
+    Beef = 7,
+    Sweet = 8,
+    Fruit = 9
 }
 
 public enum Trait

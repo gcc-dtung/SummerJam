@@ -16,10 +16,10 @@ MonoBehaviour:
   <FilterTarget>k__BackingField: 0
   <Filter>k__BackingField:
     <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 03000000
+    <FoodTags>k__BackingField: 05000000
     <TraitTags>k__BackingField: 
     <Row>k__BackingField: 0
     <Column>k__BackingField: 0
-  <Comparator>k__BackingField: 0
+  <Comparator>k__BackingField: 1
   <Value>k__BackingField: 0
-  <Description>k__BackingField: I want some vegetables
+  <Description>k__BackingField: "T\xF4i \u0103n chay ni\u1EC7m ph\u1EADt"

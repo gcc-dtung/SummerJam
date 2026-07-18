@@ -44,5 +44,9 @@ TagManager:
   - name: Person
     uniqueID: 3261231321
     locked: 0
+  - name: Tooltip
+    uniqueID: 123456789
+    locked: 0
+
   m_RenderingLayers:
   - Default

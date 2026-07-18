@@ -15,4 +15,4 @@ MonoBehaviour:
   <ID>k__BackingField: 2
   <MoveLimit>k__BackingField: 30
   <BoardGrid>k__BackingField: {fileID: 11400000, guid: 375f325449bcdca4f8910abae470256f, type: 2}
-  <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 6edd161dc214fd64287bf54e4dd4b81f, type: 2}
+  <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 3861b345905ac2649a71004e654635ff, type: 2}

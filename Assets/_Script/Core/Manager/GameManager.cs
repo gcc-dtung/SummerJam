@@ -51,12 +51,12 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
 
     private void HandleWin()
     {
-        
+     Debug.Log("Win");
     }
 
     private void HandleLose()
     {
-        
+        Debug.Log("Lose");
     }
 
     private void HandleReplay()

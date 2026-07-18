@@ -17,4 +17,4 @@ MonoBehaviour:
   <DefaultCanSeat>k__BackingField: 0
   <DefaultCanInteract>k__BackingField: 1
   <sprite>k__BackingField: {fileID: -1547082645228362377, guid: 76e387741e760134d84fe5318864f0b7, type: 3}
-  <DefaultPerson>k__BackingField: {fileID: 8658592763175525880, guid: 2dfc8d296b6610a408e0d649fe61f77a, type: 3}
+  <DefaultPerson>k__BackingField: {fileID: 8658592763175525880, guid: 46d41636e9a517345bfb01012f958a24, type: 3}

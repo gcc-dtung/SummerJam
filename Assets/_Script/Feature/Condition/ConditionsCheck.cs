@@ -47,7 +47,45 @@ public class ConditionsCheck : MonoBehaviour
             cellHolder[i].CurrentPerson.CheckConditions(cellHolder[i],adjacency);
         }
         EventBus.Notify(GameEventType.Checking);
+        EvaluateWinLose();
     }
+
+    private void EvaluateWinLose()
+    {
+        if(GameManager.Instance.currentState != GameState.GamePlay) return;
+        bool isHavePersonOnWaitLine = false;
+        GridManager.Instance.WaitLine.MatrixTraversal((int x, int y, Cell cell) =>
+        {
+            if (cell != null && cell.CurrentPerson != null) isHavePersonOnWaitLine = true;
+        });
+
+        bool hadPersonOnBoard = false;
+        bool isAllPersonHappy = true;
+        
+        GridManager.Instance.Board.MatrixTraversal((int x,int y,Cell cell)
+        =>
+        {
+            if (cell != null && cell.Type == CellType.Seat)
+            {
+                Person person = cell.CurrentPerson;
+                if (person != null)
+                {
+                    hadPersonOnBoard = true;
+                    if (!person.IsHappy) isAllPersonHappy = false;
+                } 
+            }
+        });
+
+        if (!isHavePersonOnWaitLine && hadPersonOnBoard && isAllPersonHappy)
+        {
+            GameManager.Instance.UpdateGameState(GameState.Win);
+            return;
+        }
+        if(MoveManager.Instance.IsOutOfMove()) GameManager.Instance.UpdateGameState(GameState.Lose);
+    }
+    
+    
+    
 
     private void GetPerson()
     {

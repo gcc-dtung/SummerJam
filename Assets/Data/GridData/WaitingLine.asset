@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaitingLine
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <Size>k__BackingField: {x: 5, y: 1}
-  originalCellSize: {x: 0.7, y: 0.7}
+  originalCellSize: {x: 0.5, y: 0.5}
   originalCellDistance: {x: 0.3, y: 0.3}
   PosX: 0.5
   PosY: 0.166

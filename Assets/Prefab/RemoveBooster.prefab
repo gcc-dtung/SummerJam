@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3684155709350920285}
   - component: {fileID: 690694583322383747}
   - component: {fileID: 5918487975408273221}
-  - component: {fileID: 7074000212673167357}
+  - component: {fileID: 7931626536149698391}
   m_Layer: 6
   m_Name: RemoveBooster
   m_TagString: Untagged
@@ -106,7 +106,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoveConditionBooster
   noCondition: {fileID: 11400000, guid: 39169e2799cb2b44e89b2317e0a66113, type: 2}
---- !u!61 &7074000212673167357
+  appliable:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!61 &7931626536149698391
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

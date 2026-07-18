@@ -9,16 +9,19 @@
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/57c3931b273d92972807ae5df1390240.jpg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/57c3931b273d92972807ae5df1390240.jpg.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/xuat.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/xuat.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/khung.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/khung.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/6.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/8.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Cell/SeatInWaitLine1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Cell/SeatInWaitLine1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Conditions/CompositeCondition.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Conditions/CompositeCondition.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/GridData/Layout1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/GridData/Layout1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/GridData/WaitingLine.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/GridData/WaitingLine.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RemoveBooster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RemoveBooster.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Booster/RemoveConditionBooster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Booster/RemoveConditionBooster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonDragAndDropHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonDragAndDropHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +192,7 @@
       <workItem from="1784268995887" duration="6915000" />
       <workItem from="1784278465460" duration="2054000" />
       <workItem from="1784307235979" duration="1330000" />
-      <workItem from="1784339622477" duration="1385000" />
+      <workItem from="1784339622477" duration="3088000" />
     </task>
     <servers />
   </component>

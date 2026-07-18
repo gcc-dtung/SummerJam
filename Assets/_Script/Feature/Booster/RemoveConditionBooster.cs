@@ -6,6 +6,7 @@ public class RemoveConditionBooster : MonoBehaviour
 {
     [SerializeField] private ConditionsSO noCondition;
     private Camera mainCam;
+    private Action onUsedCallback;
     private void Awake()
     {
         mainCam = Camera.main;
@@ -28,6 +29,11 @@ public class RemoveConditionBooster : MonoBehaviour
         Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
         this.transform.position = worldPosition;
     }
+    
+    public void Init(Action onUsed)
+    {
+        onUsedCallback = onUsed;
+    }
 
     private void OnHoldCanceled(InputAction.CallbackContext context)
     {
@@ -39,7 +45,6 @@ public class RemoveConditionBooster : MonoBehaviour
 
     public void ApplyBooster(Vector3 endPosition)
     {
-        
         int x, y;
         if (GridManager.Instance.Board.TryGetCellFromWorldPos(endPosition, out x, out y))
         {
@@ -50,7 +55,8 @@ public class RemoveConditionBooster : MonoBehaviour
                 person?.SetCondition(noCondition);
                 EventBus.Notify(GameEventType.StopDragPerson);
                 EventBus.Notify(GameEventType.PressOutSide);
-                this.gameObject.SetActive(false);
+                onUsedCallback?.Invoke();
+                Destroy(this.gameObject);
                 return;
             }
         }
@@ -64,10 +70,11 @@ public class RemoveConditionBooster : MonoBehaviour
                 person?.SetCondition(noCondition);
                 EventBus.Notify(GameEventType.StopDragPerson);
                 EventBus.Notify(GameEventType.PressOutSide);
-                this.gameObject.SetActive(false);
+                onUsedCallback?.Invoke();
+                Destroy(this.gameObject);
                 return;
             }
         }
-        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }

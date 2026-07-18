@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b0a127844e225478f8e8ebc18541dd, type: 3}
+  m_Name: NhiChuSeat
+  m_EditorClassIdentifier: Assembly-CSharp::Seat
+  <Name>k__BackingField: 
+  <Type>k__BackingField: 2
+  <DefaultCanSeat>k__BackingField: 0
+  <DefaultCanInteract>k__BackingField: 1
+  <sprite>k__BackingField: {fileID: -1547082645228362377, guid: 76e387741e760134d84fe5318864f0b7, type: 3}
+  <DefaultPerson>k__BackingField: {fileID: 8658592763175525880, guid: 9ae1f9f90486ca040abe6114893e4bb8, type: 3}

@@ -22,7 +22,7 @@ public class MoveManager : Singleton<MoveManager>
     
     private void Update()
     {
-        text.text = "Move: " + StepRemain.ToString(); // để tạm
+        text.text = StepRemain.ToString(); // để tạm
     }
 
     public void ReloadData(LevelConfig data)

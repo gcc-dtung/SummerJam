@@ -26,6 +26,10 @@ public class PersonVisual : MonoBehaviour
         person = this.GetComponentInParent<Person>();
         baseColor = sprite.color;
         // if(sprite == null) Debug.LogError("No sprite renderer");
+        if (tooltipPopup == null)
+        {
+            tooltipPopup = GetComponentInParent<Person>()?.GetComponentInChildren<TooltipPopup>(true);
+        }
     }
 
     private void OnEnable()
@@ -62,7 +66,7 @@ public class PersonVisual : MonoBehaviour
     private void OnPressToAnotherPerson(Person person)
     {
         if(this.person == person) return;
-        tooltipPopup.Hide();
+        if (tooltipPopup != null) tooltipPopup.Hide();
     }
 
     private void ChangeStatus()
@@ -110,7 +114,7 @@ public class PersonVisual : MonoBehaviour
         string personName = person.Name;
         string personDescription = person.BuildTooltipContent();
         
-        tooltipPopup.Show(personName, personDescription);
+        if (tooltipPopup != null) tooltipPopup.Show(personName, personDescription);
     }
     #endregion
 }

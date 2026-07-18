@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f507a3b80e28c41b255fce39241b5d, type: 3}
+  m_Name: WaitLV1
+  m_EditorClassIdentifier: Assembly-CSharp::GridConfig
+  <Size>k__BackingField: {x: 5, y: 1}
+  originalCellSize: {x: 0.7, y: 0.7}
+  originalCellDistance: {x: 0.3, y: 0.3}
+  PosX: 0.5
+  PosY: 0.166
+  Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
+  BaseGrid:
+  - Values:
+    - {fileID: 11400000, guid: be4ac80e3974bfe418cdadffce166aa5, type: 2}
+    - {fileID: 11400000, guid: b4d75c9643d64354bc930bb9f7aed02c, type: 2}
+    - {fileID: 11400000, guid: 59859e9c71b74eb2986fe58c9d75a289, type: 2}
+    - {fileID: 11400000, guid: c91b36a11cfa46e696dc2c6e2b753196, type: 2}
+    - {fileID: 11400000, guid: c9d47679d647491fb38f6dcc02b0e600, type: 2}

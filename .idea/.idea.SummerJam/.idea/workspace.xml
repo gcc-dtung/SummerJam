@@ -8,13 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Cell/SeatInWaitLine5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Cell/SeatInWaitLine5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/GridData/WaitingLine.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/GridData/WaitingLine.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PersonTemplate/Person 5.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/TooltipPrefabs.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/TooltipPrefabs.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonVisual.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonVisual.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Util/BackgroundFitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Util/BackgroundFitter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Util/Popup/TooltipPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Util/Popup/TooltipPopup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +124,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "CharacterArt",
+    "git-widget-placeholder": "MergeBranch",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -186,6 +191,7 @@
       <workItem from="1784278465460" duration="2054000" />
       <workItem from="1784307235979" duration="1330000" />
       <workItem from="1784339622477" duration="4329000" />
+      <workItem from="1784387301131" duration="318000" />
     </task>
     <servers />
   </component>

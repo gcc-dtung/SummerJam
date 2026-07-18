@@ -41,8 +41,8 @@ public class BoosterManager : MonoBehaviour
    public void RemoveBooster()
    {
       if(boosterHolder[Booster.Remove] <= 0) return;
-      boosterHolder[Booster.Remove]--;
       RemoveConditionBooster remover = Instantiate(removeBooster);
+     remover.Init( () => boosterHolder[Booster.Remove]--);
       remover.gameObject.SetActive(true);
    }
    

@@ -98,7 +98,6 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
                 ResetOldSeat(oldPosition);
                 person.SetOutSideState(true);
                 
-                
                 eventHandler.OnDropNotify();
                 return;
             }
@@ -117,7 +116,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         }
  
         this.transform.SetParent(oldCell.transform);
-        transform.localScale = Vector3.one;
+        transform.localScale = transform.localScale;
         eventHandler.OnMoveToSeatNotify(oldPosition);
         eventHandler.OnDropNotify();
         oldCell = null;
@@ -138,7 +137,7 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         cell.SetPersonToSeat(person);
         
         transform.SetParent(cell.transform);
-        transform.localScale = Vector3.one;
+        transform.localScale = transform.localScale;
         
         eventHandler.OnMoveToSeatNotify( hold.GetWorldPosition(x, y));
         return;
@@ -196,9 +195,9 @@ public class PersonDragAndDropHandler : MonoBehaviour, IDraggable,IPressable
         
         
         this.transform.SetParent(cell2.transform);
-        this.transform.localScale = Vector3.one;
+        this.transform.localScale = transform.localScale;
         tmp2.transform.SetParent(cell1.transform);
-        tmp2.transform.localScale = Vector3.one;
+        tmp2.transform.localScale = transform.localScale;
         
 
         

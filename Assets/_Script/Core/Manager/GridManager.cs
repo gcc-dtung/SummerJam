@@ -103,7 +103,7 @@ public class GridManager : Singleton<GridManager>
        Person person = cell.CurrentPerson;
        person.transform.position = WaitLine.GetWorldPosition(x, y);
        person.transform.SetParent(cell.transform);
-       person.transform.localScale = Vector3.one;
+       person.transform.localScale = person.transform.localScale;
        person.SetOutSideState(true);
    }
    

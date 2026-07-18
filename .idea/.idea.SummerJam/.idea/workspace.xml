@@ -8,8 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/57c3931b273d92972807ae5df1390240.jpg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/57c3931b273d92972807ae5df1390240.jpg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/nhan vat/1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/xuat.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/xuat.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/khung.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/khung.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/CellTemplate.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/CellTemplate.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Test/Person.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/ScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Booster/RemoveConditionBooster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Booster/RemoveConditionBooster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonDragAndDropHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/PersonDragAndDropHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/987aa4221989419a947e2c4ff5d6829c212c00/ea/35e09d02/Transform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/Booster/MoreMoveBooster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/MoveModules/UndoManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -113,7 +123,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "TestBranchVersion1",
+    "git-widget-placeholder": "CharacterArt",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -179,6 +189,7 @@
       <workItem from="1784268995887" duration="6915000" />
       <workItem from="1784278465460" duration="2054000" />
       <workItem from="1784307235979" duration="1330000" />
+      <workItem from="1784339622477" duration="1385000" />
     </task>
     <servers />
   </component>

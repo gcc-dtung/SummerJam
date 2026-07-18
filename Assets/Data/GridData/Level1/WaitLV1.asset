@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WaitLV1
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <Size>k__BackingField: {x: 3, y: 2}
-  originalCellSize: {x: 0.7, y: 0.7}
-  originalCellDistance: {x: 0.3, y: 0.3}
+  originalCellSize: {x: 0.5, y: 0.5}
+  originalCellDistance: {x: 0.5, y: 0.5}
   PosX: 0.5
   PosY: 0.2
   Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}

@@ -73,7 +73,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.008189693, y: 0.4143995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -83,7 +83,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7739639, y: 1.0425863}
   m_EdgeRadius: 0
 --- !u!114 &841864973918747138
 MonoBehaviour:
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 8f0ea5edd0896af40ad47d30def8544b, type: 2}
-  conditions: {fileID: 11400000, guid: 4fe40e8aed346f14f9101f29f3b61f0e, type: 2}
+  conditions: {fileID: 11400000, guid: 099d25d577444a1881f5bcad7fbd6f6b, type: 2}
 --- !u!114 &7516304088472110506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   eventHandler: {fileID: 841864973918747138}
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  handPosition: {x: 0, y: 0.75, z: 0}
+  handPosition: {x: 0, y: 1.25, z: 0}
   handOnPerson: {fileID: 6416488123318239413}
   tooltipPopup: {fileID: 2640855740612394392}
 --- !u!114 &4867748639883547833
@@ -311,7 +311,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6989525401766255125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -374,13 +374,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: TooltipPrefabs
       objectReference: {fileID: 0}
+    - target: {fileID: 748836443250226877, guid: 0883b6f2c44bdde4caea0c5cff611fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4516853228334750810, guid: 0883b6f2c44bdde4caea0c5cff611fee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.566
       objectReference: {fileID: 0}
     - target: {fileID: 4516853228334750810, guid: 0883b6f2c44bdde4caea0c5cff611fee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.83
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 4516853228334750810, guid: 0883b6f2c44bdde4caea0c5cff611fee, type: 3}
       propertyPath: m_LocalPosition.z

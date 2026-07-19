@@ -105,6 +105,7 @@ public class GridManager : Singleton<GridManager>
        person.transform.SetParent(cell.transform);
        person.transform.localScale = person.transform.localScale;
        person.SetOutSideState(true);
+       cell.CanSeat = false;
    }
    
    private void InitializePerson(Cell cell,CellDataSO data)

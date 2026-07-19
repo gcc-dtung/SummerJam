@@ -8,14 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_NhiChu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_NhiChu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Thu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Thu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Tinh.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Tinh.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Toan.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Toan.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_TungBo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_TungBo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Yen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Yen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Đang.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Đang.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PopupUI/WinPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PopupUI/WinPopup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,61 +38,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.000000241799047" />
-      <entry key="S2" value="1.037292781771429" />
-      <entry key="S5" value="1.4165656786732745" />
-      <entry key="S10" value="2.1729854340745103" />
-      <entry key="S30" value="5.983552094445835" />
-      <entry key="S60" value="12.867068408472658" />
-      <entry key="M2" value="28.71777938553973" />
-      <entry key="M5" value="61.282261410922" />
-      <entry key="M10" value="86.77178467041196" />
-      <entry key="M15" value="100.00013816334433" />
-      <entry key="M30" value="126.85696639579018" />
-      <entry key="H1" value="186.51657509500112" />
-      <entry key="H2" value="280.01462741363696" />
-      <entry key="H4" value="369.64067800386556" />
-      <entry key="D1" value="484.11646503794157" />
-      <entry key="W1" value="508.7306097683871" />
+      <entry key="MS100" value="4.156533648401515E-59" />
+      <entry key="MS500" value="3.307157350941687E-12" />
+      <entry key="S2" value="0.004869623529737378" />
+      <entry key="S5" value="0.376538373681899" />
+      <entry key="S10" value="1.619765984048672" />
+      <entry key="S30" value="4.347103061559925" />
+      <entry key="S60" value="6.390504016244687" />
+      <entry key="M2" value="11.196149832067253" />
+      <entry key="M5" value="33.33637544266404" />
+      <entry key="M10" value="65.37207628861144" />
+      <entry key="M15" value="85.98246069591693" />
+      <entry key="M30" value="124.17937147787474" />
+      <entry key="H1" value="189.8253734613926" />
+      <entry key="H2" value="287.8195930693348" />
+      <entry key="H4" value="382.2132432743762" />
+      <entry key="D1" value="504.04660407151664" />
+      <entry key="W1" value="530.419547018055" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.026165643227088677" />
-      <entry key="MS500" value="0.629514472712528" />
-      <entry key="S2" value="1.4675098922230434" />
-      <entry key="S5" value="2.0859018250658967" />
-      <entry key="S10" value="3.1091265953087635" />
-      <entry key="S30" value="6.101716246823927" />
-      <entry key="S60" value="9.329083798176502" />
-      <entry key="M2" value="13.32281245312709" />
-      <entry key="M5" value="18.087852343297218" />
-      <entry key="M10" value="20.73448524385931" />
-      <entry key="M15" value="21.965902914377097" />
-      <entry key="M30" value="25.199899825200557" />
-      <entry key="H1" value="34.48634520774621" />
-      <entry key="H2" value="49.41270786248077" />
-      <entry key="H4" value="63.593218085152685" />
-      <entry key="D1" value="81.50963217745131" />
-      <entry key="W1" value="85.33695957301518" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.000005182213915" />
+      <entry key="S2" value="1.0477121331802148" />
+      <entry key="S5" value="1.2961089495349127" />
+      <entry key="S10" value="1.5441589377515665" />
+      <entry key="S30" value="1.8164425822264665" />
+      <entry key="S60" value="1.9249414885284897" />
+      <entry key="M2" value="2.5884545878226257" />
+      <entry key="M5" value="7.343437128936537" />
+      <entry key="M10" value="13.280705604921991" />
+      <entry key="M15" value="16.640978336917016" />
+      <entry key="M30" value="22.57491358525739" />
+      <entry key="H1" value="33.16225328886059" />
+      <entry key="H2" value="48.97139438104719" />
+      <entry key="H4" value="64.00249243684596" />
+      <entry key="D1" value="83.16624237935655" />
+      <entry key="W1" value="87.28550799016429" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.10233119711056841" />
-      <entry key="MS500" value="0.963462607867285" />
-      <entry key="S2" value="2.1148867405320626" />
-      <entry key="S5" value="3.252289227882141" />
-      <entry key="S10" value="5.073640301690518" />
-      <entry key="S30" value="11.89416809576895" />
-      <entry key="S60" value="21.99418716387909" />
-      <entry key="M2" value="41.85202824297562" />
-      <entry key="M5" value="79.24456000048147" />
-      <entry key="M10" value="107.42861933143834" />
-      <entry key="M15" value="121.90962641977679" />
-      <entry key="M30" value="152.022249999891" />
-      <entry key="H1" value="220.97583267190012" />
-      <entry key="H2" value="329.4056393544192" />
-      <entry key="H4" value="433.21908889455574" />
-      <entry key="D1" value="565.6227825598856" />
-      <entry key="W1" value="594.0670697645481" />
+      <entry key="MS100" value="0.012259126529636729" />
+      <entry key="MS500" value="0.4146614753075346" />
+      <entry key="S2" value="0.8429795791920327" />
+      <entry key="S5" value="1.5411113461144537" />
+      <entry key="S10" value="3.055262850049639" />
+      <entry key="S30" value="6.1005948909139756" />
+      <entry key="S60" value="8.274890962988305" />
+      <entry key="M2" value="13.748833763527443" />
+      <entry key="M5" value="40.627862189010756" />
+      <entry key="M10" value="78.60203134137679" />
+      <entry key="M15" value="102.57988185665336" />
+      <entry key="M30" value="146.72288801216166" />
+      <entry key="H1" value="222.96154109869076" />
+      <entry key="H2" value="336.76954815404895" />
+      <entry key="H4" value="446.200888519249" />
+      <entry key="D1" value="587.2094769790372" />
+      <entry key="W1" value="617.7045458973652" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -120,7 +115,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "XepLevel",
+    "git-widget-placeholder": "WinLoosePopup",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",

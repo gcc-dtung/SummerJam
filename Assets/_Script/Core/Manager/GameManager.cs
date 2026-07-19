@@ -51,7 +51,7 @@ public class GameManager : DontDestroyOnLoadSingleton<GameManager>
 
     private void HandleWin()
     {
-     Debug.Log("Win");
+        Debug.Log("Win");
     }
 
     private void HandleLose()

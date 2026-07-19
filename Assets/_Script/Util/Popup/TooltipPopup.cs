@@ -2,6 +2,7 @@ using System;
 using PrimeTween;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TooltipPopup : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class TooltipPopup : MonoBehaviour
     [SerializeField] private float durationTween = 0.2f;
     
     private Sequence tooltipSequence;
+    private SortingGroup sortingGroup;
     private bool isShow = false;
 
     private void Awake()
@@ -41,6 +43,8 @@ public class TooltipPopup : MonoBehaviour
                 tooltipTransform = transform.GetChild(0);
             }
         }
+
+        ConfigureSorting();
     }
 
     private void Start()
@@ -51,13 +55,13 @@ public class TooltipPopup : MonoBehaviour
     private void OnEnable()
     {
         EventBus.AddListener(GameEventType.PressOutSide, Hide);
-        EventBus.AddListener(GameEventType.StartDragPerson, Hide);
+        EventBus.AddListener(GameEventType.StartDragPerson, HideImmediate);
     }
 
     private void OnDisable()
     {
         EventBus.RemoveListener(GameEventType.PressOutSide, Hide);
-        EventBus.RemoveListener(GameEventType.StartDragPerson, Hide);
+        EventBus.RemoveListener(GameEventType.StartDragPerson, HideImmediate);
     }
 
 
@@ -116,6 +120,39 @@ public class TooltipPopup : MonoBehaviour
         isShow = false;
         PlayTransition(toScale: 0f, toAlpha: 0f,
             onComplete: () => tooltipTransform.gameObject.SetActive(false));
+    }
+
+    public void HideImmediate()
+    {
+        if (tooltipSequence.isAlive)
+            tooltipSequence.Stop();
+
+        isShow = false;
+        ChangeColor(new Color(top.color.r, top.color.g, top.color.b, 0f));
+        tooltipTransform.localScale = Vector3.zero;
+        tooltipTransform.gameObject.SetActive(false);
+    }
+
+    private void ConfigureSorting()
+    {
+        if (tooltipTransform == null) return;
+
+        sortingGroup = tooltipTransform.GetComponent<SortingGroup>();
+        if (sortingGroup == null)
+            sortingGroup = tooltipTransform.gameObject.AddComponent<SortingGroup>();
+
+        Person parentPerson = GetComponentInParent<Person>();
+        PersonVisual personVisual = parentPerson != null
+            ? parentPerson.GetComponentInChildren<PersonVisual>(true)
+            : null;
+        SpriteRenderer personRenderer = personVisual != null
+            ? personVisual.GetComponent<SpriteRenderer>()
+            : null;
+
+        if (personRenderer != null)
+            sortingGroup.sortingLayerID = personRenderer.sortingLayerID;
+
+        sortingGroup.sortingOrder = Constaints.MAX_SORTING_LAYER + 2;
     }
     
     private void PlayTransition(float toScale, float toAlpha, System.Action onComplete = null)
@@ -200,10 +237,6 @@ public class TooltipPopup : MonoBehaviour
 
     void Restart()
     {
-        Color newColor = Color.white;
-        newColor.a = 0f;
-        ChangeColor(newColor);
-        tooltipTransform.localScale = Vector3.zero;
-        tooltipTransform.gameObject.SetActive(false);
+        HideImmediate();
     }
 }

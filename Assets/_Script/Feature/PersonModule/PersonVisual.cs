@@ -17,6 +17,7 @@ public class PersonVisual : MonoBehaviour
     private Color baseColor;
     private float baseScale;
     private int baseOrderInLayer;
+    private int baseHandOrderInLayer;
     
     private Tween scaleTween;
     
@@ -60,6 +61,8 @@ public class PersonVisual : MonoBehaviour
     {
         baseScale = sprite.transform.localScale.x;
         baseOrderInLayer = sprite.sortingOrder;
+        baseHandOrderInLayer = handOnPerson.sortingOrder;
+        handOnPerson.sortingLayerID = sprite.sortingLayerID;
         handOnPerson.enabled = false;
     }
 
@@ -84,8 +87,10 @@ public class PersonVisual : MonoBehaviour
     {
         if(scaleTween.isAlive)
             scaleTween.Stop();
-        if(sprite.transform.localScale == Vector3.one * viewScale) return;
+
         sprite.sortingOrder = orderInLayer;
+
+        if(sprite.transform.localScale == Vector3.one * viewScale) return;
         scaleTween = Tween.Scale(sprite.transform, viewScale, changeViewDuration);
     }
     
@@ -93,7 +98,11 @@ public class PersonVisual : MonoBehaviour
     [Button("VisualOnDrag")]
     public void ChangeVisualOnStartDrag()
     {
+        tooltipPopup?.HideImmediate();
         ChangeVisual(changeViewScale, Constaints.MAX_SORTING_LAYER);
+
+        handOnPerson.sortingLayerID = sprite.sortingLayerID;
+        handOnPerson.sortingOrder = Constaints.MAX_SORTING_LAYER + 1;
         handOnPerson.enabled = true;
     }
     
@@ -102,6 +111,7 @@ public class PersonVisual : MonoBehaviour
     {
         ChangeVisual(baseScale, baseOrderInLayer);
         handOnPerson.enabled = false;
+        handOnPerson.sortingOrder = baseHandOrderInLayer;
     }
 
     public void OnHandOnDrag()

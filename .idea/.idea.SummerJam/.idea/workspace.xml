@@ -8,13 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/b.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/b.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/ban.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/ban.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/bang.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/bang.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/moves.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/moves.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/setting.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/setting.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/sn.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Summer/SummerJam/ingame/sn.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/987aa4221989419a947e2c4ff5d6829c212c00/ea/35e09d02/Transform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/Booster/MoreMoveBooster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/MoveModules/UndoManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -184,8 +180,8 @@
       <workItem from="1784268995887" duration="6915000" />
       <workItem from="1784278465460" duration="2054000" />
       <workItem from="1784307235979" duration="1330000" />
-      <workItem from="1784339589709" duration="1000" />
-      <workItem from="1784339624267" duration="911000" />
+      <workItem from="1784339622477" duration="4329000" />
+      <workItem from="1784387301131" duration="318000" />
     </task>
     <servers />
   </component>

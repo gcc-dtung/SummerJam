@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 8f0ea5edd0896af40ad47d30def8544b, type: 2}
-  conditions: {fileID: 11400000, guid: 4fe40e8aed346f14f9101f29f3b61f0e, type: 2}
+  conditions: {fileID: 11400000, guid: 099d25d577444a1881f5bcad7fbd6f6b, type: 2}
 --- !u!114 &7516304088472110506
 MonoBehaviour:
   m_ObjectHideFlags: 0

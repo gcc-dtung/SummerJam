@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2f098c9c152eaaf4ba921a3e7ac247ed
+guid: 135d862198d881848b1da9ddec656312
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7887002569616350318
-    second: steaming-hot-coffee-in-white-cup-surrounded-by-scattered-coffee-beans-on-wooden-surface-photo_0
+      213: -6444087796353404418
+    second: Josuke_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 470
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,17 +96,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: steaming-hot-coffee-in-white-cup-surrounded-by-scattered-coffee-beans-on-wooden-surface-photo_0
+      name: Josuke_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 467
-        height: 350
+        y: 10
+        width: 180
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 293ac6733fcbb8290800000000000000
-      internalID: -7887002569616350318
+      spriteID: ef1fcec9a400296a0800000000000000
+      internalID: -6444087796353404418
       vertices: []
       indices: 
       edges: []
@@ -135,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      steaming-hot-coffee-in-white-cup-surrounded-by-scattered-coffee-beans-on-wooden-surface-photo_0: -7887002569616350318
+      Josuke_0: -6444087796353404418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

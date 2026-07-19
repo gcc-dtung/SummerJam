@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
+    private const string SatisfiedIcon = "<sprite=\"TooltipTick\" name=\"TooltipTick\">";
+    private const string UnsatisfiedIcon = "<sprite=\"TooltipO\" name=\"TooltipO\">";
+
     [SerializeField] private PersonDataSO data;
     [SerializeField] private ConditionsSO conditions;
     public List<ConditionInfo> ConditionStatus { get; private set; } = new List<ConditionInfo>();
@@ -59,12 +62,9 @@ public class Person : MonoBehaviour
         for (int i = 0; i < ConditionStatus.Count; i++)
         {
             ConditionInfo info = ConditionStatus[i];
-
-            string icon = info.IsSatisfied
-                ? "<color=#4CAF50>[V]</color>"   // [V] xanh lá
-                : "<color=#E53935>[X]</color>";  // [X] đỏ
-            //TODO : Sau sửa = TMP Sprite Asset để dùng ảnh
-            sb.Append(icon).Append(" ").Append(info.Description);
+            sb.Append(info.IsSatisfied ? SatisfiedIcon : UnsatisfiedIcon)
+                .Append(" ")
+                .Append(info.Description);
 
             if (i < ConditionStatus.Count - 1)
                 sb.Append("\n");

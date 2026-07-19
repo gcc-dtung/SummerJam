@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/TooltipPrefabs.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/TooltipPrefabs.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PopupUI/WinPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PopupUI/WinPopup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

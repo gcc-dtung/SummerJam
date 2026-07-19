@@ -9,13 +9,13 @@ public class WinPopup : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += Show;
+        // GameManager.Instance.OnGameStateChanged += Show;
         nextlevelbutton.onClick.AddListener(NextLevel);
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= Show;
+        // GameManager.Instance.OnGameStateChanged -= Show;
         nextlevelbutton.onClick.RemoveListener(NextLevel);
     }
 

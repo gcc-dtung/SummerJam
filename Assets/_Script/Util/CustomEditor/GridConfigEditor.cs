@@ -1,10 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(GridConfig))] 
 public class GridConfigEditor : Editor
 {
-   public override void OnInspectorGUI()
+    private List<CellDataSO> _cellAssets;
+    private int _selectedBrushIndex = -1; // -1 represents Eraser (Null)
+
+    private void LoadCellAssets()
+    {
+        if (_cellAssets != null) return;
+        
+        _cellAssets = new List<CellDataSO>();
+        string[] guids = AssetDatabase.FindAssets("t:CellDataSO");
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            CellDataSO asset = AssetDatabase.LoadAssetAtPath<CellDataSO>(path);
+            if (asset != null)
+            {
+                _cellAssets.Add(asset);
+            }
+        }
+    }
+
+    public override void OnInspectorGUI()
     {
         GridConfig config = (GridConfig)target;
         
@@ -15,8 +36,37 @@ public class GridConfigEditor : Editor
             ResizeGrid(config);
         }
         
+        LoadCellAssets();
+
+        GUILayout.Space(15);
+        GUILayout.Label("Active Paint Brush", EditorStyles.boldLabel);
+
+        int count = _cellAssets.Count;
+        string[] brushNames = new string[count + 1];
+        brushNames[0] = "[Eraser] Clear (Blocked)";
+        for (int i = 0; i < count; i++)
+        {
+            brushNames[i + 1] = _cellAssets[i].name;
+        }
+
+        string selectedName = "Eraser";
+        if (_selectedBrushIndex >= 0 && _selectedBrushIndex < count)
+        {
+            selectedName = _cellAssets[_selectedBrushIndex].name;
+        }
+        EditorGUILayout.HelpBox($"Selected Brush: {selectedName}", MessageType.Info);
+
+        int currentSelection = _selectedBrushIndex + 1;
+        int newSelection = GUILayout.SelectionGrid(currentSelection, brushNames, 3);
+        _selectedBrushIndex = newSelection - 1;
+
+        if (GUILayout.Button("Refresh Brush List"))
+        {
+            _cellAssets = null;
+        }
+
         GUILayout.Space(20);
-        GUILayout.Label("Grid Preview", EditorStyles.boldLabel);
+        GUILayout.Label("Grid Preview (Click cell to paint)", EditorStyles.boldLabel);
 
         GUIStyle boxStyle = new GUIStyle(GUI.skin.box)
         {
@@ -57,7 +107,25 @@ public class GridConfigEditor : Editor
                     }
 
                     GUI.backgroundColor = boxColor;
-                    GUILayout.Box(boxText, boxStyle, GUILayout.Width(40), GUILayout.Height(40));
+                    GUIContent cellContent = new GUIContent(boxText, currentCell != null ? currentCell.name : "Empty");
+                    
+                    if (GUILayout.Button(cellContent, boxStyle, GUILayout.Width(40), GUILayout.Height(40)))
+                    {
+                        Undo.RecordObject(config, "Paint Grid Cell");
+                        
+                        CellDataSO activeBrush = null;
+                        if (_selectedBrushIndex >= 0 && _selectedBrushIndex < _cellAssets.Count)
+                        {
+                            activeBrush = _cellAssets[_selectedBrushIndex];
+                        }
+                        else
+                        {
+                            activeBrush = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
+                        }
+                        
+                        config.BaseGrid[y].Values[x] = activeBrush;
+                        EditorUtility.SetDirty(config);
+                    }
                     
                     GUI.backgroundColor = Color.white;
                 }

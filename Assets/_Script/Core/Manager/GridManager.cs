@@ -101,6 +101,7 @@ public class GridManager : Singleton<GridManager>
    {
        if(cell.Type != CellType.Seat || cell.CanSeat || cell.CurrentPerson == null) return;
        Person person = cell.CurrentPerson;
+       person.ResetValue();
        person.transform.position = WaitLine.GetWorldPosition(x, y);
        person.transform.SetParent(cell.transform);
        person.transform.localScale = person.transform.localScale;

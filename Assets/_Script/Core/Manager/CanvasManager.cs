@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanvasManager : DontDestroyOnLoadSingleton<CanvasManager>
+public class CanvasManager : Singleton<CanvasManager>
 {
     [SerializeField] private Canvas canvasGamePlay;
     [SerializeField] private Canvas canvasMainMenu;

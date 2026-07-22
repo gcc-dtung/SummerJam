@@ -10,7 +10,8 @@ public enum Food
     Pork = 6,
     Beef = 7,
     Sweet = 8,
-    Fruit = 9
+    Fruit = 9,
+    Meat = 10
 }
 
 public enum Trait
@@ -57,4 +58,18 @@ public enum LogicalOperator
 {
     And = 0, 
     Or = 1
+}
+
+public enum CurrencyType
+{
+    Gold = 0,
+    Gem = 1,
+    RealMoney = 2
+}
+
+public enum RewardType
+{
+    Booster = 0,
+    Gold = 1,
+    Gem = 2
 }

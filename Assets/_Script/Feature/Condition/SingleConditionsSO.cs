@@ -11,6 +11,16 @@ public class SingleConditionsSO : ConditionsSO
     [field: SerializeField] public int Value { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
     private bool isSastified = false;
+    public override void ResetConditionInfo(List<ConditionInfo> results)
+    {
+        if(string.IsNullOrEmpty(Description)) return;
+        results.Add(new ConditionInfo()
+        {
+            Description = this.Description,
+            IsSatisfied =  false
+        });        
+    }
+
     public override void GetConditionInfo(List<ConditionInfo> results)
     {
         if(string.IsNullOrEmpty(Description)) return;

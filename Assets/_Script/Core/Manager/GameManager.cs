@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private CanvasTransition _transition;
     public Action<GameState> OnGameStateChanged;
     public GameState currentState { get; private set; }
 
@@ -51,7 +52,8 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleWin()
     {
-        Debug.Log("Win");
+        _transition.PlayAsync(() => {StartCoroutine(StartGameFlow());});
+        
     }
 
     private void HandleLose()

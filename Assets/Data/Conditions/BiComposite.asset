@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1171aacadf187547a18e4db28b4f46e, type: 3}
-  m_Name: Cond_Bi_Composite
+  m_Name: BiComposite
   m_EditorClassIdentifier: Assembly-CSharp::CompositeConditionsSO
   logicalOperator: 0
   conditions:

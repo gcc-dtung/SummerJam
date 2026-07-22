@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level6
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
   <ID>k__BackingField: 0
-  <MoveLimit>k__BackingField: 0
+  <MoveLimit>k__BackingField: 25
   <BoardGrid>k__BackingField: {fileID: 11400000, guid: 51bb719bd286f2847b8bddfc827a3b76, type: 2}
   <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 3d678a1c72623fc42aa7745ebfd389dd, type: 2}

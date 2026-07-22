@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1171aacadf187547a18e4db28b4f46e, type: 3}
-  m_Name: Cond_TungCow_Composite
+  m_Name: KinhComposite
   m_EditorClassIdentifier: Assembly-CSharp::CompositeConditionsSO
   logicalOperator: 0
   conditions:
-  - {fileID: 11400000, guid: 8e25d18d417929f4bb930a72f2d71169, type: 2}
-  - {fileID: 11400000, guid: bf0bc83917e64488912468b9e1e4af47, type: 2}
+  - {fileID: 11400000, guid: 7a82fca9bba847bb8eeef32bda88fc20, type: 2}
+  - {fileID: 11400000, guid: 8b82fca9bba847bb8eeef32bda88fc21, type: 2}

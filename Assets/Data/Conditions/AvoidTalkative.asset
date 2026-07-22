@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: Cond_Thu_AvoidTalkative
+  m_Name: AvoidTalkative
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
   <Scope>k__BackingField: 1
   <FilterTarget>k__BackingField: 1
@@ -18,8 +18,8 @@ MonoBehaviour:
     <Name>k__BackingField: 
     <FoodTags>k__BackingField: 
     <TraitTags>k__BackingField: 02000000
-    <Row>k__BackingField: 0
-    <Column>k__BackingField: 0
+    <Row>k__BackingField: -1
+    <Column>k__BackingField: -1
   <Comparator>k__BackingField: 1
   <Value>k__BackingField: 0
-  <Description>k__BackingField: "Kh\xF4ng ch\u1ECBu n\u1ED5i m\u1EA5y \u0111\u1EE9a l\u1EAFm m\u1ED3m ng\u1ED3i c\u1EA1nh."
+  <Description>k__BackingField: "Ghét bị làm phiền bởi mấy đứa ồn ào khi đang đọc sách."

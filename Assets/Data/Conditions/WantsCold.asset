@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: Cond_Josuke_AvoidBad
+  m_Name: WantsCold
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
   <Scope>k__BackingField: 1
-  <FilterTarget>k__BackingField: 1
+  <FilterTarget>k__BackingField: 0
   <Filter>k__BackingField:
     <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 
-    <TraitTags>k__BackingField: 04000000
-    <Row>k__BackingField: 0
-    <Column>k__BackingField: 0
-  <Comparator>k__BackingField: 1
-  <Value>k__BackingField: 0
-  <Description>k__BackingField: "Kh\xF4ng th\xEDch ng\u01B0\u1EDDi x\u1EA5u."
+    <FoodTags>k__BackingField: 01000000
+    <TraitTags>k__BackingField: 
+    <Row>k__BackingField: -1
+    <Column>k__BackingField: -1
+  <Comparator>k__BackingField: 0
+  <Value>k__BackingField: 1
+  <Description>k__BackingField: "Thích đồ uống lạnh để giải nhiệt cho trò nghịch ngợm."

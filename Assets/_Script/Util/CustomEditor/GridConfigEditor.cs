@@ -43,7 +43,7 @@ public class GridConfigEditor : Editor
 
         int count = _cellAssets.Count;
         string[] brushNames = new string[count + 1];
-        brushNames[0] = "[Eraser] Clear";
+        brushNames[0] = "[Eraser] Clear (Blocked)";
         for (int i = 0; i < count; i++)
         {
             brushNames[i + 1] = _cellAssets[i].name;
@@ -117,6 +117,10 @@ public class GridConfigEditor : Editor
                         if (_selectedBrushIndex >= 0 && _selectedBrushIndex < _cellAssets.Count)
                         {
                             activeBrush = _cellAssets[_selectedBrushIndex];
+                        }
+                        else
+                        {
+                            activeBrush = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
                         }
                         
                         config.BaseGrid[y].Values[x] = activeBrush;

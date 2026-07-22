@@ -10,7 +10,8 @@ public enum Food
     Pork = 6,
     Beef = 7,
     Sweet = 8,
-    Fruit = 9
+    Fruit = 9,
+    Meat = 10
 }
 
 public enum Trait

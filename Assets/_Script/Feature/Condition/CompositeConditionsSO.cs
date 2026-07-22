@@ -5,6 +5,9 @@ public class CompositeConditionsSO : ConditionsSO
 {
     [SerializeField] private LogicalOperator logicalOperator;
     [SerializeField] private List<ConditionsSO> conditions = new List<ConditionsSO>();
+
+    public LogicalOperator LogicalOperator => logicalOperator;
+    public List<ConditionsSO> SubConditions => conditions;
     public override void GetConditionInfo( List<ConditionInfo> results)
     {
         int startIndex = results.Count;

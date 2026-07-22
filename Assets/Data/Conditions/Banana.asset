@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: Cond_Rin_WantsCold
+  m_Name: Banana
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
-  <Scope>k__BackingField: 1
-  <FilterTarget>k__BackingField: 0
+  <Scope>k__BackingField: 0
+  <FilterTarget>k__BackingField: 2
   <Filter>k__BackingField:
-    <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 01000000
+    <Name>k__BackingField: "Chu\u1ED1i"
+    <FoodTags>k__BackingField: 
     <TraitTags>k__BackingField: 
     <Row>k__BackingField: -1
     <Column>k__BackingField: -1
   <Comparator>k__BackingField: 0
   <Value>k__BackingField: 1
-  <Description>k__BackingField: "Thích đồ uống lạnh để giải nhiệt cho trò nghịch ngợm."
+  <Description>k__BackingField: BANANA!!!

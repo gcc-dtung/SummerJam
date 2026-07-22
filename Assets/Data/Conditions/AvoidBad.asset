@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b8b059ffeae3b4a90cf7948374600b, type: 3}
-  m_Name: Chicken
+  m_Name: AvoidBad
   m_EditorClassIdentifier: Assembly-CSharp::SingleConditionsSO
   <Scope>k__BackingField: 1
-  <FilterTarget>k__BackingField: 0
+  <FilterTarget>k__BackingField: 1
   <Filter>k__BackingField:
     <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 04000000
-    <TraitTags>k__BackingField: 
+    <FoodTags>k__BackingField: 
+    <TraitTags>k__BackingField: 04000000
     <Row>k__BackingField: 0
     <Column>k__BackingField: 0
-  <Comparator>k__BackingField: 0
-  <Value>k__BackingField: 1
-  <Description>k__BackingField: "M\u1EA5y mi\u1EBFng g\xE0 tr\xF4ng ngon th\xED"
+  <Comparator>k__BackingField: 1
+  <Value>k__BackingField: 0
+  <Description>k__BackingField: "Kh\xF4ng th\xEDch ng\u01B0\u1EDDi x\u1EA5u."

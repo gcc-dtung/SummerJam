@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -8,10 +9,25 @@ public class LevelConfigEditor : Editor
 {
     private bool _showBoardGridSettings = true;
     private bool _showWaitLineGridSettings = true;
+    private bool _showDifficultyBreakdown = true;
+    private LevelDifficultyCalculator.DifficultyResult _cachedDifficultyResult;
+
+    private GridConfig _selectedCellGrid;
+    private int _selectedCellX = -1;
+    private int _selectedCellY = -1;
+    private bool _selectedIsWaitLine;
+    private string _hoveredCellTooltip;
+    private string _activeTooltipForFrame;
 
     public override void OnInspectorGUI()
     {
+        _activeTooltipForFrame = _hoveredCellTooltip;
+        _hoveredCellTooltip = null;
+
         LevelConfig levelConfig = (LevelConfig)target;
+
+        // Draw Level Difficulty Rating Section with Calculate Button
+        DrawDifficultyHeaderSection(levelConfig);
 
         // Update serialized level config
         serializedObject.Update();
@@ -87,6 +103,12 @@ public class LevelConfigEditor : Editor
             if (waitLineGrid != null)
             {
                 DrawGridPreview("Wait Line Grid (Click cell to configure)", waitLineGrid, true);
+            }
+
+            if (!string.IsNullOrEmpty(_activeTooltipForFrame))
+            {
+                EditorGUILayout.Space(10);
+                EditorGUILayout.HelpBox(_activeTooltipForFrame, MessageType.Info);
             }
         }
     }
@@ -164,16 +186,23 @@ public class LevelConfigEditor : Editor
         Undo.RecordObject(config, "Resize Grid");
 
         Wrapper<CellDataSO>[] newGrid = new Wrapper<CellDataSO>[config.Size.y];
+        CellDataSO blockedAsset = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
 
         for (int y = 0; y < config.Size.y; y++)
         {
             newGrid[y] = new Wrapper<CellDataSO>();
             newGrid[y].Values = new CellDataSO[config.Size.x];
 
-            if (config.BaseGrid != null && y < config.BaseGrid.Length && config.BaseGrid[y] != null && config.BaseGrid[y].Values != null)
+            for (int x = 0; x < config.Size.x; x++)
             {
-                int copyLength = Mathf.Min(config.Size.x, config.BaseGrid[y].Values.Length);
-                System.Array.Copy(config.BaseGrid[y].Values, newGrid[y].Values, copyLength);
+                if (config.BaseGrid != null && y < config.BaseGrid.Length && config.BaseGrid[y] != null && config.BaseGrid[y].Values != null && x < config.BaseGrid[y].Values.Length)
+                {
+                    newGrid[y].Values[x] = config.BaseGrid[y].Values[x];
+                }
+                else
+                {
+                    newGrid[y].Values[x] = blockedAsset;
+                }
             }
         }
 
@@ -222,7 +251,14 @@ public class LevelConfigEditor : Editor
                                     cellColor = Color.red;
                                     break;
                                 case CellType.Dish:
-                                    cellText = currentCell.name.Substring(0, Mathf.Min(4, currentCell.name.Length));
+                                    if (currentCell.name == "New Dishes")
+                                    {
+                                        cellText = ""; // chỉ tô màu chứ không hiện chữ
+                                    }
+                                    else
+                                    {
+                                        cellText = currentCell.name.Substring(0, Mathf.Min(4, currentCell.name.Length));
+                                    }
                                     cellColor = new Color(0.6f, 0f, 0.8f); // Purple
                                     break;
                                 case CellType.Seat:
@@ -233,12 +269,33 @@ public class LevelConfigEditor : Editor
                         }
                     }
 
+                    bool isSelected = (_selectedCellGrid == grid && _selectedCellX == x && _selectedCellY == y);
+                    if (isSelected)
+                    {
+                        cellColor = new Color(1.0f, 0.85f, 0.2f); // Gold highlight
+                    }
+
                     GUI.backgroundColor = cellColor;
-                    GUIContent cellContent = new GUIContent(cellText, currentCell != null ? currentCell.name : "Empty");
+                    GUIContent cellContent = new GUIContent(cellText, GetCellTooltipText(currentCell));
 
                     if (GUILayout.Button(cellContent, cellStyle, GUILayout.Width(50), GUILayout.Height(50)))
                     {
+                        _selectedCellGrid = grid;
+                        _selectedCellX = x;
+                        _selectedCellY = y;
+                        _selectedIsWaitLine = isWaitLine;
+
                         ShowCellContextMenu(grid, x, y, isWaitLine);
+                    }
+
+                    Rect btnRect = GUILayoutUtility.GetLastRect();
+                    if (btnRect.Contains(Event.current.mousePosition))
+                    {
+                        _hoveredCellTooltip = cellContent.tooltip;
+                        if (_hoveredCellTooltip != _activeTooltipForFrame)
+                        {
+                            Repaint();
+                        }
                     }
 
                     GUI.backgroundColor = Color.white;
@@ -256,12 +313,13 @@ public class LevelConfigEditor : Editor
     private void ShowCellContextMenu(GridConfig grid, int x, int y, bool isWaitLine)
     {
         GenericMenu menu = new GenericMenu();
+        CellDataSO blockedAsset = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
 
-        // Option 1: Empty
-        menu.AddItem(new GUIContent("Empty / Clear"), grid.BaseGrid[y].Values[x] == null, () =>
+        // Option 1: Clear (trở về trạng thái Blocked)
+        menu.AddItem(new GUIContent("Clear"), grid.BaseGrid[y].Values[x] == blockedAsset, () =>
         {
-            Undo.RecordObject(grid, "Set Cell Empty");
-            grid.BaseGrid[y].Values[x] = null;
+            Undo.RecordObject(grid, "Clear Cell to Blocked");
+            grid.BaseGrid[y].Values[x] = blockedAsset;
             EditorUtility.SetDirty(grid);
         });
 
@@ -279,14 +337,14 @@ public class LevelConfigEditor : Editor
                 });
             }
 
-            // Blocked
-            CellDataSO blocked = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
-            if (blocked != null)
+            // Abstract Dish
+            CellDataSO newDishes = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Dishes.asset");
+            if (newDishes != null)
             {
-                menu.AddItem(new GUIContent("Blocked"), grid.BaseGrid[y].Values[x] == blocked, () =>
+                menu.AddItem(new GUIContent("Món ăn (Trừu tượng)"), grid.BaseGrid[y].Values[x] == newDishes, () =>
                 {
-                    Undo.RecordObject(grid, "Set Blocked");
-                    grid.BaseGrid[y].Values[x] = blocked;
+                    Undo.RecordObject(grid, "Set Abstract Dish");
+                    grid.BaseGrid[y].Values[x] = newDishes;
                     EditorUtility.SetDirty(grid);
                 });
             }
@@ -297,9 +355,9 @@ public class LevelConfigEditor : Editor
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 CellDataSO dishAsset = AssetDatabase.LoadAssetAtPath<CellDataSO>(path);
-                if (dishAsset != null)
+                if (dishAsset != null && dishAsset != newDishes)
                 {
-                    string displayName = $"Các món ăn/{dishAsset.name}";
+                    string displayName = $"Món ăn chi tiết/{dishAsset.name}";
                     menu.AddItem(new GUIContent(displayName), grid.BaseGrid[y].Values[x] == dishAsset, () =>
                     {
                         Undo.RecordObject(grid, "Set Dish");
@@ -411,5 +469,278 @@ public class LevelConfigEditor : Editor
         serializedObject.ApplyModifiedProperties();
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+    }
+
+    private void DrawDifficultyHeaderSection(LevelConfig levelConfig)
+    {
+        EditorGUILayout.Space(5);
+        GUILayout.Label("Level Difficulty", EditorStyles.boldLabel);
+
+        string buttonText = _cachedDifficultyResult == null ? "Calculate Difficulty" : "Recalculate Difficulty";
+        GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
+        {
+            fontSize = 12,
+            fontStyle = FontStyle.Bold,
+            fixedHeight = 30
+        };
+
+        if (GUILayout.Button(buttonText, buttonStyle))
+        {
+            _cachedDifficultyResult = LevelDifficultyCalculator.Calculate(levelConfig);
+        }
+
+        if (_cachedDifficultyResult == null)
+        {
+            EditorGUILayout.HelpBox("Bấm nút 'Calculate Difficulty' ở trên để tính toán điểm độ khó cho Level này.", MessageType.Info);
+            EditorGUILayout.Space(5);
+            return;
+        }
+
+        LevelDifficultyCalculator.DifficultyResult diff = _cachedDifficultyResult;
+
+        // Header Card Box
+        Color defaultBg = GUI.backgroundColor;
+        GUI.backgroundColor = diff.CategoryColor * 0.7f + Color.white * 0.3f;
+
+        GUIStyle cardStyle = new GUIStyle(EditorStyles.helpBox)
+        {
+            padding = new RectOffset(12, 12, 10, 10),
+            margin = new RectOffset(0, 0, 5, 10)
+        };
+
+        EditorGUILayout.BeginVertical(cardStyle);
+        GUI.backgroundColor = defaultBg;
+
+        // Title Row
+        EditorGUILayout.BeginHorizontal();
+        GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel)
+        {
+            fontSize = 13,
+            alignment = TextAnchor.MiddleLeft
+        };
+
+        string titleText = $"Level Difficulty: {diff.TotalScore:F1} / 100 — [{diff.Category}]";
+        EditorGUILayout.LabelField(titleText, titleStyle);
+
+        if (diff.IsApproximate)
+        {
+            GUILayout.Label("(Ước lượng)", EditorStyles.miniBoldLabel, GUILayout.Width(70));
+        }
+        EditorGUILayout.EndHorizontal();
+
+        // Warning Box if unsolvable
+        if (!diff.IsSolvable)
+        {
+            EditorGUILayout.Space(4);
+            EditorGUILayout.HelpBox($"CẢNH BÁO THIẾT KẾ: Level hiện không thể giải hoặc MoveLimit quá nhỏ!\n• Moves tối thiểu (M_opt): {diff.M_opt}\n• MoveLimit cho phép: {diff.MoveLimit} (Thiếu {-diff.Slack} moves)", MessageType.Error);
+        }
+
+        EditorGUILayout.Space(4);
+
+        // Breakdown Section
+        GUILayout.Label("Chi tiết phân tích độ khó (5 thành phần)", EditorStyles.boldLabel);
+
+        float score1 = diff.X1_MoveTightness * 30.0f;
+        float score2 = diff.X2_ConditionComplexity * 20.0f;
+        float score3 = diff.X3_ConstraintConflict * 30.0f;
+        float score4 = diff.X4_GridConstraint * 10.0f;
+        float score5 = diff.X5_ResourceScarcity * 10.0f;
+
+        DrawComponentBar($"1. Move Tightness (X1 = {diff.X1_MoveTightness:F2}) — Điểm: {score1:F1} / 30.0", diff.X1_MoveTightness, $"Moves cần (M_opt): {diff.M_opt} | MoveLimit: {diff.MoveLimit} | Dư địa (Slack): {diff.Slack} | Nước sửa (N_correction): {diff.N_correction}");
+        DrawComponentBar($"2. Condition Complexity (X2 = {diff.X2_ConditionComplexity:F2}) — Điểm: {score2:F1} / 20.0", diff.X2_ConditionComplexity, $"Phức tạp điều kiện TB (C_avg): {diff.C_avg:F2} / 5.0 (C_MAX) của {diff.N_person} khách hàng");
+        DrawComponentBar($"3. Constraint Conflict (X3 = {diff.X3_ConstraintConflict:F2}) — Điểm: {score3:F1} / 30.0", diff.X3_ConstraintConflict, $"Cặp xung đột: {diff.ConflictPairs} | Tranh chấp vị trí: {diff.SharedContention} | Độ sâu chuỗi phụ thuộc: {diff.ChainDepth}");
+        DrawComponentBar($"4. Grid Constraint (X4 = {diff.X4_GridConstraint:F2}) — Điểm: {score4:F1} / 10.0", diff.X4_GridConstraint, $"Tỷ lệ ô chặn: {(diff.BlockedRatio * 100):F1}% | Lân cận TB: {diff.AvgNeighbor:F1} / 8.0 | Ghế bị chật: {diff.TightSeatCount} / {diff.N_person}");
+        DrawComponentBar($"5. Resource Scarcity (X5 = {diff.X5_ResourceScarcity:F2}) — Điểm: {score5:F1} / 10.0", diff.X5_ResourceScarcity, $"Độ khan hiếm tài nguyên món ăn & nhân vật: {(diff.X5_ResourceScarcity * 100):F0}%");
+
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.Space(5);
+    }
+
+    private string GetCellTooltipText(CellDataSO cell)
+    {
+        if (cell == null) return "Empty Cell";
+
+        if (cell is Seat seat && seat.DefaultPerson != null)
+        {
+            Person personPrefab = seat.DefaultPerson;
+            SerializedObject personSo = new SerializedObject(personPrefab);
+            PersonDataSO data = personSo.FindProperty("data")?.objectReferenceValue as PersonDataSO;
+            ConditionsSO conds = personSo.FindProperty("conditions")?.objectReferenceValue as ConditionsSO;
+
+            string personName = data != null && !string.IsNullOrEmpty(data.Name) ? data.Name : personPrefab.name;
+            List<string> lines = new List<string>();
+            lines.Add($"Person: {personName}");
+
+            if (data != null && data.Trait != null && data.Trait.Count > 0)
+            {
+                lines.Add($"Traits: {string.Join(", ", data.Trait.Select(t => t.ToString()))}");
+            }
+
+            lines.Add("----------------------------------------");
+            lines.Add("Conditions:");
+
+            if (conds == null)
+            {
+                lines.Add("• Không có điều kiện (Luôn luôn Happy)");
+            }
+            else
+            {
+                List<SingleConditionsSO> singleConditions = FlattenSingleConditions(conds);
+                if (singleConditions.Count == 0)
+                {
+                    lines.Add("• Không có điều kiện (Luôn luôn Happy)");
+                }
+                else
+                {
+                    foreach (var sc in singleConditions)
+                    {
+                        if (sc == null) continue;
+                        string desc = !string.IsNullOrEmpty(sc.Description) ? sc.Description : $"{sc.Scope} {sc.FilterTarget} {sc.Comparator} {sc.Value}";
+                        lines.Add($"• {desc}");
+                    }
+                }
+            }
+
+            return string.Join("\n", lines);
+        }
+
+        return $"Cell: {cell.name}\nType: {cell.Type}";
+    }
+
+    private void DrawComponentBar(string label, float scoreFactor, string detail)
+    {
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+        Rect rect = EditorGUILayout.GetControlRect(false, 16);
+        EditorGUI.ProgressBar(rect, scoreFactor, $"{(scoreFactor * 100):F0}%");
+
+        if (!string.IsNullOrEmpty(detail))
+        {
+            EditorGUILayout.LabelField(detail, EditorStyles.miniLabel);
+        }
+        EditorGUILayout.EndVertical();
+    }
+
+    private void DrawSelectedPersonDetailsPanel()
+    {
+        if (_selectedCellGrid == null || _selectedCellGrid.BaseGrid == null) return;
+        if (_selectedCellY < 0 || _selectedCellY >= _selectedCellGrid.Size.y) return;
+        if (_selectedCellX < 0 || _selectedCellX >= _selectedCellGrid.Size.x) return;
+
+        CellDataSO cell = _selectedCellGrid.BaseGrid[_selectedCellY].Values[_selectedCellX];
+        if (cell == null) return;
+
+        EditorGUILayout.Space(15);
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+        string gridTypeName = _selectedIsWaitLine ? "Wait Line Grid" : "Main Board Grid";
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField($"Selected Cell Details [{gridTypeName} ({_selectedCellX}, {_selectedCellY})]", EditorStyles.boldLabel);
+
+        if (GUILayout.Button("Close", GUILayout.Width(60)))
+        {
+            _selectedCellGrid = null;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            return;
+        }
+        EditorGUILayout.EndHorizontal();
+
+        if (cell is Seat seat && seat.DefaultPerson != null)
+        {
+            Person personPrefab = seat.DefaultPerson;
+            SerializedObject personSo = new SerializedObject(personPrefab);
+            PersonDataSO data = personSo.FindProperty("data")?.objectReferenceValue as PersonDataSO;
+            ConditionsSO conds = personSo.FindProperty("conditions")?.objectReferenceValue as ConditionsSO;
+
+            string personName = data != null && !string.IsNullOrEmpty(data.Name) ? data.Name : personPrefab.name;
+
+            EditorGUILayout.Space(5);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField($"Person: {personName}", EditorStyles.boldLabel);
+            if (GUILayout.Button("Ping Person Asset", GUILayout.Width(130)))
+            {
+                EditorGUIUtility.PingObject(personPrefab);
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (data != null && data.Trait != null && data.Trait.Count > 0)
+            {
+                string traitsText = string.Join(", ", data.Trait.Select(t => t.ToString()));
+                EditorGUILayout.LabelField($"Traits: {traitsText}", EditorStyles.miniBoldLabel);
+            }
+
+            EditorGUILayout.Space(5);
+            EditorGUILayout.LabelField("Conditions List:", EditorStyles.boldLabel);
+
+            if (conds == null)
+            {
+                EditorGUILayout.HelpBox("Person này không có điều kiện nào (Luôn luôn Happy).", MessageType.Info);
+            }
+            else
+            {
+                List<SingleConditionsSO> singleConditions = FlattenSingleConditions(conds);
+                if (singleConditions.Count == 0)
+                {
+                    EditorGUILayout.HelpBox("Person này không có điều kiện đơn lẻ nào (Luôn luôn Happy).", MessageType.Info);
+                }
+                else
+                {
+                    for (int i = 0; i < singleConditions.Count; i++)
+                    {
+                        SingleConditionsSO sc = singleConditions[i];
+                        if (sc == null) continue;
+
+                        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+                        string desc = !string.IsNullOrEmpty(sc.Description) ? sc.Description : "(No description text)";
+                        EditorGUILayout.LabelField($"• {desc}", EditorStyles.wordWrappedLabel);
+
+                        string targetDetails = sc.FilterTarget.ToString();
+                        if (sc.FilterTarget == Target.Person && !string.IsNullOrEmpty(sc.Filter.Name))
+                        {
+                            targetDetails = $"Person ({sc.Filter.Name})";
+                        }
+                        else if (sc.FilterTarget == Target.Dish && sc.Filter.FoodTags != null && sc.Filter.FoodTags.Count > 0)
+                        {
+                            targetDetails = $"Dish [{string.Join(", ", sc.Filter.FoodTags.Select(f => f.ToString()))}]";
+                        }
+
+                        string techDetail = $"[Scope: {sc.Scope} | Target: {targetDetails} | Comparator: {sc.Comparator} {sc.Value}]";
+                        EditorGUILayout.LabelField(techDetail, EditorStyles.miniLabel);
+
+                        EditorGUILayout.EndVertical();
+                    }
+                }
+            }
+        }
+        else
+        {
+            EditorGUILayout.LabelField($"Cell Name: {cell.name}", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField($"Type: {cell.Type} | CanSeat: {cell.DefaultCanSeat} | CanInteract: {cell.DefaultCanInteract}", EditorStyles.miniLabel);
+            if (GUILayout.Button("Ping Cell Asset", GUILayout.Width(130)))
+            {
+                EditorGUIUtility.PingObject(cell);
+            }
+        }
+
+        EditorGUILayout.EndVertical();
+    }
+
+    private List<SingleConditionsSO> FlattenSingleConditions(ConditionsSO cond)
+    {
+        List<SingleConditionsSO> list = new List<SingleConditionsSO>();
+        if (cond is SingleConditionsSO single)
+        {
+            list.Add(single);
+        }
+        else if (cond is CompositeConditionsSO composite && composite.SubConditions != null)
+        {
+            foreach (var sub in composite.SubConditions)
+            {
+                if (sub != null) list.AddRange(FlattenSingleConditions(sub));
+            }
+        }
+        return list;
     }
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1171aacadf187547a18e4db28b4f46e, type: 3}
-  m_Name: Cond_ChuNhi_Composite
+  m_Name: FinnComposite
   m_EditorClassIdentifier: Assembly-CSharp::CompositeConditionsSO
   logicalOperator: 0
   conditions:
-  - {fileID: 11400000, guid: 524c21b2aac78fe4eab9efd862e56d29, type: 2}
-  - {fileID: 11400000, guid: d378a04aaeb546828a54afe780da3366, type: 2}
+  - {fileID: 11400000, guid: 14905daa21b250948b19fd561c44ec18, type: 2}
+  - {fileID: 11400000, guid: b428d2b02b0247eba0445e647a98e6b5, type: 2}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1164593468849941562}
   - component: {fileID: 5911569556449404275}
   m_Layer: 6
-  m_Name: Ps_Hieu
+  m_Name: Ps_Rin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b83e3e3a7f8fd4096b90bee1c20b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
-  data: {fileID: 11400000, guid: 5ff683a271fc378498584bed0fe4aa64, type: 2}
-  conditions: {fileID: 11400000, guid: 39169e2799cb2b44e89b2317e0a66113, type: 2}
+  data: {fileID: 11400000, guid: cc0394c8e19248eb9a02beefb38c2fca, type: 2}
+  conditions: {fileID: 11400000, guid: 3c82fca9bba847bb8eeef32bda88fc2c, type: 2}
 --- !u!114 &1164593468849941562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8288426215254106694, guid: 7c6205b02d32d084797e175968df6647, type: 3}
+  m_Sprite: {fileID: -2966200626249415253, guid: b429fa767bda5a346b63bccd759dacc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

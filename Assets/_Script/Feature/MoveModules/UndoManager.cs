@@ -32,16 +32,17 @@ public class UndoManager : Singleton<UndoManager>
       commandHistory.Push(command);
    }
 
-   public void UndoMove()
+   public bool TryUndoMove()
    {
       if (commandHistory.Count == 0)
       {
          Debug.LogWarning("There was no move detected");
-         return;
+         return false;
       }
 
       MoveCommand lastmove = commandHistory.Pop();
       lastmove.Undo();
+      return true;
    }
 
    public void ClearHistory()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MoreMoveBooster : MonoBehaviour
 {
-    public void TakeMoreMove()
+    public bool TakeMoreMove()
     {
-        MoveManager.Instance.IncreaseMove();
+       return MoveManager.Instance.TryIncreaseMove();
     }
 }

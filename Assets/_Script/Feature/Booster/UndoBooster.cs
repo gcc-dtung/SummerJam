@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UndoBooster : MonoBehaviour
 {
-    public void Undo()
+    public bool TryUndo()
     {
-        UndoManager.Instance.UndoMove();
+       return UndoManager.Instance.TryUndoMove();
     }
 }

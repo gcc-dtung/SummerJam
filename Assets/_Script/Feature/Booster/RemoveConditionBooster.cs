@@ -1,93 +1,53 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class RemoveConditionBooster : MonoBehaviour
+public class RemoveConditionBooster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private ConditionsSO noCondition;
-    [SerializeField] private LayerMask appliable;
-    private float checkDistance = 10f;
+    [SerializeField] private Transform holder;
+    [SerializeField] private GameObject removeBoosterVisual;
+    [SerializeField] private LayerMask targetLayer;
     private Camera mainCam;
-    private Action onUsedCallback;
-    private void Awake()
+    private GameObject ghostIcon;
+    private RectTransform ghostRect;
+
+    private void Start()
     {
         mainCam = Camera.main;
     }
 
-    private void OnEnable()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled += OnHoldCanceled;
+        if (!BoosterManager.Instance.CanRemove()) return;
+        ghostIcon = Instantiate(removeBoosterVisual, holder);
+        ghostRect = ghostIcon.GetComponent<RectTransform>();
+        ghostRect.position = eventData.position;
     }
 
-    private void OnDisable()
+    public void OnDrag(PointerEventData eventData)
     {
-        InputManager.Instance.InputAction.Player.HoldAndDrag.canceled -= OnHoldCanceled;
+        if (ghostIcon != null)
+        {
+            ghostRect.position = eventData.position;
+        }
     }
 
-    private void Update()
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if(InputManager.Instance.InputAction.Player.enabled != true) return;
-        Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
-        Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
-        this.transform.position = worldPosition;
-    }
-    
-    public void Init(Action onUsed)
-    {
-        onUsedCallback = onUsed;
-    }
+        if (ghostIcon == null) return;
+        Destroy(ghostIcon);
 
-    private void OnHoldCanceled(InputAction.CallbackContext context)
-    {
-        Vector2 screenPosition = InputManager.Instance.InputAction.Player.PointerPosition.ReadValue<Vector2>();
-        Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
-        ApplyBooster(worldPosition);
-    }
-
-
-    public void ApplyBooster(Vector3 endPosition)
-    {
-        Collider2D col = Physics2D.OverlapPoint(endPosition,appliable, -checkDistance,checkDistance);
-        if (col!=null && col.TryGetComponent<Person>(out var person))
+        Vector2 worldPosition = mainCam.ScreenToWorldPoint(eventData.position);
+        Collider2D col = Physics2D.OverlapPoint(worldPosition, targetLayer, -10, 10);
+        if (col != null && col.TryGetComponent<Person>(out var person))
         {
             person?.SetCondition(noCondition);
             EventBus.Notify(GameEventType.StopDragPerson);
             EventBus.Notify(GameEventType.PressOutSide);
-            onUsedCallback?.Invoke();
-            Destroy(this.gameObject);
+            BoosterManager.Instance.RemoveHandle();
             return;
         }
-        
-        // int x, y;
-        // if (GridManager.Instance.Board.TryGetCellFromWorldPos(endPosition, out x, out y))
-        // {
-        //     Cell target = GridManager.Instance.Board.GetValue(x, y);
-        //     if (target.Type == CellType.Seat && !target.CanSeat)
-        //     {
-        //         Person person = target.CurrentPerson;
-        //         person?.SetCondition(noCondition);
-        //         EventBus.Notify(GameEventType.StopDragPerson);
-        //         EventBus.Notify(GameEventType.PressOutSide);
-        //         onUsedCallback?.Invoke();
-        //         Destroy(this.gameObject);
-        //         return;
-        //     }
-        // }
-        //
-        // if (GridManager.Instance.WaitLine.TryGetCellFromWorldPos(endPosition, out x, out y))
-        // {
-        //     Cell target = GridManager.Instance.WaitLine.GetValue(x, y);
-        //     if (target.Type == CellType.Seat && !target.CanSeat)
-        //     {
-        //         Person person = target.CurrentPerson;
-        //         person?.SetCondition(noCondition);
-        //         EventBus.Notify(GameEventType.StopDragPerson);
-        //         EventBus.Notify(GameEventType.PressOutSide);
-        //         onUsedCallback?.Invoke();
-        //         Destroy(this.gameObject);
-        //         return;
-        //     }
-        // }
-        Destroy(this.gameObject);
     }
 }

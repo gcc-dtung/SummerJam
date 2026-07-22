@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7446964857329355155}
   - component: {fileID: 1164593468849941562}
   - component: {fileID: 5911569556449404275}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ps_Hieu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

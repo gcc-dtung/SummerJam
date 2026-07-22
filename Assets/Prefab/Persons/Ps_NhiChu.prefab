@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6466923299377600956}
   - component: {fileID: 9001291267059678432}
   - component: {fileID: 5509800066030360956}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ps_NhiChu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

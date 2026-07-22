@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoosterManager : MonoBehaviour
+public class BoosterManager : Singleton<BoosterManager>
 {
    [SerializeField] private MoreMoveBooster moveBooster;
    [SerializeField] private UndoBooster undoBooster;
-   [SerializeField] private RemoveConditionBooster removeBooster;
    private Dictionary<Booster, int> boosterHolder = new Dictionary<Booster, int>();
 
-   private void Awake()
+   protected override void Awake()
    {
+      base.Awake();
       foreach (Booster boost in Enum.GetValues(typeof(Booster)))
       {
          AddMoreBooster(boost);
@@ -27,23 +27,28 @@ public class BoosterManager : MonoBehaviour
    public void Undo()
    {
       if(boosterHolder[Booster.Undo] <= 0) return;
-      boosterHolder[Booster.Undo]--;
-      undoBooster.Undo();
+      if (UndoManager.Instance.TryUndoMove())
+      {
+         boosterHolder[Booster.Undo]--;
+      }
    }
 
    public void MoreMove()
    {
       if(boosterHolder[Booster.Move] <= 0) return;
-      boosterHolder[Booster.Move]--;
-      moveBooster.TakeMoreMove();
+     if(MoveManager.Instance.TryIncreaseMove())
+        boosterHolder[Booster.Move]--;
    }
 
-   public void RemoveBooster()
+   public bool CanRemove()
    {
-      if(boosterHolder[Booster.Remove] <= 0) return;
-      RemoveConditionBooster remover = Instantiate(removeBooster);
-     remover.Init( () => boosterHolder[Booster.Remove]--);
-      remover.gameObject.SetActive(true);
+      if(boosterHolder[Booster.Remove] <= 0) return false;
+      return true;
+   }
+
+   public void RemoveHandle()
+   {
+      boosterHolder[Booster.Remove]--;
    }
    
 }

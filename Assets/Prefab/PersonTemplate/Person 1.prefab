@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: 4e69d1ef080d64f4b81aa59adc6f0bbf, type: 2}
-  conditions: {fileID: 11400000, guid: ee98a45998f2f8b4aa682f862c480887, type: 2}
+  conditions: {fileID: 0}
 --- !u!114 &7551668017868721265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +533,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 482486571060486392, guid: fd72beeeeb482c74991801b622f328f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

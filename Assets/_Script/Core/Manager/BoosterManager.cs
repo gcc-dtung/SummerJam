@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BoosterManager : Singleton<BoosterManager>
 {
-   [SerializeField] private MoreMoveBooster moveBooster;
-   [SerializeField] private UndoBooster undoBooster;
    private Dictionary<Booster, int> boosterHolder = new Dictionary<Booster, int>();
 
    protected override void Awake()

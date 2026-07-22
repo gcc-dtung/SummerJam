@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
   data: {fileID: 11400000, guid: cc0394c8e19248eb9a02beefb38c2fca, type: 2}
-  conditions: {fileID: 11400000, guid: 3c82fca9bba847bb8eeef32bda88fc2c, type: 2}
+  conditions: {fileID: 0}
 --- !u!114 &1164593468849941562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,12 +223,12 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2966200626249415253, guid: b429fa767bda5a346b63bccd759dacc0, type: 3}
+  m_Sprite: {fileID: -2966200626249415253, guid: 36e030b88286f924e8739ed30e9eccae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.78, y: 2.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

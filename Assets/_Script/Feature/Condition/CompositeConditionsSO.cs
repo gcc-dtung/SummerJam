@@ -5,6 +5,10 @@ public class CompositeConditionsSO : ConditionsSO
 {
     [SerializeField] private LogicalOperator logicalOperator;
     [SerializeField] private List<ConditionsSO> conditions = new List<ConditionsSO>();
+
+    public LogicalOperator LogicalOperator => logicalOperator;
+    public List<ConditionsSO> Conditions => conditions;
+    public List<ConditionsSO> SubConditions => conditions;
     public override void ResetConditionInfo(List<ConditionInfo> results)
     {
         foreach (var cond in conditions)

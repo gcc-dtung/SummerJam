@@ -560,47 +560,70 @@ public class LevelConfigEditor : Editor
     {
         if (cell == null) return "Empty Cell";
 
-        if (cell is Seat seat && seat.DefaultPerson != null)
+        if (cell is Seat seat)
         {
-            Person personPrefab = seat.DefaultPerson;
-            SerializedObject personSo = new SerializedObject(personPrefab);
-            PersonDataSO data = personSo.FindProperty("data")?.objectReferenceValue as PersonDataSO;
-            ConditionsSO conds = personSo.FindProperty("conditions")?.objectReferenceValue as ConditionsSO;
-
-            string personName = data != null && !string.IsNullOrEmpty(data.Name) ? data.Name : personPrefab.name;
-            List<string> lines = new List<string>();
-            lines.Add($"Person: {personName}");
-
-            if (data != null && data.Trait != null && data.Trait.Count > 0)
+            if (seat.DefaultPerson != null)
             {
-                lines.Add($"Traits: {string.Join(", ", data.Trait.Select(t => t.ToString()))}");
-            }
+                Person personPrefab = seat.DefaultPerson;
+                SerializedObject personSo = new SerializedObject(personPrefab);
+                PersonDataSO data = personSo.FindProperty("data")?.objectReferenceValue as PersonDataSO;
+                ConditionsSO conds = personSo.FindProperty("conditions")?.objectReferenceValue as ConditionsSO;
 
-            lines.Add("----------------------------------------");
-            lines.Add("Conditions:");
+                string personName = data != null && !string.IsNullOrEmpty(data.Name) ? data.Name : personPrefab.name;
+                List<string> lines = new List<string>();
+                lines.Add($"Person: {personName} (ID: {(data != null ? data.ID : 0)})");
 
-            if (conds == null)
-            {
-                lines.Add("• Không có điều kiện (Luôn luôn Happy)");
-            }
-            else
-            {
-                List<SingleConditionsSO> singleConditions = FlattenSingleConditions(conds);
-                if (singleConditions.Count == 0)
+                if (data != null && data.Trait != null && data.Trait.Count > 0)
+                {
+                    lines.Add($"Traits: {string.Join(", ", data.Trait.Select(t => t.ToString()))}");
+                }
+
+                lines.Add("----------------------------------------");
+                lines.Add("Conditions:");
+
+                if (conds == null)
                 {
                     lines.Add("• Không có điều kiện (Luôn luôn Happy)");
                 }
                 else
                 {
-                    foreach (var sc in singleConditions)
+                    List<SingleConditionsSO> singleConditions = FlattenSingleConditions(conds);
+                    if (singleConditions.Count == 0)
                     {
-                        if (sc == null) continue;
-                        string desc = !string.IsNullOrEmpty(sc.Description) ? sc.Description : $"{sc.Scope} {sc.FilterTarget} {sc.Comparator} {sc.Value}";
-                        lines.Add($"• {desc}");
+                        lines.Add("• Không có điều kiện (Luôn luôn Happy)");
+                    }
+                    else
+                    {
+                        foreach (var sc in singleConditions)
+                        {
+                            if (sc == null) continue;
+                            string desc = !string.IsNullOrEmpty(sc.Description) ? sc.Description : $"{sc.Scope} {sc.FilterTarget} {sc.Comparator} {sc.Value}";
+                            lines.Add($"• {desc}");
+                        }
                     }
                 }
-            }
 
+                return string.Join("\n", lines);
+            }
+            else
+            {
+                return $"Seat: {seat.name}\nStatus: Ghế trống (Chưa xếp người)";
+            }
+        }
+        else if (cell is Dishes dish)
+        {
+            List<string> lines = new List<string>();
+            string dishName = !string.IsNullOrEmpty(dish.Name) ? dish.Name : dish.name;
+            lines.Add($"Dish: {dishName}");
+            lines.Add("----------------------------------------");
+            if (dish.Tags != null && dish.Tags.Count > 0)
+            {
+                lines.Add($"Food Tags: {string.Join(", ", dish.Tags.Select(t => t.ToString()))}");
+            }
+            else
+            {
+                lines.Add("Food Tags: (Chưa có Tag)");
+            }
             return string.Join("\n", lines);
         }
 

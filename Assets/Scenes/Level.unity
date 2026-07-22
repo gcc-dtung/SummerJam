@@ -3524,7 +3524,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -1311.6}
+  m_SizeDelta: {x: 0, y: -2054.68}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1101781653
 MonoBehaviour:
@@ -4314,6 +4314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87567b487c58be459b570c9f77aa171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _transition: {fileID: 0}
 --- !u!4 &1573915421
 Transform:
   m_ObjectHideFlags: 0
@@ -4383,7 +4384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoosterManager
   moveBooster: {fileID: 203425093}
   undoBooster: {fileID: 203425092}
-  removeBooster: {fileID: 5918487975408273221, guid: 542a5df3f50d4a14b82a1373a3894e71, type: 3}
 --- !u!114 &1573915426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4412,6 +4412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelConfigs:
+  - {fileID: 11400000, guid: 6e23d6a9be6637c40ac884da7115c800, type: 2}
   - {fileID: 11400000, guid: 148fb32a28612ca4387fc7395f671e0e, type: 2}
   - {fileID: 11400000, guid: 4c809534bedd02945a02985638e09653, type: 2}
   - {fileID: 11400000, guid: 0c19a53bea34e5f4da025a17ef0a0966, type: 2}
@@ -4493,7 +4494,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1440, y: 2560}
+  m_SizeDelta: {x: 1562.6249, y: 2778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594010309
 MonoBehaviour:
@@ -4520,7 +4521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
   m_AspectMode: 0
-  m_AspectRatio: 0.5625
+  m_AspectRatio: 0.56249994
 --- !u!114 &1594010311
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class GameManager : DontDestroyOnLoadSingleton<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     public Action<GameState> OnGameStateChanged;
     public GameState currentState { get; private set; }

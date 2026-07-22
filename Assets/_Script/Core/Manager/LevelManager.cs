@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class LevelManager : DontDestroyOnLoadSingleton<LevelManager>
+public class LevelManager : Singleton<LevelManager>
 {
      [SerializeField] private List<LevelConfig> levelConfigs;
      public event Action<LevelConfig> OnLevelConfigChange;

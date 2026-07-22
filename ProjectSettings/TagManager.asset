@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 10699085
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -47,6 +50,5 @@ TagManager:
   - name: Tooltip
     uniqueID: 123456789
     locked: 0
-
   m_RenderingLayers:
   - Default

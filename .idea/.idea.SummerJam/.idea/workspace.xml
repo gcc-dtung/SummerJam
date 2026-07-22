@@ -8,14 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Hieu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_NhiChu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_NhiChu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Thu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Thu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Tinh.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Tinh.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Toan.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Toan.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_TungBo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_TungBo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Yen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Yen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Đang.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Persons/Ps_Đang.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/CompositeConditionsSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/CompositeConditionsSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/ConditionsSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/ConditionsSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/SingleConditionsSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Condition/SingleConditionsSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/PersonModule/Person.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +25,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/987aa4221989419a947e2c4ff5d6829c212c00/ea/35e09d02/Transform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shader/UI_CircleCutout.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/Booster/MoreMoveBooster.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/CanvasModule/CanvasTransition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Feature/MoveModules/UndoManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Script/Test/Test2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.kyrylokuzyk.primetween@9acf248b638b/Runtime/Internal/Assert.cs" root0="SKIP_HIGHLIGHTING" />
@@ -43,61 +43,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.000000241799047" />
-      <entry key="S2" value="1.037292781771429" />
-      <entry key="S5" value="1.4165656786732745" />
-      <entry key="S10" value="2.1729854340745103" />
-      <entry key="S30" value="5.983552094445835" />
-      <entry key="S60" value="12.867068408472658" />
-      <entry key="M2" value="28.71777938553973" />
-      <entry key="M5" value="61.282261410922" />
-      <entry key="M10" value="86.77178467041196" />
-      <entry key="M15" value="100.00013816334433" />
-      <entry key="M30" value="126.85696639579018" />
-      <entry key="H1" value="186.51657509500112" />
-      <entry key="H2" value="280.01462741363696" />
-      <entry key="H4" value="369.64067800386556" />
-      <entry key="D1" value="484.11646503794157" />
-      <entry key="W1" value="508.7306097683871" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="1.3448025051903225E-151" />
+      <entry key="S10" value="3.810048791885963E-76" />
+      <entry key="S30" value="2.4439241271381566E-25" />
+      <entry key="S60" value="2.7088950325289954E-12" />
+      <entry key="M2" value="1.1478732522714498E-5" />
+      <entry key="M5" value="0.1586987934880181" />
+      <entry key="M10" value="5.514598431118791" />
+      <entry key="M15" value="20.780008484152617" />
+      <entry key="M30" value="90.79882048616568" />
+      <entry key="H1" value="219.25954394230348" />
+      <entry key="H2" value="388.32498157884226" />
+      <entry key="H4" value="553.5257200977352" />
+      <entry key="D1" value="780.5265028373901" />
+      <entry key="W1" value="831.9783809318063" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.026165643227088677" />
-      <entry key="MS500" value="0.629514472712528" />
-      <entry key="S2" value="1.4675098922230434" />
-      <entry key="S5" value="2.0859018250658967" />
-      <entry key="S10" value="3.1091265953087635" />
-      <entry key="S30" value="6.101716246823927" />
-      <entry key="S60" value="9.329083798176502" />
-      <entry key="M2" value="13.32281245312709" />
-      <entry key="M5" value="18.087852343297218" />
-      <entry key="M10" value="20.73448524385931" />
-      <entry key="M15" value="21.965902914377097" />
-      <entry key="M30" value="25.199899825200557" />
-      <entry key="H1" value="34.48634520774621" />
-      <entry key="H2" value="49.41270786248077" />
-      <entry key="H4" value="63.593218085152685" />
-      <entry key="D1" value="81.50963217745131" />
-      <entry key="W1" value="85.33695957301518" />
+      <entry key="MS100" value="1.000078334100193" />
+      <entry key="MS500" value="1.150935073935812" />
+      <entry key="S2" value="1.6233005971375487" />
+      <entry key="S5" value="1.8277115533109416" />
+      <entry key="S10" value="1.9097865427180936" />
+      <entry key="S30" value="1.9689763327372072" />
+      <entry key="S60" value="1.9843659546825312" />
+      <entry key="M2" value="1.992154618686363" />
+      <entry key="M5" value="2.036828570784981" />
+      <entry key="M10" value="3.1875900930014183" />
+      <entry key="M15" value="5.972542668898293" />
+      <entry key="M30" value="17.002451189474588" />
+      <entry key="H1" value="36.02496697587339" />
+      <entry key="H2" value="61.28566362858443" />
+      <entry key="H4" value="86.27709600982388" />
+      <entry key="D1" value="120.79463083861603" />
+      <entry key="W1" value="128.62667631790538" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.10233119711056841" />
-      <entry key="MS500" value="0.963462607867285" />
-      <entry key="S2" value="2.1148867405320626" />
-      <entry key="S5" value="3.252289227882141" />
-      <entry key="S10" value="5.073640301690518" />
-      <entry key="S30" value="11.89416809576895" />
-      <entry key="S60" value="21.99418716387909" />
-      <entry key="M2" value="41.85202824297562" />
-      <entry key="M5" value="79.24456000048147" />
-      <entry key="M10" value="107.42861933143834" />
-      <entry key="M15" value="121.90962641977679" />
-      <entry key="M30" value="152.022249999891" />
-      <entry key="H1" value="220.97583267190012" />
-      <entry key="H2" value="329.4056393544192" />
-      <entry key="H4" value="433.21908889455574" />
-      <entry key="D1" value="565.6227825598856" />
-      <entry key="W1" value="594.0670697645481" />
+      <entry key="MS100" value="6.053260287317412E-4" />
+      <entry key="MS500" value="0.23227085357484656" />
+      <entry key="S2" value="0.9573217361525833" />
+      <entry key="S5" value="1.451859626802782" />
+      <entry key="S10" value="1.6964331239889543" />
+      <entry key="S30" value="1.8913159122122774" />
+      <entry key="S60" value="1.9446550664963245" />
+      <entry key="M2" value="1.972085400630891" />
+      <entry key="M5" value="2.1870137830348058" />
+      <entry key="M10" value="8.691558981966768" />
+      <entry key="M15" value="26.734815688940994" />
+      <entry key="M30" value="107.77099181235565" />
+      <entry key="H1" value="255.25076142228318" />
+      <entry key="H2" value="449.5810212612391" />
+      <entry key="H4" value="639.7814911145922" />
+      <entry key="D1" value="901.3160420553131" />
+      <entry key="W1" value="960.6042793820466" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -120,13 +120,14 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "XepLevel",
+    "git-widget-placeholder": "EconomySystem",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -189,6 +190,10 @@
       <workItem from="1784339622477" duration="4329000" />
       <workItem from="1784387301131" duration="318000" />
       <workItem from="1784440785323" duration="1373000" />
+      <workItem from="1784492336083" duration="8450000" />
+      <workItem from="1784640317516" duration="2263000" />
+      <workItem from="1784659946804" duration="3357000" />
+      <workItem from="1784706347307" duration="3805000" />
     </task>
     <servers />
   </component>
@@ -221,6 +226,11 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="SourceShaderBreakpointType">
+          <url>file://$PROJECT_DIR$/Assets/Shader/UI_CircleCutout.shader</url>
+          <line>63</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

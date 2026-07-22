@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4800285672927136834}
   - component: {fileID: 7516304088472110506}
   - component: {fileID: 7191554765034410707}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ps_Thu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

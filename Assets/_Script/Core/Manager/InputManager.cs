@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InputManager : DontDestroyOnLoadSingleton<InputManager>
+public class InputManager : Singleton<InputManager>
 {
     private MobileInput _inputAction;
     public MobileInput InputAction

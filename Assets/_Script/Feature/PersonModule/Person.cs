@@ -22,13 +22,14 @@ public class Person : MonoBehaviour
     
     public void SetOutSideState(bool condition) => OutSide = condition;
     public void SetSeatedState(bool condition) => Seated = condition;
-
-    private void Start()
+    
+    public void ResetValue()
     {
+        ConditionStatus.Clear();
         if (conditions != null)
         {
             conditions = Instantiate(conditions);
-            conditions?.GetConditionInfo(ConditionStatus);
+            conditions?.ResetConditionInfo(ConditionStatus);
         }
     }
 

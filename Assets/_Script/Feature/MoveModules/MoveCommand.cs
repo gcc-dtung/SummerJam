@@ -56,7 +56,7 @@ public class MoveCommand
         
         if (wasMoveDeducted)
         {
-            MoveManager.Instance.IncreaseMove();
+            MoveManager.Instance.TryIncreaseMove();
         }
         EventBus.Notify(GameEventType.StopDragPerson);
     }

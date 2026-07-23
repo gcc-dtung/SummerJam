@@ -32,7 +32,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0bbb79355d1441f09d4b6aef786c4edb, type: 2}
     - {fileID: 11400000, guid: 616be0b281825434fba482ad80770869, type: 2}
   - Values:
-    - {fileID: 11400000, guid: a575e5115b9449b9b92e93e3f43353ba, type: 2}
+    - {fileID: 11400000, guid: 616be0b281825434fba482ad80770869, type: 2}
     - {fileID: 11400000, guid: 9bb813f8e1314c61a8f69e5cd7d09afd, type: 2}
     - {fileID: 11400000, guid: af40e0827ad9486f97e32608cbace79e, type: 2}
     - {fileID: 11400000, guid: 0ffec7355ff646bcb059f7cb9eaaf879, type: 2}

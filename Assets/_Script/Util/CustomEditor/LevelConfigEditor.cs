@@ -528,11 +528,29 @@ public class LevelConfigEditor : Editor
         }
         EditorGUILayout.EndHorizontal();
 
-        // Warning Box if unsolvable
-        if (!diff.IsSolvable)
+        EditorGUILayout.Space(6);
+
+        // Prominent Solvability & Minimum Moves Status Banner
+        if (diff.IsSolvable)
         {
-            EditorGUILayout.Space(4);
-            EditorGUILayout.HelpBox($"CẢNH BÁO THIẾT KẾ: Level hiện không thể giải hoặc MoveLimit quá nhỏ!\n• Moves tối thiểu (M_opt): {diff.M_opt}\n• MoveLimit cho phép: {diff.MoveLimit} (Thiếu {-diff.Slack} moves)", MessageType.Error);
+            EditorGUILayout.HelpBox(
+                $"🎯 KẾT QUẢ KIỂM TRA: CÓ THỂ VƯỢT QUA LEVEL (WINNABLE)\n" +
+                $"• Số nước đi tối thiểu để thắng (M_opt): {diff.M_opt} moves\n" +
+                $"• Giới hạn nước đi hiện tại (MoveLimit): {diff.MoveLimit} moves\n" +
+                $"• Số nước đi dư (Slack): +{diff.Slack} moves",
+                MessageType.Info);
+        }
+        else
+        {
+            string reason = diff.M_opt >= 999 
+                ? "Số ghế trên bàn ít hơn số lượng khách hàng!" 
+                : $"Số lượt di chuyển quá ít (Thiếu {-diff.Slack} moves)";
+            EditorGUILayout.HelpBox(
+                $"⛔ KẾT QUẢ KIỂM TRA: KHÔNG THỂ VƯỢT QUA LEVEL (UNSOLVABLE)\n" +
+                $"• Lý do: {reason}\n" +
+                $"• Số nước đi tối thiểu cần thiết (M_opt): {(diff.M_opt >= 999 ? "Không khả thi" : diff.M_opt + " moves")}\n" +
+                $"• Giới hạn nước đi hiện tại (MoveLimit): {diff.MoveLimit} moves",
+                MessageType.Error);
         }
 
         EditorGUILayout.Space(4);

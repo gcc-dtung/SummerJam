@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <Size>k__BackingField: {x: 5, y: 2}
   originalCellSize: {x: 0.35, y: 0.35}
-  originalCellDistance: {x: 0.35, y: 0.35}
+  originalCellDistance: {x: 0.5, y: 0.5}
   PosX: 0.5
-  PosY: 0.15
+  PosY: 0.25
   Blocked: {fileID: 0}
   BaseGrid:
   - Values:
     - {fileID: 11400000, guid: c91b36a11cfa46e696dc2c6e2b753196, type: 2}
     - {fileID: 11400000, guid: 4d82fca9bba847bb8eeef32bda88fc2d, type: 2}
     - {fileID: 11400000, guid: be4ac80e3974bfe418cdadffce166aa5, type: 2}
-    - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
-    - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
+    - {fileID: 11400000, guid: 5e82fca9bba847bb8eeef32bda88fc2e, type: 2}
+    - {fileID: 11400000, guid: b4d75c9643d64354bc930bb9f7aed02c, type: 2}
   - Values:
     - {fileID: 11400000, guid: 1409588a9f5f48cfa338f85816cb9b3e, type: 2}
     - {fileID: 11400000, guid: bdaeb2ade0b44eb4a0234c0e1bf6358f, type: 2}

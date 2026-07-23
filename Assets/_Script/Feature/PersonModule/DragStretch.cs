@@ -11,8 +11,10 @@ public class DragStretch : MonoBehaviour
     [SerializeField] private float tiltSensitivity = 250f;
     [SerializeField] private float followResponsiveness = 20f;
     [SerializeField] private Transform hoverTransform;
+    [SerializeField] private Vector3 gripLocalPosition = new(0f, 1.25f, 0f);
 
     private Vector3 baseScale;
+    private Vector3 baseLocalPosition;
     private Quaternion baseRotation;
     private Vector3 previousDragPosition;
     private bool dragging;
@@ -23,7 +25,11 @@ public class DragStretch : MonoBehaviour
     private void Awake()
     {
         if (hoverTransform == null) hoverTransform = transform;
+        PersonVisual personVisual = hoverTransform.GetComponent<PersonVisual>();
+        if (personVisual != null) gripLocalPosition = personVisual.HandPosition;
+
         baseScale = hoverTransform.localScale;
+        baseLocalPosition = hoverTransform.localPosition;
         baseRotation = hoverTransform.rotation;
     }
 
@@ -80,13 +86,14 @@ public class DragStretch : MonoBehaviour
 
         // Kiểu Is This Seat Taken?: nhân vật luôn đứng thẳng, chỉ nghiêng nhẹ khi lướt ngang.
         Quaternion targetRotation = baseRotation * Quaternion.Euler(0f, 0f, tilt);
-        hoverTransform.rotation = Quaternion.Slerp(hoverTransform.rotation, targetRotation, blend);
-
         Vector3 targetScale = new Vector3(
             baseScale.x * (1f - amount * 0.45f),
             baseScale.y * (1f + amount),
             baseScale.z);
-        hoverTransform.localScale = Vector3.Lerp(hoverTransform.localScale, targetScale, blend);
+
+        ApplyPose(
+            Quaternion.Slerp(hoverTransform.rotation, targetRotation, blend),
+            Vector3.Lerp(hoverTransform.localScale, targetScale, blend));
     }
 
     private void EndStretch()
@@ -95,6 +102,7 @@ public class DragStretch : MonoBehaviour
         hasPreviousDragPosition = false;
         if (scaleTween.isAlive) scaleTween.Stop();
         if (rotationTween.isAlive) rotationTween.Stop();
+        hoverTransform.localPosition = baseLocalPosition;
         if(hoverTransform.localScale != baseScale)
             scaleTween = Tween.Scale(hoverTransform, baseScale, returnDuration, Ease.OutBack);
         if(hoverTransform.rotation != baseRotation)
@@ -104,7 +112,16 @@ public class DragStretch : MonoBehaviour
     private void ReturnToRestPose()
     {
         float blend = 1f - Mathf.Exp(-followResponsiveness * Time.deltaTime);
-        hoverTransform.rotation = Quaternion.Slerp(hoverTransform.rotation, baseRotation, blend);
-        hoverTransform.localScale = Vector3.Lerp(hoverTransform.localScale, baseScale, blend);
+        ApplyPose(
+            Quaternion.Slerp(hoverTransform.rotation, baseRotation, blend),
+            Vector3.Lerp(hoverTransform.localScale, baseScale, blend));
+    }
+
+    private void ApplyPose(Quaternion rotation, Vector3 scale)
+    {
+        Vector3 gripWorldPosition = hoverTransform.TransformPoint(gripLocalPosition);
+        hoverTransform.rotation = rotation;
+        hoverTransform.localScale = scale;
+        hoverTransform.position += gripWorldPosition - hoverTransform.TransformPoint(gripLocalPosition);
     }
 }

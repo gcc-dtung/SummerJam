@@ -5,13 +5,20 @@ using UnityEngine;
 public class BoosterManager : Singleton<BoosterManager>
 {
    private Dictionary<Booster, int> boosterHolder = new Dictionary<Booster, int>();
-
+   public Dictionary<Booster, int> BoosterHolder
+   {
+      get => boosterHolder;
+      set => boosterHolder = value;
+   }
    protected override void Awake()
    {
       base.Awake();
-      foreach (Booster boost in Enum.GetValues(typeof(Booster)))
+      if (boosterHolder.Count == 0)
       {
-         AddMoreBooster(boost);
+         foreach (Booster boost in Enum.GetValues(typeof(Booster)))
+         {
+            AddMoreBooster(boost);
+         }
       }
    }
 
@@ -19,6 +26,7 @@ public class BoosterManager : Singleton<BoosterManager>
    {
       if(!boosterHolder.ContainsKey(boost)) boosterHolder.Add(boost,0);
       boosterHolder[boost]++;
+      if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
    }
 
 
@@ -28,6 +36,7 @@ public class BoosterManager : Singleton<BoosterManager>
       if (UndoManager.Instance.TryUndoMove())
       {
          boosterHolder[Booster.Undo]--;
+         if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
       }
    }
 
@@ -35,7 +44,10 @@ public class BoosterManager : Singleton<BoosterManager>
    {
       if(boosterHolder[Booster.Move] <= 0) return;
      if(MoveManager.Instance.TryIncreaseMove())
+     {
         boosterHolder[Booster.Move]--;
+        if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
+     }
    }
 
    public bool CanRemove()
@@ -47,6 +59,7 @@ public class BoosterManager : Singleton<BoosterManager>
    public void RemoveHandle()
    {
       boosterHolder[Booster.Remove]--;
+      if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
    }
    
 }

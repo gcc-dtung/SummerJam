@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7446964857329355155}
   - component: {fileID: 1164593468849941562}
   - component: {fileID: 5911569556449404275}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ps_Bi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,6 +271,7 @@ MonoBehaviour:
   tiltSensitivity: 250
   followResponsiveness: 20
   hoverTransform: {fileID: 6622026478861251763}
+  gripLocalPosition: {x: 0, y: 1.25, z: 0}
 --- !u!1 &8838971118442688580
 GameObject:
   m_ObjectHideFlags: 0

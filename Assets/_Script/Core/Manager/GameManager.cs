@@ -10,13 +10,24 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        StartCoroutine(StartGameFlow());
+        if (SaveLoadManager.Instance != null)
+        {
+            SaveLoadManager.Instance.LoadGame();
+        }
+        StartCoroutine(StartGameFlow(true));
     }
 
-    private IEnumerator StartGameFlow()
+    private IEnumerator StartGameFlow(bool isGameStart = false)
     {
         UpdateGameState(GameState.SetUp);
-        LevelManager.Instance.LoadNextLevel();
+        if (isGameStart)
+        {
+            LevelManager.Instance.LoadCurrentLevel();
+        }
+        else
+        {
+            LevelManager.Instance.LoadNextLevel();
+        }
         yield return null;
         UpdateGameState(GameState.GamePlay);
     }
@@ -52,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleWin()
     {
-        _transition.PlayAsync(() => {StartCoroutine(StartGameFlow());});
+        _transition.PlayAsync(() => {StartCoroutine(StartGameFlow(false));});
         
     }
 

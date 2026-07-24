@@ -34,7 +34,7 @@ public class InputManager : Singleton<InputManager>
         if (state == GameState.GamePlay)
         {
             InputAction.Player.Enable();
-            InputAction.UI.Enable();
+            InputAction.UI.Disable();
         }
         else
         {

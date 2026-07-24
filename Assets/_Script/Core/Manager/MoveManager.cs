@@ -6,7 +6,7 @@ public class MoveManager : Singleton<MoveManager>
     private LevelConfig data;
     [SerializeField] private TextMeshProUGUI text;
     public int StepRemain { get; private set; }
-    public int Limit => data.MoveLimit;
+    public int Limit => data != null ? data.MoveLimit : 0;
 
     private void OnEnable()
     {

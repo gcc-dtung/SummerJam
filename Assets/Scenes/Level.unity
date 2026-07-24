@@ -246,8 +246,8 @@ CanvasGroup:
   m_GameObject: {fileID: 48472358}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &56322651
 GameObject:
@@ -2468,7 +2468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &668756364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6217,6 +6217,7 @@ GameObject:
   - component: {fileID: 1573915425}
   - component: {fileID: 1573915424}
   - component: {fileID: 1573915423}
+  - component: {fileID: 1573915431}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6237,6 +6238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _transition: {fileID: 945903565}
+  losePanel: {fileID: 431834106}
 --- !u!4 &1573915421
 Transform:
   m_ObjectHideFlags: 0
@@ -6377,6 +6379,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
   Template: {fileID: 7204608856450553470, guid: f1672d0f4858a85429f71cbc9f9d4565, type: 3}
   holder: {fileID: 148868742}
+--- !u!114 &1573915431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573915419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf4c36d55f6f3d41be110cf5e37be37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveLoadManager
 --- !u!1 &1594010307
 GameObject:
   m_ObjectHideFlags: 0
@@ -8206,10 +8220,10 @@ SceneRoots:
   - {fileID: 2090112999}
   - {fileID: 336881590}
   - {fileID: 1573915421}
+  - {fileID: 1561984368}
   - {fileID: 68345063}
   - {fileID: 546908547}
   - {fileID: 324301806}
   - {fileID: 668756367}
   - {fileID: 379980485}
   - {fileID: 945903569}
-  - {fileID: 1561984368}

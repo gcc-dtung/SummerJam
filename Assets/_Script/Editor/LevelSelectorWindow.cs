@@ -6,8 +6,6 @@ using System.Collections.Generic;
 public class LevelSelectorWindow : EditorWindow
 {
     private int targetLevel1Based = 1;
-
-    // Các biến cho Booster Setup
     private int targetMoveCount = 1;
     private int targetUndoCount = 1;
     private int targetRemoveCount = 1;
@@ -21,7 +19,6 @@ public class LevelSelectorWindow : EditorWindow
 
     private void OnEnable()
     {
-        // Khi mở tool, cố gắng lấy dữ liệu hiện tại
         FetchCurrentData();
     }
 
@@ -29,8 +26,6 @@ public class LevelSelectorWindow : EditorWindow
     {
         GUILayout.Label("Game Debugger & Tester", EditorStyles.boldLabel);
         EditorGUILayout.Space();
-
-        // 1. Kiểm tra trạng thái Play Mode
         bool isPlaying = Application.isPlaying;
         if (isPlaying)
         {
@@ -43,8 +38,6 @@ public class LevelSelectorWindow : EditorWindow
         }
 
         EditorGUILayout.Space();
-
-        // 2. KHU VỰC CHỌN MÀN CHƠI (LEVEL SELECTOR)
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("1. Cài đặt Level", EditorStyles.boldLabel);
         EditorGUILayout.Space();
@@ -84,8 +77,6 @@ public class LevelSelectorWindow : EditorWindow
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.Space();
-
-        // 3. KHU VỰC CÀI ĐẶT BOOSTER (BOOSTER SETUP)
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("2. Cài đặt Booster", EditorStyles.boldLabel);
         EditorGUILayout.Space();
@@ -99,7 +90,6 @@ public class LevelSelectorWindow : EditorWindow
         }
         else
         {
-            // Hiển thị và thay đổi các booster
             DrawBoosterRow("Move Booster (+Move)", ref targetMoveCount);
             DrawBoosterRow("Undo Booster (Undo)", ref targetUndoCount);
             DrawBoosterRow("Remove Booster (Bỏ Condition)", ref targetRemoveCount);
@@ -124,16 +114,12 @@ public class LevelSelectorWindow : EditorWindow
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.Space();
-
-        // Nút Sync dữ liệu từ game/file save thủ công
         if (GUILayout.Button("Đọc lại toàn bộ dữ liệu từ Game/File Save", GUILayout.Height(25)))
         {
             FetchCurrentData();
             Debug.Log("Đã làm mới dữ liệu trên Debug Tool!");
         }
     }
-
-    // Vẽ dòng tuỳ chỉnh cho từng loại booster với các phím tắt nhanh
     private void DrawBoosterRow(string label, ref int count)
     {
         EditorGUILayout.BeginHorizontal();
@@ -152,18 +138,15 @@ public class LevelSelectorWindow : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
 
-    // Đọc dữ liệu thực tế từ game hoặc từ file JSON save
     private void FetchCurrentData()
     {
         if (Application.isPlaying)
         {
-            // Đọc level
             if (LevelManager.Instance != null)
             {
                 targetLevel1Based = LevelManager.Instance.CurrentLevelIndex + 1;
             }
-
-            // Đọc boosters
+            
             if (BoosterManager.Instance != null && BoosterManager.Instance.BoosterHolder != null)
             {
                 var holder = BoosterManager.Instance.BoosterHolder;
@@ -200,13 +183,11 @@ public class LevelSelectorWindow : EditorWindow
                 }
                 catch
                 {
-                    // Lỗi đọc file hoặc file hỏng
                     initialized = false;
                 }
             }
             else
             {
-                // Chưa có file save, dùng cấu hình mặc định của GameData
                 GameData defaultData = new GameData();
                 targetLevel1Based = defaultData.currentLevelIndex + 1;
                 targetMoveCount = defaultData.boosterCounts[Booster.Move];
@@ -217,19 +198,16 @@ public class LevelSelectorWindow : EditorWindow
         }
     }
 
-    // Áp dụng trực tiếp vào game đang chạy
     private void ApplyBoostersInGame()
     {
         if (BoosterManager.Instance != null && BoosterManager.Instance.BoosterHolder != null)
         {
             var holder = BoosterManager.Instance.BoosterHolder;
             
-            // Gán giá trị mới
             holder[Booster.Move] = targetMoveCount;
             holder[Booster.Undo] = targetUndoCount;
             holder[Booster.Remove] = targetRemoveCount;
 
-            // Lưu game để dữ liệu ghi nhận
             if (SaveLoadManager.Instance != null)
             {
                 SaveLoadManager.Instance.SaveGame();
@@ -243,7 +221,6 @@ public class LevelSelectorWindow : EditorWindow
         }
     }
 
-    // Lưu booster trực tiếp vào file save (Edit mode)
     private void SaveBoostersToSaveFile()
     {
         string relativePath = "/player_save.json";
@@ -281,7 +258,6 @@ public class LevelSelectorWindow : EditorWindow
         }
     }
 
-    // Lưu Level khởi đầu vào file save (Edit Mode)
     private void SaveLevelToSaveFile(int index)
     {
         string relativePath = "/player_save.json";
@@ -312,7 +288,6 @@ public class LevelSelectorWindow : EditorWindow
         }
     }
 
-    // Coroutine đổi level và khởi chạy trạng thái game
     private System.Collections.IEnumerator LoadSelectedLevelFlow(int index)
     {
         GameManager.Instance.UpdateGameState(GameState.SetUp);

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8689c2d0b86d78a46a22a87627acd88d
+guid: 7c995ff989b7d8c4e958e54ebaad95fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4223384069262113059
-    second: 750033203_1778750656634436_2409768374044044225_n_0
+      213: 5405260168881563042
+    second: nut 2 ben_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 750033203_1778750656634436_2409768374044044225_n_0
+      name: nut 2 ben_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 332
-        height: 710
+        x: 35
+        y: 2
+        width: 147
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 329796e3f697c9a30800000000000000
-      internalID: 4223384069262113059
+      spriteID: 2a5e0cc3c77530b40800000000000000
+      internalID: 5405260168881563042
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      750033203_1778750656634436_2409768374044044225_n_0: 4223384069262113059
+      nut 2 ben_0: 5405260168881563042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

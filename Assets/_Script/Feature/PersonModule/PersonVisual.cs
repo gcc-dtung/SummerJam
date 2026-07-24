@@ -90,6 +90,10 @@ public class PersonVisual : MonoBehaviour
 
         sprite.sortingOrder = orderInLayer;
 
+        // DragStretch tự scale/xoay quanh điểm tay nắm. Nếu scale thêm ở đây,
+        // sprite sẽ scale quanh tâm và làm điểm đầu trượt khỏi bàn tay.
+        if (GetComponent<DragStretch>() != null) return;
+
         if(sprite.transform.localScale == Vector3.one * viewScale) return;
         scaleTween = Tween.Scale(sprite.transform, viewScale, changeViewDuration);
     }
@@ -116,8 +120,10 @@ public class PersonVisual : MonoBehaviour
 
     public void OnHandOnDrag()
     {
-        handOnPerson.transform.localPosition = handPosition + sprite.transform.localPosition;
+        handOnPerson.transform.localPosition = handPosition;
     }
+
+    public Vector3 HandPosition => handPosition;
     
     public void ShowTooltip()
     {

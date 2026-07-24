@@ -50,7 +50,7 @@ MonoBehaviour:
   bottom: {fileID: 6715511080179538178}
   nameText: {fileID: 5319583610308529609}
   contentText: {fileID: 3948397586941054332}
-  textWidth: 6
+  textWidth: 6.5
   verticalPadding: 0.15
   textSortingOrder: 10
   contentHeight: 1.68
@@ -697,8 +697,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

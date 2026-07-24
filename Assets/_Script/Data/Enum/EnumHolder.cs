@@ -73,3 +73,10 @@ public enum RewardType
     Gold = 1,
     Gem = 2
 }
+
+public enum SoundType
+{
+    BLABLA = 0,
+    BLOBLO = 1,
+    BANANA = 2
+}

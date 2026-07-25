@@ -7,8 +7,15 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
      [SerializeField] private List<LevelConfig> levelConfigs;
+     public List<LevelConfig> LevelConfigs => levelConfigs;
      public event Action<LevelConfig> OnLevelConfigChange;
      private int count = -1;
+
+     public int CurrentLevelIndex
+     {
+         get => count;
+         set => count = value;
+     }
 
      [Button("Next Level")]
      public void NextLevelButton()
@@ -33,9 +40,13 @@ public class LevelManager : Singleton<LevelManager>
 
      public void LoadNextLevel()
      {
-         count++;
-         if (count < 0 || count >= levelConfigs.Count) count = 0;
-         OnLevelConfigChange?.Invoke(levelConfigs[count]);
+          count++;
+          if (count < 0 || count >= levelConfigs.Count) count = 0;
+          OnLevelConfigChange?.Invoke(levelConfigs[count]);
+          if (Application.isPlaying && SaveLoadManager.Instance != null)
+          {
+              SaveLoadManager.Instance.SaveGame();
+          }
      }
 
      public void LoadCurrentLevel()

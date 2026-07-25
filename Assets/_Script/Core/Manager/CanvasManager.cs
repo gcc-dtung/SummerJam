@@ -26,6 +26,7 @@ public class CanvasManager : Singleton<CanvasManager>
 
     public async void ChangeToGameplayCanvas()
     {
+        GameManager.Instance.UpdateGameState(GameState.SetUp);
         if (isChangingCanvas)
             return;
 
@@ -38,5 +39,6 @@ public class CanvasManager : Singleton<CanvasManager>
         });
 
         isChangingCanvas = false;
+        GameManager.Instance.UpdateGameState(GameState.GamePlay);
     }
 }

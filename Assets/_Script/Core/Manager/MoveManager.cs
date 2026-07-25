@@ -6,7 +6,7 @@ public class MoveManager : Singleton<MoveManager>
     private LevelConfig data;
     [SerializeField] private TextMeshProUGUI text;
     public int StepRemain { get; private set; }
-    public int Limit => data.MoveLimit;
+    public int Limit => data != null ? data.MoveLimit : 0;
 
     private void OnEnable()
     {
@@ -35,6 +35,11 @@ public class MoveManager : Singleton<MoveManager>
     {
         if(IsOutOfMove()) return;
         StepRemain--;
+    }
+
+    public void AddMoreMove(int amount)
+    {
+        StepRemain = Mathf.Clamp(StepRemain + amount, 0, data.MoveLimit);
     }
 
     public bool TryIncreaseMove()

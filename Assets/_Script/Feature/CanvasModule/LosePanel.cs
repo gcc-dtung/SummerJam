@@ -125,11 +125,20 @@ public class LosePanel : MonoBehaviour
     private void OnPressCoinButton()
     {
         // TODO: Anim Qlai Man choi + Them luot
+        if(!EconomyManager.Instance.SpendGold(300)) return;
+        MoveManager.Instance.AddMoreMove(5);
+        GameManager.Instance.UpdateGameState(GameState.GamePlay);
+       // CanvasManager.Instance.ChangeToGameplayCanvas();
+        losePanelParent.gameObject.SetActive(false);
     }
 
     private void OnPressAdsButton()
     {
         // TODO: Qc + Anim Qlai Man choi + Them luot
+        MoveManager.Instance.AddMoreMove(5);
+        GameManager.Instance.UpdateGameState(GameState.GamePlay);
+        // CanvasManager.Instance.ChangeToGameplayCanvas();
+        losePanelParent.gameObject.SetActive(false);
     }
 
     private void OnPressChooseLoseButton()

@@ -4611,6 +4611,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1c744e95c253a742b7b0807812bf705, type: 2}
   - {fileID: 11400000, guid: 6e23d6a9be6637c40ac884da7115c800, type: 2}
   - {fileID: 11400000, guid: 33cddc1b89b7323498c327a51904d77f, type: 2}
+  - {fileID: 11400000, guid: 5c4820987a777044fa7f54cab9addc80, type: 2}
+  - {fileID: 11400000, guid: 99cddc1b89b7323498c327a51904d799, type: 2}
+  - {fileID: 11400000, guid: 10cddc1b89b7323498c327a51904d710, type: 2}
 --- !u!114 &1573915428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4687,7 +4690,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1440, y: 2560}
+  m_SizeDelta: {x: 1562.6249, y: 2778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594010309
 MonoBehaviour:
@@ -4714,7 +4717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
   m_AspectMode: 0
-  m_AspectRatio: 0.5625
+  m_AspectRatio: 0.56249994
 --- !u!114 &1594010311
 MonoBehaviour:
   m_ObjectHideFlags: 0

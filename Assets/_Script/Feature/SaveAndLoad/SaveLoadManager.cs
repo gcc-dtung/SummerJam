@@ -7,6 +7,7 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
     private readonly string saveFileName = "/player_save.json"; 
     
     private GameData gameData;
+    public GameData GameData => gameData;
     protected override void Awake()
     {
         base.Awake();
@@ -24,6 +25,11 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         if (BoosterManager.Instance != null)
         {
             gameData.boosterCounts = BoosterManager.Instance.BoosterHolder;
+        }
+        if (EconomyManager.Instance != null)
+        {
+            gameData.currentGold = EconomyManager.Instance.CurrentGold;
+            gameData.currentGem = EconomyManager.Instance.CurrentGem;
         }
         bool success = dataService.SaveData(saveFileName, gameData, false);
     }
@@ -53,6 +59,10 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         if (BoosterManager.Instance != null)
         {
             BoosterManager.Instance.BoosterHolder = gameData.boosterCounts;
+        }
+        if (EconomyManager.Instance != null)
+        {
+            EconomyManager.Instance.InitializeData(gameData.currentGold, gameData.currentGem);
         }
     }
 }

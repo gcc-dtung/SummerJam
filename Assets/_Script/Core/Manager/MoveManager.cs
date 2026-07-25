@@ -37,6 +37,11 @@ public class MoveManager : Singleton<MoveManager>
         StepRemain--;
     }
 
+    public void AddMoreMove(int amount)
+    {
+        StepRemain = Mathf.Clamp(StepRemain + amount, 0, data.MoveLimit);
+    }
+
     public bool TryIncreaseMove()
     {
         if (StepRemain + 1 > data.MoveLimit) return false;

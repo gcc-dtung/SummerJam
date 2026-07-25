@@ -1,18 +1,38 @@
 using System;
 using UnityEngine;
+using NaughtyAttributes;
+using TMPro;
 
 public class EconomyManager : Singleton<EconomyManager>
 {
+  [SerializeField] private TextMeshProUGUI text;
   private const int max = 1000000000;
   public event Action<int> OnGoldChange;
   public event Action<int> OnGemChange;
   public int CurrentGold { get; private set; }
   public int CurrentGem { get; private set; }
 
+  [Header("Debug Settings")]
+  [SerializeField] private int debugAddGoldAmount = 1000;
+  [SerializeField] private int debugAddGemAmount = 100;
+
   protected override void Awake()
   {
     base.Awake();
     LoadData();
+  }
+
+  private void Update()
+  {
+    text.text = "Gold: " + CurrentGold.ToString();
+  }
+
+  public void InitializeData(int gold, int gem)
+  {
+    CurrentGold = gold;
+    CurrentGem = gem;
+    OnGoldChange?.Invoke(CurrentGold);
+    OnGemChange?.Invoke(CurrentGem);
   }
 
   public void GetGold(int amount)
@@ -61,14 +81,67 @@ public class EconomyManager : Singleton<EconomyManager>
 
   private void SaveData()
   {
-    PlayerPrefs.SetInt("UserGold",CurrentGold);
-    PlayerPrefs.SetInt("UserGem",CurrentGem);
-    PlayerPrefs.Save();
+    if (SaveLoadManager.Instance != null)
+    {
+      var gameData = SaveLoadManager.Instance.GameData;
+      if (gameData != null)
+      {
+        gameData.currentGold = CurrentGold;
+        gameData.currentGem = CurrentGem;
+      }
+      SaveLoadManager.Instance.SaveGame();
+    }
+    else
+    {
+      JsonDataService dataService = new JsonDataService();
+      GameData gameData;
+      try
+      {
+        gameData = dataService.LoadData<GameData>("/player_save.json", false);
+      }
+      catch
+      {
+        gameData = new GameData();
+      }
+      gameData.currentGold = CurrentGold;
+      gameData.currentGem = CurrentGem;
+      dataService.SaveData("/player_save.json", gameData, false);
+    }
   }
 
   private void LoadData()
   {
-    CurrentGold = PlayerPrefs.GetInt("UserGold",0);
-    CurrentGem = PlayerPrefs.GetInt("UserGem",0);
+    if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
+    {
+      CurrentGold = SaveLoadManager.Instance.GameData.currentGold;
+      CurrentGem = SaveLoadManager.Instance.GameData.currentGem;
+    }
+    else
+    {
+      JsonDataService dataService = new JsonDataService();
+      try
+      {
+        GameData gameData = dataService.LoadData<GameData>("/player_save.json", false);
+        CurrentGold = gameData.currentGold;
+        CurrentGem = gameData.currentGem;
+      }
+      catch
+      {
+        CurrentGold = 0;
+        CurrentGem = 0;
+      }
+    }
+  }
+
+  [Button("Add Gold")]
+  private void DebugAddGold()
+  {
+    GetGold(debugAddGoldAmount);
+  }
+
+  [Button("Add Gem")]
+  private void DebugAddGem()
+  {
+    GetGem(debugAddGemAmount);
   }
 }

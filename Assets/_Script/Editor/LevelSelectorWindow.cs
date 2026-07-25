@@ -9,6 +9,8 @@ public class LevelSelectorWindow : EditorWindow
     private int targetMoveCount = 1;
     private int targetUndoCount = 1;
     private int targetRemoveCount = 1;
+    private int targetGoldCount = 0;
+    private int targetGemCount = 0;
     private bool initialized = false;
 
     [MenuItem("Tools/Level Selector & Debug Tool")]
@@ -103,11 +105,40 @@ public class LevelSelectorWindow : EditorWindow
                     ApplyBoostersInGame();
                 }
             }
+        }
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space();
+        EditorGUILayout.BeginVertical("box");
+        GUILayout.Label("3. Cài đặt Economy (Gold & Gem)", EditorStyles.boldLabel);
+        EditorGUILayout.Space();
+
+        if (!initialized)
+        {
+            if (GUILayout.Button("Tải dữ liệu Economy hiện tại"))
+            {
+                FetchCurrentData();
+            }
+        }
+        else
+        {
+            DrawEconomyRow("Gold", ref targetGoldCount);
+            DrawEconomyRow("Gem", ref targetGemCount);
+
+            EditorGUILayout.Space();
+
+            if (isPlaying)
+            {
+                if (GUILayout.Button("Áp Dụng Economy Ngay Lập Tức", GUILayout.Height(30)))
+                {
+                    ApplyEconomyInGame();
+                }
+            }
             else
             {
-                if (GUILayout.Button("Lưu Số Lượng Booster vào File Save", GUILayout.Height(30)))
+                if (GUILayout.Button("Lưu Số Lượng Gold/Gem vào File Save", GUILayout.Height(30)))
                 {
-                    SaveBoostersToSaveFile();
+                    SaveEconomyToSaveFile();
                 }
             }
         }
@@ -138,6 +169,24 @@ public class LevelSelectorWindow : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
 
+    private void DrawEconomyRow(string label, ref int count)
+    {
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField(label, GUILayout.Width(180));
+        count = EditorGUILayout.IntField(count, GUILayout.Width(80));
+        
+        if (count < 0) count = 0;
+
+        if (GUILayout.Button("-1000", GUILayout.Width(48))) count = Mathf.Max(0, count - 1000);
+        if (GUILayout.Button("-100", GUILayout.Width(42))) count = Mathf.Max(0, count - 100);
+        if (GUILayout.Button("+100", GUILayout.Width(42))) count += 100;
+        if (GUILayout.Button("+1000", GUILayout.Width(48))) count += 1000;
+        if (GUILayout.Button("+9999", GUILayout.Width(48))) count += 9999;
+        if (GUILayout.Button("Set 0", GUILayout.Width(50))) count = 0;
+
+        EditorGUILayout.EndHorizontal();
+    }
+
     private void FetchCurrentData()
     {
         if (Application.isPlaying)
@@ -153,8 +202,14 @@ public class LevelSelectorWindow : EditorWindow
                 targetMoveCount = holder.ContainsKey(Booster.Move) ? holder[Booster.Move] : 0;
                 targetUndoCount = holder.ContainsKey(Booster.Undo) ? holder[Booster.Undo] : 0;
                 targetRemoveCount = holder.ContainsKey(Booster.Remove) ? holder[Booster.Remove] : 0;
-                initialized = true;
             }
+
+            if (EconomyManager.Instance != null)
+            {
+                targetGoldCount = EconomyManager.Instance.CurrentGold;
+                targetGemCount = EconomyManager.Instance.CurrentGem;
+            }
+            initialized = true;
         }
         else
         {
@@ -178,6 +233,8 @@ public class LevelSelectorWindow : EditorWindow
                             targetUndoCount = gameData.boosterCounts.ContainsKey(Booster.Undo) ? gameData.boosterCounts[Booster.Undo] : 0;
                             targetRemoveCount = gameData.boosterCounts.ContainsKey(Booster.Remove) ? gameData.boosterCounts[Booster.Remove] : 0;
                         }
+                        targetGoldCount = gameData.currentGold;
+                        targetGemCount = gameData.currentGem;
                         initialized = true;
                     }
                 }
@@ -193,6 +250,8 @@ public class LevelSelectorWindow : EditorWindow
                 targetMoveCount = defaultData.boosterCounts[Booster.Move];
                 targetUndoCount = defaultData.boosterCounts[Booster.Undo];
                 targetRemoveCount = defaultData.boosterCounts[Booster.Remove];
+                targetGoldCount = defaultData.currentGold;
+                targetGemCount = defaultData.currentGem;
                 initialized = true;
             }
         }
@@ -255,6 +314,59 @@ public class LevelSelectorWindow : EditorWindow
         catch (System.Exception e)
         {
             Debug.LogError($"Không thể ghi đè booster vào file save: {e.Message}");
+        }
+    }
+
+    private void ApplyEconomyInGame()
+    {
+        if (EconomyManager.Instance != null)
+        {
+            int goldDelta = targetGoldCount - EconomyManager.Instance.CurrentGold;
+            if (goldDelta != 0)
+            {
+                EconomyManager.Instance.GetGold(goldDelta);
+            }
+            int gemDelta = targetGemCount - EconomyManager.Instance.CurrentGem;
+            if (gemDelta != 0)
+            {
+                EconomyManager.Instance.GetGem(gemDelta);
+            }
+            Debug.Log($"Đã áp dụng Economy trong game: Gold={targetGoldCount}, Gem={targetGemCount}");
+        }
+        else
+        {
+            Debug.LogError("Không tìm thấy EconomyManager trong Scene!");
+        }
+    }
+
+    private void SaveEconomyToSaveFile()
+    {
+        string relativePath = "/player_save.json";
+        string fullPath = Application.persistentDataPath + relativePath;
+
+        try
+        {
+            JsonDataService dataService = new JsonDataService();
+            GameData gameData;
+
+            if (File.Exists(fullPath))
+            {
+                gameData = dataService.LoadData<GameData>(relativePath, false);
+            }
+            else
+            {
+                gameData = new GameData();
+            }
+
+            gameData.currentGold = targetGoldCount;
+            gameData.currentGem = targetGemCount;
+
+            dataService.SaveData(relativePath, gameData, false);
+            Debug.Log($"Đã lưu Economy vào file save thành công: Gold={targetGoldCount}, Gem={targetGemCount}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Không thể ghi đè Economy vào file save: {e.Message}");
         }
     }
 

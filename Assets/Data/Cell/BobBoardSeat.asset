@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b0a127844e225478f8e8ebc18541dd, type: 3}
   m_Name: BobBoardSeat
   m_EditorClassIdentifier: Assembly-CSharp::Seat
-  <Name>k__BackingField: "Chuối"
+  <Name>k__BackingField: "Chu\u1ED1i"
   <Type>k__BackingField: 1
   <DefaultCanSeat>k__BackingField: 1
   <DefaultCanInteract>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: -1547082645228362377, guid: 76e387741e760134d84fe5318864f0b7, type: 3}
+  <sprite>k__BackingField: {fileID: 0}
   <DefaultPerson>k__BackingField: {fileID: 0}

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
   <ID>k__BackingField: 3
   <MoveLimit>k__BackingField: 15
+  <Gold>k__BackingField: 40
   <BoardGrid>k__BackingField: {fileID: 11400000, guid: 1ba0f3ba70bff0f479514d36a69b0fd5, type: 2}
   <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: a88fc1b7175343b47965372aacf39277, type: 2}

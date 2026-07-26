@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager>
      [SerializeField] private List<LevelConfig> levelConfigs;
      [SerializeField] private TextMeshProUGUI levelText;
      public List<LevelConfig> LevelConfigs => levelConfigs;
+     public LevelConfig CurrentLevel => levelConfigs[count];
      public event Action<LevelConfig> OnLevelConfigChange;
      private int count = -1;
 

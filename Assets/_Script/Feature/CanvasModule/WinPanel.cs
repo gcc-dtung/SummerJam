@@ -45,6 +45,7 @@ public class WinPanel : MonoBehaviour
     private void OnPressRewardButton()
     {
         // TODO : Anim Cong Vang
+        EconomyManager.Instance.GetGold(LevelManager.Instance.CurrentLevel.Gold);
         NextPhase();
     }
 

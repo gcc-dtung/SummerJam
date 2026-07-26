@@ -34,12 +34,16 @@ public class LevelConfigEditor : Editor
 
         SerializedProperty idProp = serializedObject.FindProperty("<ID>k__BackingField");
         SerializedProperty moveLimitProp = serializedObject.FindProperty("<MoveLimit>k__BackingField");
+        SerializedProperty goldProp = serializedObject.FindProperty("<Gold>k__BackingField");
+        SerializedProperty LayoutProp = serializedObject.FindProperty("<Layout>k__BackingField");
         SerializedProperty boardGridProp = serializedObject.FindProperty("<BoardGrid>k__BackingField");
         SerializedProperty waitLineGridProp = serializedObject.FindProperty("<WaitLineGrid>k__BackingField");
 
         GUILayout.Label("Level General Config", EditorStyles.boldLabel);
         if (idProp != null) EditorGUILayout.PropertyField(idProp);
         if (moveLimitProp != null) EditorGUILayout.PropertyField(moveLimitProp);
+        if (goldProp != null) EditorGUILayout.PropertyField(goldProp);
+        if (LayoutProp != null) EditorGUILayout.PropertyField(LayoutProp);
         
         if (boardGridProp != null) EditorGUILayout.PropertyField(boardGridProp);
         if (waitLineGridProp != null) EditorGUILayout.PropertyField(waitLineGridProp);

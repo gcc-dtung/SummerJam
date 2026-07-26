@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private CanvasTransition _transition;
     [SerializeField] private LosePanel losePanel;
     [SerializeField] private WinPanel winPanel;
+    private GameObject currentLayOut;
     private bool isGameStart;
     public Action<GameState> OnGameStateChanged;
     public GameState currentState { get; private set; }
@@ -73,13 +74,20 @@ public class GameManager : Singleton<GameManager>
     {
         if (!isGameStart)
         {
+          if(currentLayOut != null)  Destroy(currentLayOut);
             LevelManager.Instance.LoadCurrentLevel();
+            currentLayOut = Instantiate(LevelManager.Instance.CurrentLevel.Layout);
+            currentLayOut.SetActive(true);
             isGameStart = true;
         }
         else
         {
+          if(currentLayOut != null)  Destroy(currentLayOut);
             LevelManager.Instance.LoadNextLevel();
+            currentLayOut = Instantiate(LevelManager.Instance.CurrentLevel.Layout);
+            currentLayOut.SetActive(true);
         }
+        
     }
 
     private void HandleGamePlay()

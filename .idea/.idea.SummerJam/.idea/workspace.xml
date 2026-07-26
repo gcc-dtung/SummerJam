@@ -8,8 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/CanvasModule/CanvasTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/CanvasModule/CanvasTransition.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +116,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Fix-bug",
+    "git-widget-placeholder": "New-UI-Gameplay",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -198,6 +196,7 @@
       <workItem from="1784904763552" duration="3243000" />
       <workItem from="1784962365095" duration="3407000" />
       <workItem from="1785026931854" duration="1017000" />
+      <workItem from="1785028354295" duration="870000" />
     </task>
     <servers />
   </component>

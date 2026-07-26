@@ -62,7 +62,7 @@ public class CanvasTransition : MonoBehaviour
         gameObject.SetActive(true);
 
         circleOverlay.gameObject.SetActive(false);
-        // squareCover.gameObject.SetActive(true);
+        squareCover.gameObject.SetActive(true);
 
         squareCover.anchoredPosition = squareStartPos;
         if (!SetCircleRadius(0f))

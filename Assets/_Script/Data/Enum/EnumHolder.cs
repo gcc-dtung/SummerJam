@@ -4,14 +4,15 @@ public enum Food
     Spicy = 0,
     Cold = 1,
     Hot = 2,
-    Vegetarian = 3,
+    Vegetable = 3,
     Chicken = 4,
     Savory = 5,
     Pork = 6,
     Beef = 7,
     Sweet = 8,
     Fruit = 9,
-    Meat = 10
+    Meat = 10,
+    Beverage = 11
 }
 
 public enum Trait

@@ -17,7 +17,7 @@ MonoBehaviour:
   originalCellDistance: {x: 0.08, y: 0.11}
   PosX: 0.5
   PosY: 0.572
-  Blocked: {fileID: 0}
+  Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
   BaseGrid:
   - Values:
     - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}

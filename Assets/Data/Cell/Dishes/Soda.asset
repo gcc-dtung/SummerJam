@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c79adc4f872ecc46bb1fc1f561a99fd, type: 3}
   m_Name: Soda
   m_EditorClassIdentifier: Assembly-CSharp::Dishes
-  <Name>k__BackingField: "Soda"
+  <Name>k__BackingField: Soda
   <Type>k__BackingField: 1
   <DefaultCanSeat>k__BackingField: 0
   <DefaultCanInteract>k__BackingField: 0
   <sprite>k__BackingField: {fileID: -5099292496197868168, guid: 1a0de184b6562d24f95282b7d4983d11, type: 3}
-  <Tags>k__BackingField: 01000000
+  <Tags>k__BackingField: 010000000b000000

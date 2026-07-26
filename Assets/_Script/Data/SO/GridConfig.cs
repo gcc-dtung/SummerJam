@@ -8,8 +8,8 @@ public class GridConfig : ScriptableObject
     [SerializeField] private Vector2 originalCellSize;
     [SerializeField] private Vector2 originalCellDistance;
     
-    public Vector2 CellSize => originalCellSize * ScalerCalculation.ScaleFactor;
-    public Vector2 CellDistance => originalCellDistance * ScalerCalculation.ScaleFactor;
+    public Vector2 CellSize => originalCellSize;// * ScalerCalculation.ScaleFactor;
+    public Vector2 CellDistance => originalCellDistance;// * ScalerCalculation.ScaleFactor;
 
     [Header("Grid Position")] 
     [SerializeField,Range(0,1)] private float PosX;

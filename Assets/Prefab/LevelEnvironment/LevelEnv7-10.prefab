@@ -1647,6 +1647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3471612137870427302}
+  - component: {fileID: -2454386001742941985}
   m_Layer: 0
   m_Name: LevelEnv7-10
   m_TagString: Untagged
@@ -1697,6 +1698,19 @@ Transform:
   - {fileID: 1363391913116274239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &-2454386001742941985
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781653356070204563}
+  m_Enabled: 1
+  m_SortingLayerID: 10699085
+  m_SortingLayer: -1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &6783261847480742778
 GameObject:
   m_ObjectHideFlags: 0

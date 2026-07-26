@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 354593ec9e0fc6d4388555e3f85593f5
+guid: dac50b43132e1d14983d37aff3656782
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1655152085384263186
-    second: nen co_0
+      213: 4834758671374736350
+    second: duong_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nen co_0
+      name: duong_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1738
-        height: 2729
+        x: 21
+        y: 73
+        width: 1201
+        height: 281
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21673926d0848f610800000000000000
-      internalID: 1655152085384263186
+      spriteID: edbd70e5563881340800000000000000
+      internalID: 4834758671374736350
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      nen co_0: 1655152085384263186
+      duong_0: 4834758671374736350
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

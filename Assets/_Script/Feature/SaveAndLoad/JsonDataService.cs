@@ -5,51 +5,48 @@ using UnityEngine;
 
 public class JsonDataService : IDataService
 {
-    public bool SaveData<T>(string RelativePath, T data, bool Encrypted)
+    public bool SaveData<T>(string relativePath, T data, bool encrypted)
     {
-        string path = Application.persistentDataPath + RelativePath;
+        string path = Application.persistentDataPath + relativePath;
+
         try
         {
-            if (File.Exists(path))
+            string directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
             {
-                Debug.Log("Data exists. Deleting old file and writing a new one!");
-                File.Delete(path);
-            }
-            else
-            {
-                Debug.Log("Writing for the first time!");
+                Directory.CreateDirectory(directory);
             }
 
-            using FileStream stream = File.Create(path);
-            stream.Close();
-            File.WriteAllText(path, JsonConvert.SerializeObject(data));
+            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            File.WriteAllText(path, json);
+
             return true;
         }
         catch (Exception e)
         {
-            Debug.LogError($"Unable to save data due to: {e.Message} {e.StackTrace}");
+            Debug.LogError($"Unable to save data due to: {e.Message}");
             return false;
         }
     }
 
-    public T LoadData<T>(string RelativePath, bool Encrypted)
+    public T LoadData<T>(string relativePath, bool encrypted)
     {
-        string path = Application.persistentDataPath + RelativePath;
+        string path = Application.persistentDataPath + relativePath;
+
         if (!File.Exists(path))
         {
-            Debug.LogError($"Can't load file at {path}. File doesn't exist!");
             throw new FileNotFoundException($"{path} doesn't exist!");
         }
 
         try
         {
-            T Data = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
-            return Data;
+            string json = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<T>(json);
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to load data due to: {e.Message} {e.StackTrace}");
-            throw e;
+            Debug.LogError($"Failed to load data due to: {e.Message}");
+            throw;
         }
     }
 }

@@ -8,17 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Light SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Light SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/MoveManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/MoveManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Editor/LevelSelectorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Editor/LevelSelectorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/CanvasModule/LosePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/CanvasModule/LosePanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/EconomyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/EconomyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/level/level 1-6/nen co.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/level/level 1-6/nen co.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv1-3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv1-3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv11-13.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv11-13.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv4-6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv4-6.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv7-10.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/LevelEnvironment/LevelEnv7-10.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/JsonDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/JsonDataService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,61 +46,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="1.4155761222769603E-109" />
-      <entry key="S5" value="7.415489795753943E-44" />
-      <entry key="S10" value="7.13620151287752E-22" />
-      <entry key="S30" value="3.548515556688928E-7" />
-      <entry key="S60" value="0.0017895539807817715" />
-      <entry key="M2" value="0.1562073562437497" />
-      <entry key="M5" value="5.5430822420718" />
-      <entry key="M10" value="32.01132260654851" />
-      <entry key="M15" value="65.0781212970094" />
-      <entry key="M30" value="160.76273544222005" />
-      <entry key="H1" value="318.15485355867423" />
-      <entry key="H2" value="527.5970595893856" />
-      <entry key="H4" value="738.272145153295" />
-      <entry key="D1" value="1038.8356075693698" />
-      <entry key="W1" value="1108.6888486446985" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000893116192" />
-      <entry key="S60" value="1.0004274258753498" />
-      <entry key="M2" value="1.0352988777224248" />
-      <entry key="M5" value="1.9286665185139789" />
-      <entry key="M10" value="5.110388029715629" />
-      <entry key="M15" value="8.756116582840928" />
-      <entry key="M30" value="20.02464079858113" />
-      <entry key="H1" value="40.52894292242315" />
-      <entry key="H2" value="69.78765439084228" />
-      <entry key="H4" value="100.33944826455642" />
-      <entry key="D1" value="144.76611830969213" />
-      <entry key="W1" value="155.16529288049261" />
+      <entry key="S10" value="1.0000000056720841" />
+      <entry key="S30" value="1.0142153530007492" />
+      <entry key="S60" value="1.6023976968708395" />
+      <entry key="M2" value="4.971701799728253" />
+      <entry key="M5" value="15.78289436804915" />
+      <entry key="M10" value="40.55935262729795" />
+      <entry key="M15" value="71.48363348628395" />
+      <entry key="M30" value="165.21434993568502" />
+      <entry key="H1" value="323.676608694689" />
+      <entry key="H2" value="537.031210037541" />
+      <entry key="H4" value="753.0449682280315" />
+      <entry key="D1" value="1062.9764887250742" />
+      <entry key="W1" value="1135.253090269837" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.2933155200078368E-190" />
+      <entry key="S2" value="3.927068926001386E-48" />
+      <entry key="S5" value="1.753889339243825E-19" />
+      <entry key="S10" value="7.550379088931293E-10" />
+      <entry key="S30" value="0.0022318650467767942" />
+      <entry key="S60" value="0.09414783510237501" />
+      <entry key="M2" value="0.618159560629593" />
+      <entry key="M5" value="2.3165305831431118" />
+      <entry key="M10" value="5.538614267658062" />
+      <entry key="M15" value="9.105326512861424" />
+      <entry key="M30" value="20.249519401856915" />
+      <entry key="H1" value="40.81473802882369" />
+      <entry key="H2" value="70.47919574771261" />
+      <entry key="H4" value="101.68670612624601" />
+      <entry key="D1" value="147.36944442321882" />
+      <entry key="W1" value="158.10456385812034" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.012779719664965326" />
-      <entry key="MS500" value="0.4181231999570314" />
-      <entry key="S2" value="0.8041296325492199" />
-      <entry key="S5" value="0.9164956891496818" />
-      <entry key="S10" value="0.9573378134961984" />
-      <entry key="S30" value="0.9855725479296205" />
-      <entry key="S60" value="0.9949653011957386" />
-      <entry key="M2" value="1.1872692223694268" />
-      <entry key="M5" value="7.460771175909114" />
-      <entry key="M10" value="37.096617302904505" />
-      <entry key="M15" value="73.80194622349445" />
-      <entry key="M30" value="180.74763062340554" />
-      <entry key="H1" value="358.6431297597398" />
-      <entry key="H2" value="597.34951604607" />
-      <entry key="H4" value="838.5860763522769" />
-      <entry key="D1" value="1183.5955130381972" />
-      <entry key="W1" value="1263.8531876430513" />
+      <entry key="MS100" value="0.8950250709279725" />
+      <entry key="MS500" value="0.9780634734473393" />
+      <entry key="S2" value="0.9944701686732144" />
+      <entry key="S5" value="0.9977843871238888" />
+      <entry key="S10" value="0.9988915854571553" />
+      <entry key="S30" value="1.01592175694101" />
+      <entry key="S60" value="1.6932887695013374" />
+      <entry key="M2" value="5.579977050936234" />
+      <entry key="M5" value="18.08324436766331" />
+      <entry key="M10" value="46.07290218532416" />
+      <entry key="M15" value="80.55796601070644" />
+      <entry key="M30" value="185.42551762352952" />
+      <entry key="H1" value="364.45140402571917" />
+      <entry key="H2" value="607.4753883184903" />
+      <entry key="H4" value="854.7060897718708" />
+      <entry key="D1" value="1210.3396566271188" />
+      <entry key="W1" value="1293.3566891053697" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -116,29 +112,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Save-Load-System&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "New-UI-Gameplay",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.18f1\Editor\Unity.exe" />

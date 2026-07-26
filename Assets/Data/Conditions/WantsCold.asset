@@ -16,10 +16,10 @@ MonoBehaviour:
   <FilterTarget>k__BackingField: 0
   <Filter>k__BackingField:
     <Name>k__BackingField: 
-    <FoodTags>k__BackingField: 01000000
+    <FoodTags>k__BackingField: 010000000b000000
     <TraitTags>k__BackingField: 
     <Row>k__BackingField: -1
     <Column>k__BackingField: -1
   <Comparator>k__BackingField: 0
   <Value>k__BackingField: 1
-  <Description>k__BackingField: "Thích đồ uống lạnh để giải nhiệt cho trò nghịch ngợm."
+  <Description>k__BackingField: "Th\xEDch \u0111\u1ED3 u\u1ED1ng l\u1EA1nh \u0111\u1EC3"

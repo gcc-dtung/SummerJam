@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
      [SerializeField] private List<LevelConfig> levelConfigs;
+     [SerializeField] private TextMeshProUGUI levelText;
      public List<LevelConfig> LevelConfigs => levelConfigs;
      public event Action<LevelConfig> OnLevelConfigChange;
      private int count = -1;
@@ -43,6 +45,7 @@ public class LevelManager : Singleton<LevelManager>
           count++;
           if (count < 0 || count >= levelConfigs.Count) count = 0;
           OnLevelConfigChange?.Invoke(levelConfigs[count]);
+          levelText.text = "Level: " + (count+1).ToString();
           if (Application.isPlaying && SaveLoadManager.Instance != null)
           {
               SaveLoadManager.Instance.SaveGame();
@@ -53,6 +56,7 @@ public class LevelManager : Singleton<LevelManager>
      {
          if (count < 0 || count >= levelConfigs.Count) count = 0;
          OnLevelConfigChange?.Invoke(levelConfigs[count]);
+         levelText.text = "Level: " + (count+1).ToString();
      }
  
 }

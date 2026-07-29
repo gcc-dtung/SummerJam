@@ -15,6 +15,7 @@ public class EconomyUpdate : MonoBehaviour
 
     private void OnDisable()
     {
+        if(EconomyManager.Instance == null) return;
         EconomyManager.Instance.OnGoldChange -= UpdateCoin;
         EconomyManager.Instance.OnGemChange -= UpdateGem;
     }

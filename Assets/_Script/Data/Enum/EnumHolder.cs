@@ -47,7 +47,7 @@ public enum Comparator
 public enum LogicalOperator
 {
     And = 0, 
-    Or = 1
+    Or = 1   
 }
 
 public enum CurrencyType
@@ -57,7 +57,7 @@ public enum CurrencyType
     RealMoney = 2
 }
 
-public enum RewardType
+public enum  RewardType
 {
     Booster = 0,
     Gold = 1,

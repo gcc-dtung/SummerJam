@@ -145,6 +145,46 @@ public class LevelSelectorWindow : EditorWindow
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.Space();
+        EditorGUILayout.BeginVertical("box");
+        GUILayout.Label("4. Điều khiển Game State (Cheat)", EditorStyles.boldLabel);
+        EditorGUILayout.Space();
+
+        if (isPlaying)
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Thắng Màn Ngay", GUILayout.Height(30)))
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.UpdateGameState(GameState.Win);
+                    Debug.Log("[CheatWindow] Đã bấm Thắng Màn!");
+                }
+            }
+            if (GUILayout.Button("Thua Màn Ngay", GUILayout.Height(30)))
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.UpdateGameState(GameState.Lose);
+                    Debug.Log("[CheatWindow] Đã bấm Thua Màn!");
+                }
+            }
+            if (GUILayout.Button("Chơi Lại Màn", GUILayout.Height(30)))
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.UpdateGameState(GameState.Replay);
+                    Debug.Log("[CheatWindow] Đã bấm Chơi Lại Màn!");
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+        else
+        {
+            EditorGUILayout.HelpBox("Phải chạy Game (Play Mode) để kích hoạt tính năng Thắng/Thua/Chơi lại màn.", MessageType.Warning);
+        }
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space();
         if (GUILayout.Button("Đọc lại toàn bộ dữ liệu từ Game/File Save", GUILayout.Height(25)))
         {
             FetchCurrentData();

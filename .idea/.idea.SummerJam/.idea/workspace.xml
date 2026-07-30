@@ -9,28 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DangTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DangTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Black Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Black Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Black SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Black SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Heavy Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Heavy Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Heavy SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Heavy SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Medium SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Rust Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Rust Regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Semibold Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VAG Rounded Next Semibold Italic SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/BoosterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/EconomyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/EconomyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/Shop.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/Shop.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSection.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +121,7 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/person-apply-skin&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Bla-Bla&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -224,6 +205,9 @@
       <workItem from="1785392618811" duration="1365000" />
       <workItem from="1785396837312" duration="2170000" />
       <workItem from="1785402380981" duration="4864000" />
+      <workItem from="1785424988972" duration="914000" />
+      <workItem from="1785426163983" duration="1084000" />
+      <workItem from="1785430403376" duration="1754000" />
     </task>
     <servers />
   </component>

@@ -8,18 +8,36 @@ public class ShopSlot : MonoBehaviour
    [SerializeField] private Button purchaseButton;
    [field:SerializeField] public ShopItemData ItemData { get; private set; }
    [field:SerializeField] public int PurchaseLimitPerDay { get; private set; }
-   [field: SerializeField] public int PurchasedToday;
-   [field:SerializeField] public string LastResetDate { get; private set; }
+   public int PurchasedToday;
    public bool IsUnlimited => PurchaseLimitPerDay <= 0;
    public bool CanPurchase => IsUnlimited || PurchasedToday < PurchaseLimitPerDay;
 
+   private void Start()
+   {
+      CheckAndResetDailyLimit();
+   }
+
+   
    private void CheckAndResetDailyLimit()
    {
-      string todayStr = DateTime.Now.ToString("yyyy-MM-dd");
-      if (LastResetDate != todayStr)
+      if (TimeManager.Instance.IsNextDay)
       {
          PurchasedToday = 0;
-         LastResetDate = todayStr;
+         if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null && SaveLoadManager.Instance.GameData.shopPurchasedCounts != null && ItemData != null)
+         {
+            SaveLoadManager.Instance.GameData.shopPurchasedCounts[ItemData.ID] = 0;
+         }
+      }
+      else
+      {
+         if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
+         {
+            var gameData = SaveLoadManager.Instance.GameData;
+            if (gameData.shopPurchasedCounts != null && ItemData != null && gameData.shopPurchasedCounts.TryGetValue(ItemData.ID, out int count))
+            {
+               PurchasedToday = count;
+            }
+         }
       }
    }
 

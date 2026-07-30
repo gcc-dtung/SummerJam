@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopManager : Singleton<ShopManager>
@@ -27,7 +28,23 @@ public class ShopManager : Singleton<ShopManager>
         if(!paymentSuccess) {Debug.Log("Have EnoughMoney"); return false;}
         GrantReward(itemData.RewardType,itemData.Quantity);
         // OnSlotPurchasedSuccessfully?.Invoke(slot);
-        if (!slot.IsUnlimited) slot.PurchasedToday++;
+        if (!slot.IsUnlimited)
+        {
+            slot.PurchasedToday++;
+            if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
+            {
+                var gameData = SaveLoadManager.Instance.GameData;
+                if (gameData.shopPurchasedCounts == null)
+                {
+                    gameData.shopPurchasedCounts = new Dictionary<int, int>();
+                }
+                if (slot.ItemData != null)
+                {
+                    gameData.shopPurchasedCounts[slot.ItemData.ID] = slot.PurchasedToday;
+                }
+                SaveLoadManager.Instance.SaveGame();
+            }
+        }
         return true;
     }
     

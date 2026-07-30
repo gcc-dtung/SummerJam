@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[Serializable]
-public class ShopSlot
+public class ShopSlot : MonoBehaviour
 {
+   [SerializeField] private Button purchaseButton;
    [field:SerializeField] public ShopItemData ItemData { get; private set; }
    [field:SerializeField] public int PurchaseLimitPerDay { get; private set; }
    [field: SerializeField] public int PurchasedToday;
@@ -12,7 +13,7 @@ public class ShopSlot
    public bool IsUnlimited => PurchaseLimitPerDay <= 0;
    public bool CanPurchase => IsUnlimited || PurchasedToday < PurchaseLimitPerDay;
 
-   public void CheckAndResetDailyLimit()
+   private void CheckAndResetDailyLimit()
    {
       string todayStr = DateTime.Now.ToString("yyyy-MM-dd");
       if (LastResetDate != todayStr)
@@ -21,4 +22,17 @@ public class ShopSlot
          LastResetDate = todayStr;
       }
    }
+
+
+   private void OnEnable()
+   {
+      purchaseButton.onClick.AddListener(() => { ShopManager.Instance.TryPurchaseSlot(this);});
+   }
+
+   private void OnDisable()
+   {
+      purchaseButton.onClick.RemoveAllListeners();
+   }
+   
+   
 }

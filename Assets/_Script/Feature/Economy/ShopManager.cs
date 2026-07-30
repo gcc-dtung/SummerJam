@@ -3,28 +3,11 @@ using UnityEngine;
 
 public class ShopManager : Singleton<ShopManager>
 {
-    [field:SerializeField] public Shop ShopData { get; private set; }
-    public event Action<ShopSlot> OnSlotPurchasedSuccessfully;
-
-    public void CheckAllDailyLimit()
-    {
-        if(ShopData == null) return;
-        foreach (var slot in ShopData.GoldSection.Slots)
-            slot.CheckAndResetDailyLimit();
-
-        foreach (var slot in ShopData.GemSection.Slots)
-            slot.CheckAndResetDailyLimit();
-
-        foreach (var slot in ShopData.IAPSection.Slots)
-            slot.CheckAndResetDailyLimit();
-    }
-
     public bool TryPurchaseSlot(ShopSlot slot)
     {
-        slot.CheckAndResetDailyLimit();
         if (!slot.CanPurchase) {Debug.Log("Reached The Dayily Limit"); return false;}
         ShopItemData itemData = slot.ItemData;
-        if (itemData.CostCurrency == CurrencyType.RealMoney && itemData.RewardType == RewardType.Booster)
+        if (itemData.CostCurrency == CurrencyType.RealMoney && (itemData.RewardType == RewardType.MoveBooster || itemData.RewardType == RewardType.RemoveBooster || itemData.RewardType == RewardType.UndoBooster) )
         {
             Debug.LogError("Can't Buy ");
             return false;
@@ -43,17 +26,11 @@ public class ShopManager : Singleton<ShopManager>
         
         if(!paymentSuccess) {Debug.Log("Have EnoughMoney"); return false;}
         GrantReward(itemData.RewardType,itemData.Quantity);
-        OnSlotPurchasedSuccessfully?.Invoke(slot);
-        if (!slot.IsUnlimited)
-        {
-            slot.PurchasedToday++;
-        }
-        
+        // OnSlotPurchasedSuccessfully?.Invoke(slot);
+        if (!slot.IsUnlimited) slot.PurchasedToday++;
         return true;
     }
-
-
- 
+    
     private void GrantReward(RewardType type, int quantity)
     {
         switch (type)
@@ -63,6 +40,15 @@ public class ShopManager : Singleton<ShopManager>
                 break;
             case RewardType.Gem:
                 EconomyManager.Instance.GetGem(quantity);
+                break;
+            case RewardType.MoveBooster:
+                BoosterManager.Instance.AddMoreBooster(Booster.Move,quantity);
+                break; 
+            case RewardType.RemoveBooster:
+                BoosterManager.Instance.AddMoreBooster(Booster.Remove,quantity);
+                break; 
+            case RewardType.UndoBooster:
+                BoosterManager.Instance.AddMoreBooster(Booster.Undo,quantity);
                 break;
         }
     }

@@ -6,6 +6,7 @@ using TMPro;
 public class EconomyManager : Singleton<EconomyManager>
 {
   [SerializeField] private TextMeshProUGUI text;
+  [SerializeField] private TextMeshProUGUI Gemtext;
   private const int max = 1000000000;
   public event Action<int> OnGoldChange;
   public event Action<int> OnGemChange;
@@ -25,6 +26,7 @@ public class EconomyManager : Singleton<EconomyManager>
   private void Update()
   {
     text.text = "Gold: " + CurrentGold.ToString();
+    Gemtext.text = "Gem: " + CurrentGem.ToString();
   }
 
   public void InitializeData(int gold, int gem)

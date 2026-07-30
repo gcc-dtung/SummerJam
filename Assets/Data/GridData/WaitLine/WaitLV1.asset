@@ -20,8 +20,8 @@ MonoBehaviour:
   Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
   BaseGrid:
   - Values:
-    - {fileID: 11400000, guid: 1409588a9f5f48cfa338f85816cb9b3e, type: 2}
-    - {fileID: 11400000, guid: 59859e9c71b74eb2986fe58c9d75a289, type: 2}
-    - {fileID: 11400000, guid: 0388a68fa1044a68b709d40750117e6b, type: 2}
+    - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
+    - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
+    - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
     - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
     - {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}

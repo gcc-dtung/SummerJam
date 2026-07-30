@@ -59,9 +59,11 @@ public enum CurrencyType
 
 public enum  RewardType
 {
-    Booster = 0,
-    Gold = 1,
-    Gem = 2
+    Gold = 0,
+    Gem = 1,
+    MoveBooster = 2,
+    UndoBooster = 3,
+    RemoveBooster = 4,
 }
 
 public enum SoundType

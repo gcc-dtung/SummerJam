@@ -11,13 +11,20 @@ public class BoosterManager : Singleton<BoosterManager>
         set => boosterHolder = value;
     }
 
-    public void AddMoreBooster(Booster boost)
+    public void AddMoreBooster(Booster boost,int amount)
     {
         if(!boosterHolder.ContainsKey(boost)) boosterHolder.Add(boost,0);
-        boosterHolder[boost]++;
+        boosterHolder[boost]+= amount;
         if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
     }
 
+    private void Update()
+    {
+        foreach (var it in BoosterHolder)
+        {
+            Debug.Log($"{it.Key.ToString()} {it.Value}");
+        }
+    }
 
     public void Undo()
     {

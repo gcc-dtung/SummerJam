@@ -34,20 +34,16 @@ public class LosePhaseIntroAnimation
 
     public void Play(
         Transform rootPhase1,
-        Transform rootPhase2,
-        CanvasGroup phase1CanvasGroup,
-        CanvasGroup phase2CanvasGroup)
+        CanvasGroup phase1CanvasGroup)
     {
         Stop();
 
         rootPhase1.gameObject.SetActive(true);
-        rootPhase2.gameObject.SetActive(false);
 
         phase1CanvasGroup.alpha = 0f;
         rootPhase1.localScale = phase1StartScale;
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
 
         sequence = Sequence.Create()
             .Group(Tween.Alpha(
@@ -71,6 +67,41 @@ public class LosePhaseIntroAnimation
             .ChainCallback(() =>
             {
                 CanvasGroupUtility.SetInteractable(phase1CanvasGroup, true);
+            });
+    }
+
+    public void PlayOutro(
+        Transform rootPhase1,
+        CanvasGroup phase1CanvasGroup,
+        Action onComplete)
+    {
+        Stop();
+
+        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+
+        sequence = Sequence.Create()
+            .Group(Tween.Alpha(
+                losePanelImage,
+                endValue: losePanelStartAlpha,
+                duration: losePanelFadeDuration,
+                ease: losePanelFadeEase
+            ))
+            .Group(Tween.Alpha(
+                phase1CanvasGroup,
+                endValue: 0f,
+                duration: phase1IntroDuration,
+                ease: phase1FadeEase
+            ))
+            .Group(Tween.Scale(
+                rootPhase1,
+                endValue: phase1StartScale,
+                duration: phase1IntroDuration,
+                ease: phase1ScaleEase
+            ))
+            .ChainCallback(() =>
+            {
+                rootPhase1.gameObject.SetActive(false);
+                onComplete?.Invoke();
             });
     }
 

@@ -17,22 +17,11 @@ public enum Food
 
 public enum Trait
 {
-    Kind = 0,
-    Generous = 1,
-    Talkative = 2,
-    Handsome = 3,
-    Bad = 4,
-    Exhausted = 5,
-    Angry = 6,
-    Vegetarian = 7,
-    Female = 8,
-    Nerd = 9, 
-    Quiet = 10,
-    Smart = 11,
-    Old = 12,
-    Elegant = 13, 
-    Chill = 14,
-    Funny = 15
+    Sick = 0,
+    Loud = 1,
+    Handsome = 2,
+    Normal = 3,
+    Dirty = 4
 }
 
 public enum Target

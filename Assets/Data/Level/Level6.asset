@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8fb91cd291a646bdca7253fc1edc3, type: 3}
   m_Name: Level6
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
-  <ID>k__BackingField: 5
-  <MoveLimit>k__BackingField: 20
+  <ID>k__BackingField: 6
+  <MoveLimit>k__BackingField: 10
   <Gold>k__BackingField: 0
   <Layout>k__BackingField: {fileID: 3435073030469638958, guid: 76542179dffb1fd46a32e63e661f6924, type: 3}
-  <BoardGrid>k__BackingField: {fileID: 11400000, guid: 51bb719bd286f2847b8bddfc827a3b76, type: 2}
-  <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 3d678a1c72623fc42aa7745ebfd389dd, type: 2}
+  <BoardGrid>k__BackingField: {fileID: 11400000, guid: 480d1e3b5ab13ea4a869e3fb875848d8, type: 2}
+  <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 9f55f35333860c244858dae3733c043a, type: 2}

@@ -202,10 +202,10 @@ public class LevelDifficultyCalculator
                     };
 
                     int count = 0;
-                    int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
-                    int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+                    int[] dx = { 0, 1, 0, -1 };
+                    int[] dy = { 1, 0, -1, 0 };
 
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         int nx = x + dx[i];
                         int ny = y + dy[i];
@@ -579,12 +579,12 @@ public class LevelDifficultyCalculator
                 matchCount = 1;
             }
         }
-        else // Adjacent
+        else // Adjacent (4-way: Up, Down, Left, Right)
         {
-            int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
-            int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+            int[] dx = { 0, 1, 0, -1 };
+            int[] dy = { 1, 0, -1, 0 };
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
                 int nx = currentSeat.X + dx[i];
                 int ny = currentSeat.Y + dy[i];

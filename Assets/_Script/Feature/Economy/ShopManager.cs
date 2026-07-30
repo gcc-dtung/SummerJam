@@ -23,26 +23,26 @@ public class ShopManager : Singleton<ShopManager>
     {
         slot.CheckAndResetDailyLimit();
         if (!slot.CanPurchase) {Debug.Log("Reached The Dayily Limit"); return false;}
-        ShopItem item = slot.Item;
-        if (item.CostCurrency == CurrencyType.RealMoney && item.RewardType == RewardType.Booster)
+        ShopItemData itemData = slot.ItemData;
+        if (itemData.CostCurrency == CurrencyType.RealMoney && itemData.RewardType == RewardType.Booster)
         {
             Debug.LogError("Can't Buy ");
             return false;
         }
 
         bool paymentSuccess = false;
-        switch (item.CostCurrency)
+        switch (itemData.CostCurrency)
         {
             case CurrencyType.Gem:
-              paymentSuccess =  EconomyManager.Instance.SpendGem((int)item.CostAmount);
+              paymentSuccess =  EconomyManager.Instance.SpendGem((int)itemData.CostAmount);
                 break;
             case CurrencyType.Gold:
-               paymentSuccess = EconomyManager.Instance.SpendGold((int)item.CostAmount);
+               paymentSuccess = EconomyManager.Instance.SpendGold((int)itemData.CostAmount);
                 break;
         }
         
         if(!paymentSuccess) {Debug.Log("Have EnoughMoney"); return false;}
-        GrantReward(item.RewardType,item.Quantity);
+        GrantReward(itemData.RewardType,itemData.Quantity);
         OnSlotPurchasedSuccessfully?.Invoke(slot);
         if (!slot.IsUnlimited)
         {

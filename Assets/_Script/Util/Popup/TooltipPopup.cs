@@ -14,6 +14,7 @@ public class TooltipPopup : MonoBehaviour
 
     [Header("Text")]
     [SerializeField] private TextMeshPro nameText;
+    [SerializeField] private TextMeshPro traitText;
     [SerializeField] private TextMeshPro contentText;
 
     [Header("Layout")]
@@ -67,6 +68,13 @@ public class TooltipPopup : MonoBehaviour
 
     public void Show(string personName, string content)
     {
+        Show(personName, string.Empty, content);
+    }
+
+    public void Show(string personName, string trait, string content)
+    {
+        EnsureInitialized();
+
         if (isShow)
         {
             Hide();
@@ -77,6 +85,8 @@ public class TooltipPopup : MonoBehaviour
         tooltipTransform.gameObject.SetActive(true);
 
         nameText.text = personName;
+        if (traitText != null)
+            traitText.text = trait;
         contentText.text = content;
 
         contentText.textWrappingMode = TextWrappingModes.Normal;
@@ -106,17 +116,46 @@ public class TooltipPopup : MonoBehaviour
         );
 
         float topCenterY = bottomH * 0.5f + actualMiddleH + topH * 0.5f;
-        nameText.alignment = TextAlignmentOptions.Center;
-        nameText.transform.localPosition = new Vector3(0f, topCenterY, -0.1f);
+        float headerTextWidth = textWidth * 0.5f;
+
+        nameText.alignment = TextAlignmentOptions.Left;
+        nameText.rectTransform.pivot = new Vector2(0f, 0.5f);
+        nameText.rectTransform.sizeDelta = new Vector2(headerTextWidth, topH);
+        nameText.transform.localPosition = new Vector3(-textWidth * 0.5f, topCenterY, -0.1f);
+
+        if (traitText != null)
+        {
+            traitText.alignment = TextAlignmentOptions.Right;
+            traitText.rectTransform.pivot = new Vector2(1f, 0.5f);
+            traitText.rectTransform.sizeDelta = new Vector2(headerTextWidth, topH);
+            traitText.transform.localPosition = new Vector3(textWidth * 0.5f, topCenterY, -0.1f);
+        }
 
         nameText.sortingOrder  = textSortingOrder;
+        if (traitText != null)
+            traitText.sortingOrder = textSortingOrder;
         contentText.sortingOrder = textSortingOrder;
-        
+
+        if (!Application.isPlaying)
+        {
+            tooltipTransform.localScale = Vector3.one;
+            ChangeColor(new Color(top.color.r, top.color.g, top.color.b, 1f));
+            return;
+        }
+
         PlayTransition(toScale: 1f, toAlpha: 1f);
     }
 
     public void Hide()
     {
+        EnsureInitialized();
+
+        if (!Application.isPlaying)
+        {
+            HideImmediate();
+            return;
+        }
+
         isShow = false;
         PlayTransition(toScale: 0f, toAlpha: 0f,
             onComplete: () => tooltipTransform.gameObject.SetActive(false));
@@ -124,6 +163,8 @@ public class TooltipPopup : MonoBehaviour
 
     public void HideImmediate()
     {
+        EnsureInitialized();
+
         if (tooltipSequence.isAlive)
             tooltipSequence.Stop();
 
@@ -153,6 +194,18 @@ public class TooltipPopup : MonoBehaviour
             sortingGroup.sortingLayerID = personRenderer.sortingLayerID;
 
         sortingGroup.sortingOrder = Constaints.MAX_SORTING_LAYER + 2;
+    }
+
+    private void EnsureInitialized()
+    {
+        if (tooltipTransform == null)
+        {
+            tooltipTransform = transform.Find("TooltipPopup");
+            if (tooltipTransform == null && transform.childCount > 0)
+                tooltipTransform = transform.GetChild(0);
+        }
+
+        ConfigureSorting();
     }
     
     private void PlayTransition(float toScale, float toAlpha, System.Action onComplete = null)

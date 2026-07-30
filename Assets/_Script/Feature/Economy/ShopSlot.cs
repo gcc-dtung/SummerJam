@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ShopSlot
 {
-   [field:SerializeField] public ShopItem Item { get; private set; }
+   [field:SerializeField] public ShopItemData ItemData { get; private set; }
    [field:SerializeField] public int PurchaseLimitPerDay { get; private set; }
    [field: SerializeField] public int PurchasedToday;
    [field:SerializeField] public string LastResetDate { get; private set; }

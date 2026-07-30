@@ -67,7 +67,9 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleReplay()
     {
-        
+        isGameStart = false;
+        UpdateGameState(GameState.SetUp);
+        UpdateGameState(GameState.GamePlay);
     }
 
     private void HandleSetUp()

@@ -9,12 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopItemData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/M_ConfettiParticle.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Material/M_ConfettiParticle.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/archtemp/3625342a449601544b410357b8e7f201/preview.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/archtemp/3625342a449601544b410357b8e7f201/preview.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +120,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feat/person-apply-skin",
+    "git-widget-placeholder": "feat/win-firework",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",

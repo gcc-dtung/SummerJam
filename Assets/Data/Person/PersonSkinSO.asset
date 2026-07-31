@@ -21,6 +21,9 @@ MonoBehaviour:
   - {fileID: 1123695946953796811, guid: 14deed85e48ae674cbb088f6d4374fe4, type: 3}
   - {fileID: 9001242978343997455, guid: ab68ac583d8627d4489b988b806c9d98, type: 3}
   - {fileID: 4532818912460685547, guid: 41f41e8fdb6e54b45b932a244c08bf9d, type: 3}
+  - {fileID: -8536037460573963353, guid: e02eaba91cc82eb4fa9b6d5bff7bed2d, type: 3}
+  - {fileID: -3617867708823093519, guid: 5fba3837de4ca2e4084b0b5d6d714b4e, type: 3}
+  - {fileID: -7023599962821960782, guid: d8bb5f1fdc114184c88b4fd6d289c75d, type: 3}
   normalFace: {fileID: 4606157284126940538, guid: 0f530ef2dc693e7439a341d0d676d533, type: 3}
   happyFace: {fileID: 6266176060360064, guid: 07705d3347d4d974aad6b1bb0835c9a4, type: 3}
   angryFace: {fileID: -9082789242079819192, guid: cc2b84b1bc6aa0a47b03c50a34d2b3b9, type: 3}

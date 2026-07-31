@@ -10,6 +10,12 @@ public class CanvasManager : Singleton<CanvasManager>
 
     public async void ChangeToMainMenu()
     {
+        if (FlowManager.Instance != null)
+        {
+            FlowManager.Instance.BackToMainMenu();
+            return;
+        }
+
         if (isChangingCanvas)
             return;
 
@@ -26,6 +32,12 @@ public class CanvasManager : Singleton<CanvasManager>
 
     public async void ChangeToGameplayCanvas()
     {
+        if (FlowManager.Instance != null)
+        {
+            FlowManager.Instance.StartGame();
+            return;
+        }
+
         GameManager.Instance.UpdateGameState(GameState.SetUp);
         if (isChangingCanvas)
             return;

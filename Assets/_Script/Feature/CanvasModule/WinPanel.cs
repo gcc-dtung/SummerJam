@@ -58,7 +58,7 @@ public class WinPanel : MonoBehaviour
 
         ConfigureVfx();
         StopAndClearVfx();
-        winPanelParent.gameObject.SetActive(false);
+        HideImmediate();
     }
 
     private void OnEnable()
@@ -82,12 +82,7 @@ public class WinPanel : MonoBehaviour
     private void Start()
     {
         ConfigureVfx();
-
-        rootPhase1.gameObject.SetActive(false);
-        rootPhase2.gameObject.SetActive(false);
-
-        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
+        HideImmediate();
     }
 
     public void OnWin()
@@ -141,8 +136,35 @@ public class WinPanel : MonoBehaviour
 
         CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
 
-        CanvasManager.Instance.ChangeToMainMenu();
-        winPanelParent.gameObject.SetActive(false);
+        if (FlowManager.Instance != null)
+            FlowManager.Instance.BackToMainMenu();
+        else if (CanvasManager.Instance != null)
+            CanvasManager.Instance.ChangeToMainMenu();
+
+        HideImmediate();
+    }
+
+    public void HideImmediate()
+    {
+        StopWinFlow();
+        introSequence.Stop();
+        phaseTransitionAnimation.Stop();
+        StopAndClearVfx();
+
+        if (rootPhase1 != null)
+            rootPhase1.gameObject.SetActive(false);
+
+        if (rootPhase2 != null)
+            rootPhase2.gameObject.SetActive(false);
+
+        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
+
+        if (winPanelImage != null)
+            SetPanelAlpha(panelStartAlpha);
+
+        if (winPanelParent != null)
+            winPanelParent.gameObject.SetActive(false);
     }
 
     private void NextPhase()

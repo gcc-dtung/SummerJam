@@ -41,12 +41,7 @@ public class LosePanel : MonoBehaviour
 
     private void Start()
     {
-        losePanelParent.gameObject.SetActive(false);
-        outOfTurnNoticeAnimation.Hide();
-
-        rootPhase1.gameObject.SetActive(false);
-
-        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+        HideImmediate();
     }
 
     [Button("TestLosePanel")]
@@ -63,6 +58,22 @@ public class LosePanel : MonoBehaviour
         outOfTurnNoticeAnimation.Play(PlayPhase1Intro);
     }
 
+    public void HideImmediate()
+    {
+        isClosing = false;
+        outOfTurnNoticeAnimation.Stop();
+        losePhaseIntroAnimation.Stop();
+        outOfTurnNoticeAnimation.Hide();
+
+        if (rootPhase1 != null)
+            rootPhase1.gameObject.SetActive(false);
+
+        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+
+        if (losePanelParent != null)
+            losePanelParent.gameObject.SetActive(false);
+    }
+
     private void PlayPhase1Intro()
     {
         losePhaseIntroAnimation.Play(
@@ -77,8 +88,7 @@ public class LosePanel : MonoBehaviour
         if(!EconomyManager.Instance.SpendGold(300)) return;
         MoveManager.Instance.AddMoreMove(5);
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
-       // CanvasManager.Instance.ChangeToGameplayCanvas();
-        losePanelParent.gameObject.SetActive(false);
+        HideImmediate();
     }
 
     private void OnPressAdsButton()
@@ -86,8 +96,7 @@ public class LosePanel : MonoBehaviour
         // TODO: Qc + Anim Qlai Man choi + Them luot
         MoveManager.Instance.AddMoreMove(5);
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
-        // CanvasManager.Instance.ChangeToGameplayCanvas();
-        losePanelParent.gameObject.SetActive(false);
+        HideImmediate();
     }
 
     private void OnPressChooseLoseButton()
@@ -98,8 +107,12 @@ public class LosePanel : MonoBehaviour
         isClosing = true;
         losePhaseIntroAnimation.PlayOutro(rootPhase1, phase1CanvasGroup, () =>
         {
-            CanvasManager.Instance.ChangeToMainMenu();
-            losePanelParent.gameObject.SetActive(false);
+            if (FlowManager.Instance != null)
+                FlowManager.Instance.BackToMainMenu();
+            else if (CanvasManager.Instance != null)
+                CanvasManager.Instance.ChangeToMainMenu();
+
+            HideImmediate();
             isClosing = false;
         });
     }

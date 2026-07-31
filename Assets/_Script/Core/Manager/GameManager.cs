@@ -5,8 +5,6 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private CanvasTransition _transition;
-    [SerializeField] private LosePanel losePanel;
-    [SerializeField] private WinPanel winPanel;
     private GameObject currentLayOut;
     private bool isGameStart;
     public Action<GameState> OnGameStateChanged;
@@ -50,18 +48,10 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleWin()
     {
-        // _transition.PlayAsync(() =>
-        // {
-        //     UpdateGameState(GameState.SetUp);
-        //     UpdateGameState(GameState.GamePlay);
-        //     SaveLoadManager.Instance.SaveGame();
-        // });
-        winPanel.OnWin();
     }
 
     private void HandleLose()
     {
-       losePanel.OnLose();
        isGameStart = false;
     }
 

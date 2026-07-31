@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-
-[Serializable]
-public class ShopItemData
+[CreateAssetMenu(menuName = "Shop/ShopItem")]
+public class ShopItemData : ScriptableObject
 {
-    public Sprite ItemIcon;
+  //  public Sprite ItemIcon;
     [field: SerializeField] public int ID { get; private set; }
     [field: SerializeField] public int CostAmount { get; private set; }
     [field: SerializeField] public int Quantity { get; private set; }

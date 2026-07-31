@@ -7,12 +7,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Economy/ShopSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/GameData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/SaveAndLoad/SaveLoadManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,7 +202,7 @@
       <workItem from="1785402380981" duration="4864000" />
       <workItem from="1785424988972" duration="914000" />
       <workItem from="1785426163983" duration="1084000" />
-      <workItem from="1785430403376" duration="1754000" />
+      <workItem from="1785430403376" duration="2093000" />
     </task>
     <servers />
   </component>

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bd41045714db76a46a25d74e77493c49
+guid: ecc0e977ce465d44e8d8703c72cfbf6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5146088139333160581
-    second: c coin_0
+      213: 2739654563297081952
+    second: ref win_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: c coin_0
+      name: ref win_0
       rect:
         serializedVersion: 2
-        x: 349
-        y: 343
-        width: 404
-        height: 181
+        x: 0
+        y: 0
+        width: 620
+        height: 465
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58ecdc7c5e39a6740800000000000000
-      internalID: 5146088139333160581
+      spriteID: 06ab99c5f45350620800000000000000
+      internalID: 2739654563297081952
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      c coin_0: 5146088139333160581
+      ref win_0: 2739654563297081952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: bd41045714db76a46a25d74e77493c49
+guid: 95daa30d89586a946bbebc5f64d65de1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5146088139333160581
-    second: c coin_0
+      213: -6422949394811170659
+    second: well done 1_0
+  - first:
+      213: 2582569130227841736
+    second: well done 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,23 +103,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: c coin_0
+      name: well done 1_0
       rect:
         serializedVersion: 2
-        x: 349
-        y: 343
-        width: 404
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1255
+        y: 1896
+        width: 682
+        height: 102
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58ecdc7c5e39a6740800000000000000
-      internalID: 5146088139333160581
+      spriteID: d9058ff3e891dd6a0800000000000000
+      internalID: -6422949394811170659
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d564b5a97d9ae074fafabe17b457d341
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +136,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":2006.0,"y":3061.0},"gridSpriteOffset":{"x":1193.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      c coin_0: 5146088139333160581
+      well done 1_0: -6422949394811170659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

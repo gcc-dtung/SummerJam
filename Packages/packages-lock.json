@@ -10,6 +10,16 @@
       },
       "hash": "a9fb8a7ae348429693d661d5b5bfe46902b81a34"
     },
+    "com.coffee.ui-particle": {
+      "version": "4.13.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.kyrylokuzyk.primetween": {
       "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
       "depth": 0,

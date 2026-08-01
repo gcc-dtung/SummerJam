@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
   m_AspectMode: 0
-  m_AspectRatio: 3.4666667
+  m_AspectRatio: 3.4666672
 --- !u!114 &42416007
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -66,6 +66,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleSetUp()
     {
+        SoundManager.PlayBGMSound(BGMType.GamePlay);
         if (!isGameStart)
         {
           if(currentLayOut != null)  Destroy(currentLayOut);
@@ -86,7 +87,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleGamePlay()
     {
-        SoundManager.PlayBGMSound(BGMType.GamePlay);
+        
     }
     
     

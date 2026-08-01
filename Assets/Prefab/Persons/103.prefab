@@ -530,7 +530,7 @@ MonoBehaviour:
   baseSkinIndex: 10
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  handPosition: {x: 0, y: 1.25, z: 0}
+  handPosition: {x: 0.1, y: 0.65, z: 0}
   handOnPerson: {fileID: 1639628641226605219}
 --- !u!114 &4366721490286189568
 MonoBehaviour:

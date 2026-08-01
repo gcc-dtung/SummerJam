@@ -29,12 +29,12 @@ MonoBehaviour:
   angryFace: {fileID: -9082789242079819192, guid: cc2b84b1bc6aa0a47b03c50a34d2b3b9, type: 3}
   traitSkins:
   - trait: 4
-    sprite: {fileID: -3617867708823093519, guid: 5fba3837de4ca2e4084b0b5d6d714b4e, type: 3}
+    sprite: {fileID: 7701231380019902245, guid: 9fc417e153d6c6747914d638157d2694, type: 3}
   - trait: 2
-    sprite: {fileID: -6331548367987850515, guid: e1cfde772e1bf64469c0eecd43c0f94c, type: 3}
+    sprite: {fileID: -2079141560944890004, guid: 74e497a9e0dbb5c48a88df9e36596833, type: 3}
   - trait: 1
-    sprite: {fileID: -8536037460573963353, guid: e02eaba91cc82eb4fa9b6d5bff7bed2d, type: 3}
+    sprite: {fileID: 2441579977985286990, guid: 3dc505c5f73c5e44ca7c5902745c4304, type: 3}
   - trait: 0
-    sprite: {fileID: -7023599962821960782, guid: d8bb5f1fdc114184c88b4fd6d289c75d, type: 3}
+    sprite: {fileID: -4904917501325067579, guid: 6b709aa6a51558c48af4914fe53ba7ab, type: 3}
   - trait: 3
     sprite: {fileID: 0}

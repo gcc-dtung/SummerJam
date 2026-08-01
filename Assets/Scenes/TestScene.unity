@@ -228,36 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2591fe0304298db44aae2a1404f0a665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  <ShopData>k__BackingField:
-    <GoldSection>k__BackingField:
-      <SectionTitle>k__BackingField: 
-      <Slots>k__BackingField:
-      - <Item>k__BackingField:
-          <ID>k__BackingField: 0
-          <CostCurrency>k__BackingField: 0
-          <CostAmount>k__BackingField: 0
-          <RewardType>k__BackingField: 0
-          <Quantity>k__BackingField: 0
-          ItemIcon: {fileID: 0}
-        <PurchaseLimitPerDay>k__BackingField: 0
-        PurchasedToday: 0
-        <LastResetDate>k__BackingField: 
-    <GemSection>k__BackingField:
-      <SectionTitle>k__BackingField: 
-      <Slots>k__BackingField:
-      - <Item>k__BackingField:
-          <ID>k__BackingField: 0
-          <CostCurrency>k__BackingField: 0
-          <CostAmount>k__BackingField: 0
-          <RewardType>k__BackingField: 0
-          <Quantity>k__BackingField: 0
-          ItemIcon: {fileID: 0}
-        <PurchaseLimitPerDay>k__BackingField: 0
-        PurchasedToday: 0
-        <LastResetDate>k__BackingField: 
-    <IAPSection>k__BackingField:
-      <SectionTitle>k__BackingField: 
-      <Slots>k__BackingField: []
 --- !u!4 &981121337
 Transform:
   m_ObjectHideFlags: 0
@@ -285,6 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7588fb08c7a8709408fbb51f15a09da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+  text: {fileID: 0}
+  Gemtext: {fileID: 0}
+  debugAddGoldAmount: 1000
+  debugAddGemAmount: 100
 --- !u!1 &1481752873
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +396,63 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &5771343288102210827
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 845455612160103141, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_Name
+      value: WInPartical
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -429,3 +460,4 @@ SceneRoots:
   - {fileID: 1481752876}
   - {fileID: 846979467}
   - {fileID: 981121337}
+  - {fileID: 5771343288102210827}

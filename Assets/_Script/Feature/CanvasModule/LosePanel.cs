@@ -10,115 +10,75 @@ public class LosePanel : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private OutOfTurnNoticeAnimation outOfTurnNoticeAnimation = new OutOfTurnNoticeAnimation();
     [SerializeField] private LosePhaseIntroAnimation losePhaseIntroAnimation = new LosePhaseIntroAnimation();
-    [SerializeField] private PhaseTransitionAnimation phaseTransitionAnimation = new PhaseTransitionAnimation();
 
-    [Header("Phase Canvas Groups")]
+    [Header("Phase Canvas Group")]
     [SerializeField] private CanvasGroup phase1CanvasGroup;
-    [SerializeField] private CanvasGroup phase2CanvasGroup;
 
-    [Header("Phase 1")]
+    [Header("Lose Options")]
     [SerializeField] private Transform rootPhase1;
     [SerializeField] private Button coinButton;
     [SerializeField] private Button adsButton;
     [SerializeField] private Button chooseLoseButton;
 
-    [Header("Phase 2")]
-    [SerializeField] private Transform rootPhase2;
-    [SerializeField] private Button stayButton;
-    [SerializeField] private Button loseButton;
+    private bool isClosing;
 
     private void OnEnable()
     {
         coinButton.onClick.AddListener(OnPressCoinButton);
         adsButton.onClick.AddListener(OnPressAdsButton);
         chooseLoseButton.onClick.AddListener(OnPressChooseLoseButton);
-        stayButton.onClick.AddListener(OnpressStayButton);
-        loseButton.onClick.AddListener(OnPressLoseButton);
     }
 
     private void OnDisable()
     {
         outOfTurnNoticeAnimation.Stop();
         losePhaseIntroAnimation.Stop();
-        phaseTransitionAnimation.Stop();
 
         coinButton.onClick.RemoveAllListeners();
         adsButton.onClick.RemoveAllListeners();
         chooseLoseButton.onClick.RemoveAllListeners();
-        stayButton.onClick.RemoveAllListeners();
-        loseButton.onClick.RemoveAllListeners();
     }
 
     private void Start()
     {
-        losePanelParent.gameObject.SetActive(false);
-        outOfTurnNoticeAnimation.Hide();
-
-        rootPhase1.gameObject.SetActive(false);
-        rootPhase2.gameObject.SetActive(false);
-
-        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
+        HideImmediate();
     }
 
     [Button("TestLosePanel")]
     public void OnLose()
     {
+        isClosing = false;
         losePanelParent.gameObject.SetActive(true);
 
         rootPhase1.gameObject.SetActive(false);
-        rootPhase2.gameObject.SetActive(false);
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
 
         losePhaseIntroAnimation.PrepareLosePanel();
         outOfTurnNoticeAnimation.Play(PlayPhase1Intro);
+    }
+
+    public void HideImmediate()
+    {
+        isClosing = false;
+        outOfTurnNoticeAnimation.Stop();
+        losePhaseIntroAnimation.Stop();
+        outOfTurnNoticeAnimation.Hide();
+
+        if (rootPhase1 != null)
+            rootPhase1.gameObject.SetActive(false);
+
+        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+
+        if (losePanelParent != null)
+            losePanelParent.gameObject.SetActive(false);
     }
 
     private void PlayPhase1Intro()
     {
         losePhaseIntroAnimation.Play(
             rootPhase1,
-            rootPhase2,
-            phase1CanvasGroup,
-            phase2CanvasGroup
-        );
-    }
-
-    private void NextPhase(bool isContinue = true)
-    {
-        if (isContinue)
-        {
-            PlayPhaseTransition(
-                fromRoot: rootPhase1,
-                fromCanvasGroup: phase1CanvasGroup,
-                toRoot: rootPhase2,
-                toCanvasGroup: phase2CanvasGroup
-            );
-        }
-        else
-        {
-            PlayPhaseTransition(
-                fromRoot: rootPhase2,
-                fromCanvasGroup: phase2CanvasGroup,
-                toRoot: rootPhase1,
-                toCanvasGroup: phase1CanvasGroup
-            );
-        }
-    }
-
-    private void PlayPhaseTransition(
-        Transform fromRoot,
-        CanvasGroup fromCanvasGroup,
-        Transform toRoot,
-        CanvasGroup toCanvasGroup)
-    {
-        phaseTransitionAnimation.Play(
-            fromRoot,
-            fromCanvasGroup,
-            toRoot,
-            toCanvasGroup
+            phase1CanvasGroup
         );
     }
 
@@ -128,8 +88,7 @@ public class LosePanel : MonoBehaviour
         if(!EconomyManager.Instance.SpendGold(300)) return;
         MoveManager.Instance.AddMoreMove(5);
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
-       // CanvasManager.Instance.ChangeToGameplayCanvas();
-        losePanelParent.gameObject.SetActive(false);
+        HideImmediate();
     }
 
     private void OnPressAdsButton()
@@ -137,23 +96,24 @@ public class LosePanel : MonoBehaviour
         // TODO: Qc + Anim Qlai Man choi + Them luot
         MoveManager.Instance.AddMoreMove(5);
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
-        // CanvasManager.Instance.ChangeToGameplayCanvas();
-        losePanelParent.gameObject.SetActive(false);
+        HideImmediate();
     }
 
     private void OnPressChooseLoseButton()
     {
-        NextPhase();
-    }
+        if (isClosing)
+            return;
 
-    private void OnpressStayButton()
-    {
-        NextPhase(false);
-    }
+        isClosing = true;
+        losePhaseIntroAnimation.PlayOutro(rootPhase1, phase1CanvasGroup, () =>
+        {
+            if (FlowManager.Instance != null)
+                FlowManager.Instance.BackToMainMenu();
+            else if (CanvasManager.Instance != null)
+                CanvasManager.Instance.ChangeToMainMenu();
 
-    private void OnPressLoseButton()
-    {
-        CanvasManager.Instance.ChangeToMainMenu();
-        losePanelParent.gameObject.SetActive(false);
+            HideImmediate();
+            isClosing = false;
+        });
     }
 }

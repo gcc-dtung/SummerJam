@@ -36,3 +36,5 @@ MonoBehaviour:
     sprite: {fileID: -8536037460573963353, guid: e02eaba91cc82eb4fa9b6d5bff7bed2d, type: 3}
   - trait: 0
     sprite: {fileID: -7023599962821960782, guid: d8bb5f1fdc114184c88b4fd6d289c75d, type: 3}
+  - trait: 3
+    sprite: {fileID: 0}

@@ -18,14 +18,6 @@ public class BoosterManager : Singleton<BoosterManager>
         if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
     }
 
-    private void Update()
-    {
-        foreach (var it in BoosterHolder)
-        {
-            Debug.Log($"{it.Key.ToString()} {it.Value}");
-        }
-    }
-
     public void Undo()
     {
         if(boosterHolder[Booster.Undo] <= 0) return;

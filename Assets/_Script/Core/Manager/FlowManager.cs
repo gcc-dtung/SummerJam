@@ -84,7 +84,7 @@ public class FlowManager : Singleton<FlowManager>
         {
             ShowMainMenuCanvasOnly();
         }
-
+        SoundManager.PlayBGMSound(BGMType.MainMenu); // co the xoa
         isChangingFlow = false;
     }
 

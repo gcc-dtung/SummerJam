@@ -66,9 +66,15 @@ public enum  RewardType
     RemoveBooster = 4,
 }
 
-public enum SoundType
+public enum SFXType
 {
-    BLABLA = 0,
-    BLOBLO = 1,
-    BANANA = 2
+    Win = 0,
+    Lose = 1,
+    Coin = 2
+}
+
+public enum BGMType
+{
+    MainMenu = 0,
+    GamePlay = 1
 }

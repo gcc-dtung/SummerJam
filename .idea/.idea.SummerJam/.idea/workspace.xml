@@ -8,7 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef47a74-5a34-4b56-8223-3b5cda67c207" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SummerJam/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Dishes/BanhChung.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Dishes/BanhChung.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DangTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DangTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/FlowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/FlowManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Core/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Data/Enum/EnumHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Script/Feature/Audio/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/Feature/Audio/SoundManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

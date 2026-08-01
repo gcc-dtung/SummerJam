@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
   m_AspectMode: 0
-  m_AspectRatio: 3.4666672
+  m_AspectRatio: 3.4666662
 --- !u!114 &42416007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6468,6 +6468,7 @@ GameObject:
   - component: {fileID: 1573915431}
   - component: {fileID: 1573915432}
   - component: {fileID: 1573915433}
+  - component: {fileID: 1573915434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6673,6 +6674,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2591fe0304298db44aae2a1404f0a665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
+--- !u!114 &1573915434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573915419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e29ea027ed1ad428f090f1785c2c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlowManager
+  canvasMainMenu: {fileID: 668756366}
+  canvasGamePlay: {fileID: 546908546}
+  canvasTransition: {fileID: 945903565}
+  winPanel: {fileID: 431834105}
+  losePanel: {fileID: 431834106}
+  alwaysOnObjects:
+  - {fileID: 945903564}
 --- !u!1 &1594543310
 GameObject:
   m_ObjectHideFlags: 0
@@ -7762,6 +7782,7 @@ GameObject:
   - component: {fileID: 1969127511}
   - component: {fileID: 1969127510}
   - component: {fileID: 1969127509}
+  - component: {fileID: 1969127512}
   m_Layer: 5
   m_Name: Booster 2
   m_TagString: Untagged
@@ -7882,6 +7903,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969127507}
   m_CullTransparentMesh: 1
+--- !u!114 &1969127512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969127507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe1517244f45f244b8fb9f181553c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveConditionBooster
+  noCondition: {fileID: 11400000, guid: c29aa80cb9a87254286cf749e2bb38e9, type: 2}
+  holder: {fileID: 1969127508}
+  removeBoosterVisual: {fileID: 6005616228442822046, guid: b3f1965ba99492a44bdb0c713cd88ec9, type: 3}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &2013189359
 GameObject:
   m_ObjectHideFlags: 0
@@ -8126,7 +8165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.44705886, g: 0.28627452, b: 0.32941177, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

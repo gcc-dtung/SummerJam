@@ -26,7 +26,7 @@ public class EconomyManager : Singleton<EconomyManager>
   private void Update()
   {
     text.text = "Gold: " + CurrentGold.ToString();
-    Gemtext.text = "Gem: " + CurrentGem.ToString();
+    //Gemtext.text = "Gem: " + CurrentGem.ToString();
   }
 
   public void InitializeData(int gold, int gem)

@@ -6914,12 +6914,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573915419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7588fb08c7a8709408fbb51f15a09da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   text: {fileID: 2013796483}
+  Gemtext: {fileID: 0}
   debugAddGoldAmount: 1000
   debugAddGemAmount: 100
 --- !u!114 &1573915433
@@ -6934,33 +6935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2591fe0304298db44aae2a1404f0a665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  <ShopData>k__BackingField:
-    <GoldSection>k__BackingField:
-      <Slots>k__BackingField:
-      - <ItemData>k__BackingField:
-          ItemIcon: {fileID: 0}
-          <ID>k__BackingField: 0
-          <CostAmount>k__BackingField: 0
-          <Quantity>k__BackingField: 0
-          <CostCurrency>k__BackingField: 0
-          <RewardType>k__BackingField: 0
-        <PurchaseLimitPerDay>k__BackingField: 0
-        PurchasedToday: 0
-        <LastResetDate>k__BackingField: 
-    <GemSection>k__BackingField:
-      <Slots>k__BackingField:
-      - <ItemData>k__BackingField:
-          ItemIcon: {fileID: 0}
-          <ID>k__BackingField: 0
-          <CostAmount>k__BackingField: 0
-          <Quantity>k__BackingField: 0
-          <CostCurrency>k__BackingField: 0
-          <RewardType>k__BackingField: 0
-        <PurchaseLimitPerDay>k__BackingField: 0
-        PurchasedToday: 0
-        <LastResetDate>k__BackingField: 
-    <IAPSection>k__BackingField:
-      <Slots>k__BackingField: []
 --- !u!1 &1594543310
 GameObject:
   m_ObjectHideFlags: 0

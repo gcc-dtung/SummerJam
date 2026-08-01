@@ -1,32 +1,52 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-[RequireComponent(typeof(AudioSource)),ExecuteInEditMode]
+[ExecuteInEditMode]
 public class SoundManager : Singleton<SoundManager>
 {
-   [SerializeField] private SoundList[] soundList;
-   private AudioSource audioSource;
+   [SerializeField] private SoundList[] SFXList;
+   [SerializeField] private SoundList[] BGMList;
+   [SerializeField] private AudioSource sfxSource;
+   [SerializeField] private AudioSource bgmSource;
 
-   private void Start()
+   public void MuteAndUnMuteSFX() => sfxSource.mute = !sfxSource.mute;
+   public void MuteAndUnMuteBGM() => bgmSource.mute = !bgmSource.mute;
+   
+   public static void PlaySFXSound(SFXType type, float volume = 1)
    {
-      audioSource = this.GetComponent<AudioSource>();
-   }
-
-   public static void PlaySound(SoundType type, float volume = 1)
-   {
-      AudioClip[] audioClips = Instance.soundList[(int)type].AudioList;
+      AudioClip[] audioClips = Instance.SFXList[(int)type].AudioList;
       AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];
-      Instance.audioSource.PlayOneShot(randomClip,volume);
+      // Instance.sfxSource.Stop();
+      Instance.sfxSource.PlayOneShot(randomClip,volume);
    }
+
+   public static void PlayBGMSound(BGMType type, float volume = 1)
+   {
+      AudioClip[] audioClips = Instance.BGMList[(int)type].AudioList;
+      AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];
+      Instance.bgmSource.Stop();
+      Instance.bgmSource.clip = randomClip;
+      Instance.bgmSource.volume = volume;
+      Instance.bgmSource.loop = true;
+      Instance.bgmSource.Play();
+   }
+   
+   
    #if UNITY_EDITOR
    private void OnEnable()
    {
-      string[] names = Enum.GetNames(typeof(SoundType));
-      Array.Resize(ref soundList,names.Length);
-      for (int i = 0; i < soundList.Length; i++)
+      string[] sfxNames = Enum.GetNames(typeof(SFXType));
+      Array.Resize(ref SFXList,sfxNames.Length);
+      for (int i = 0; i < SFXList.Length; i++)
       {
-         soundList[i].name = names[i];
+         SFXList[i].name = sfxNames[i];
+      }      
+      
+      string[] bgmNames = Enum.GetNames(typeof(BGMType));
+      Array.Resize(ref BGMList,bgmNames.Length);
+      for (int i = 0; i < BGMList.Length; i++)
+      {
+         BGMList[i].name = bgmNames[i];
       }
    }
 

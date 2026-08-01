@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
         {
             SaveLoadManager.Instance.LoadGame();
         }
-
+        SoundManager.PlayBGMSound(BGMType.MainMenu);
         isGameStart = false;
     }
 
@@ -48,10 +48,12 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleWin()
     {
+        SoundManager.PlaySFXSound(SFXType.Win);
     }
 
     private void HandleLose()
     {
+        SoundManager.PlaySFXSound(SFXType.Lose);
        isGameStart = false;
     }
 
@@ -64,6 +66,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleSetUp()
     {
+        SoundManager.PlayBGMSound(BGMType.GamePlay);
         if (!isGameStart)
         {
           if(currentLayOut != null)  Destroy(currentLayOut);

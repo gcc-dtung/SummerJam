@@ -1055,9 +1055,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 42416005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 647.3334, y: -26}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &175923384
@@ -2325,7 +2325,7 @@ RectTransform:
   m_GameObject: {fileID: 433148611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 546370182}
@@ -2674,7 +2674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2364254005510203319, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3720098131358036064, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2734,15 +2734,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402847486082285068, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8313463540595951856, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8599795991720366745, guid: d31de97ac2a64f444a42f63de6185f0e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2792,7 +2792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &546908544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7780,6 +7780,21 @@ MonoBehaviour:
   losePanel: {fileID: 431834106}
   alwaysOnObjects:
   - {fileID: 945903564}
+  autoEnableKnownUiRoots: 1
+  mainMenuActiveRootPaths:
+  - Background
+  - HomePanel
+  - SettingPanel
+  - ShopPanel
+  - AlwayUp Panel
+  gameplayActiveRootPaths:
+  - HUDLayer
+  - HUDLayer/Up Panel
+  - HUDLayer/Down Panel
+  - HUDLayer/Score
+  - HUDLayer/Gold
+  - HUDLayer/Gem
+  - PopupLayer
 --- !u!1 &1593500021
 GameObject:
   m_ObjectHideFlags: 0
@@ -9222,9 +9237,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 42416005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 136.66667, y: -90}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939555115
@@ -9355,9 +9370,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 42416005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 424, y: -26}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1969127509

@@ -50,6 +50,10 @@ public class LosePanel : MonoBehaviour
         isClosing = false;
         losePanelParent.gameObject.SetActive(true);
 
+        rootPhase1.gameObject.SetActive(true);
+        SetActive(coinButton);
+        SetActive(adsButton);
+        SetActive(chooseLoseButton);
         rootPhase1.gameObject.SetActive(false);
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
@@ -76,6 +80,10 @@ public class LosePanel : MonoBehaviour
 
     private void PlayPhase1Intro()
     {
+        SetActive(coinButton);
+        SetActive(adsButton);
+        SetActive(chooseLoseButton);
+
         losePhaseIntroAnimation.Play(
             rootPhase1,
             phase1CanvasGroup
@@ -115,5 +123,11 @@ public class LosePanel : MonoBehaviour
             HideImmediate();
             isClosing = false;
         });
+    }
+
+    private static void SetActive(Selectable selectable)
+    {
+        if (selectable != null)
+            selectable.gameObject.SetActive(true);
     }
 }

@@ -15,6 +15,28 @@ public class FlowManager : Singleton<FlowManager>
     [Tooltip("Objects that must stay active for the whole game flow, for example Canvas Animation.")]
     [SerializeField] private GameObject[] alwaysOnObjects;
 
+    [Header("Startup UI Roots")]
+    [SerializeField] private bool autoEnableKnownUiRoots = true;
+    [SerializeField] private string[] mainMenuActiveRootPaths =
+    {
+        "Background",
+        "HomePanel",
+        "SettingPanel",
+        "ShopPanel",
+        "AlwayUp Panel"
+    };
+
+    [SerializeField] private string[] gameplayActiveRootPaths =
+    {
+        "HUDLayer",
+        "HUDLayer/Up Panel",
+        "HUDLayer/Down Panel",
+        "HUDLayer/Score",
+        "HUDLayer/Gold",
+        "HUDLayer/Gem",
+        "PopupLayer"
+    };
+
     private bool isChangingFlow;
 
     protected override void Awake()
@@ -90,6 +112,7 @@ public class FlowManager : Singleton<FlowManager>
 
     public void ApplyBootState()
     {
+        SetRequiredUiRootsActive();
         SetAlwaysOnObjectsActive();
         ShowMainMenuCanvasOnly();
         HideResultPanels();
@@ -136,12 +159,14 @@ public class FlowManager : Singleton<FlowManager>
 
     private void ShowMainMenuCanvasOnly()
     {
+        SetRequiredUiRootsActive();
         SetCanvasActive(canvasMainMenu, true);
         SetCanvasActive(canvasGamePlay, false);
     }
 
     private void ShowGameplayCanvasOnly()
     {
+        SetRequiredUiRootsActive();
         SetCanvasActive(canvasMainMenu, false);
         SetCanvasActive(canvasGamePlay, true);
     }
@@ -161,6 +186,33 @@ public class FlowManager : Singleton<FlowManager>
         {
             if (target != null)
                 target.SetActive(true);
+        }
+    }
+
+    private void SetRequiredUiRootsActive()
+    {
+        if (!autoEnableKnownUiRoots)
+            return;
+
+        SetChildPathsActive(canvasMainMenu, mainMenuActiveRootPaths);
+        SetChildPathsActive(canvasGamePlay, gameplayActiveRootPaths);
+    }
+
+    private static void SetChildPathsActive(Canvas rootCanvas, string[] childPaths)
+    {
+        if (rootCanvas == null || childPaths == null)
+            return;
+
+        Transform canvasTransform = rootCanvas.transform;
+
+        foreach (string childPath in childPaths)
+        {
+            if (string.IsNullOrWhiteSpace(childPath))
+                continue;
+
+            Transform target = canvasTransform.Find(childPath);
+            if (target != null)
+                target.gameObject.SetActive(true);
         }
     }
 

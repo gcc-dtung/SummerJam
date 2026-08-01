@@ -391,6 +391,12 @@ public class WinPanel : MonoBehaviour
         if (winLayoutRoot != null)
             winLayoutRoot.gameObject.SetActive(true);
 
+        SetActive(lightImage);
+        SetActive(dropLightImage);
+        SetActive(firstCharacter);
+        SetActive(secondCharacter);
+        SetActive(wellDoneRoot);
+
         SetImageAlpha(lightImage, 0f);
         SetImageAlpha(dropLightImage, 0f);
 
@@ -406,6 +412,7 @@ public class WinPanel : MonoBehaviour
             if (letter == null)
                 continue;
 
+            letter.gameObject.SetActive(true);
             letter.transform.localScale = Vector3.zero;
             SetImageAlpha(letter, 0f);
         }
@@ -424,6 +431,7 @@ public class WinPanel : MonoBehaviour
         firstCharacter ??= FindChildByName(winLayoutRoot, "char 1");
         secondCharacter ??= FindChildByName(winLayoutRoot, "char 2");
         wellDoneRoot ??= FindChildByName(winLayoutRoot, "well done text");
+        wellDoneRoot ??= FindChildByName(winLayoutRoot, "Well Done root");
 
         if ((wellDoneLetters == null || wellDoneLetters.Length == 0) && wellDoneRoot != null)
             wellDoneLetters = FindLetterImages(wellDoneRoot);
@@ -497,6 +505,18 @@ public class WinPanel : MonoBehaviour
         Color color = image.color;
         color.a = alpha;
         image.color = color;
+    }
+
+    private static void SetActive(Image image)
+    {
+        if (image != null)
+            image.gameObject.SetActive(true);
+    }
+
+    private static void SetActive(Transform target)
+    {
+        if (target != null)
+            target.gameObject.SetActive(true);
     }
 
     private void SetPanelAlpha(float alpha)

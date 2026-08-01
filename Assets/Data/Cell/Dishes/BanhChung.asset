@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c79adc4f872ecc46bb1fc1f561a99fd, type: 3}
   m_Name: BanhChung
   m_EditorClassIdentifier: Assembly-CSharp::Dishes
-  <Name>k__BackingField: "B\xE1nh Ch\u01B0ng"
+  <Name>k__BackingField: Chung Cake
   <Type>k__BackingField: 1
   <DefaultCanSeat>k__BackingField: 0
   <DefaultCanInteract>k__BackingField: 0
-  <sprite>k__BackingField: {fileID: 6937817954938267909, guid: 14e9bd0fbb95b9d43837395feb104586, type: 3}
-  <Tags>k__BackingField: 050000000a000000
+  <sprite>k__BackingField: {fileID: -6619298925918702986, guid: 14e9bd0fbb95b9d43837395feb104586, type: 3}
+  <Tags>k__BackingField: 01000000

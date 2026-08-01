@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
@@ -31,6 +33,22 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
             gameData.currentGold = EconomyManager.Instance.CurrentGold;
             gameData.currentGem = EconomyManager.Instance.CurrentGem;
         }
+        
+        if (gameData.shopPurchasedCounts == null)
+        {
+            gameData.shopPurchasedCounts = new Dictionary<int, int>();
+        }
+        var shopSlots = GameObject.FindObjectsByType<ShopSlot>(FindObjectsSortMode.None);
+        foreach (var slot in shopSlots)
+        {
+            if (slot.ItemData != null)
+            {
+                gameData.shopPurchasedCounts[slot.ItemData.ID] = slot.PurchasedToday;
+            }
+        }
+
+        gameData.lastTime = DateTime.Now;
+        
         dataService.SaveData(saveFileName, gameData, false);
     }
 
@@ -82,6 +100,12 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         if (EconomyManager.Instance != null)
         {
             EconomyManager.Instance.InitializeData(gameData.currentGold, gameData.currentGem);
+        }
+
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.LastTime = gameData.lastTime;
+            TimeManager.Instance.NextToTomorrow();
         }
     }
 }

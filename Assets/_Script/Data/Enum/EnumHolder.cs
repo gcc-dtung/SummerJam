@@ -1,11 +1,18 @@
 
 public enum Food
 {
-    Vegetable = 3,
-    Fruit = 9,
-    Meat = 10,
-    Beverage = 11,
-    Egg = 12
+    Hamburger = 0,
+    ChungCake = 1,
+    Cake = 2, 
+    Cheese = 3,
+    Fries = 4,
+    Pudding = 5,
+    Soda = 6, 
+    Watermelon = 7,
+    Milk = 8,
+    Sandwich = 9,
+    Donut = 10,
+    Corn = 11
 }
 
 public enum Trait

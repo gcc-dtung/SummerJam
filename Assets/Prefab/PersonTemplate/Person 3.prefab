@@ -106,11 +106,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersonVisual
   eventHandler: {fileID: 511186525061403398}
+  tooltipPopup: {fileID: 1778381513858387651}
+  skinSO: {fileID: 0}
+  skinRenderer: {fileID: 0}
+  faceRenderer: {fileID: 0}
+  traitRenderer: {fileID: 0}
+  baseSkinIndex: 0
   changeViewDuration: 0.1
   changeViewScale: 1.2
-  handPosition: {x: 0, y: 1.265, z: 0}
+  handPosition: {x: 0.1, y: 0.65, z: 0}
   handOnPerson: {fileID: 6145968201658079114}
-  tooltipPopup: {fileID: 1778381513858387651}
 --- !u!114 &2000928938052696896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +136,7 @@ MonoBehaviour:
   tiltSensitivity: 250
   followResponsiveness: 20
   hoverTransform: {fileID: 2271995431531248371}
+  gripLocalPosition: {x: 0, y: 1.25, z: 0}
 --- !u!1 &974745166876988435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1106,7 @@ MonoBehaviour:
   middle: {fileID: 4271161122561714512}
   bottom: {fileID: 3796731718308118229}
   nameText: {fileID: 1660606931601214296}
+  traitText: {fileID: 0}
   contentText: {fileID: 9025695592089838917}
   textWidth: 4
   verticalPadding: 0.15

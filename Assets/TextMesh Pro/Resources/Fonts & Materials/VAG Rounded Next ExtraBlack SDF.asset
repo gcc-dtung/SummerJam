@@ -58,7 +58,7 @@ MonoBehaviour:
     includeFontFeatures: 0
   m_SourceFontFile: {fileID: 12800000, guid: 6cc1ede650ad26f47aef40eed6f20876, type: 3}
   m_SourceFontFilePath: 
-  m_AtlasPopulationMode: 1
+  m_AtlasPopulationMode: 0
   InternalDynamicOS: 0
   m_GlyphTable: []
   m_CharacterTable: []

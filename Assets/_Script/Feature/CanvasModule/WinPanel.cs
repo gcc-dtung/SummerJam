@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Coffee.UIExtensions;
 using PrimeTween;
 using UnityEngine;
@@ -11,15 +10,43 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private Transform winPanelParent;
 
     [Header("VFX")]
+    [Tooltip("Assign the UIParticle component used by the win effect.")]
     [SerializeField] private UIParticle uiParticle;
-    [SerializeField] private ParticleSystem winVfx;
+    [Tooltip("Optional fallback. Assign every ParticleSystem that should play when UI Particle is not used.")]
+    [SerializeField] private ParticleSystem[] winVfxSystems = new ParticleSystem[0];
     [SerializeField, Min(0f)] private float vfxStartDelay = 0.2f;
     [SerializeField, Min(0.1f)] private float vfxRenderScale = 40f;
+
+    [Header("Win Layout")]
+    [Tooltip("Assign the complete Win Layout root.")]
+    [SerializeField] private Transform winLayoutRoot;
+    [Tooltip("Add a CanvasGroup to Win Layout and assign it here so the complete layout can fade during outro.")]
+    [SerializeField] private CanvasGroup winLayoutCanvasGroup;
+    [SerializeField] private Image lightImage;
+    [SerializeField] private Image dropLightImage;
+    [SerializeField] private Transform firstCharacter;
+    [SerializeField] private Transform secondCharacter;
+    [SerializeField] private Transform wellDoneRoot;
+    [SerializeField] private Image[] wellDoneLetters = new Image[0];
+
+    [Header("Win Layout Timing")]
+    [SerializeField, Min(0f)] private float lightStartTime;
+    [SerializeField, Min(0f)] private float dropLightStartTime = 0.08f;
+    [SerializeField, Min(0f)] private float lightFadeDuration = 0.3f;
+    [SerializeField, Min(0f)] private float characterStartTime = 0.25f;
+    [SerializeField, Min(0f)] private float characterStagger = 0.08f;
+    [SerializeField, Min(0f)] private float characterPopDuration = 0.35f;
+    [SerializeField] private Ease characterPopEase = Ease.OutBack;
+    [SerializeField, Min(0f)] private float textStartTime = 0.55f;
+    [SerializeField, Min(0f)] private float letterStagger = 0.07f;
+    [SerializeField, Min(0f)] private float letterPopDuration = 0.28f;
+    [SerializeField] private Ease letterPopEase = Ease.OutBack;
     [SerializeField, Min(0f)]
-    [Tooltip("Seconds after the VFX starts before Phase 1 appears. The VFX keeps playing.")]
-    private float phase1ShowDelay = 1.5f;
+    [Tooltip("How many seconds before the Win Layout finishes Phase 1 should begin. Set to 0 to wait for the layout to finish.")]
+    private float phase1Overlap = 0.15f;
 
     [Header("Intro Animation")]
+    [Tooltip("Assign the Image on the WinPanel background.")]
     [SerializeField] private Image winPanelImage;
     [SerializeField] private float panelStartAlpha = 0f;
     [SerializeField, Range(0f, 1f)] private float panelTargetAlpha = 0.93f;
@@ -33,30 +60,39 @@ public class WinPanel : MonoBehaviour
     [Header("Phase Transition")]
     [SerializeField] private PhaseTransitionAnimation phaseTransitionAnimation = new PhaseTransitionAnimation();
 
+    [Header("Outro Animation")]
+    [SerializeField, Min(0f)] private float outroDuration = 0.35f;
+    [SerializeField] private Ease outroFadeEase = Ease.OutCubic;
+    [SerializeField] private Ease outroScaleEase = Ease.OutCubic;
+
     [Header("Phase 1")] 
     [SerializeField] private Transform rootPhase1;
     [SerializeField] private CanvasGroup phase1CanvasGroup;
     [SerializeField] private Button rewardButton;
     [SerializeField] private Button adsButton;
-    
-    [Header("Phase 2")]
+
+    [Header("Phase 2")] 
     [SerializeField] private Transform rootPhase2;
     [SerializeField] private CanvasGroup phase2CanvasGroup;
-    [SerializeField] private Button contiueButton;
 
-    private Coroutine winFlowCoroutine;
     private Sequence introSequence;
-    private ParticleSystem[] winVfxSystems = new ParticleSystem[0];
+    private Vector3 firstCharacterTargetScale = Vector3.one;
+    private Vector3 secondCharacterTargetScale = Vector3.one;
+    private Vector3[] letterTargetScales = new Vector3[0];
+    private Sequence outroSequence;
+    private bool isClosing;
+
+    public bool IsVisible => winPanelParent != null && winPanelParent.gameObject.activeInHierarchy;
 
     private void Awake()
     {
-        winPanelImage ??= winPanelParent.GetComponent<Image>();
-        phase1CanvasGroup = GetOrAddCanvasGroup(rootPhase1, phase1CanvasGroup);
-        phase2CanvasGroup = GetOrAddCanvasGroup(rootPhase2, phase2CanvasGroup);
-        uiParticle ??= winPanelParent.GetComponentInChildren<UIParticle>(true);
-        winVfx ??= FindWinVfx();
+        wellDoneLetters ??= Array.Empty<Image>();
+        winVfxSystems ??= Array.Empty<ParticleSystem>();
+        CacheWinLayoutTargetScales();
 
-        ConfigureVfx();
+        if (uiParticle != null)
+            uiParticle.scale = vfxRenderScale;
+
         StopAndClearVfx();
         HideImmediate();
     }
@@ -65,45 +101,41 @@ public class WinPanel : MonoBehaviour
     {
         rewardButton.onClick.AddListener(OnPressRewardButton);
         adsButton.onClick.AddListener(OnPressAdsButton);
-        contiueButton.onClick.AddListener(OnPressContiueButton);
     }
 
     private void OnDisable()
     {
-        StopWinFlow();
         introSequence.Stop();
         phaseTransitionAnimation.Stop();
+        outroSequence.Stop();
 
         rewardButton.onClick.RemoveListener(OnPressRewardButton);
         adsButton.onClick.RemoveListener(OnPressAdsButton);
-        contiueButton.onClick.RemoveListener(OnPressContiueButton);
     }
 
     private void Start()
     {
-        ConfigureVfx();
         HideImmediate();
     }
 
     public void OnWin()
     {
-        StopWinFlow();
+        isClosing = false;
         introSequence.Stop();
         phaseTransitionAnimation.Stop();
+        outroSequence.Stop();
 
         winPanelParent.gameObject.SetActive(true);
 
-        rootPhase1.gameObject.SetActive(false);
         rootPhase2.gameObject.SetActive(false);
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
         CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
 
         SetPanelAlpha(panelStartAlpha);
-        ConfigureVfx();
         StopAndClearVfx();
 
-        winFlowCoroutine = StartCoroutine(PlayWinFlow());
+        PlayWinIntro();
     }
 
     private void OnPressRewardButton()
@@ -129,26 +161,12 @@ public class WinPanel : MonoBehaviour
         NextPhase();
     }
 
-    private void OnPressContiueButton()
-    {
-        if (!phase2CanvasGroup.interactable)
-            return;
-
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
-
-        if (FlowManager.Instance != null)
-            FlowManager.Instance.BackToMainMenu();
-        else if (CanvasManager.Instance != null)
-            CanvasManager.Instance.ChangeToMainMenu();
-
-        HideImmediate();
-    }
-
     public void HideImmediate()
     {
-        StopWinFlow();
+        isClosing = false;
         introSequence.Stop();
         phaseTransitionAnimation.Stop();
+        outroSequence.Stop();
         StopAndClearVfx();
 
         if (rootPhase1 != null)
@@ -163,8 +181,58 @@ public class WinPanel : MonoBehaviour
         if (winPanelImage != null)
             SetPanelAlpha(panelStartAlpha);
 
+        if (winLayoutCanvasGroup != null)
+            winLayoutCanvasGroup.alpha = 0f;
+
         if (winPanelParent != null)
             winPanelParent.gameObject.SetActive(false);
+    }
+
+    public void PlayOutro(Action onComplete)
+    {
+        if (isClosing)
+            return;
+
+        if (!IsVisible)
+        {
+            onComplete?.Invoke();
+            return;
+        }
+
+        isClosing = true;
+        introSequence.Stop();
+        phaseTransitionAnimation.Stop();
+        outroSequence.Stop();
+
+        CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
+
+        Sequence sequence = Sequence.Create()
+            .Group(Tween.Alpha(
+                winPanelImage,
+                endValue: panelStartAlpha,
+                duration: outroDuration,
+                ease: outroFadeEase
+            ));
+
+        if (winLayoutRoot != null && winLayoutCanvasGroup != null && winLayoutRoot.gameObject.activeSelf)
+        {
+            sequence = sequence.Group(Tween.Alpha(
+                winLayoutCanvasGroup,
+                endValue: 0f,
+                duration: outroDuration,
+                ease: outroFadeEase
+            ));
+        }
+
+        sequence = AddPhaseOutro(sequence, rootPhase1, phase1CanvasGroup, true);
+        sequence = AddPhaseOutro(sequence, rootPhase2, phase2CanvasGroup, false);
+
+        outroSequence = sequence.ChainCallback(() =>
+        {
+            HideImmediate();
+            onComplete?.Invoke();
+        });
     }
 
     private void NextPhase()
@@ -177,28 +245,147 @@ public class WinPanel : MonoBehaviour
         );
     }
 
-    private IEnumerator PlayWinFlow()
+    private Sequence AddPhaseOutro(
+        Sequence sequence,
+        Transform phaseRoot,
+        CanvasGroup phaseCanvasGroup,
+        bool scaleToStart)
     {
-        if (vfxStartDelay > 0f)
-            yield return new WaitForSeconds(vfxStartDelay);
+        if (phaseRoot == null || phaseCanvasGroup == null || !phaseRoot.gameObject.activeSelf)
+            return sequence;
 
-        PlayVfx();
+        sequence = sequence.Group(Tween.Alpha(
+            phaseCanvasGroup,
+            endValue: 0f,
+            duration: outroDuration,
+            ease: outroFadeEase
+        ));
 
-        if (phase1ShowDelay > 0f)
-            yield return new WaitForSeconds(phase1ShowDelay);
+        if (scaleToStart)
+        {
+            sequence = sequence.Group(Tween.Scale(
+                phaseRoot,
+                endValue: phase1StartScale,
+                duration: outroDuration,
+                ease: outroScaleEase
+            ));
+        }
 
-        winFlowCoroutine = null;
-
-        PlayPhase1Intro();
+        return sequence;
     }
 
-    private void StopWinFlow()
+    private void PlayWinIntro()
     {
-        if (winFlowCoroutine == null)
-            return;
+        PrepareWinIntro();
 
-        StopCoroutine(winFlowCoroutine);
-        winFlowCoroutine = null;
+        Sequence sequence = Sequence.Create()
+            .Insert(0f, Tween.Alpha(
+                winPanelImage,
+                endValue: panelTargetAlpha,
+                duration: panelFadeDuration,
+                ease: panelFadeEase
+            ))
+            .InsertCallback(vfxStartDelay, this, target => target.PlayVfx());
+
+        float layoutEndTime = Mathf.Max(panelFadeDuration, vfxStartDelay);
+
+        if (lightImage != null)
+        {
+            sequence.Insert(lightStartTime, Tween.Alpha(
+                lightImage,
+                endValue: 1f,
+                duration: lightFadeDuration,
+                ease: Ease.OutCubic
+            ));
+
+            layoutEndTime = Mathf.Max(layoutEndTime, lightStartTime + lightFadeDuration);
+        }
+
+        if (dropLightImage != null)
+        {
+            sequence.Insert(dropLightStartTime, Tween.Alpha(
+                dropLightImage,
+                endValue: 1f,
+                duration: lightFadeDuration,
+                ease: Ease.OutCubic
+            ));
+
+            layoutEndTime = Mathf.Max(layoutEndTime, dropLightStartTime + lightFadeDuration);
+        }
+
+        if (firstCharacter != null)
+        {
+            sequence.Insert(characterStartTime, Tween.Scale(
+                firstCharacter,
+                endValue: firstCharacterTargetScale,
+                duration: characterPopDuration,
+                ease: characterPopEase
+            ));
+
+            layoutEndTime = Mathf.Max(layoutEndTime, characterStartTime + characterPopDuration);
+        }
+
+        if (secondCharacter != null)
+        {
+            float secondCharacterStartTime = characterStartTime + characterStagger;
+
+            sequence.Insert(secondCharacterStartTime, Tween.Scale(
+                secondCharacter,
+                endValue: secondCharacterTargetScale,
+                duration: characterPopDuration,
+                ease: characterPopEase
+            ));
+
+            layoutEndTime = Mathf.Max(layoutEndTime, secondCharacterStartTime + characterPopDuration);
+        }
+
+        for (int index = 0; index < wellDoneLetters.Length; index++)
+        {
+            Image letter = wellDoneLetters[index];
+            if (letter == null)
+                continue;
+
+            float letterStartTime = textStartTime + index * letterStagger;
+
+            sequence.Insert(letterStartTime, Tween.Alpha(
+                letter,
+                endValue: 1f,
+                duration: letterPopDuration * 0.5f,
+                ease: Ease.OutCubic
+            ));
+
+            sequence.Insert(letterStartTime, Tween.Scale(
+                letter.transform,
+                endValue: letterTargetScales[index],
+                duration: letterPopDuration,
+                ease: letterPopEase
+            ));
+
+            layoutEndTime = Mathf.Max(layoutEndTime, letterStartTime + letterPopDuration);
+        }
+
+        float phase1StartTime = Mathf.Max(0f, layoutEndTime - phase1Overlap);
+
+        sequence
+            .Insert(phase1StartTime, Tween.Alpha(
+                phase1CanvasGroup,
+                endValue: 1f,
+                duration: phase1IntroDuration,
+                ease: phase1FadeEase
+            ))
+            .Insert(phase1StartTime, Tween.Scale(
+                rootPhase1,
+                endValue: Vector3.one,
+                duration: phase1IntroDuration,
+                ease: phase1ScaleEase
+            ))
+            .InsertCallback(
+                phase1StartTime + phase1IntroDuration,
+                phase1CanvasGroup,
+                canvasGroup => CanvasGroupUtility.SetInteractable(canvasGroup, true)
+            );
+
+        introSequence = sequence;
     }
 
     private void StopAndClearVfx()
@@ -210,8 +397,16 @@ public class WinPanel : MonoBehaviour
             return;
         }
 
+        if (winVfxSystems == null)
+            return;
+
         foreach (ParticleSystem particleSystem in winVfxSystems)
+        {
+            if (particleSystem == null)
+                continue;
+
             particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 
     private void PlayVfx()
@@ -223,90 +418,98 @@ public class WinPanel : MonoBehaviour
             return;
         }
 
+        if (winVfxSystems == null)
+            return;
+
         foreach (ParticleSystem particleSystem in winVfxSystems)
         {
+            if (particleSystem == null)
+                continue;
+
             particleSystem.Clear(false);
             particleSystem.Play(false);
         }
     }
 
-    private void ConfigureVfx()
+    private void PrepareWinIntro()
     {
-        List<ParticleSystem> validParticleSystems = new List<ParticleSystem>();
+        if (winLayoutRoot != null)
+            winLayoutRoot.gameObject.SetActive(true);
 
-        if (uiParticle != null)
-            uiParticle.scale = vfxRenderScale;
+        if (winLayoutCanvasGroup != null)
+            winLayoutCanvasGroup.alpha = 1f;
 
-        if (winVfx != null)
+        SetActive(lightImage);
+        SetActive(dropLightImage);
+        SetActive(firstCharacter);
+        SetActive(secondCharacter);
+        SetActive(wellDoneRoot);
+
+        SetImageAlpha(lightImage, 0f);
+        SetImageAlpha(dropLightImage, 0f);
+
+        if (firstCharacter != null)
+            firstCharacter.localScale = Vector3.zero;
+
+        if (secondCharacter != null)
+            secondCharacter.localScale = Vector3.zero;
+
+        for (int index = 0; index < wellDoneLetters.Length; index++)
         {
-            ParticleSystem[] particleSystems = winVfx.GetComponentsInChildren<ParticleSystem>(true);
+            Image letter = wellDoneLetters[index];
+            if (letter == null)
+                continue;
 
-            foreach (ParticleSystem particleSystem in particleSystems)
-            {
-                if (HasRenderableMaterial(particleSystem))
-                {
-                    validParticleSystems.Add(particleSystem);
-                    continue;
-                }
-
-                DisableInvisibleEmitter(particleSystem);
-            }
+            letter.gameObject.SetActive(true);
+            letter.transform.localScale = Vector3.zero;
+            SetImageAlpha(letter, 0f);
         }
-
-        winVfxSystems = validParticleSystems.ToArray();
-    }
-
-    private static void DisableInvisibleEmitter(ParticleSystem particleSystem)
-    {
-        if (particleSystem == null)
-            return;
-
-        ParticleSystem.EmissionModule emission = particleSystem.emission;
-        emission.enabled = false;
-        particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
-    }
-
-    private static bool HasRenderableMaterial(ParticleSystem particleSystem)
-    {
-        if (particleSystem == null)
-            return false;
-
-        ParticleSystemRenderer particleRenderer = particleSystem.GetComponent<ParticleSystemRenderer>();
-        return particleRenderer != null && particleRenderer.sharedMaterial != null;
-    }
-
-    private void PlayPhase1Intro()
-    {
-        introSequence.Stop();
 
         rootPhase1.gameObject.SetActive(true);
         rootPhase1.localScale = phase1StartScale;
         phase1CanvasGroup.alpha = 0f;
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
+    }
 
-        introSequence = Sequence.Create()
-            .Group(Tween.Alpha(
-                winPanelImage,
-                endValue: panelTargetAlpha,
-                duration: panelFadeDuration,
-                ease: panelFadeEase
-            ))
-            .Group(Tween.Alpha(
-                phase1CanvasGroup,
-                endValue: 1f,
-                duration: phase1IntroDuration,
-                ease: phase1FadeEase
-            ))
-            .Group(Tween.Scale(
-                rootPhase1,
-                endValue: Vector3.one,
-                duration: phase1IntroDuration,
-                ease: phase1ScaleEase
-            ))
-            .ChainCallback(() =>
-            {
-                CanvasGroupUtility.SetInteractable(phase1CanvasGroup, true);
-            });
+    private void CacheWinLayoutTargetScales()
+    {
+        if (firstCharacter != null)
+            firstCharacterTargetScale = firstCharacter.localScale;
+
+        if (secondCharacter != null)
+            secondCharacterTargetScale = secondCharacter.localScale;
+
+        letterTargetScales = new Vector3[wellDoneLetters.Length];
+
+        for (int index = 0; index < wellDoneLetters.Length; index++)
+        {
+            Image letter = wellDoneLetters[index];
+            letterTargetScales[index] = letter != null
+                ? letter.transform.localScale
+                : Vector3.one;
+        }
+    }
+
+    private static void SetImageAlpha(Image image, float alpha)
+    {
+        if (image == null)
+            return;
+
+        Color color = image.color;
+        color.a = alpha;
+        image.color = color;
+    }
+
+    private static void SetActive(Image image)
+    {
+        if (image != null)
+            image.gameObject.SetActive(true);
+    }
+
+    private static void SetActive(Transform target)
+    {
+        if (target != null)
+            target.gameObject.SetActive(true);
     }
 
     private void SetPanelAlpha(float alpha)
@@ -316,27 +519,4 @@ public class WinPanel : MonoBehaviour
         winPanelImage.color = color;
     }
 
-    private ParticleSystem FindWinVfx()
-    {
-        ParticleSystem[] particleSystems = winPanelParent.GetComponentsInChildren<ParticleSystem>(true);
-
-        foreach (ParticleSystem particleSystem in particleSystems)
-        {
-            if (particleSystem.name == "WinPartical_UI")
-                return particleSystem;
-        }
-
-        return particleSystems.Length > 0 ? particleSystems[0] : null;
-    }
-
-    private static CanvasGroup GetOrAddCanvasGroup(Transform root, CanvasGroup canvasGroup)
-    {
-        if (canvasGroup != null)
-            return canvasGroup;
-
-        if (root.TryGetComponent(out CanvasGroup existingCanvasGroup))
-            return existingCanvasGroup;
-
-        return root.gameObject.AddComponent<CanvasGroup>();
-    }
 }

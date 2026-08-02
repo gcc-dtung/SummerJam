@@ -59,11 +59,10 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private CanvasGroup phase1CanvasGroup;
     [SerializeField] private Button rewardButton;
     [SerializeField] private Button adsButton;
-    
-    [Header("Phase 2")]
+
+    [Header("Phase 2")] 
     [SerializeField] private Transform rootPhase2;
     [SerializeField] private CanvasGroup phase2CanvasGroup;
-    [SerializeField] private Button contiueButton;
 
     private Sequence introSequence;
     private ParticleSystem[] winVfxSystems = new ParticleSystem[0];
@@ -90,7 +89,6 @@ public class WinPanel : MonoBehaviour
     {
         rewardButton.onClick.AddListener(OnPressRewardButton);
         adsButton.onClick.AddListener(OnPressAdsButton);
-        contiueButton.onClick.AddListener(OnPressContiueButton);
     }
 
     private void OnDisable()
@@ -100,7 +98,6 @@ public class WinPanel : MonoBehaviour
 
         rewardButton.onClick.RemoveListener(OnPressRewardButton);
         adsButton.onClick.RemoveListener(OnPressAdsButton);
-        contiueButton.onClick.RemoveListener(OnPressContiueButton);
     }
 
     private void Start()
@@ -149,21 +146,6 @@ public class WinPanel : MonoBehaviour
 
         // TODO : Ads + Anim
         NextPhase();
-    }
-
-    private void OnPressContiueButton()
-    {
-        if (!phase2CanvasGroup.interactable)
-            return;
-
-        CanvasGroupUtility.SetInteractable(phase2CanvasGroup, false);
-
-        if (FlowManager.Instance != null)
-            FlowManager.Instance.BackToMainMenu();
-        else if (CanvasManager.Instance != null)
-            CanvasManager.Instance.ChangeToMainMenu();
-
-        HideImmediate();
     }
 
     public void HideImmediate()

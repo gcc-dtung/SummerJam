@@ -7,6 +7,10 @@ public class FlowManager : Singleton<FlowManager>
     [SerializeField] private Canvas canvasGamePlay;
     [SerializeField] private CanvasTransition canvasTransition;
 
+    [Header("Next Level Transition")]
+    [Tooltip("Assign the manually configured NextLevelTransition overlay here.")]
+    [SerializeField] private NextLevelTransition nextLevelTransition;
+
     [Header("Result Panels")]
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private LosePanel losePanel;
@@ -110,10 +114,37 @@ public class FlowManager : Singleton<FlowManager>
         isChangingFlow = false;
     }
 
+    public async void NextLevel()
+    {
+        if (isChangingFlow)
+            return;
+
+        isChangingFlow = true;
+
+        try
+        {
+            if (nextLevelTransition != null)
+            {
+                await nextLevelTransition.PlayAsync(LoadNextLevelWhileCovered);
+            }
+            else
+            {
+                LoadNextLevelWhileCovered();
+            }
+
+            GameManager.Instance.UpdateGameState(GameState.GamePlay);
+        }
+        finally
+        {
+            isChangingFlow = false;
+        }
+    }
+
     public void ApplyBootState()
     {
         SetRequiredUiRootsActive();
         SetAlwaysOnObjectsActive();
+        HideNextLevelTransition();
         ShowMainMenuCanvasOnly();
         HideResultPanels();
     }
@@ -175,6 +206,17 @@ public class FlowManager : Singleton<FlowManager>
     {
         winPanel?.HideImmediate();
         losePanel?.HideImmediate();
+    }
+
+    private void HideNextLevelTransition()
+    {
+        nextLevelTransition?.HideImmediate();
+    }
+
+    private void LoadNextLevelWhileCovered()
+    {
+        HideResultPanels();
+        GameManager.Instance.UpdateGameState(GameState.SetUp);
     }
 
     private void SetAlwaysOnObjectsActive()

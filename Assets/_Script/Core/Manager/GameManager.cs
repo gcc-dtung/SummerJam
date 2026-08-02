@@ -62,6 +62,11 @@ public class GameManager : Singleton<GameManager>
         isGameStart = false;
     }
 
+    public void AdvanceLevelOnNextStart()
+    {
+        isGameStart = true;
+    }
+
     private void HandleReplay()
     {
         isGameStart = false;

@@ -11,11 +11,61 @@ public class PersonHandPositionBatchEditor : EditorWindow
         Skipped
     }
 
+    private struct RendererSorting
+    {
+        public bool HasValue;
+        public int SortingLayerID;
+        public int SortingOrder;
+
+        public void PullFrom(SpriteRenderer renderer)
+        {
+            if (renderer == null)
+            {
+                HasValue = false;
+                return;
+            }
+
+            HasValue = true;
+            SortingLayerID = renderer.sortingLayerID;
+            SortingOrder = renderer.sortingOrder;
+        }
+
+        public bool ApplyTo(SpriteRenderer renderer)
+        {
+            if (!HasValue || renderer == null) return false;
+
+            bool changed = false;
+            if (renderer.sortingLayerID != SortingLayerID)
+            {
+                renderer.sortingLayerID = SortingLayerID;
+                changed = true;
+            }
+
+            if (renderer.sortingOrder != SortingOrder)
+            {
+                renderer.sortingOrder = SortingOrder;
+                changed = true;
+            }
+
+            return changed;
+        }
+    }
+
     private const string DefaultBasePrefabPath = "Assets/Prefab/Persons/PersonTemplete.prefab";
+    private const string HandOnPersonObjectName = "HandOnPerson";
+    private const string SkinRendererPropertyName = "skinRenderer";
+    private const string FaceRendererPropertyName = "faceRenderer";
+    private const string TraitRendererPropertyName = "traitRenderer";
 
     private Vector3 handPosition = new Vector3(0f, 1.25f, 0f);
     private string foldersText = "Assets/Prefab/Persons\nAssets/Prefab/PersonTemplate";
     private bool includeInactive = true;
+    private bool syncHandPosition = true;
+    private bool syncHandOnPerson = true;
+    private bool syncSkinFaceTraitSorting = true;
+    private RendererSorting skinSorting;
+    private RendererSorting faceSorting;
+    private RendererSorting traitSorting;
 
     [MenuItem("Tools/Person/Batch Hand Position")]
     public static void ShowWindow()
@@ -31,7 +81,10 @@ public class PersonHandPositionBatchEditor : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.LabelField("Person Hand Position", EditorStyles.boldLabel);
+        syncHandPosition = EditorGUILayout.Toggle("Sync Hand Position", syncHandPosition);
         handPosition = EditorGUILayout.Vector3Field("Hand Position", handPosition);
+        syncHandOnPerson = EditorGUILayout.Toggle("Sync HandOnPerson Renderer", syncHandOnPerson);
+        syncSkinFaceTraitSorting = EditorGUILayout.Toggle("Sync Skin/Face/Trait Sorting", syncSkinFaceTraitSorting);
         includeInactive = EditorGUILayout.Toggle("Include Inactive", includeInactive);
 
         EditorGUILayout.Space(8f);
@@ -70,10 +123,18 @@ public class PersonHandPositionBatchEditor : EditorWindow
         SerializedProperty handPositionProperty = serializedVisual.FindProperty("handPosition");
         if (handPositionProperty != null)
             handPosition = handPositionProperty.vector3Value;
+
+        PullSortingDefaults(serializedVisual);
     }
 
     private void ApplyToAllPersonPrefabs()
     {
+        if (!syncHandPosition && !syncHandOnPerson && !syncSkinFaceTraitSorting)
+        {
+            EditorUtility.DisplayDialog("Batch Hand Position", "Enable at least one sync option.", "OK");
+            return;
+        }
+
         string[] folders = GetValidFolders();
         if (folders.Length == 0)
         {
@@ -134,12 +195,44 @@ public class PersonHandPositionBatchEditor : EditorWindow
             if (visual == null) return ApplyResult.Skipped;
 
             SerializedObject serializedVisual = new SerializedObject(visual);
-            SerializedProperty handPositionProperty = serializedVisual.FindProperty("handPosition");
-            if (handPositionProperty == null) return ApplyResult.Skipped;
+            bool changed = false;
+            bool missingSelectedData = false;
 
-            if (handPositionProperty.vector3Value == handPosition) return ApplyResult.AlreadyMatching;
+            if (syncHandPosition)
+            {
+                SerializedProperty handPositionProperty = serializedVisual.FindProperty("handPosition");
+                if (handPositionProperty == null)
+                {
+                    missingSelectedData = true;
+                }
+                else if (handPositionProperty.vector3Value != handPosition)
+                {
+                    handPositionProperty.vector3Value = handPosition;
+                    changed = true;
+                }
+            }
 
-            handPositionProperty.vector3Value = handPosition;
+            if (syncHandOnPerson)
+            {
+                SerializedProperty handOnPersonProperty = serializedVisual.FindProperty("handOnPerson");
+                SpriteRenderer handOnPersonRenderer = FindHandOnPersonRenderer(prefabRoot);
+
+                if (handOnPersonProperty == null || handOnPersonRenderer == null)
+                {
+                    missingSelectedData = true;
+                }
+                else if (handOnPersonProperty.objectReferenceValue != handOnPersonRenderer)
+                {
+                    handOnPersonProperty.objectReferenceValue = handOnPersonRenderer;
+                    changed = true;
+                }
+            }
+
+            if (syncSkinFaceTraitSorting)
+                changed |= ApplySortingDefaults(serializedVisual);
+
+            if (!changed) return missingSelectedData ? ApplyResult.Skipped : ApplyResult.AlreadyMatching;
+
             serializedVisual.ApplyModifiedPropertiesWithoutUndo();
 
             PrefabUtility.SaveAsPrefabAsset(prefabRoot, prefabPath);
@@ -167,5 +260,41 @@ public class PersonHandPositionBatchEditor : EditorWindow
         }
 
         return folders.ToArray();
+    }
+
+    private SpriteRenderer FindHandOnPersonRenderer(GameObject prefabRoot)
+    {
+        SpriteRenderer[] renderers = prefabRoot.GetComponentsInChildren<SpriteRenderer>(includeInactive);
+        foreach (SpriteRenderer renderer in renderers)
+        {
+            if (renderer.name == HandOnPersonObjectName)
+                return renderer;
+        }
+
+        return null;
+    }
+
+    private void PullSortingDefaults(SerializedObject serializedVisual)
+    {
+        skinSorting.PullFrom(GetRenderer(serializedVisual, SkinRendererPropertyName));
+        faceSorting.PullFrom(GetRenderer(serializedVisual, FaceRendererPropertyName));
+        traitSorting.PullFrom(GetRenderer(serializedVisual, TraitRendererPropertyName));
+    }
+
+    private bool ApplySortingDefaults(SerializedObject serializedVisual)
+    {
+        bool changed = false;
+
+        changed |= skinSorting.ApplyTo(GetRenderer(serializedVisual, SkinRendererPropertyName));
+        changed |= faceSorting.ApplyTo(GetRenderer(serializedVisual, FaceRendererPropertyName));
+        changed |= traitSorting.ApplyTo(GetRenderer(serializedVisual, TraitRendererPropertyName));
+
+        return changed;
+    }
+
+    private SpriteRenderer GetRenderer(SerializedObject serializedVisual, string propertyName)
+    {
+        SerializedProperty property = serializedVisual.FindProperty(propertyName);
+        return property != null ? property.objectReferenceValue as SpriteRenderer : null;
     }
 }

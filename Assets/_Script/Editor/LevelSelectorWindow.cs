@@ -56,12 +56,12 @@ public class LevelSelectorWindow : EditorWindow
                 EditorGUILayout.HelpBox($"Cảnh báo: Level {targetLevel1Based} vượt quá số lượng màn hiện có ({LevelManager.Instance.LevelConfigs.Count}).", MessageType.Warning);
             }
 
-            if (GUILayout.Button("Load Level Ngay Lập Tức", GUILayout.Height(30)))
+            if (GUILayout.Button("Load Level Với Transition", GUILayout.Height(30)))
             {
                 int index = targetLevel1Based - 1;
                 if (LevelManager.Instance != null && index >= 0 && index < LevelManager.Instance.LevelConfigs.Count)
                 {
-                    GameManager.Instance.StartCoroutine(LoadSelectedLevelFlow(index));
+                    LoadSelectedLevelWithTransition(index);
                 }
                 else
                 {
@@ -442,10 +442,9 @@ public class LevelSelectorWindow : EditorWindow
 
     private System.Collections.IEnumerator LoadSelectedLevelFlow(int index)
     {
-        GameManager.Instance.UpdateGameState(GameState.SetUp);
-        
         LevelManager.Instance.CurrentLevelIndex = index;
-        LevelManager.Instance.LoadCurrentLevel();
+        GameManager.Instance.ResumeCurrentLevelOnNextStart();
+        GameManager.Instance.UpdateGameState(GameState.SetUp);
         
         if (SaveLoadManager.Instance != null)
         {
@@ -456,5 +455,27 @@ public class LevelSelectorWindow : EditorWindow
         
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
         Debug.Log($"Đã nhảy đến Level {index + 1} thành công!");
+    }
+
+    private void LoadSelectedLevelWithTransition(int index)
+    {
+        if (GameManager.Instance == null || LevelManager.Instance == null)
+        {
+            Debug.LogError("Không tìm thấy GameManager hoặc LevelManager trong Scene!");
+            return;
+        }
+
+        if (FlowManager.Instance == null)
+        {
+            GameManager.Instance.StartCoroutine(LoadSelectedLevelFlow(index));
+            Debug.LogWarning("Không tìm thấy FlowManager, đang fallback load level không có transition.");
+            return;
+        }
+
+        LevelManager.Instance.CurrentLevelIndex = index - 1;
+        GameManager.Instance.AdvanceLevelOnNextStart();
+        FlowManager.Instance.NextLevel();
+
+        Debug.Log($"Đang load Level {index + 1} bằng NextLevel transition.");
     }
 }

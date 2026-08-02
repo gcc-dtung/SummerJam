@@ -8,7 +8,7 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
      [SerializeField] private List<LevelConfig> levelConfigs;
-     [SerializeField] private TextMeshProUGUI levelText;
+     [SerializeField] private List<TextMeshProUGUI> levelTexts;
      public List<LevelConfig> LevelConfigs => levelConfigs;
      public LevelConfig CurrentLevel => levelConfigs[count];
      public event Action<LevelConfig> OnLevelConfigChange;
@@ -46,6 +46,7 @@ public class LevelManager : Singleton<LevelManager>
           count++;
           if (count < 0 || count >= levelConfigs.Count) count = 0;
           OnLevelConfigChange?.Invoke(levelConfigs[count]);
+          foreach(var levelText in levelTexts)
           levelText.text = "Level: " + (count+1).ToString();
           if (Application.isPlaying && SaveLoadManager.Instance != null)
           {
@@ -57,6 +58,7 @@ public class LevelManager : Singleton<LevelManager>
      {
          if (count < 0 || count >= levelConfigs.Count) count = 0;
          OnLevelConfigChange?.Invoke(levelConfigs[count]);
+         foreach(var levelText in levelTexts)
          levelText.text = "Level: " + (count+1).ToString();
      }
  

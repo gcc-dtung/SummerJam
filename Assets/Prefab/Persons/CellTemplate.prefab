@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CellVisual
   eventHandler: {fileID: 2650220930860692941}
-  changeViewDuration: 0.25
+  changeViewDuration: 0.2
   changeViewScale: 1.2
   cellSizeMultiplier: 0.6
   hoverSprite: {fileID: 1598113066198511301}

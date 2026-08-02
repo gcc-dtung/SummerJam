@@ -57,6 +57,15 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private Ease phase1ScaleEase = Ease.OutBack;
     [SerializeField] private Ease phase1FadeEase = Ease.OutCubic;
 
+    [Header("Up Panel Animation")]
+    [Tooltip("Optional. When empty, the direct child named 'Up Panel' is found automatically.")]
+    [SerializeField] private RectTransform upPanel;
+    [SerializeField] private Vector2 upPanelHiddenOffset = new Vector2(0f, 260f);
+    [SerializeField, Min(0f)] private float upPanelIntroStartTime = 0.05f;
+    [SerializeField, Min(0f)] private float upPanelIntroDuration = 0.4f;
+    [SerializeField] private Ease upPanelIntroEase = Ease.OutBack;
+    [SerializeField] private Ease upPanelOutroEase = Ease.InCubic;
+
     [Header("Phase Transition")]
     [SerializeField] private PhaseTransitionAnimation phaseTransitionAnimation = new PhaseTransitionAnimation();
 
@@ -79,6 +88,7 @@ public class WinPanel : MonoBehaviour
     private Vector3 firstCharacterTargetScale = Vector3.one;
     private Vector3 secondCharacterTargetScale = Vector3.one;
     private Vector3[] letterTargetScales = new Vector3[0];
+    private Vector2 upPanelShownPosition;
     private Sequence outroSequence;
     private bool isClosing;
 
@@ -88,6 +98,7 @@ public class WinPanel : MonoBehaviour
     {
         wellDoneLetters ??= Array.Empty<Image>();
         winVfxSystems ??= Array.Empty<ParticleSystem>();
+        ResolveUpPanel();
         CacheWinLayoutTargetScales();
 
         if (uiParticle != null)
@@ -184,6 +195,12 @@ public class WinPanel : MonoBehaviour
         if (winLayoutCanvasGroup != null)
             winLayoutCanvasGroup.alpha = 0f;
 
+        if (upPanel != null)
+        {
+            upPanel.anchoredPosition = upPanelShownPosition;
+            upPanel.gameObject.SetActive(false);
+        }
+
         if (winPanelParent != null)
             winPanelParent.gameObject.SetActive(false);
     }
@@ -222,6 +239,16 @@ public class WinPanel : MonoBehaviour
                 endValue: 0f,
                 duration: outroDuration,
                 ease: outroFadeEase
+            ));
+        }
+
+        if (upPanel != null && upPanel.gameObject.activeSelf)
+        {
+            sequence = sequence.Group(Tween.UIAnchoredPosition(
+                upPanel,
+                endValue: upPanelShownPosition + upPanelHiddenOffset,
+                duration: outroDuration,
+                ease: upPanelOutroEase
             ));
         }
 
@@ -288,6 +315,21 @@ public class WinPanel : MonoBehaviour
             .InsertCallback(vfxStartDelay, this, target => target.PlayVfx());
 
         float layoutEndTime = Mathf.Max(panelFadeDuration, vfxStartDelay);
+
+        if (upPanel != null)
+        {
+            sequence.Insert(upPanelIntroStartTime, Tween.UIAnchoredPosition(
+                upPanel,
+                endValue: upPanelShownPosition,
+                duration: upPanelIntroDuration,
+                ease: upPanelIntroEase
+            ));
+
+            layoutEndTime = Mathf.Max(
+                layoutEndTime,
+                upPanelIntroStartTime + upPanelIntroDuration
+            );
+        }
 
         if (lightImage != null)
         {
@@ -433,6 +475,12 @@ public class WinPanel : MonoBehaviour
 
     private void PrepareWinIntro()
     {
+        if (upPanel != null)
+        {
+            upPanel.gameObject.SetActive(true);
+            upPanel.anchoredPosition = upPanelShownPosition + upPanelHiddenOffset;
+        }
+
         if (winLayoutRoot != null)
             winLayoutRoot.gameObject.SetActive(true);
 
@@ -488,6 +536,15 @@ public class WinPanel : MonoBehaviour
                 ? letter.transform.localScale
                 : Vector3.one;
         }
+    }
+
+    private void ResolveUpPanel()
+    {
+        if (upPanel == null && winPanelParent != null)
+            upPanel = winPanelParent.Find("Up Panel") as RectTransform;
+
+        if (upPanel != null)
+            upPanelShownPosition = upPanel.anchoredPosition;
     }
 
     private static void SetImageAlpha(Image image, float alpha)

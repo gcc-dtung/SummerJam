@@ -71,7 +71,7 @@ public class GridManager : Singleton<GridManager>
    private Cell InitializeBoard(int x,int y)
    {
        Cell tmp = Instantiate<Cell>(Template,holder);
-       tmp.Initialize(boardConfig.BaseGrid[y].Values[x]);
+       tmp.Initialize(boardConfig.BaseGrid[y].Values[x], boardConfig.CellSize);
        tmp.SetGridIndex(x, y);
        return tmp;
    }   
@@ -79,7 +79,7 @@ public class GridManager : Singleton<GridManager>
    private Cell InitializeWaitLine(int x,int y)
    {
       Cell tmp = Instantiate<Cell>(Template,holder);
-      tmp.Initialize(waitConfig.BaseGrid[y].Values[x]);
+      tmp.Initialize(waitConfig.BaseGrid[y].Values[x], waitConfig.CellSize);
       InitializePerson(tmp,waitConfig.BaseGrid[y].Values[x]);
       tmp.SetGridIndex(x, y);
       return tmp;
@@ -88,13 +88,11 @@ public class GridManager : Singleton<GridManager>
    private void FillItemToBoard(int x,int y,Cell cell)
    {
        cell.transform.position = Board.GetWorldPosition(x, y);
-       // cell.transform.localScale = new Vector3(boardConfig.CellSize.x,boardConfig.CellSize.y,1);
    }   
    
    private void FillItemToWaitLine(int x,int y,Cell cell)
    {
        cell.transform.position = WaitLine.GetWorldPosition(x, y);
-       // cell.transform.localScale = new Vector3(waitConfig.CellSize.x,waitConfig.CellSize.y,1);
    }
 
    private void FillPersonToWaitLine(int x, int y,Cell cell)

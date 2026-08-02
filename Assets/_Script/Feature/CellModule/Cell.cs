@@ -10,20 +10,23 @@ public class Cell : MonoBehaviour
     public CellDataSO Data { get; private set; }
     public Person CurrentPerson { get; private set; }
     private SpriteRenderer _spriteRenderer;
+    private CellVisual _cellVisual;
     public CellEventHandler CellEventHandler { get; private set; }
     private void Awake()
     {
         _spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
+        _cellVisual = this.GetComponent<CellVisual>();
         CellEventHandler = this.GetComponent<CellEventHandler>();
     }
 
-    public void Initialize(CellDataSO data)
+    public void Initialize(CellDataSO data, Vector2 cellSize)
     {
         Data = data;
         CanSeat = data.DefaultCanSeat;
         CanInteract = data.DefaultCanInteract;
         Type = data.Type;
         if (data.sprite != null) _spriteRenderer.sprite = data.sprite;
+        _cellVisual?.SetCellSize(cellSize);
     }
 
     public void SetPersonToSeat(Person person)

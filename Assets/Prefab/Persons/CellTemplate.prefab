@@ -134,6 +134,7 @@ MonoBehaviour:
   eventHandler: {fileID: 2650220930860692941}
   changeViewDuration: 0.25
   changeViewScale: 1.2
+  cellSizeMultiplier: 0.6
   hoverSprite: {fileID: 1598113066198511301}
   backgroundSprite: {fileID: 1638961278975997020}
   backgroundColorWhenChange: {r: 1, g: 0, b: 0, a: 0}

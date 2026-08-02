@@ -8,12 +8,13 @@ public class CellVisual : MonoBehaviour
     [SerializeField] private CellEventHandler eventHandler;
     [SerializeField] private float changeViewDuration;
     [SerializeField] private float changeViewScale;
+    [SerializeField, Min(0.01f)] private float cellSizeMultiplier = 1f;
     [SerializeField] private SpriteRenderer hoverSprite;
     [SerializeField] private SpriteRenderer backgroundSprite;
     [SerializeField] private Color backgroundColorWhenChange;
     
     private Tween scaleTween;
-    private float baseScale;
+    private Vector3 baseScale;
     private int baseOrderInLayer;
     private Color baseColor;
     private Cell cell;
@@ -25,7 +26,7 @@ public class CellVisual : MonoBehaviour
 
     private void Start()
     {
-        baseScale = hoverSprite.transform.localScale.x;
+        baseScale = hoverSprite.transform.localScale;
         baseOrderInLayer = hoverSprite.sortingOrder;
         baseColor = backgroundSprite.color;
         hoverSprite.enabled = false;
@@ -52,9 +53,10 @@ public class CellVisual : MonoBehaviour
         if(!CanChange()) return;
         if (scaleTween.isAlive)
             scaleTween.Stop();
-        if (hoverSprite.transform.localScale == Vector3.one * viewScale) return;
+        Vector3 targetScale = baseScale * viewScale;
+        if (hoverSprite.transform.localScale == targetScale) return;
         hoverSprite.sortingOrder = orderInLayer;
-        scaleTween = Tween.Scale(hoverSprite.transform, viewScale, changeViewDuration);
+        scaleTween = Tween.Scale(hoverSprite.transform, targetScale, changeViewDuration);
     }
 
     private void ChangeVisualBackGround(Color c)
@@ -85,8 +87,29 @@ public class CellVisual : MonoBehaviour
 
     public void ChangeVisualOnDeselected()
     {
-        ChangeVisualHover(baseScale, baseOrderInLayer);
+        ChangeVisualHover(1f, baseOrderInLayer);
         ChangeVisualBackGround(baseColor);
+    }
+
+    public void SetCellSize(Vector2 cellSize)
+    {
+        if (hoverSprite == null || hoverSprite.sprite == null) return;
+
+        Vector2 spriteSize = hoverSprite.sprite.bounds.size;
+        if (spriteSize.x <= Mathf.Epsilon || spriteSize.y <= Mathf.Epsilon) return;
+
+        Transform visualTransform = hoverSprite.transform;
+        Vector3 parentScale = visualTransform.parent != null
+            ? visualTransform.parent.lossyScale
+            : Vector3.one;
+
+        float scaleX = cellSize.x * cellSizeMultiplier /
+                       (spriteSize.x * Mathf.Max(Mathf.Abs(parentScale.x), Mathf.Epsilon));
+        float scaleY = cellSize.y * cellSizeMultiplier /
+                       (spriteSize.y * Mathf.Max(Mathf.Abs(parentScale.y), Mathf.Epsilon));
+
+        visualTransform.localScale = new Vector3(scaleX, scaleY, visualTransform.localScale.z);
+        baseScale = visualTransform.localScale;
     }
 
     private bool CanChange() => cell.Type == CellType.Seat && cell.CanSeat;

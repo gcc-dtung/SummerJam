@@ -93,12 +93,25 @@ public class FlowManager : Singleton<FlowManager>
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
     }
 
-    public async void BackToMainMenu()
+    public void BackToMainMenu()
     {
         if (isChangingFlow)
             return;
-        SoundManager.PlayBGMSound(BGMType.MainMenu); // co the xoa
+
         isChangingFlow = true;
+
+        if (winPanel != null && winPanel.IsVisible)
+        {
+            winPanel.PlayOutro(BackToMainMenuAfterResultOutro);
+            return;
+        }
+
+        BackToMainMenuAfterResultOutro();
+    }
+
+    private async void BackToMainMenuAfterResultOutro()
+    {
+        SoundManager.PlayBGMSound(BGMType.MainMenu); // co the xoa
         SetAlwaysOnObjectsActive();
         HideResultPanels();
 

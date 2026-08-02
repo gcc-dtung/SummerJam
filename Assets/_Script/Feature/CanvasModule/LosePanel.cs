@@ -102,7 +102,7 @@ public class LosePanel : MonoBehaviour
     private void OnPressAdsButton()
     {
         // TODO: Qc + Anim Qlai Man choi + Them luot
-        MoveManager.Instance.AddMoreMove(5);
+        MoveManager.Instance.AddMoreMove(3);
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
         HideImmediate();
     }

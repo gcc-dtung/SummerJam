@@ -153,6 +153,30 @@ public class FlowManager : Singleton<FlowManager>
         }
     }
 
+    public async void ReplayCurrentLevel()
+    {
+        if (isChangingFlow)
+            return;
+
+        isChangingFlow = true;
+
+        try
+        {
+            if (nextLevelTransition != null)
+            {
+                await nextLevelTransition.PlayAsync(ReplayCurrentLevelWhileCovered);
+            }
+            else
+            {
+                ReplayCurrentLevelWhileCovered();
+            }
+        }
+        finally
+        {
+            isChangingFlow = false;
+        }
+    }
+
     public void ApplyBootState()
     {
         SetRequiredUiRootsActive();
@@ -230,6 +254,12 @@ public class FlowManager : Singleton<FlowManager>
     {
         HideResultPanels();
         GameManager.Instance.UpdateGameState(GameState.SetUp);
+    }
+
+    private void ReplayCurrentLevelWhileCovered()
+    {
+        HideResultPanels();
+        GameManager.Instance.UpdateGameState(GameState.Replay);
     }
 
     private void SetAlwaysOnObjectsActive()

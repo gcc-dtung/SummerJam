@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [Serializable]
 public class LosePhaseIntroAnimation
 {
-    [Header("Lose Panel Fade")]
+    [Header("Panel Fade")]
+    [Tooltip("Assign the full-screen background Image that should fade with the popup.")]
     [SerializeField] private Image losePanelImage;
     [SerializeField] private float losePanelStartAlpha = 0f;
     [SerializeField] private float losePanelTargetAlpha = 0.65f;
@@ -22,6 +23,8 @@ public class LosePhaseIntroAnimation
 
     private Sequence sequence;
 
+    public bool IsConfigured => losePanelImage != null;
+
     public void PrepareLosePanel()
     {
         SetLosePanelAlpha(losePanelStartAlpha);
@@ -34,7 +37,8 @@ public class LosePhaseIntroAnimation
 
     public void Play(
         Transform rootPhase1,
-        CanvasGroup phase1CanvasGroup)
+        CanvasGroup phase1CanvasGroup,
+        bool useUnscaledTime = false)
     {
         Stop();
 
@@ -45,7 +49,7 @@ public class LosePhaseIntroAnimation
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
 
-        sequence = Sequence.Create()
+        sequence = Sequence.Create(useUnscaledTime: useUnscaledTime)
             .Group(Tween.Alpha(
                 losePanelImage,
                 endValue: losePanelTargetAlpha,
@@ -73,13 +77,14 @@ public class LosePhaseIntroAnimation
     public void PlayOutro(
         Transform rootPhase1,
         CanvasGroup phase1CanvasGroup,
-        Action onComplete)
+        Action onComplete,
+        bool useUnscaledTime = false)
     {
         Stop();
 
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
 
-        sequence = Sequence.Create()
+        sequence = Sequence.Create(useUnscaledTime: useUnscaledTime)
             .Group(Tween.Alpha(
                 losePanelImage,
                 endValue: losePanelStartAlpha,

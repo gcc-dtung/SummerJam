@@ -92,6 +92,9 @@ public class SettingPanel : MonoBehaviour
         {
             RestoreTimeScale();
 
+            if (GameManager.Instance != null)
+                GameManager.Instance.ResumeCurrentLevelOnNextStart();
+
             if (FlowManager.Instance != null)
                 FlowManager.Instance.BackToMainMenu();
             else if (CanvasManager.Instance != null)

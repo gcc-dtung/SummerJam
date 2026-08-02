@@ -57,6 +57,11 @@ public class GameManager : Singleton<GameManager>
        isGameStart = false;
     }
 
+    public void ResumeCurrentLevelOnNextStart()
+    {
+        isGameStart = false;
+    }
+
     private void HandleReplay()
     {
         isGameStart = false;

@@ -464,6 +464,16 @@ public class LevelConfigEditor : Editor
             {
                 sizeProp.vector2IntValue = new Vector2Int(5, 1);
             }
+            SerializedProperty posYProp = waitLineObj.FindProperty("PosY");
+            if (posYProp != null)
+            {
+                posYProp.floatValue = 0.175f;
+            }
+            SerializedProperty cellDistProp = waitLineObj.FindProperty("originalCellDistance");
+            if (cellDistProp != null)
+            {
+                cellDistProp.vector2Value = new Vector2(0.25f, 0.15f);
+            }
             waitLineObj.ApplyModifiedProperties();
             newWaitLine.ResetGrid();
 

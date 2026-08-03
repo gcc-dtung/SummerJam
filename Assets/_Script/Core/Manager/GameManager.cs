@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
             SaveLoadManager.Instance.LoadGame();
         }
         SoundManager.PlayBGMSound(BGMType.MainMenu);
+        LevelManager.Instance.LoadLevelText();
         isGameStart = false;
     }
 

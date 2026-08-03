@@ -47,7 +47,7 @@ public class LevelManager : Singleton<LevelManager>
           if (count < 0 || count >= levelConfigs.Count) count = 0;
           OnLevelConfigChange?.Invoke(levelConfigs[count]);
           foreach(var levelText in levelTexts)
-          levelText.text = "Level: " + (count+1).ToString();
+            levelText.text = "Level: " + (count+1).ToString();
           if (Application.isPlaying && SaveLoadManager.Instance != null)
           {
               SaveLoadManager.Instance.SaveGame();
@@ -59,7 +59,7 @@ public class LevelManager : Singleton<LevelManager>
          if (count < 0 || count >= levelConfigs.Count) count = 0;
          OnLevelConfigChange?.Invoke(levelConfigs[count]);
          foreach(var levelText in levelTexts)
-         levelText.text = "Level: " + (count+1).ToString();
+            levelText.text = "Level: " + (count+1).ToString();
      }
  
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Seat
   <Name>k__BackingField: Sofa
   <Type>k__BackingField: 2
-  <DefaultCanSeat>k__BackingField: 1
+  <DefaultCanSeat>k__BackingField: 0
   <DefaultCanInteract>k__BackingField: 1
   <sprite>k__BackingField: {fileID: 0}
   <DefaultPerson>k__BackingField: {fileID: 7446964857329355155, guid: 206dc40b9b5149008d05b743ece19c65, type: 3}

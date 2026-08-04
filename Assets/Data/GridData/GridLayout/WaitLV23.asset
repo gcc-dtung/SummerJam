@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f507a3b80e28c41b255fce39241b5d, type: 3}
+  m_Name: WaitLV23
+  m_EditorClassIdentifier: Assembly-CSharp::GridConfig
+  <Size>k__BackingField: {x: 5, y: 2}
+  originalCellSize: {x: 0.5, y: 0.5}
+  originalCellDistance: {x: 0.25, y: 0.15}
+  PosX: 0.5
+  PosY: 0.175
+  Blocked: {fileID: 11400000, guid: ba950afa0f13eda42b915707b3f62da3, type: 2}
+  BaseGrid:
+  - Values:
+    - {fileID: 11400000, guid: cbb2797d296245fa94f77a9fe00bfcf5, type: 2}
+    - {fileID: 11400000, guid: ca3d446e9837406781b72b2eeb00aa8b, type: 2}
+    - {fileID: 11400000, guid: a4a614b247254d69a5f5682ebeea7303, type: 2}
+    - {fileID: 11400000, guid: 7656ad3ba98141c69036c596799aa6af, type: 2}
+    - {fileID: 11400000, guid: aef4322ff4a84c42b6ef5736edcf18f5, type: 2}
+  - Values:
+    - {fileID: 11400000, guid: 3b7eb6bf0fb14930a230dbdd3193cf60, type: 2}
+    - {fileID: 11400000, guid: 47cf65f6dc25448593de374b3e953a89, type: 2}
+    - {fileID: 11400000, guid: 2e248b71565a4e4cb3607a9e0ab3dab7, type: 2}
+    - {fileID: 11400000, guid: ab804dcb335a43b087263983827c2960, type: 2}
+    - {fileID: 11400000, guid: 10e1cc28349b48c4b2df5b6b4093d8d1, type: 2}

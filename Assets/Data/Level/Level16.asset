@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b8fb91cd291a646bdca7253fc1edc3, type: 3}
+  m_Name: Level16
+  m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
+  <ID>k__BackingField: 16
+  <MoveLimit>k__BackingField: 20
+  <Gold>k__BackingField: 0
+  <Layout>k__BackingField: {fileID: 3344337890212882906, guid: a3e4a1facb8c92e4dacccdde8627cb14, type: 3}
+  <BoardGrid>k__BackingField: {fileID: 11400000, guid: dc90855939c7b3b4994b49852d68b232, type: 2}
+  <WaitLineGrid>k__BackingField: {fileID: 11400000, guid: 3cac47a16ad44a7fa0de5fe5a025b2d7, type: 2}

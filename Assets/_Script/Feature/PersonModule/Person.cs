@@ -73,4 +73,15 @@ public class Person : MonoBehaviour
 
         return sb.ToString();
     }
+
+    public string BuildHateDescription()
+    {
+        for (int i = 0; i < ConditionStatus.Count; i++)
+        {
+            ConditionInfo info = ConditionStatus[i];
+            if(!info.IsSatisfied)
+                return info.HateDescription;
+        }
+        return "I don't want seat here";
+    }
 }

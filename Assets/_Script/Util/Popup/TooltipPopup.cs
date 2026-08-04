@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using PrimeTween;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Rendering;
 
 public class TooltipPopup : MonoBehaviour
@@ -33,6 +36,8 @@ public class TooltipPopup : MonoBehaviour
     private Sequence tooltipSequence;
     private SortingGroup sortingGroup;
     private bool isShow = false;
+    private Coroutine autoHideCoroutine;
+    private IDisposable anyButtonPressSubscription;
 
     private void Awake()
     {
@@ -63,6 +68,7 @@ public class TooltipPopup : MonoBehaviour
     {
         EventBus.RemoveListener(GameEventType.PressOutSide, Hide);
         EventBus.RemoveListener(GameEventType.StartDragPerson, HideImmediate);
+        CancelTemporaryHide();
     }
 
 
@@ -74,6 +80,7 @@ public class TooltipPopup : MonoBehaviour
     public void Show(string personName, string trait, string content)
     {
         EnsureInitialized();
+        CancelTemporaryHide();
 
         if (isShow)
         {
@@ -146,9 +153,30 @@ public class TooltipPopup : MonoBehaviour
         PlayTransition(toScale: 1f, toAlpha: 1f);
     }
 
+    public void ShowTemporary(string personName, string trait, string content, float duration)
+    {
+        if (isShow)
+            HideImmediate();
+
+        Show(personName, trait, content);
+
+        if (!isShow)
+            return;
+
+        if (duration <= 0f)
+        {
+            Hide();
+            return;
+        }
+
+        autoHideCoroutine = StartCoroutine(HideAfterDelay(duration));
+        anyButtonPressSubscription = InputSystem.onAnyButtonPress.CallOnce(_ => Hide());
+    }
+
     public void Hide()
     {
         EnsureInitialized();
+        CancelTemporaryHide();
 
         if (!Application.isPlaying)
         {
@@ -164,6 +192,7 @@ public class TooltipPopup : MonoBehaviour
     public void HideImmediate()
     {
         EnsureInitialized();
+        CancelTemporaryHide();
 
         if (tooltipSequence.isAlive)
             tooltipSequence.Stop();
@@ -172,6 +201,25 @@ public class TooltipPopup : MonoBehaviour
         ChangeColor(new Color(top.color.r, top.color.g, top.color.b, 0f));
         tooltipTransform.localScale = Vector3.zero;
         tooltipTransform.gameObject.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        autoHideCoroutine = null;
+        Hide();
+    }
+
+    private void CancelTemporaryHide()
+    {
+        if (autoHideCoroutine != null)
+        {
+            StopCoroutine(autoHideCoroutine);
+            autoHideCoroutine = null;
+        }
+
+        anyButtonPressSubscription?.Dispose();
+        anyButtonPressSubscription = null;
     }
 
     private void ConfigureSorting()

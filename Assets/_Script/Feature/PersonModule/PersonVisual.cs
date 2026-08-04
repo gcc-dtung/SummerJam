@@ -23,6 +23,9 @@ public class PersonVisual : MonoBehaviour
     [SerializeField] private Vector3 handPosition;
     [SerializeField] private SpriteRenderer handOnPerson;
 
+    [Header("Hate Description")]
+    [SerializeField, Min(0f)] private float hateDescriptionDuration = 2f;
+
     private Person person;
     private SpriteRenderer sprite;
     
@@ -62,6 +65,7 @@ public class PersonVisual : MonoBehaviour
     {
         EventBus.AddListener(GameEventType.Checking, ChangeStatus);
         EventBus.AddListener<Person>(GameEventType.Press, OnPressToAnotherPerson);
+        EventBus.AddListener<Person>(GameEventType.DroppedPerson, ShowHateDescriptionForDroppedPerson);
 
         eventHandler.OnStartDrag += ChangeVisualOnStartDrag;
         eventHandler.OnDraggingWithoutMousePosition += ApplyTraitSkin;
@@ -74,6 +78,7 @@ public class PersonVisual : MonoBehaviour
     {
         EventBus.RemoveListener(GameEventType.Checking, ChangeStatus);
         EventBus.RemoveListener<Person>(GameEventType.Press, OnPressToAnotherPerson);
+        EventBus.RemoveListener<Person>(GameEventType.DroppedPerson, ShowHateDescriptionForDroppedPerson);
 
         eventHandler.OnStartDrag -= ChangeVisualOnStartDrag;
         eventHandler.OnDrop -= ChangeVisualEndDrag;
@@ -114,6 +119,14 @@ public class PersonVisual : MonoBehaviour
 
         ApplyStateSkin();
         ApplyTraitSkin();
+    }
+
+    private void ShowHateDescriptionForDroppedPerson(Person droppedPerson)
+    {
+        if (person != droppedPerson || person.OutSide)
+            return;
+
+        ShowHateDescription();
     }
 
     private void ApplyDefaultSkin()
@@ -243,6 +256,19 @@ public class PersonVisual : MonoBehaviour
 
         if (tooltipPopup != null)
             tooltipPopup.Show(personName, personTrait, personDescription);
+    }
+
+    public void ShowHateDescription()
+    {
+        if (person.IsHappy) return;
+
+        string personName = person.Name;
+        string personTrait = GetTraitText();
+        string personDescription = person.BuildHateDescription();
+
+        if (tooltipPopup != null)
+            tooltipPopup.ShowTemporary(personName, personTrait, personDescription, hateDescriptionDuration);
+
     }
 
     private string GetTraitText()

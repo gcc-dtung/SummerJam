@@ -79,7 +79,7 @@ public class DragAndDropController : MonoBehaviour
             if (currentPerson != null)
             {
                 EventBus.Notify(GameEventType.StopDragPerson);
-                EventBus.Notify<Person>(GameEventType.StopDragPerson, currentPerson);
+                EventBus.Notify<Person>(GameEventType.DroppedPerson, currentPerson);
             }
 
             currentPerson = null;

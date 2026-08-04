@@ -45,8 +45,8 @@ public class GridRenderer : MonoBehaviour
         
         if (activeConfig != null)
         {
-            DrawGrid(activeConfig.BoardGrid, Color.white);
-            DrawGrid(activeConfig.WaitLineGrid, Color.white);
+            DrawGrid(activeConfig.BoardGrid, Color.red);
+            DrawGrid(activeConfig.WaitLineGrid, Color.red);
         }
     }
 }

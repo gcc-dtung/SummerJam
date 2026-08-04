@@ -10,6 +10,7 @@ public class SingleConditionsSO : ConditionsSO
     [field: SerializeField] public Comparator Comparator { get; private set; }
     [field: SerializeField] public int Value { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
+    [field: SerializeField] public string HateDescription { get; private set; }
     private bool isSastified = false;
     public override void ResetConditionInfo(List<ConditionInfo> results)
     {
@@ -17,6 +18,7 @@ public class SingleConditionsSO : ConditionsSO
         results.Add(new ConditionInfo()
         {
             Description = this.Description,
+            HateDescription =  this.HateDescription,
             IsSatisfied =  false
         });        
     }
@@ -27,6 +29,7 @@ public class SingleConditionsSO : ConditionsSO
         results.Add(new ConditionInfo()
         {
             Description = this.Description,
+            HateDescription =  this.HateDescription,
             IsSatisfied =  isSastified
         });        
     }

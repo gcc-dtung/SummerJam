@@ -4,29 +4,29 @@ using UnityEngine;
 
 public static class EventBus
 {
-    private static readonly Dictionary<GameEventType, Delegate> list = new Dictionary<GameEventType, Delegate>();
+    private static readonly Dictionary<GameEventType, List<Delegate>> listeners =
+        new Dictionary<GameEventType, List<Delegate>>();
 
     public static void AddListener(GameEventType key, Action value)
     {
-        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
+        AddListenerInternal(key, value);
     }
 
     public static void AddListener<T>(GameEventType key, Action<T> value)
     {
-        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
+        AddListenerInternal(key, value);
     }
 
     public static void AddListener<T1, T2>(GameEventType key, Action<T1, T2> value)
     {
-        list[key] = Delegate.Combine(list.TryGetValue(key, out var del) ? del : null, value);
+        AddListenerInternal(key, value);
     }
 
     public static void Notify(GameEventType key)
     {
-        if (!list.TryGetValue(key, out var del) || del == null) return;
+        if (!TryGetSnapshot(key, out Delegate[] callbacks)) return;
         
-        var invocationList = del.GetInvocationList();
-        foreach (var callback in invocationList)
+        foreach (Delegate callback in callbacks)
         {
             if (callback is Action action)
             {
@@ -44,10 +44,9 @@ public static class EventBus
 
     public static void Notify<T>(GameEventType key, T data)
     {
-        if (!list.TryGetValue(key, out var del) || del == null) return;
+        if (!TryGetSnapshot(key, out Delegate[] callbacks)) return;
         
-        var invocationList = del.GetInvocationList();
-        foreach (var callback in invocationList)
+        foreach (Delegate callback in callbacks)
         {
             if (callback is Action<T> action)
             {
@@ -65,10 +64,9 @@ public static class EventBus
 
     public static void Notify<T1, T2>(GameEventType key, T1 data1, T2 data2)
     {
-        if (!list.TryGetValue(key, out var del) || del == null) return;
+        if (!TryGetSnapshot(key, out Delegate[] callbacks)) return;
         
-        var invocationList = del.GetInvocationList();
-        foreach (var callback in invocationList)
+        foreach (Delegate callback in callbacks)
         {
             if (callback is Action<T1, T2> action)
             {
@@ -86,37 +84,66 @@ public static class EventBus
 
     public static void RemoveListener(GameEventType key, Action value)
     {
-        if (list.TryGetValue(key, out var del))
-        {
-            var newDel = Delegate.Remove(del, value);
-            if (newDel == null) list.Remove(key);
-            else list[key] = newDel;
-        }
+        RemoveListenerInternal(key, value);
     }
 
     public static void RemoveListener<T>(GameEventType key, Action<T> value)
     {
-        if (list.TryGetValue(key, out var del))
-        {
-            var newDel = Delegate.Remove(del, value);
-            if (newDel == null) list.Remove(key);
-            else list[key] = newDel;
-        }
+        RemoveListenerInternal(key, value);
     }
 
     public static void RemoveListener<T1, T2>(GameEventType key, Action<T1, T2> value)
     {
-        if (list.TryGetValue(key, out var del))
+        RemoveListenerInternal(key, value);
+    }
+
+    private static void AddListenerInternal(GameEventType key, Delegate listener)
+    {
+        if (listener == null)
+            return;
+
+        if (!listeners.TryGetValue(key, out List<Delegate> callbacks))
         {
-            var newDel = Delegate.Remove(del, value);
-            if (newDel == null) list.Remove(key);
-            else list[key] = newDel;
+            callbacks = new List<Delegate>();
+            listeners.Add(key, callbacks);
         }
+
+        callbacks.Add(listener);
+    }
+
+    private static void RemoveListenerInternal(GameEventType key, Delegate listener)
+    {
+        if (listener == null || !listeners.TryGetValue(key, out List<Delegate> callbacks))
+            return;
+
+        for (int i = callbacks.Count - 1; i >= 0; i--)
+        {
+            if (!callbacks[i].Equals(listener))
+                continue;
+
+            callbacks.RemoveAt(i);
+            break;
+        }
+
+        if (callbacks.Count == 0)
+            listeners.Remove(key);
+    }
+
+    private static bool TryGetSnapshot(GameEventType key, out Delegate[] callbacks)
+    {
+        if (!listeners.TryGetValue(key, out List<Delegate> registered) || registered.Count == 0)
+        {
+            callbacks = null;
+            return false;
+        }
+
+        callbacks = registered.ToArray();
+        return true;
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static void Clear()
     {
-        list.Clear();
+        listeners.Clear();
     }
 }

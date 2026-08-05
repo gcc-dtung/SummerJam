@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     private GameObject currentLayOut;
     private bool isGameStart;
     public Action<GameState> OnGameStateChanged;
+    public event Action<LevelConfig, GameObject> OnLevelReady;
     public GameState currentState { get; private set; }
 
     private void Start()
@@ -93,7 +94,8 @@ public class GameManager : Singleton<GameManager>
             currentLayOut = Instantiate(LevelManager.Instance.CurrentLevel.Layout);
             currentLayOut.SetActive(true);
         }
-        
+
+        OnLevelReady?.Invoke(LevelManager.Instance.CurrentLevel, currentLayOut);
     }
 
     private void HandleGamePlay()

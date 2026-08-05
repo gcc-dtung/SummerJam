@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36159903b1ce7eb429943fa47d399904, type: 3}
+  m_Name: Level1Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialSequence
+  levelId: 1
+  version: 1
+  gameplayStartStepIndex: 1
+  steps:
+  - id: press-play
+    instruction: Press here
+    requiredAction: 2
+    sourceTarget: 1
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: waitline-intro
+    instruction: Here is the waitline. Clear it and make every customer happy by
+      placing them in the right seats.
+    requiredAction: 1
+    sourceTarget: 2
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: inspect-customer
+    instruction: Tap this customer to learn what makes them happy.
+    requiredAction: 4
+    sourceTarget: 3
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: read-condition
+    instruction: This customer wants cake nearby.
+    requiredAction: 1
+    sourceTarget: 3
+    destinationTarget: 0
+    minimumDisplayTime: 3
+    dimBackground: 1
+    showArrow: 0
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: cake-clue
+    instruction: We saw his cake! He wants to sit near it.
+    requiredAction: 1
+    sourceTarget: 3
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 0
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: prepare-drag
+    instruction: Now bring him up to see where he can sit.
+    requiredAction: 1
+    sourceTarget: 3
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: start-drag
+    instruction: Drag this customer upward to continue.
+    requiredAction: 5
+    sourceTarget: 3
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 0
+    showHand: 1
+    keepTargetHighlighted: 1
+  - id: valid-seats
+    instruction: While dragging, available seats are highlighted like this.
+    requiredAction: 1
+    sourceTarget: 6
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: place-customer
+    instruction: Drag the customer into this highlighted seat.
+    requiredAction: 6
+    sourceTarget: 3
+    destinationTarget: 6
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 0
+    showHand: 1
+    keepTargetHighlighted: 1
+  - id: move-cost
+    instruction: Placing a customer costs 1 move. If you run out of moves, you lose.
+    requiredAction: 1
+    sourceTarget: 11
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: booster-intro
+    instruction: If a level is too hard, boosters can make it much easier.
+    requiredAction: 1
+    sourceTarget: 7
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 0
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: remove-booster
+    instruction: Drag this booster to a customer to remove all of their conditions.
+    requiredAction: 1
+    sourceTarget: 8
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: more-moves-booster
+    instruction: This booster grants 5 additional moves.
+    requiredAction: 1
+    sourceTarget: 9
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  - id: undo-booster
+    instruction: This booster undoes your last move without a move cost.
+    requiredAction: 1
+    sourceTarget: 10
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+  runtimeTargets:
+  - targetId: 2
+    grid: 1
+    targetObject: 0
+    coordinate: {x: 0, y: 0}
+  - targetId: 3
+    grid: 1
+    targetObject: 1
+    coordinate: {x: 0, y: 0}
+  - targetId: 6
+    grid: 0
+    targetObject: 0
+    coordinate: {x: 0, y: 3}

@@ -12,5 +12,6 @@ public enum GameEventType
     StartDragItem = 7,
     DraggingItem = 8,
     StopDragItem = 9,
-    DroppedPerson = 10
+    DroppedPerson = 10,
+    BoosterUsed = 11
 }

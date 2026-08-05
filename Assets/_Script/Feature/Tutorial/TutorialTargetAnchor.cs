@@ -15,7 +15,8 @@ public enum TutorialTargetId
     RemoveBooster = 8,
     MoreMoveBooster = 9,
     UndoBooster = 10,
-    MoveCounter = 11
+    MoveCounter = 11,
+    CakeItem = 12
 }
 
 [DisallowMultipleComponent]

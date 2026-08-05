@@ -10,7 +10,7 @@ public sealed class TutorialWorldViewEditor : Editor
 
         EditorGUILayout.HelpBox(
             "Play Mode authoring: run a World presentation step, select TutorialLayer, " +
-            "then move and scale the yellow spotlight handles in Scene View. " +
+            "then edit the yellow spotlight and cyan instruction handles in Scene View. " +
             "Changes are saved to the TutorialSequence asset.",
             MessageType.Info);
 
@@ -64,7 +64,9 @@ public sealed class TutorialWorldViewEditor : Editor
             stepProperty.FindPropertyRelative("worldHighlightOffset");
         SerializedProperty sizeProperty =
             stepProperty.FindPropertyRelative("worldHighlightSizeDelta");
-        if (offsetProperty == null || sizeProperty == null)
+        SerializedProperty instructionOffsetProperty =
+            stepProperty.FindPropertyRelative("worldInstructionOffset");
+        if (offsetProperty == null || sizeProperty == null || instructionOffsetProperty == null)
             return;
 
         sequenceObject.Update();
@@ -83,6 +85,7 @@ public sealed class TutorialWorldViewEditor : Editor
             center + (Vector3.up * ((size.y * 0.5f) + 0.2f)),
             $"Step {stepIndex}: {step.Id}\nMove = offset, Scale = size");
 
+        bool changed = false;
         EditorGUI.BeginChangeCheck();
         Vector3 editedCenter = Handles.PositionHandle(center, Quaternion.identity);
         float handleSize = HandleUtility.GetHandleSize(center) * 0.8f;
@@ -92,22 +95,54 @@ public sealed class TutorialWorldViewEditor : Editor
             Quaternion.identity,
             handleSize);
 
-        if (!EditorGUI.EndChangeCheck())
-            return;
+        if (EditorGUI.EndChangeCheck())
+        {
+            editedCenter.z = targetBounds.center.z;
+            editedSize.x = Mathf.Max(0.01f, editedSize.x);
+            editedSize.y = Mathf.Max(0.01f, editedSize.y);
 
-        editedCenter.z = targetBounds.center.z;
-        editedSize.x = Mathf.Max(0.01f, editedSize.x);
-        editedSize.y = Mathf.Max(0.01f, editedSize.y);
+            Undo.RecordObject(sequence, "Edit Tutorial World Spotlight");
+            offsetProperty.vector2Value = new Vector2(
+                editedCenter.x - targetBounds.center.x,
+                editedCenter.y - targetBounds.center.y);
+            sizeProperty.vector2Value = new Vector2(
+                editedSize.x - targetBounds.size.x,
+                editedSize.y - targetBounds.size.y);
+            sequenceObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(sequence);
+            changed = true;
+        }
 
-        Undo.RecordObject(sequence, "Edit Tutorial World Spotlight");
-        offsetProperty.vector2Value = new Vector2(
-            editedCenter.x - targetBounds.center.x,
-            editedCenter.y - targetBounds.center.y);
-        sizeProperty.vector2Value = new Vector2(
-            editedSize.x - targetBounds.size.x,
-            editedSize.y - targetBounds.size.y);
-        sequenceObject.ApplyModifiedProperties();
-        EditorUtility.SetDirty(sequence);
-        SceneView.RepaintAll();
+        Vector2 instructionOffset = instructionOffsetProperty.vector2Value;
+        Vector3 instructionPosition = targetBounds.center +
+            new Vector3(instructionOffset.x, instructionOffset.y, 0f);
+
+        Handles.color = new Color(0.1f, 0.9f, 1f, 1f);
+        Handles.DrawDottedLine(targetBounds.center, instructionPosition, 4f);
+        Handles.DrawWireDisc(
+            instructionPosition,
+            Vector3.forward,
+            HandleUtility.GetHandleSize(instructionPosition) * 0.08f);
+        Handles.Label(
+            instructionPosition +
+            (Vector3.up * HandleUtility.GetHandleSize(instructionPosition) * 0.12f),
+            "Instruction anchor");
+
+        EditorGUI.BeginChangeCheck();
+        Vector3 editedInstructionPosition =
+            Handles.PositionHandle(instructionPosition, Quaternion.identity);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(sequence, "Move Tutorial World Instruction");
+            instructionOffsetProperty.vector2Value = new Vector2(
+                editedInstructionPosition.x - targetBounds.center.x,
+                editedInstructionPosition.y - targetBounds.center.y);
+            sequenceObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(sequence);
+            changed = true;
+        }
+
+        if (changed)
+            SceneView.RepaintAll();
     }
 }

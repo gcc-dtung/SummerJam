@@ -23,72 +23,171 @@ MonoBehaviour:
     destinationTarget: 0
     minimumDisplayTime: 0
     dimBackground: 1
-    showArrow: 1
+    showArrow: 0
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: waitline-intro
-    instruction: Here is the waitline. Clear it and make every customer happy by
-      placing them in the right seats.
+    instruction: "Here is the waitline. We have to\nclear this waitline and make\neveryone
+      happy by placing them \nin the right seats"
     requiredAction: 1
     sourceTarget: 2
     destinationTarget: 0
     minimumDisplayTime: 0
     dimBackground: 1
-    showArrow: 1
+    showArrow: 0
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 1.05, y: 0}
+    worldHighlightSizeDelta: {x: 2.37, y: -0.05}
+    worldInstructionOffset: {x: 1.1, y: 3}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 1
+    fontAsset: {fileID: 11400000, guid: ea0cd94cec8d0ed4e9866c56f57df2ba, type: 2}
+    fontSize: 54.69
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: inspect-customer
-    instruction: Tap this customer to learn what makes them happy.
+    instruction: "Try pressing on this \nguy to see how to \nmake him happy"
     requiredAction: 4
     sourceTarget: 3
     destinationTarget: 0
     minimumDisplayTime: 0
     dimBackground: 1
-    showArrow: 1
+    showArrow: 0
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: -100}
+    spotlightSizeDelta: {x: -50, y: -50}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0.01, y: 0.4}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 2.23}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 1
+    fontAsset: {fileID: 11400000, guid: d7c05e9807ab76644b8eebdef652f01c, type: 2}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: read-condition
-    instruction: This customer wants cake nearby.
+    instruction: 
     requiredAction: 1
-    sourceTarget: 3
+    sourceTarget: 4
     destinationTarget: 0
     minimumDisplayTime: 3
-    dimBackground: 1
+    dimBackground: 0
     showArrow: 0
     showHand: 0
-    keepTargetHighlighted: 1
+    keepTargetHighlighted: 0
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 100, y: 100}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: cake-clue
-    instruction: We saw his cake! He wants to sit near it.
+    instruction: 'We saw his cake! '
     requiredAction: 1
-    sourceTarget: 3
+    sourceTarget: 12
     destinationTarget: 0
     minimumDisplayTime: 0
     dimBackground: 1
     showArrow: 0
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: -21.1, y: 619.5}
+    spotlightSizeDelta: {x: -100, y: -100}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 1}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 1
+    fontAsset: {fileID: 11400000, guid: d7c05e9807ab76644b8eebdef652f01c, type: 2}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: prepare-drag
-    instruction: Now bring him up to see where he can sit.
-    requiredAction: 1
-    sourceTarget: 3
-    destinationTarget: 0
-    minimumDisplayTime: 0
-    dimBackground: 1
-    showArrow: 1
-    showHand: 0
-    keepTargetHighlighted: 1
-  - id: start-drag
-    instruction: Drag this customer upward to continue.
+    instruction: "Now bring him up to \nsee where he can sit."
     requiredAction: 5
     sourceTarget: 3
     destinationTarget: 0
     minimumDisplayTime: 0
     dimBackground: 1
-    showArrow: 0
-    showHand: 1
+    showArrow: 1
+    showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: -100}
+    spotlightSizeDelta: {x: -50, y: -50}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0.44}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 1.52}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: valid-seats
-    instruction: While dragging, available seats are highlighted like this.
+    instruction: When drag someone, places can be seated will be highlighted like
+      these
     requiredAction: 1
     sourceTarget: 6
     destinationTarget: 0
@@ -97,16 +196,52 @@ MonoBehaviour:
     showArrow: 1
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 1.18, y: 0}
+    worldHighlightSizeDelta: {x: 2.85, y: 0.36}
+    worldInstructionOffset: {x: 1.1, y: -1.05}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 1
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: place-customer
-    instruction: Drag the customer into this highlighted seat.
+    instruction: Drag here
     requiredAction: 6
     sourceTarget: 3
     destinationTarget: 6
     minimumDisplayTime: 0
     dimBackground: 1
     showArrow: 0
-    showHand: 1
+    showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 1
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0.03, y: -0.01}
+    worldHighlightSizeDelta: {x: 0.21, y: 0.18}
+    worldInstructionOffset: {x: 0, y: 0.54}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 1
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: move-cost
     instruction: Placing a customer costs 1 move. If you run out of moves, you lose.
     requiredAction: 1
@@ -117,6 +252,24 @@ MonoBehaviour:
     showArrow: 1
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: booster-intro
     instruction: If a level is too hard, boosters can make it much easier.
     requiredAction: 1
@@ -127,26 +280,24 @@ MonoBehaviour:
     showArrow: 0
     showHand: 0
     keepTargetHighlighted: 1
-  - id: remove-booster
-    instruction: Drag this booster to a customer to remove all of their conditions.
-    requiredAction: 1
-    sourceTarget: 8
-    destinationTarget: 0
-    minimumDisplayTime: 0
-    dimBackground: 1
-    showArrow: 1
-    showHand: 0
-    keepTargetHighlighted: 1
-  - id: more-moves-booster
-    instruction: This booster grants 5 additional moves.
-    requiredAction: 1
-    sourceTarget: 9
-    destinationTarget: 0
-    minimumDisplayTime: 0
-    dimBackground: 1
-    showArrow: 1
-    showHand: 0
-    keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   - id: undo-booster
     instruction: This booster undoes your last move without a move cost.
     requiredAction: 1
@@ -157,6 +308,80 @@ MonoBehaviour:
     showArrow: 1
     showHand: 0
     keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
+  - id: remove-booster
+    instruction: Drag this booster to a customer to remove all of their conditions.
+    requiredAction: 1
+    sourceTarget: 8
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
+  - id: more-moves-booster
+    instruction: This booster grants 5 additional moves.
+    requiredAction: 1
+    sourceTarget: 9
+    destinationTarget: 0
+    minimumDisplayTime: 0
+    dimBackground: 1
+    showArrow: 1
+    showHand: 0
+    keepTargetHighlighted: 1
+    presentationSpace: 0
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
+    instructionOffset: {x: 0, y: 0}
+    continuePromptOffset: {x: 0, y: 0}
+    arrowOffset: {x: 0, y: 0}
+    handOffset: {x: 0, y: 0}
+    worldHighlightOffset: {x: 0, y: 0}
+    worldHighlightSizeDelta: {x: 0, y: 0}
+    worldInstructionOffset: {x: 0, y: 0}
+    worldArrowOffset: {x: 0, y: 0}
+    worldHandOffset: {x: 0, y: 0}
+    overrideTypography: 0
+    fontAsset: {fileID: 0}
+    fontSize: 48
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlignment: 514
   runtimeTargets:
   - targetId: 2
     grid: 1
@@ -170,3 +395,7 @@ MonoBehaviour:
     grid: 0
     targetObject: 0
     coordinate: {x: 0, y: 3}
+  - targetId: 12
+    grid: 0
+    targetObject: 0
+    coordinate: {x: 0, y: 2}

@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00073118374, y: 0}
+  m_AnchoredPosition: {x: 0.00047607144, y: 0}
   m_SizeDelta: {x: 0, y: 337.94}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &46474194
@@ -5698,7 +5698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0007480303, y: 0}
+  m_AnchoredPosition: {x: 0.00047607144, y: 0}
   m_SizeDelta: {x: 0, y: 337.94}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &634926090
@@ -14474,7 +14474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ff7633046baec44927a0893a660647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridRenderer
-  debugLevelConfig: {fileID: 11400000, guid: 60427c945981dbf419e363b1127c41f3, type: 2}
+  debugLevelConfig: {fileID: 11400000, guid: 148fb32a28612ca4387fc7395f671e0e, type: 2}
 --- !u!114 &1573915430
 MonoBehaviour:
   m_ObjectHideFlags: 0

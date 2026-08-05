@@ -84,13 +84,13 @@ MonoBehaviour:
     showHand: 0
     keepTargetHighlighted: 1
     presentationSpace: 1
-    spotlightOffset: {x: 0, y: -100}
-    spotlightSizeDelta: {x: -50, y: -50}
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
     instructionOffset: {x: 0, y: 0}
     continuePromptOffset: {x: 0, y: 0}
     arrowOffset: {x: 0, y: 0}
     handOffset: {x: 0, y: 0}
-    worldHighlightOffset: {x: 0.01, y: 0.4}
+    worldHighlightOffset: {x: 0, y: 0}
     worldHighlightSizeDelta: {x: 0, y: 0}
     worldInstructionOffset: {x: 0, y: 2.23}
     worldArrowOffset: {x: 0, y: 0}
@@ -106,14 +106,14 @@ MonoBehaviour:
     requiredAction: 1
     sourceTarget: 4
     destinationTarget: 0
-    minimumDisplayTime: 3
+    minimumDisplayTime: 0
     dimBackground: 0
     showArrow: 0
     showHand: 0
     keepTargetHighlighted: 0
     presentationSpace: 1
     spotlightOffset: {x: 0, y: 0}
-    spotlightSizeDelta: {x: 100, y: 100}
+    spotlightSizeDelta: {x: 0, y: 100}
     instructionOffset: {x: 0, y: 0}
     continuePromptOffset: {x: 0, y: 0}
     arrowOffset: {x: 0, y: 0}
@@ -140,8 +140,8 @@ MonoBehaviour:
     showHand: 0
     keepTargetHighlighted: 1
     presentationSpace: 1
-    spotlightOffset: {x: -21.1, y: 619.5}
-    spotlightSizeDelta: {x: -100, y: -100}
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
     instructionOffset: {x: 0, y: 0}
     continuePromptOffset: {x: 0, y: 0}
     arrowOffset: {x: 0, y: 0}
@@ -186,11 +186,10 @@ MonoBehaviour:
     fontColor: {r: 1, g: 1, b: 1, a: 1}
     textAlignment: 514
   - id: valid-seats
-    instruction: When drag someone, places can be seated will be highlighted like
-      these
-    requiredAction: 1
-    sourceTarget: 6
-    destinationTarget: 0
+    instruction: Drag this customer into one of the highlighted seats.
+    requiredAction: 6
+    sourceTarget: 3
+    destinationTarget: 6
     minimumDisplayTime: 0
     dimBackground: 1
     showArrow: 1
@@ -214,16 +213,16 @@ MonoBehaviour:
     fontStyle: 0
     fontColor: {r: 1, g: 1, b: 1, a: 1}
     textAlignment: 514
-  - id: place-customer
-    instruction: Drag here
-    requiredAction: 6
-    sourceTarget: 3
-    destinationTarget: 6
+  - id: place-customer-auto-skip
+    instruction: 
+    requiredAction: 3
+    sourceTarget: 0
+    destinationTarget: 0
     minimumDisplayTime: 0
-    dimBackground: 1
+    dimBackground: 0
     showArrow: 0
     showHand: 0
-    keepTargetHighlighted: 1
+    keepTargetHighlighted: 0
     presentationSpace: 1
     spotlightOffset: {x: 0, y: 0}
     spotlightSizeDelta: {x: 0, y: 0}

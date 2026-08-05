@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager : Singleton<ShopManager>
+public static class ShopManager
 {
-    public bool TryPurchaseSlot(ShopSlot slot)
+    public static bool TryPurchaseSlot(ShopSlot slot)
     {
         if (!slot.CanPurchase) {Debug.Log("Reached The Dayily Limit"); return false;}
         ShopItemData itemData = slot.ItemData;
@@ -48,7 +48,7 @@ public class ShopManager : Singleton<ShopManager>
         return true;
     }
     
-    private void GrantReward(RewardType type, int quantity)
+    private static void GrantReward(RewardType type, int quantity)
     {
         switch (type)
         {

@@ -140,8 +140,8 @@ MonoBehaviour:
     showHand: 0
     keepTargetHighlighted: 1
     presentationSpace: 1
-    spotlightOffset: {x: -21.1, y: 619.5}
-    spotlightSizeDelta: {x: -100, y: -100}
+    spotlightOffset: {x: 0, y: 0}
+    spotlightSizeDelta: {x: 0, y: 0}
     instructionOffset: {x: 0, y: 0}
     continuePromptOffset: {x: 0, y: 0}
     arrowOffset: {x: 0, y: 0}

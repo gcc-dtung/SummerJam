@@ -9,6 +9,7 @@ public class GameData
     public Dictionary<int, int> shopPurchasedCounts;
     public int currentGold;
     public int currentGem;
+    public int CurrentWeekReward;
     public DateTime lastTime;
     public GameData()
     {
@@ -20,6 +21,7 @@ public class GameData
             boosterCounts.Add(boost, 1);
         currentGold = 0;
         currentGem = 0;
+        CurrentWeekReward = 0;
         lastTime = DateTime.Now;
     }
 }

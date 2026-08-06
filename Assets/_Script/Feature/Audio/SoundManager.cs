@@ -12,7 +12,7 @@ public class SoundManager : Singleton<SoundManager>
    public void MuteAndUnMuteSFX() => sfxSource.mute = !sfxSource.mute;
    public void MuteAndUnMuteBGM() => bgmSource.mute = !bgmSource.mute;
    
-   public static void PlaySFXSound(SFXType type, float volume = 1)
+   public static void PlaySFXSound(SFXType type, float volume = 0) // nho sua
    {
       AudioClip[] audioClips = Instance.SFXList[(int)type].AudioList;
       AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];
@@ -20,7 +20,7 @@ public class SoundManager : Singleton<SoundManager>
       Instance.sfxSource.PlayOneShot(randomClip,volume);
    }
 
-   public static void PlayBGMSound(BGMType type, float volume = 1)
+   public static void PlayBGMSound(BGMType type, float volume = 0) // nho sua
    {
       AudioClip[] audioClips = Instance.BGMList[(int)type].AudioList;
       AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];

@@ -10,6 +10,7 @@ public class GameData
     public int currentGold;
     public int currentGem;
     public int CurrentWeekReward;
+    public bool HadClaimWeekReward;
     public DateTime lastTime;
     public GameData()
     {
@@ -22,6 +23,7 @@ public class GameData
         currentGold = 0;
         currentGem = 0;
         CurrentWeekReward = 0;
+        HadClaimWeekReward = false;
         lastTime = DateTime.Now;
     }
 }

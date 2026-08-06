@@ -5,18 +5,12 @@ using UnityEngine.UI;
 
 public class WeeklyClaim : MonoBehaviour
 {
-   [SerializeField] private WeekReward data;
+   private WeekReward data;
    [SerializeField] private Image icon;
    [SerializeField] private GameObject claimedIcon;
    [SerializeField] private TextMeshProUGUI quanty;
    [SerializeField] private Button claimButton;
-
-   private void Start()
-   {
-      icon.sprite = data.icon;
-      quanty.text = data.Quanty.ToString();
-   }
-
+   
    private void OnEnable()
    {
       claimButton.onClick.AddListener(Claim);
@@ -29,7 +23,7 @@ public class WeeklyClaim : MonoBehaviour
 
    public void Init(WeekReward data)
    {
-      this.data = data;
+      this.data = Instantiate(data);
       icon.sprite = data.icon;
       quanty.text = data.Quanty.ToString();
    }
@@ -57,6 +51,10 @@ public class WeeklyClaim : MonoBehaviour
       GrantReward(data.RewardType,data.Quanty);
       claimButton.interactable = false;
       claimedIcon.SetActive(true);
+      if (WeeklyClaimManager.Instance != null)
+      {
+         WeeklyClaimManager.Instance.ClaimCurrentDay();
+      }
    }
    
    private void GrantReward(RewardType type, int quantity)

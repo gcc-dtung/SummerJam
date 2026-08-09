@@ -1,4 +1,4 @@
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR && SUMMERJAM_CHEATS
 using System;
 using UnityEngine;
 

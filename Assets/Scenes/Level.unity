@@ -15349,7 +15349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.197, y: -99.888916}
+  m_AnchoredPosition: {x: 0.197, y: -99.88916}
   m_SizeDelta: {x: 394.238, y: 100.104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656872905
@@ -15442,12 +15442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498d298fa0d469948af79c0561ff96ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavButtonGroup
-  navButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  canvasMainMenu: {fileID: 1431903131}
-  defaultIndex: 1
 --- !u!1 &1662942792
 GameObject:
   m_ObjectHideFlags: 0
@@ -18799,7 +18793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.197, y: -99.888916}
+  m_AnchoredPosition: {x: 0.197, y: -99.88916}
   m_SizeDelta: {x: 394.238, y: 100.104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981169095

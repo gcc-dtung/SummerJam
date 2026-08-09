@@ -1,6 +1,7 @@
 using System;
 using Coffee.UIExtensions;
 using PrimeTween;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,6 +80,8 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private CanvasGroup phase1CanvasGroup;
     [SerializeField] private Button rewardButton;
     [SerializeField] private Button adsButton;
+    [SerializeField] private TextMeshProUGUI rewardAmountText;
+    [SerializeField] private TextMeshProUGUI adsRewardAmountText;
 
     [Header("Phase 2")] 
     [SerializeField] private Transform rootPhase2;
@@ -91,6 +94,7 @@ public class WinPanel : MonoBehaviour
     private Vector2 upPanelShownPosition;
     private Sequence outroSequence;
     private bool isClosing;
+    private int currentRewardAmount;
 
     public bool IsVisible => winPanelParent != null && winPanelParent.gameObject.activeInHierarchy;
 
@@ -99,6 +103,7 @@ public class WinPanel : MonoBehaviour
         wellDoneLetters ??= Array.Empty<Image>();
         winVfxSystems ??= Array.Empty<ParticleSystem>();
         ResolveUpPanel();
+        ResolveRewardTexts();
         CacheWinLayoutTargetScales();
 
         if (uiParticle != null)
@@ -135,6 +140,7 @@ public class WinPanel : MonoBehaviour
         introSequence.Stop();
         phaseTransitionAnimation.Stop();
         outroSequence.Stop();
+        UpdateRewardAmount();
 
         winPanelParent.gameObject.SetActive(true);
 
@@ -157,7 +163,7 @@ public class WinPanel : MonoBehaviour
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
 
         // TODO : Anim Cong Vang
-        EconomyManager.Instance.GetGold(LevelManager.Instance.CurrentLevel.Gold);
+        EconomyManager.Instance.GetGold(currentRewardAmount);
         NextPhase();
     }
 
@@ -169,7 +175,28 @@ public class WinPanel : MonoBehaviour
         CanvasGroupUtility.SetInteractable(phase1CanvasGroup, false);
 
         // TODO : Ads + Anim
+        EconomyManager.Instance.GetGold(currentRewardAmount * 2);
         NextPhase();
+    }
+
+    private void ResolveRewardTexts()
+    {
+        if (rewardAmountText == null && rewardButton != null)
+            rewardAmountText = rewardButton.GetComponentInChildren<TextMeshProUGUI>(true);
+
+        if (adsRewardAmountText == null && adsButton != null)
+            adsRewardAmountText = adsButton.GetComponentInChildren<TextMeshProUGUI>(true);
+    }
+
+    private void UpdateRewardAmount()
+    {
+        currentRewardAmount = LevelManager.Instance.CurrentLevel.Gold;
+
+        if (rewardAmountText != null)
+            rewardAmountText.text = "+" + currentRewardAmount;
+
+        if (adsRewardAmountText != null)
+            adsRewardAmountText.text = "+" + currentRewardAmount * 2;
     }
 
     public void HideImmediate()

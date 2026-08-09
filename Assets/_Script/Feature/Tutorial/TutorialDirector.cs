@@ -6,6 +6,7 @@ using UnityEngine;
 public class TutorialDirector : MonoBehaviour
 {
     [Header("Configuration")]
+    [SerializeField] private bool tutorialEnabled = false;
     [SerializeField] private TutorialSequence tutorialSequence;
     [Tooltip("Scene roots containing tutorial targets, such as the main menu and gameplay canvases.")]
     [SerializeField] private List<GameObject> targetRoots = new List<GameObject>();
@@ -26,8 +27,9 @@ public class TutorialDirector : MonoBehaviour
     public event Action<int, TutorialStepData> OnStepExited;
     public event Action OnTutorialCompleted;
 
+    public bool IsEnabled => tutorialEnabled;
     public bool IsTutorialPending { get; private set; }
-    public bool IsRunning => stateMachine.IsRunning;
+    public bool IsRunning => tutorialEnabled && stateMachine.IsRunning;
     public int CurrentStepIndex => stateMachine.CurrentStepIndex;
     public LevelConfig ActiveLevel { get; private set; }
     public GameObject ActiveLayout { get; private set; }
@@ -45,6 +47,9 @@ public class TutorialDirector : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!tutorialEnabled)
+            return;
+
         if (gameManager != null)
             gameManager.OnLevelReady += HandleLevelReady;
 
@@ -56,6 +61,9 @@ public class TutorialDirector : MonoBehaviour
 
     private void Start()
     {
+        if (!tutorialEnabled)
+            return;
+
         TryStartMainMenuTutorial();
     }
 
@@ -90,7 +98,7 @@ public class TutorialDirector : MonoBehaviour
 
     public bool BeginTutorial(int startStepIndex = 0)
     {
-        if (!IsTutorialPending || stateMachine.IsRunning)
+        if (!tutorialEnabled || !IsTutorialPending || stateMachine.IsRunning)
             return false;
 
         if (tutorialSequence == null || tutorialSequence.StepCount <= 0)
@@ -242,13 +250,18 @@ public class TutorialDirector : MonoBehaviour
         ActiveLevel = levelConfig;
         ActiveLayout = layout;
         UnbindTargetEvents();
+        IsTutorialPending = false;
+        awaitingGameplayLoad = false;
+        resumeStepAfterGameplayLoad = -1;
+
+        if (!tutorialEnabled)
+            return;
+
         BindRuntimeTargets();
         targetRegistry.Rebuild(targetRoots, layout);
         RegisterRuntimeTargets();
         BindTargetEvents();
         IsTutorialPending = ShouldStartTutorial(levelConfig);
-        awaitingGameplayLoad = false;
-        resumeStepAfterGameplayLoad = -1;
 
         if (IsTutorialPending)
         {
@@ -268,7 +281,8 @@ public class TutorialDirector : MonoBehaviour
 
     private void TryStartMainMenuTutorial()
     {
-        if (stateMachine.IsRunning || tutorialSequence == null || LevelManager.Instance == null)
+        if (!tutorialEnabled || stateMachine.IsRunning || tutorialSequence == null ||
+            LevelManager.Instance == null)
             return;
 
         IReadOnlyList<LevelConfig> levels = LevelManager.Instance.LevelConfigs;
@@ -360,6 +374,9 @@ public class TutorialDirector : MonoBehaviour
 
     private bool ShouldStartTutorial(LevelConfig levelConfig)
     {
+        if (!tutorialEnabled)
+            return false;
+
         if (tutorialSequence == null || tutorialSequence.StepCount <= 0)
             return false;
 

@@ -39,4 +39,9 @@ public class Cell : MonoBehaviour
         this.X = X;
         this.Y = Y;
     }
+
+    public void OverrideCellType(CellType type)
+    {
+        Type = type;
+    }
 }

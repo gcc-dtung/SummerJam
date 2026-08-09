@@ -74,6 +74,10 @@ public class CanvasTransition : MonoBehaviour
         await PlaySquareInAsync();
 
         onCovered?.Invoke();
+
+        // Đợi 1 frame để Unity tải xong Level và dựng xong UI mới dưới mặt nạ che màn hình
+        await Awaitable.NextFrameAsync();
+
         squareCover.gameObject.SetActive(false);
         circleOverlay.gameObject.SetActive(true);
 

@@ -7,11 +7,35 @@ public class ScoreManager : MonoBehaviour
     [SerializeField,Range(0,1)] private float threeStarThresHold;
     public int lastStart { get; private set; }
     [SerializeField] private TextMeshProUGUI text;
-  
-    private void Update()
+
+    private void OnEnable()
+    {
+        if (MoveManager.Instance != null)
+            MoveManager.Instance.OnStepRemainChanged += HandleStepRemainChanged;
+    }
+
+    private void Start()
+    {
+        RefreshScore();
+    }
+
+    private void OnDisable()
+    {
+        if (MoveManager.Instance != null)
+            MoveManager.Instance.OnStepRemainChanged -= HandleStepRemainChanged;
+    }
+
+    private void HandleStepRemainChanged(int stepRemain)
+    {
+        RefreshScore();
+    }
+
+    private void RefreshScore()
     {
         Calculate();
-        text.text = "Score: " + lastStart.ToString(); // để tạm
+
+        if (text != null)
+            text.SetText("Score: {0}", lastStart);
     }
 
     public void Calculate()

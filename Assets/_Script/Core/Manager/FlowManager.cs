@@ -102,15 +102,21 @@ public class FlowManager : Singleton<FlowManager>
 
         if (winPanel != null && winPanel.IsVisible)
         {
-            winPanel.PlayOutro(BackToMainMenuAfterResultOutro);
+            winPanel.PlayOutro(() => BackToMainMenuAfterResultOutro(true));
             return;
         }
 
-        BackToMainMenuAfterResultOutro();
+        BackToMainMenuAfterResultOutro(false);
     }
 
-    private async void BackToMainMenuAfterResultOutro()
+    private async void BackToMainMenuAfterResultOutro(bool advanceAfterWin)
     {
+        if (advanceAfterWin)
+        {
+            LevelManager.Instance.LoadNextLevel();
+            GameManager.Instance.ResumeCurrentLevelOnNextStart();
+        }
+
         SoundManager.PlayBGMSound(BGMType.MainMenu); // co the xoa
         SetAlwaysOnObjectsActive();
         HideResultPanels();

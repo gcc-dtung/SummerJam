@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Performance")]
+    [SerializeField, Range(30, 120)] private int targetFrameRate = 60;
+
     [SerializeField] private CanvasTransition _transition;
     private GameObject currentLayOut;
     private bool isGameStart;
     public Action<GameState> OnGameStateChanged;
     public event Action<LevelConfig, GameObject> OnLevelReady;
     public GameState currentState { get; private set; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFrameRate;
+    }
 
     private void Start()
     {

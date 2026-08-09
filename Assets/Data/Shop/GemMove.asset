@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8160413cba07bbd4b96d5953c2451906, type: 3}
-  m_Name: Gold 4
+  m_Name: GemMove
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemData
-  <ItemIcon>k__BackingField: {fileID: 8687562229967862316, guid: ece9a0a06442965408680d2f9666734c, type: 3}
+  <ItemIcon>k__BackingField: {fileID: -5018178478513508514, guid: 0f7b753969b385f4996429f258214570, type: 3}
   <ID>k__BackingField: 0
   <CostAmount>k__BackingField: 100
-  <Quantity>k__BackingField: 5
-  <PurchaseLimitPerDay>k__BackingField: 30
+  <Quantity>k__BackingField: 1
+  <PurchaseLimitPerDay>k__BackingField: 100000
   <CostCurrency>k__BackingField: 1
-  <RewardType>k__BackingField: 0
+  <RewardType>k__BackingField: 2

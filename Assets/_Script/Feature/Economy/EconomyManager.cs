@@ -23,11 +23,11 @@ public class EconomyManager : Singleton<EconomyManager>
     LoadData();
   }
 
-  private void Update()
-  {
-    text.text = "Gold: " + CurrentGold.ToString();
-    Gemtext.text = "Gem: " + CurrentGem.ToString();
-  }
+  // private void Update()
+  // {
+  //   text.text = "Gold: " + CurrentGold.ToString();
+  //   Gemtext.text = "Gem: " + CurrentGem.ToString();
+  // }
 
   public void InitializeData(int gold, int gem)
   {

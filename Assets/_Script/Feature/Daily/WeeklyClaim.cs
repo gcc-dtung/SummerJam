@@ -9,17 +9,7 @@ public class WeeklyClaim : MonoBehaviour
    [SerializeField] private Image icon;
    [SerializeField] private GameObject claimedIcon;
    [SerializeField] private TextMeshProUGUI quanty;
-   [SerializeField] private Button claimButton;
    
-   private void OnEnable()
-   {
-      claimButton.onClick.AddListener(Claim);
-   }
-
-   private void OnDisable()
-   {
-      claimButton.onClick.RemoveAllListeners();
-   }
 
    public void Init(WeekReward data)
    {
@@ -28,54 +18,8 @@ public class WeeklyClaim : MonoBehaviour
       quanty.text = data.Quanty.ToString();
    }
 
-   public void SetUpCanClaim()
-   {
-      claimButton.interactable = true;
-      claimedIcon.SetActive(false);
-   }
-
-   public void SetUpCannotClaim()
-   {
-      claimButton.interactable = false;
-   }
-
-   public void SetupHadClaim()
-   {
-      claimButton.interactable = false;
-      claimedIcon.SetActive(true);
-   }
-
-
-   private void Claim()
-   {
-      GrantReward(data.RewardType,data.Quanty);
-      claimButton.interactable = false;
-      claimedIcon.SetActive(true);
-      if (WeeklyClaimManager.Instance != null)
-      {
-         WeeklyClaimManager.Instance.ClaimCurrentDay();
-      }
-   }
+   public void SetUpCanClaim() => claimedIcon.SetActive(false);
+   public void SetupHadClaim() => claimedIcon.SetActive(true);
    
-   private void GrantReward(RewardType type, int quantity)
-   {
-      switch (type)
-      {
-         case RewardType.Gold:
-            EconomyManager.Instance.GetGold(quantity);
-            break;
-         case RewardType.Gem:
-            EconomyManager.Instance.GetGem(quantity);
-            break;
-         case RewardType.MoveBooster:
-            BoosterManager.Instance.AddMoreBooster(Booster.Move,quantity);
-            break; 
-         case RewardType.RemoveBooster:
-            BoosterManager.Instance.AddMoreBooster(Booster.Remove,quantity);
-            break; 
-         case RewardType.UndoBooster:
-            BoosterManager.Instance.AddMoreBooster(Booster.Undo,quantity);
-            break;
-      }
-   }
+   
 }

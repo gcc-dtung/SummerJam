@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ShopSlot : MonoBehaviour
 {
-   [SerializeField] private TextMeshProUGUI LimitedText;
    [SerializeField] private TextMeshProUGUI quantiText;
    [SerializeField] private Image image;
    [SerializeField] private Button purchaseButton;
@@ -36,6 +35,7 @@ public class ShopSlot : MonoBehaviour
 
    private void Setup()
    {
+      if(ItemData == null) return;
       quantiText.text = "x" + ItemData.Quantity.ToString();
       image.sprite = ItemData.ItemIcon;
       if (!IsUnlimited && PurchasedToday >= ItemData.PurchaseLimitPerDay)
@@ -48,7 +48,6 @@ public class ShopSlot : MonoBehaviour
          ReachedLimit = false;
          purchaseButton.interactable = true;
       }
-      LimitedText.text = PurchasedToday.ToString()+"/"+ItemData.PurchaseLimitPerDay.ToString();
    }
 
 
@@ -120,7 +119,6 @@ public class ShopSlot : MonoBehaviour
 
          return;
       }
-      LimitedText.text = PurchasedToday.ToString()+"/"+ItemData.PurchaseLimitPerDay.ToString();
    }
    
    

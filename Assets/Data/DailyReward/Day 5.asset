@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30900d75acc66354a81130034014570e, type: 3}
   m_Name: Day 5
   m_EditorClassIdentifier: Assembly-CSharp::WeekReward
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 7675826601332790545, guid: fb77e00c4ce26bd46881122194c28aa6, type: 3}
   <Quanty>k__BackingField: 20
   <RewardType>k__BackingField: 0

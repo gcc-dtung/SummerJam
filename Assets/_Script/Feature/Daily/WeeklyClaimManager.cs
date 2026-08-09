@@ -6,6 +6,7 @@ public class WeeklyClaimManager : Singleton<WeeklyClaimManager>
 {
    [SerializeField] private WeeklyClaim[] weeklyClaimHolders;
    [SerializeField] private WeekReward[] _weekRewards;
+   [SerializeField] private Claim claimButton;
    public int CurrentDay { get; private set; }
    public bool HadClaimedToday { get; private set; }
    protected override void Awake()
@@ -58,6 +59,8 @@ public class WeeklyClaimManager : Singleton<WeeklyClaimManager>
    public void ClaimCurrentDay()
    {
       HadClaimedToday = true;
+      weeklyClaimHolders[CurrentDay].SetupHadClaim();
+      GrantReward(_weekRewards[CurrentDay].RewardType,_weekRewards[CurrentDay].Quanty);
       if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
       {
          SaveLoadManager.Instance.GameData.HadClaimWeekReward = true;
@@ -76,17 +79,41 @@ public class WeeklyClaimManager : Singleton<WeeklyClaimManager>
       {
          if (HadClaimedToday)
          {
+            claimButton.SetUpHadClaim();
             weeklyClaimHolders[CurrentDay].SetupHadClaim();
          }
          else
          {
+            claimButton.SetUpHadnotClaim();
             weeklyClaimHolders[CurrentDay].SetUpCanClaim();
          }
+
+         for (int i = CurrentDay + 1; i < 7; i++)
+         {
+            weeklyClaimHolders[i].SetUpCanClaim();
+         }
       }
-      
-      for (int i = CurrentDay + 1; i < 7; i++)
+   }
+   
+   private void GrantReward(RewardType type, int quantity)
+   {
+      switch (type)
       {
-         weeklyClaimHolders[i].SetUpCannotClaim();
+         case RewardType.Gold:
+            EconomyManager.Instance.GetGold(quantity);
+            break;
+         case RewardType.Gem:
+            EconomyManager.Instance.GetGem(quantity);
+            break;
+         case RewardType.MoveBooster:
+            BoosterManager.Instance.AddMoreBooster(Booster.Move,quantity);
+            break; 
+         case RewardType.RemoveBooster:
+            BoosterManager.Instance.AddMoreBooster(Booster.Remove,quantity);
+            break; 
+         case RewardType.UndoBooster:
+            BoosterManager.Instance.AddMoreBooster(Booster.Undo,quantity);
+            break;
       }
    }
 }

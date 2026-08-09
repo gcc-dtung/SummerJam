@@ -17,7 +17,6 @@ public class TimeManager : Singleton<TimeManager>
    {
       if (hasFocus)
       {
-         Debug.Log($"[TimeManager] Focus gained. LastTime: {LastTime.Date}, CurrentTime: {DateTime.Now.Date}");
          if (LastTime.Date != DateTime.Now.Date)
          {
             TriggerDailyReset();
@@ -29,7 +28,6 @@ public class TimeManager : Singleton<TimeManager>
    {
       if (!pauseStatus)
       {
-         Debug.Log($"[TimeManager] App resumed. LastTime: {LastTime.Date}, CurrentTime: {DateTime.Now.Date}");
          if (LastTime.Date != DateTime.Now.Date)
          {
             TriggerDailyReset();
@@ -39,7 +37,6 @@ public class TimeManager : Singleton<TimeManager>
 
    public void NextToTomorrow()
    {
-      Debug.Log(LastTime.Date + " " + DateTime.Now.Date);
       IsNextDay = (LastTime.Date != DateTime.Now.Date);
       if (IsNextDay)
       {
@@ -62,7 +59,6 @@ public class TimeManager : Singleton<TimeManager>
    private void TriggerDailyReset()
    {
       IsNextDay = true;
-      Debug.Log($"[TimeManager] TriggerDailyReset started.");
       if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
       {
          var gameData = SaveLoadManager.Instance.GameData;

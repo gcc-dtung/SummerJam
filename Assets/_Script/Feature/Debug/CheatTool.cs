@@ -17,7 +17,7 @@ public class CheatTool : MonoBehaviour
         GameObject cheatObject = new GameObject("[Dev_CheatTool]");
         cheatObject.AddComponent<CheatTool>();
         DontDestroyOnLoad(cheatObject);
-        Debug.Log("<color=green>[CheatTool] Khởi tạo thành công! F5 Thắng, F6 Thua, F7 Màn Tiếp, F8 Chơi Lại, F9 Panel, F10 Reset Tutorial.</color>");
+//        Debug.Log("<color=green>[CheatTool] Khởi tạo thành công! F5 Thắng, F6 Thua, F7 Màn Tiếp, F8 Chơi Lại, F9 Panel, F10 Reset Tutorial.</color>");
     }
 
     private void Update()

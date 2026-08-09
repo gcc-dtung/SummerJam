@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30900d75acc66354a81130034014570e, type: 3}
   m_Name: Gem
   m_EditorClassIdentifier: Assembly-CSharp::WeekReward
-  <icon>k__BackingField: {fileID: 7713575526222613754, guid: af23ca8993d43434aa2c039d131454fe, type: 3}
+  <icon>k__BackingField: {fileID: -4244753484567498836, guid: 792331e6467487940ac2d489ba3b6fca, type: 3}
   <Quanty>k__BackingField: 3000
   <RewardType>k__BackingField: 1

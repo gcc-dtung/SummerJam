@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ShopSlot : MonoBehaviour
 {
+   [SerializeField] private TextMeshProUGUI amountText;
    [SerializeField] private TextMeshProUGUI quantiText;
    [SerializeField] private Image image;
    [SerializeField] private Button purchaseButton;
@@ -37,6 +38,7 @@ public class ShopSlot : MonoBehaviour
    {
       if(ItemData == null) return;
       quantiText.text = "x" + ItemData.Quantity.ToString();
+      amountText.text = ItemData.CostAmount.ToString();
       image.sprite = ItemData.ItemIcon;
       if (!IsUnlimited && PurchasedToday >= ItemData.PurchaseLimitPerDay)
       {

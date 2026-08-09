@@ -17,7 +17,7 @@ public class CheatTool : MonoBehaviour
         GameObject cheatObject = new GameObject("[Dev_CheatTool]");
         cheatObject.AddComponent<CheatTool>();
         DontDestroyOnLoad(cheatObject);
-        Debug.Log("<color=green>[CheatTool] Khởi tạo thành công! Phím tắt: F5 (Thắng), F6 (Thua), F7 (Màn Tiếp), F8 (Chơi Lại), F9 (Ẩn/Hiện Panel)</color>");
+        Debug.Log("<color=green>[CheatTool] Khởi tạo thành công! F5 Thắng, F6 Thua, F7 Màn Tiếp, F8 Chơi Lại, F9 Panel, F10 Reset Tutorial.</color>");
     }
 
     private void Update()
@@ -54,6 +54,11 @@ public class CheatTool : MonoBehaviour
         {
             TriggerRestart();
         }
+
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            ResetTutorial();
+        }
     }
 
     private void OnGUI()
@@ -66,7 +71,7 @@ public class CheatTool : MonoBehaviour
         
         // Điều chỉnh kích thước cửa sổ dựa trên việc thu gọn hay phóng to
         float width = _isMinimized ? 100 : 260;
-        float height = _isMinimized ? 60 : 360;
+        float height = _isMinimized ? 60 : 410;
         _windowRect.width = width;
         _windowRect.height = height;
 
@@ -145,6 +150,13 @@ public class CheatTool : MonoBehaviour
         if (GUILayout.Button("+5 Tất Cả Boosters", GUILayout.Height(30)))
         {
             AddAllBoosters(5);
+        }
+
+        GUILayout.Space(10);
+        GUILayout.Label("== TUTORIAL ==", GUILayout.Width(240));
+        if (GUILayout.Button("Reset Tutorial (F10)", GUILayout.Height(30)))
+        {
+            ResetTutorial();
         }
 
         GUILayout.Space(10);
@@ -252,6 +264,24 @@ public class CheatTool : MonoBehaviour
         {
             Debug.LogWarning("[CheatTool] Không tìm thấy BoosterManager!");
         }
+    }
+
+    private void ResetTutorial()
+    {
+        SaveLoadManager saveLoadManager = SaveLoadManager.Instance;
+        if (saveLoadManager == null || saveLoadManager.GameData == null)
+        {
+            Debug.LogWarning("[CheatTool] Không thể reset tutorial vì chưa có save data.");
+            return;
+        }
+
+        saveLoadManager.GameData.tutorialVersionCompleted = 0;
+
+        if (LevelManager.Instance != null)
+            LevelManager.Instance.CurrentLevelIndex = 0;
+
+        saveLoadManager.SaveGame();
+        Debug.Log("[CheatTool] Đã reset tutorial. Hãy thoát và vào lại Play Mode để chạy từ đầu.");
     }
 }
 #endif

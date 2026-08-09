@@ -34,10 +34,17 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
             gameData.currentGem = EconomyManager.Instance.CurrentGem;
         }
         
+        if (WeeklyClaimManager.Instance != null)
+        {
+            gameData.CurrentWeekReward = WeeklyClaimManager.Instance.CurrentDay;
+            gameData.HadClaimWeekReward = WeeklyClaimManager.Instance.HadClaimedToday;
+        }
+        
         if (gameData.shopPurchasedCounts == null)
         {
             gameData.shopPurchasedCounts = new Dictionary<int, int>();
         }
+        
         var shopSlots = GameObject.FindObjectsByType<ShopSlot>(FindObjectsSortMode.None);
         foreach (var slot in shopSlots)
         {
@@ -106,6 +113,11 @@ public class SaveLoadManager : Singleton<SaveLoadManager>
         {
             TimeManager.Instance.LastTime = gameData.lastTime;
             TimeManager.Instance.NextToTomorrow();
+        }
+        
+        if (WeeklyClaimManager.Instance != null)
+        {
+            WeeklyClaimManager.Instance.InitializeData(gameData.CurrentWeekReward, gameData.HadClaimWeekReward);
         }
     }
 }

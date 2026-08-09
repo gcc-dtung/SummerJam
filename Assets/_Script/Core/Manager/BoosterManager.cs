@@ -24,6 +24,7 @@ public class BoosterManager : Singleton<BoosterManager>
         if (UndoManager.Instance.TryUndoMove())
         {
             boosterHolder[Booster.Undo]--;
+            EventBus.Notify(GameEventType.BoosterUsed, Booster.Undo);
             if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
         }
     }
@@ -34,6 +35,7 @@ public class BoosterManager : Singleton<BoosterManager>
         if(MoveManager.Instance.TryIncreaseMove())
         {
             boosterHolder[Booster.Move]--;
+            EventBus.Notify(GameEventType.BoosterUsed, Booster.Move);
             if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
         }
     }
@@ -46,7 +48,10 @@ public class BoosterManager : Singleton<BoosterManager>
 
     public void RemoveHandle()
     {
+        if (boosterHolder[Booster.Remove] <= 0) return;
+
         boosterHolder[Booster.Remove]--;
+        EventBus.Notify(GameEventType.BoosterUsed, Booster.Remove);
         if (SaveLoadManager.Instance != null) SaveLoadManager.Instance.SaveGame();
     }
    

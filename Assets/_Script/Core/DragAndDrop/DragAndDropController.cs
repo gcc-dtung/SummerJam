@@ -9,6 +9,7 @@ public class DragAndDropController : MonoBehaviour
     [SerializeField] private LayerMask draggableLayer;
     [SerializeField] private LayerMask pressableLayer;
     [SerializeField] private float dragThreshold = 15f;
+    [SerializeField] private TutorialDirector tutorialDirector;
     private Vector3 startScreenPosition;
     private bool isPointerDown = false;
     private float depthDistance = 10f;
@@ -16,6 +17,7 @@ public class DragAndDropController : MonoBehaviour
     private IPressable currentPressItem;
     private Person currentPerson;
     private Camera mainCam;
+    private bool pointerBlockedByTutorial;
 
 
     private void Awake()
@@ -40,11 +42,16 @@ public class DragAndDropController : MonoBehaviour
         {
             Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
-            currentDragItem.Drop(worldPosition);
+
+            if (tutorialDirector != null && tutorialDirector.IsRunning)
+                currentDragItem.CancelDrag();
+            else
+                currentDragItem.Drop(worldPosition);
         }
 
         isDragging = false;
         isPointerDown = false;
+        pointerBlockedByTutorial = false;
         currentDragItem = null;
         
         inputAction.Player.HoldAndDrag.performed -= OnHoldStarted;
@@ -59,12 +66,29 @@ public class DragAndDropController : MonoBehaviour
         startScreenPosition = screenPosition;
         isPointerDown = true;
         isDragging = false;
+        pointerBlockedByTutorial = false;
         DetectDragItem(worldPosition);
+
+        GameObject selectedObject = currentPerson != null ? currentPerson.gameObject : null;
+        if (tutorialDirector != null && !tutorialDirector.CanSelectWorldTarget(selectedObject))
+        {
+            pointerBlockedByTutorial = true;
+            isPointerDown = false;
+            ClearSelection();
+        }
     }
 
     private void OnHoldCanceled(InputAction.CallbackContext context)
     {
         isPointerDown = false;
+
+        if (pointerBlockedByTutorial)
+        {
+            pointerBlockedByTutorial = false;
+            ClearSelection();
+            return;
+        }
+
         if (isDragging)
         {
             isDragging = false;
@@ -73,7 +97,16 @@ public class DragAndDropController : MonoBehaviour
             Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
 
-            currentDragItem?.Drop(worldPosition);
+            bool canDrop = tutorialDirector == null || currentPerson == null ||
+                           tutorialDirector.CanDropAtRequiredTarget(
+                               currentPerson.gameObject,
+                               currentPerson.transform.position);
+
+            if (canDrop)
+                currentDragItem.Drop(worldPosition);
+            else
+                currentDragItem.CancelDrag();
+
             currentDragItem = null;
 
             if (currentPerson != null)
@@ -89,9 +122,15 @@ public class DragAndDropController : MonoBehaviour
             Vector2 screenPosition = inputAction.Player.PointerPosition.ReadValue<Vector2>();
             Vector2 worldPosition = mainCam.ScreenToWorldPoint(screenPosition);
             DetectPressItem(worldPosition);
-            currentPressItem?.Press();
+            bool canPress = tutorialDirector == null ||
+                            tutorialDirector.CanPerformWorldAction(
+                                TutorialAction.PressPerson,
+                                currentPerson != null ? currentPerson.gameObject : null);
+
+            if (canPress)
+                currentPressItem?.Press();
         
-            if (currentPressItem != null) 
+            if (currentPressItem != null && canPress)
             {
                 EventBus.Notify(GameEventType.Press);
             }
@@ -123,6 +162,17 @@ public class DragAndDropController : MonoBehaviour
             {
                 if (currentDragItem != null)
                 {
+                    bool canStartDrag = tutorialDirector == null ||
+                                        tutorialDirector.CanPerformWorldAction(
+                                            TutorialAction.StartDragPerson,
+                                            currentPerson != null ? currentPerson.gameObject : null);
+                    if (!canStartDrag)
+                    {
+                        isPointerDown = false;
+                        ClearSelection();
+                        return;
+                    }
+
                     isDragging = true;
                     currentDragItem?.StartDrag();
                     if (currentPerson != null)
@@ -188,5 +238,12 @@ public class DragAndDropController : MonoBehaviour
         {
             currentPressItem = pressable;
         }
+    }
+
+    private void ClearSelection()
+    {
+        currentDragItem = null;
+        currentPressItem = null;
+        currentPerson = null;
     }
 }

@@ -25,26 +25,30 @@ public class ShopSlot : MonoBehaviour
       Setup();
    }
 
-   // private void OnApplicationFocus(bool hasFocus)
-   // {
-   //    if (hasFocus)
-   //    {
-   //       CheckAndResetDailyLimit();
-   //    }
-   // }
+   private void OnApplicationFocus(bool hasFocus)
+   {
+      if (hasFocus)
+      {
+         CheckAndResetDailyLimit();
+         Setup();
+      }
+   }
 
    private void Setup()
    {
-      
       quantiText.text = "x" + ItemData.Quantity.ToString();
       image.sprite = ItemData.ItemIcon;
-      if (PurchasedToday >= ItemData.PurchaseLimitPerDay)
+      if (!IsUnlimited && PurchasedToday >= ItemData.PurchaseLimitPerDay)
       {
          ReachedLimit = true;
-         purchaseButton.interactable = false; // sau tách hàm riêng từ đây
+         purchaseButton.interactable = false;
+      }
+      else
+      {
+         ReachedLimit = false;
+         purchaseButton.interactable = true;
       }
       LimitedText.text = PurchasedToday.ToString()+"/"+ItemData.PurchaseLimitPerDay.ToString();
-      
    }
 
 
@@ -63,9 +67,16 @@ public class ShopSlot : MonoBehaviour
          if (SaveLoadManager.Instance != null && SaveLoadManager.Instance.GameData != null)
          {
             var gameData = SaveLoadManager.Instance.GameData;
-            if (gameData.shopPurchasedCounts != null && ItemData != null && gameData.shopPurchasedCounts.TryGetValue(ItemData.ID, out int count))
+            if (gameData.shopPurchasedCounts != null && ItemData != null)
             {
-               PurchasedToday = count;
+               if (gameData.shopPurchasedCounts.TryGetValue(ItemData.ID, out int count))
+               {
+                  PurchasedToday = count;
+               }
+               else
+               {
+                  PurchasedToday = 0;
+               }
             }
          }
       }
@@ -75,11 +86,25 @@ public class ShopSlot : MonoBehaviour
    private void OnEnable()
    {
       purchaseButton.onClick.AddListener(PurchaseSlot);
+      if (TimeManager.Instance != null)
+      {
+         TimeManager.Instance.OnNewDay += HandleNewDay;
+      }
    }
 
    private void OnDisable()
    {
       purchaseButton.onClick.RemoveAllListeners();
+      if (TimeManager.Instance != null)
+      {
+         TimeManager.Instance.OnNewDay -= HandleNewDay;
+      }
+   }
+
+   private void HandleNewDay()
+   {
+      CheckAndResetDailyLimit();
+      Setup();
    }
 
    private void PurchaseSlot()
@@ -90,7 +115,7 @@ public class ShopSlot : MonoBehaviour
          if (PurchasedToday >= ItemData.PurchaseLimitPerDay)
          {
             ReachedLimit = true;
-            purchaseButton.interactable = false; // sau tách hàm riêng từ đây
+            purchaseButton.interactable = false;
          }
 
          return;

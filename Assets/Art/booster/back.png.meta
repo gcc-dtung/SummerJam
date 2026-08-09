@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,12 +116,12 @@ TextureImporter:
       name: back_0
       rect:
         serializedVersion: 2
-        x: 682
-        y: 603
-        width: 1835
-        height: 1855
+        x: 683
+        y: 604
+        width: 1833
+        height: 1853
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 025fa2af8e627d549a0f0a52da31c075
     internalID: 0
     vertices: []
     indices: 

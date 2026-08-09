@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,12 +116,12 @@ TextureImporter:
       name: cut_0
       rect:
         serializedVersion: 2
-        x: 704
-        y: 640
-        width: 1791
-        height: 1782
+        x: 705
+        y: 641
+        width: 1789
+        height: 1780
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5a64dc28ef78a1e43a1dc68402ffb610
     internalID: 0
     vertices: []
     indices: 

@@ -88,6 +88,7 @@ public class LevelConfigEditor : Editor
             {
                 EditorGUI.indentLevel++;
                 DrawGridInspectorFields("Wait Line Grid Properties", waitLineGrid);
+                ValidateAndDrawWaitLineSizeWarning(waitLineGrid);
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
@@ -462,7 +463,7 @@ public class LevelConfigEditor : Editor
             SerializedProperty sizeProp = waitLineObj.FindProperty("<Size>k__BackingField");
             if (sizeProp != null)
             {
-                sizeProp.vector2IntValue = new Vector2Int(5, 1);
+                sizeProp.vector2IntValue = new Vector2Int(3, 2);
             }
             SerializedProperty posYProp = waitLineObj.FindProperty("PosY");
             if (posYProp != null)
@@ -797,5 +798,54 @@ public class LevelConfigEditor : Editor
             }
         }
         return list;
+    }
+
+    private void ValidateAndDrawWaitLineSizeWarning(GridConfig waitLineGrid)
+    {
+        if (waitLineGrid == null || waitLineGrid.BaseGrid == null) return;
+
+        CellDataSO blockedAsset = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/New Blocked.asset");
+        int seatCount = 0;
+        for (int y = 0; y < waitLineGrid.Size.y; y++)
+        {
+            if (waitLineGrid.BaseGrid[y] == null || waitLineGrid.BaseGrid[y].Values == null) continue;
+            for (int x = 0; x < waitLineGrid.Size.x; x++)
+            {
+                CellDataSO cell = waitLineGrid.BaseGrid[y].Values[x];
+                if (cell != null && cell != blockedAsset && cell.Type == CellType.Seat)
+                {
+                    seatCount++;
+                }
+            }
+        }
+
+        Vector2Int recommendedSize;
+        if (seatCount <= 6)
+            recommendedSize = new Vector2Int(3, 2);
+        else if (seatCount <= 8)
+            recommendedSize = new Vector2Int(4, 2);
+        else
+            recommendedSize = new Vector2Int(5, 2);
+
+        if (waitLineGrid.Size != recommendedSize)
+        {
+            EditorGUILayout.Space(5);
+            EditorGUILayout.HelpBox(
+                $"WaitLine có {seatCount} chỗ ngồi. Kích thước đề xuất: {recommendedSize.x}x{recommendedSize.y} (≤6 → 3x2, ≤8 → 4x2, >8 → 5x2).",
+                MessageType.Warning);
+            if (GUILayout.Button($"Cập nhật kích thước thành {recommendedSize.x}x{recommendedSize.y}"))
+            {
+                Undo.RecordObject(waitLineGrid, "Change WaitLine Grid Size");
+                SerializedObject gridObj = new SerializedObject(waitLineGrid);
+                gridObj.Update();
+                SerializedProperty sizeProp = gridObj.FindProperty("<Size>k__BackingField");
+                if (sizeProp != null)
+                {
+                    sizeProp.vector2IntValue = recommendedSize;
+                }
+                gridObj.ApplyModifiedProperties();
+                EditorUtility.SetDirty(waitLineGrid);
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ public class GridManager : Singleton<GridManager>
    private GridConfig waitConfig;
    [SerializeField] private Cell Template;
    [SerializeField] private Transform holder;
+   [SerializeField] private Sprite seatSprite;
    public Grid<Cell> Board { get; private set; }
    public Grid<Cell> WaitLine { get; private set; }
 
@@ -81,6 +82,9 @@ public class GridManager : Singleton<GridManager>
       Cell tmp = Instantiate<Cell>(Template,holder);
       tmp.Initialize(waitConfig.BaseGrid[y].Values[x], waitConfig.CellSize);
       InitializePerson(tmp,waitConfig.BaseGrid[y].Values[x]);
+      tmp.OverrideCellType(CellType.Seat);
+      tmp.CanSeat = true;
+      tmp.CanInteract = true;
       tmp.SetGridIndex(x, y);
       return tmp;
    }
@@ -93,11 +97,12 @@ public class GridManager : Singleton<GridManager>
    private void FillItemToWaitLine(int x,int y,Cell cell)
    {
        cell.transform.position = WaitLine.GetWorldPosition(x, y);
+       CreateSeatOverlay(cell);
    }
 
    private void FillPersonToWaitLine(int x, int y,Cell cell)
    {
-       if(cell.Type != CellType.Seat || cell.CanSeat || cell.CurrentPerson == null) return;
+       if(cell.CurrentPerson == null) return;
        Person person = cell.CurrentPerson;
        person.ResetValue();
        person.transform.position = WaitLine.GetWorldPosition(x, y);
@@ -106,6 +111,18 @@ public class GridManager : Singleton<GridManager>
        person.SetOutSideState(true);
        cell.CanSeat = false;
    }
+
+    private void CreateSeatOverlay(Cell cell)
+    {
+        if (seatSprite == null) return;
+        GameObject seatObj = new GameObject("SeatOverlay");
+        seatObj.transform.SetParent(cell.transform);
+        seatObj.transform.localPosition = Vector3.zero;
+        seatObj.transform.localScale = new Vector3(0.435f, 0.435f, 1f);
+        SpriteRenderer sr = seatObj.AddComponent<SpriteRenderer>();
+        sr.sprite = seatSprite;
+        sr.sortingOrder = 5;
+    }
    
    private void InitializePerson(Cell cell,CellDataSO data)
    {

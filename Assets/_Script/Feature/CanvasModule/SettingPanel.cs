@@ -13,6 +13,13 @@ public class SettingPanel : MonoBehaviour
     [Tooltip("Assign the CanvasGroup on Content Root.")]
     [SerializeField] private CanvasGroup contentCanvasGroup;
 
+    [Header("Audio State Icons")]
+    [Tooltip("Image shown only while SFX is muted.")]
+    [SerializeField] private GameObject sfxOffImage;
+
+    [Tooltip("Image shown only while BGM is muted.")]
+    [SerializeField] private GameObject bgmOffImage;
+
     [Header("Animation")]
     [Tooltip("Uses the same fade and pop animation as Lose Panel. Assign this popup's background Image inside the animation settings.")]
     [SerializeField] private LosePhaseIntroAnimation introOutroAnimation = new LosePhaseIntroAnimation();
@@ -33,6 +40,14 @@ public class SettingPanel : MonoBehaviour
         // opening state instead of immediately hiding the panel again.
         if (!isOpen)
             HideImmediate();
+
+        RefreshAudioStateIcons();
+    }
+
+    private void Start()
+    {
+        // Run after every Awake so the SoundManager is ready on the first frame.
+        RefreshAudioStateIcons();
     }
 
     private void OnDisable()
@@ -62,6 +77,7 @@ public class SettingPanel : MonoBehaviour
         isOpen = true;
         PanelRoot.gameObject.SetActive(true);
         contentRoot.gameObject.SetActive(true);
+        RefreshAudioStateIcons();
 
         CanvasGroupUtility.SetInteractable(contentCanvasGroup, false);
         introOutroAnimation.PrepareLosePanel();
@@ -106,12 +122,16 @@ public class SettingPanel : MonoBehaviour
     {
         if (SoundManager.Instance != null)
             SoundManager.Instance.MuteAndUnMuteSFX();
+
+        RefreshAudioStateIcons();
     }
 
     public void ToggleBGM()
     {
         if (SoundManager.Instance != null)
             SoundManager.Instance.MuteAndUnMuteBGM();
+
+        RefreshAudioStateIcons();
     }
 
     public void HideImmediate()
@@ -183,5 +203,16 @@ public class SettingPanel : MonoBehaviour
         return contentRoot != null &&
                contentCanvasGroup != null &&
                introOutroAnimation.IsConfigured;
+    }
+
+    private void RefreshAudioStateIcons()
+    {
+        SoundManager soundManager = SoundManager.Instance;
+
+        if (sfxOffImage != null)
+            sfxOffImage.SetActive(soundManager != null && soundManager.IsSFXMuted);
+
+        if (bgmOffImage != null)
+            bgmOffImage.SetActive(soundManager != null && soundManager.IsBGMMuted);
     }
 }

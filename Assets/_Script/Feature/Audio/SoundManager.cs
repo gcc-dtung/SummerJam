@@ -9,6 +9,9 @@ public class SoundManager : Singleton<SoundManager>
    [SerializeField] private AudioSource sfxSource;
    [SerializeField] private AudioSource bgmSource;
 
+   public bool IsSFXMuted => sfxSource != null && sfxSource.mute;
+   public bool IsBGMMuted => bgmSource != null && bgmSource.mute;
+
    public void MuteAndUnMuteSFX() => sfxSource.mute = !sfxSource.mute;
    public void MuteAndUnMuteBGM() => bgmSource.mute = !bgmSource.mute;
    

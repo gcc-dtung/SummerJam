@@ -119,6 +119,8 @@ public class ShopSlot : MonoBehaviour
 
          return;
       }
+
+      SoundManager.PlaySFXSound(SFXType.ShopBuy);
    }
    
    

@@ -71,7 +71,8 @@ public enum SFXType
     Win = 0,
     Lose = 1,
     Coin = 2,
-    Button = 3
+    Button = 3,
+    ShopBuy = 4
 }
 
 public enum BGMType

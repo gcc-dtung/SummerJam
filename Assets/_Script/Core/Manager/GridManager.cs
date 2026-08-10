@@ -71,22 +71,50 @@ public class GridManager : Singleton<GridManager>
    
    private Cell InitializeBoard(int x,int y)
    {
-       Cell tmp = Instantiate<Cell>(Template,holder);
-       tmp.Initialize(boardConfig.BaseGrid[y].Values[x], boardConfig.CellSize);
+       CellDataSO data = boardConfig.BaseGrid[y].Values[x];
+       Cell tmp = InstantiateCell(data);
+       tmp.Initialize(data, boardConfig.CellSize, ShouldApplyDataSprite(data));
        tmp.SetGridIndex(x, y);
        return tmp;
    }   
    
    private Cell InitializeWaitLine(int x,int y)
    {
-      Cell tmp = Instantiate<Cell>(Template,holder);
-      tmp.Initialize(waitConfig.BaseGrid[y].Values[x], waitConfig.CellSize);
-      InitializePerson(tmp,waitConfig.BaseGrid[y].Values[x]);
+      CellDataSO data = waitConfig.BaseGrid[y].Values[x];
+      Cell tmp = InstantiateCell(data);
+      tmp.Initialize(data, waitConfig.CellSize, ShouldApplyDataSprite(data));
+      InitializePerson(tmp,data);
       tmp.OverrideCellType(CellType.Seat);
       tmp.CanSeat = true;
       tmp.CanInteract = true;
       tmp.SetGridIndex(x, y);
       return tmp;
+   }
+
+   private Cell InstantiateCell(CellDataSO data)
+   {
+       Cell prefab = GetCellPrefab(data);
+       if (prefab == null)
+       {
+           throw new InvalidOperationException("GridManager requires a default Cell Template or a Cell Prefab on the Seat asset.");
+       }
+
+       return Instantiate(prefab, holder);
+   }
+
+   private Cell GetCellPrefab(CellDataSO data)
+   {
+       if (data is Seat seat && seat.CellPrefab != null)
+       {
+           return seat.CellPrefab;
+       }
+
+       return Template;
+   }
+
+   private bool ShouldApplyDataSprite(CellDataSO data)
+   {
+       return !(data is Seat seat) || seat.CellPrefab == null;
    }
    
    private void FillItemToBoard(int x,int y,Cell cell)

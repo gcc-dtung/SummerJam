@@ -19,13 +19,16 @@ public class Cell : MonoBehaviour
         CellEventHandler = this.GetComponent<CellEventHandler>();
     }
 
-    public void Initialize(CellDataSO data, Vector2 cellSize)
+    public void Initialize(CellDataSO data, Vector2 cellSize, bool applyDataSprite = true)
     {
         Data = data;
         CanSeat = data.DefaultCanSeat;
         CanInteract = data.DefaultCanInteract;
         Type = data.Type;
-        if (data.sprite != null) _spriteRenderer.sprite = data.sprite;
+        if (applyDataSprite && data.sprite != null && _spriteRenderer != null)
+        {
+            _spriteRenderer.sprite = data.sprite;
+        }
         _cellVisual?.SetCellSize(cellSize);
     }
 

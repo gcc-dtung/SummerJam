@@ -267,7 +267,7 @@ public class LevelConfigEditor : Editor
                                     cellColor = new Color(0.6f, 0f, 0.8f); // Purple
                                     break;
                                 case CellType.Seat:
-                                    cellText = "Seat";
+                                    cellText = GetSeatPreviewLabel(currentCell as Seat);
                                     cellColor = new Color(0.2f, 0.4f, 0.8f); // Blue
                                     break;
                             }
@@ -330,14 +330,27 @@ public class LevelConfigEditor : Editor
 
         if (!isWaitLine)
         {
-            // Normal Seat
-            CellDataSO normalSeat = AssetDatabase.LoadAssetAtPath<CellDataSO>("Assets/Data/Cell/NozmalSeat.asset");
-            if (normalSeat != null)
+            // Board seat types. Each Seat asset can point at a different Cell prefab.
+            string[] seatGuids = AssetDatabase.FindAssets("t:Seat");
+            List<Seat> boardSeatTypes = new List<Seat>();
+            foreach (string guid in seatGuids)
             {
-                menu.AddItem(new GUIContent("Chỗ ngồi thường"), grid.BaseGrid[y].Values[x] == normalSeat, () =>
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Seat seatAsset = AssetDatabase.LoadAssetAtPath<Seat>(path);
+                if (seatAsset != null && seatAsset.Type == CellType.Seat && seatAsset.DefaultPerson == null)
                 {
-                    Undo.RecordObject(grid, "Set Normal Seat");
-                    grid.BaseGrid[y].Values[x] = normalSeat;
+                    boardSeatTypes.Add(seatAsset);
+                }
+            }
+
+            foreach (Seat seatAsset in boardSeatTypes.OrderBy(GetSeatDisplayName))
+            {
+                Seat capturedSeat = seatAsset;
+                string displayName = $"Chỗ ngồi/{GetSeatMenuLabel(capturedSeat)}";
+                menu.AddItem(new GUIContent(displayName), grid.BaseGrid[y].Values[x] == capturedSeat, () =>
+                {
+                    Undo.RecordObject(grid, "Set Board Seat Type");
+                    grid.BaseGrid[y].Values[x] = capturedSeat;
                     EditorUtility.SetDirty(grid);
                 });
             }
@@ -397,6 +410,24 @@ public class LevelConfigEditor : Editor
         }
 
         menu.ShowAsContext();
+    }
+
+    private static string GetSeatDisplayName(Seat seat)
+    {
+        if (seat == null) return "Seat";
+        return !string.IsNullOrWhiteSpace(seat.Name) ? seat.Name : seat.name;
+    }
+
+    private static string GetSeatMenuLabel(Seat seat)
+    {
+        string seatName = GetSeatDisplayName(seat);
+        return seat.CellPrefab != null ? $"{seatName} [{seat.CellPrefab.name}]" : $"{seatName} [Default Template]";
+    }
+
+    private static string GetSeatPreviewLabel(Seat seat)
+    {
+        string seatName = GetSeatDisplayName(seat);
+        return seatName.Substring(0, Mathf.Min(6, seatName.Length));
     }
 
     private void GenerateAndLinkGrids(LevelConfig levelConfig, SerializedProperty boardGridProp, SerializedProperty waitLineGridProp)
@@ -640,7 +671,8 @@ public class LevelConfigEditor : Editor
             }
             else
             {
-                return $"Seat: {seat.name}\nStatus: Ghế trống (Chưa xếp người)";
+                string prefabName = seat.CellPrefab != null ? seat.CellPrefab.name : "Default CellTemplate";
+                return $"Seat: {GetSeatDisplayName(seat)}\nPrefab: {prefabName}\nStatus: Ghế trống (Chưa xếp người)";
             }
         }
         else if (cell is Dishes dish)

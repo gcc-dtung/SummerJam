@@ -15043,7 +15043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1431903130
 Canvas:
   m_ObjectHideFlags: 0
@@ -16266,7 +16266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ff7633046baec44927a0893a660647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridRenderer
-  debugLevelConfig: {fileID: 11400000, guid: 148fb32a28612ca4387fc7395f671e0e, type: 2}
+  debugLevelConfig: {fileID: 11400000, guid: c4ef653a232634b4f96e06ee10612866, type: 2}
 --- !u!114 &1573915430
 MonoBehaviour:
   m_ObjectHideFlags: 0

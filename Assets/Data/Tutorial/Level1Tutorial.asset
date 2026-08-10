@@ -68,7 +68,7 @@ MonoBehaviour:
     worldArrowOffset: {x: 0, y: 0}
     worldHandOffset: {x: 0, y: 0}
     overrideTypography: 1
-    fontAsset: {fileID: 11400000, guid: ea0cd94cec8d0ed4e9866c56f57df2ba, type: 2}
+    fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
     fontSize: 54.69
     fontStyle: 0
     fontColor: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,7 @@ MonoBehaviour:
     worldArrowOffset: {x: 0, y: 0}
     worldHandOffset: {x: 0, y: 0}
     overrideTypography: 1
-    fontAsset: {fileID: 11400000, guid: d7c05e9807ab76644b8eebdef652f01c, type: 2}
+    fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
     fontSize: 48
     fontStyle: 0
     fontColor: {r: 1, g: 1, b: 1, a: 1}
@@ -152,7 +152,7 @@ MonoBehaviour:
     worldArrowOffset: {x: 0, y: 0}
     worldHandOffset: {x: 0, y: 0}
     overrideTypography: 1
-    fontAsset: {fileID: 11400000, guid: d7c05e9807ab76644b8eebdef652f01c, type: 2}
+    fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
     fontSize: 48
     fontStyle: 0
     fontColor: {r: 1, g: 1, b: 1, a: 1}

@@ -116,6 +116,7 @@ MonoBehaviour:
   changeViewScale: 1.2
   handPosition: {x: 0.1, y: 0.65, z: 0}
   handOnPerson: {fileID: 6145968201658079114}
+  hateDescriptionDuration: 2
 --- !u!114 &2000928938052696896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   returnDuration: 0.18
   maxTilt: 12
   tiltSensitivity: 250
+  velocityResponsiveness: 12
   followResponsiveness: 20
   hoverTransform: {fileID: 2271995431531248371}
   gripLocalPosition: {x: 0, y: 1.25, z: 0}
@@ -199,7 +201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5660079144531763335, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
+  - {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,15 +247,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
-  m_sharedMaterial: {fileID: -5660079144531763335, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
+  m_sharedMaterial: {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4283713906
+  m_fontColor: {r: 0.44705883, g: 0.28627452, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -458,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonMovement
   eventHandler: {fileID: 511186525061403398}
   Duration: 0.2
+  dragSmoothTime: 0.05
 --- !u!1 &1471468962436263425
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +705,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5660079144531763335, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
+  - {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -748,15 +751,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
-  m_sharedMaterial: {fileID: -5660079144531763335, guid: 8652da4e351e37f40b0e37d107458ef6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
+  m_sharedMaterial: {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4283713906
+  m_fontColor: {r: 0.44705883, g: 0.28627452, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

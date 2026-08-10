@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 2107885101}
+  amountText: {fileID: 0}
   image: {fileID: 1798232661}
   purchaseButton: {fileID: 1979437275}
   <ItemData>k__BackingField: {fileID: 0}
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 1087709822}
+  amountText: {fileID: 0}
   image: {fileID: 1050045080}
   purchaseButton: {fileID: 1689889469}
   <ItemData>k__BackingField: {fileID: 0}
@@ -1191,8 +1191,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 36
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f89e0042ac2a75744a67aefe33e6168f, type: 2}
-  m_sharedMaterial: {fileID: -7251388009378639815, guid: f89e0042ac2a75744a67aefe33e6168f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
+  m_sharedMaterial: {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2245,8 +2245,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e052cc022f6ba049a73190649926481, type: 2}
-  m_sharedMaterial: {fileID: -4275651764636008472, guid: 5e052cc022f6ba049a73190649926481, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
+  m_sharedMaterial: {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3999,7 +3999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 1417956911}
+  amountText: {fileID: 0}
   image: {fileID: 1134726994}
   purchaseButton: {fileID: 1506499930}
   <ItemData>k__BackingField: {fileID: 0}
@@ -5287,7 +5287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 1938112295}
+  amountText: {fileID: 0}
   image: {fileID: 2126093201}
   purchaseButton: {fileID: 613088493}
   <ItemData>k__BackingField: {fileID: 0}
@@ -6086,8 +6086,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e052cc022f6ba049a73190649926481, type: 2}
-  m_sharedMaterial: {fileID: -4275651764636008472, guid: 5e052cc022f6ba049a73190649926481, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
+  m_sharedMaterial: {fileID: 4319219960625908323, guid: 5d2b8c14a4fbc1e419180019c9dec29a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6215,7 +6215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 2120859315}
+  amountText: {fileID: 0}
   image: {fileID: 802480263}
   purchaseButton: {fileID: 1287528780}
   <ItemData>k__BackingField: {fileID: 0}
@@ -6906,7 +6906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728711db5e48ee43811862cc207feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlot
-  quantiText: {fileID: 8889364422013964255}
+  amountText: {fileID: 0}
   image: {fileID: 332781664993163528}
   purchaseButton: {fileID: 3216099736824946316}
   <ItemData>k__BackingField: {fileID: 0}

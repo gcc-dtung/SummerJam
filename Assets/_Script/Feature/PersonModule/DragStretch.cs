@@ -9,6 +9,7 @@ public class DragStretch : MonoBehaviour
     [SerializeField] private float returnDuration = 0.18f;
     [SerializeField] private float maxTilt = 12f;
     [SerializeField] private float tiltSensitivity = 250f;
+    [SerializeField, Min(0f)] private float velocityResponsiveness = 12f;
     [SerializeField] private float followResponsiveness = 20f;
     [SerializeField] private Transform hoverTransform;
     [SerializeField] private Vector3 gripLocalPosition = new(0f, 1.25f, 0f);
@@ -16,7 +17,9 @@ public class DragStretch : MonoBehaviour
     private Vector3 baseScale;
     private Vector3 baseLocalPosition;
     private Quaternion baseRotation;
+    private Vector3 latestDragPosition;
     private Vector3 previousDragPosition;
+    private Vector2 smoothedDragVelocity;
     private bool dragging;
     private bool hasPreviousDragPosition;
     private Tween scaleTween;
@@ -36,55 +39,40 @@ public class DragStretch : MonoBehaviour
     private void OnEnable()
     {
         eventHandler.OnStartDrag += StartStretch;
-        eventHandler.OnDraggingWithMousePosition += UpdateStretch;
+        eventHandler.OnDraggingWithMousePosition += UpdateDragPosition;
         eventHandler.OnDrop += EndStretch;
     }
 
     private void OnDisable()
     {
         eventHandler.OnStartDrag -= StartStretch;
-        eventHandler.OnDraggingWithMousePosition -= UpdateStretch;
+        eventHandler.OnDraggingWithMousePosition -= UpdateDragPosition;
         eventHandler.OnDrop -= EndStretch;
     }
 
-    private void StartStretch()
+    private void LateUpdate()
     {
-        if (scaleTween.isAlive) scaleTween.Stop();
-        if (rotationTween.isAlive) rotationTween.Stop();
+        if (!dragging || !hasPreviousDragPosition) return;
 
-        // Người có thể đã đổi parent khi bắt đầu kéo, nên lưu rotation hiện tại.
-        // baseScale được giữ từ Awake để không xung đột với PersonVisual khi nó phóng to lúc drag.
-        baseRotation = hoverTransform.rotation;
-        dragging = true;
-        hasPreviousDragPosition = false;
-    }
+        float deltaTime = Mathf.Max(Time.deltaTime, 0.0001f);
+        Vector2 instantVelocity = (latestDragPosition - previousDragPosition) / deltaTime;
+        previousDragPosition = latestDragPosition;
 
-    private void UpdateStretch(Vector3 dragPosition)
-    {
-        if (!dragging) return;
+        float velocityBlend = 1f - Mathf.Exp(-velocityResponsiveness * deltaTime);
+        smoothedDragVelocity = Vector2.Lerp(smoothedDragVelocity, instantVelocity, velocityBlend);
 
-        // Hệ thống drag của project gửi vị trí ở event này. Không dùng OnMouseDrag,
-        // vì callback đó không được DragAndDropController gọi liên tục.
-        if (!hasPreviousDragPosition)
-        {
-            previousDragPosition = dragPosition;
-            hasPreviousDragPosition = true;
-            return;
-        }
+        // Preserve the old Inspector tuning at a 60 FPS reference while making it frame-rate independent.
+        Vector2 dragDelta = smoothedDragVelocity / 60f;
+        float poseBlend = 1f - Mathf.Exp(-followResponsiveness * deltaTime);
 
-        Vector2 dragDelta = dragPosition - previousDragPosition;
-        previousDragPosition = dragPosition;
         if (dragDelta.sqrMagnitude < 0.0001f)
         {
-            ReturnToRestPose();
+            ReturnToRestPose(poseBlend);
             return;
         }
 
         float amount = Mathf.Clamp(dragDelta.magnitude * stretchStrength, 0f, maxStretch - 1f);
         float tilt = Mathf.Clamp(-dragDelta.x * tiltSensitivity, -maxTilt, maxTilt);
-        float blend = 1f - Mathf.Exp(-followResponsiveness * Time.deltaTime);
-
-        // Kiểu Is This Seat Taken?: nhân vật luôn đứng thẳng, chỉ nghiêng nhẹ khi lướt ngang.
         Quaternion targetRotation = baseRotation * Quaternion.Euler(0f, 0f, tilt);
         Vector3 targetScale = new Vector3(
             baseScale.x * (1f - amount * 0.45f),
@@ -92,26 +80,51 @@ public class DragStretch : MonoBehaviour
             baseScale.z);
 
         ApplyPose(
-            Quaternion.Slerp(hoverTransform.rotation, targetRotation, blend),
-            Vector3.Lerp(hoverTransform.localScale, targetScale, blend));
+            Quaternion.Slerp(hoverTransform.rotation, targetRotation, poseBlend),
+            Vector3.Lerp(hoverTransform.localScale, targetScale, poseBlend));
+    }
+
+    private void StartStretch()
+    {
+        if (scaleTween.isAlive) scaleTween.Stop();
+        if (rotationTween.isAlive) rotationTween.Stop();
+
+        baseRotation = hoverTransform.rotation;
+        dragging = true;
+        hasPreviousDragPosition = false;
+        smoothedDragVelocity = Vector2.zero;
+    }
+
+    private void UpdateDragPosition(Vector3 dragPosition)
+    {
+        if (!dragging) return;
+
+        latestDragPosition = dragPosition;
+        if (!hasPreviousDragPosition)
+        {
+            previousDragPosition = dragPosition;
+            hasPreviousDragPosition = true;
+        }
     }
 
     private void EndStretch()
     {
         dragging = false;
         hasPreviousDragPosition = false;
+        smoothedDragVelocity = Vector2.zero;
+
         if (scaleTween.isAlive) scaleTween.Stop();
         if (rotationTween.isAlive) rotationTween.Stop();
+
         hoverTransform.localPosition = baseLocalPosition;
-        if(hoverTransform.localScale != baseScale)
+        if (hoverTransform.localScale != baseScale)
             scaleTween = Tween.Scale(hoverTransform, baseScale, returnDuration, Ease.OutBack);
-        if(hoverTransform.rotation != baseRotation)
+        if (hoverTransform.rotation != baseRotation)
             rotationTween = Tween.Rotation(hoverTransform, baseRotation, returnDuration, Ease.OutBack);
     }
 
-    private void ReturnToRestPose()
+    private void ReturnToRestPose(float blend)
     {
-        float blend = 1f - Mathf.Exp(-followResponsiveness * Time.deltaTime);
         ApplyPose(
             Quaternion.Slerp(hoverTransform.rotation, baseRotation, blend),
             Vector3.Lerp(hoverTransform.localScale, baseScale, blend));

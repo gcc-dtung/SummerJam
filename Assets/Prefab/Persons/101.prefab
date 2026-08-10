@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonDragAndDropHandler
   eventHandler: {fileID: 645570988495932558}
   person: {fileID: 484003647695190767}
-  offset: {x: 0, y: 0.5, z: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &4791704787966795455
 MonoBehaviour:
   m_ObjectHideFlags: 0

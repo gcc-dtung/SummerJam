@@ -28,6 +28,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seat_wood
       objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.b
+      value: 0.8156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.g
+      value: 0.9098039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.r
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: backgroundSprite
+      value: 
+      objectReference: {fileID: 8863647367887647550}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: previewHoverColor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8494547447977979683, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -89,6 +109,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5426322952650002127}
     m_Modifications:
+    - target: {fileID: 1117961699273614455, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117961699273614455, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117961699273614455, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1117961699273614455, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -153,5 +185,10 @@ PrefabInstance:
 --- !u!4 &1266433348044746021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7283035298758179436, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
+  m_PrefabInstance: {fileID: 8395215960947480393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8863647367887647550 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1117961699273614455, guid: 3fce75b45950a0842ae83a95f3bb06fe, type: 3}
   m_PrefabInstance: {fileID: 8395215960947480393}
   m_PrefabAsset: {fileID: 0}

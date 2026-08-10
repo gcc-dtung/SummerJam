@@ -1,17 +1,25 @@
-using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using PrimeTween;
-using Unity.VisualScripting.Dependencies.NCalc;
 
 public class CellVisual : MonoBehaviour
 {
+    [Header("Hover Animation")]
     [SerializeField] private CellEventHandler eventHandler;
-    [SerializeField] private float changeViewDuration;
-    [SerializeField] private float changeViewScale;
+    [SerializeField, Min(0f)] private float changeViewDuration;
+    [SerializeField, Min(0.01f)] private float changeViewScale = 1.2f;
     [SerializeField, Min(0.01f)] private float cellSizeMultiplier = 1f;
     [SerializeField] private SpriteRenderer hoverSprite;
+
+    [Header("Hover Color")]
     [SerializeField] private SpriteRenderer backgroundSprite;
-    [SerializeField] private Color backgroundColorWhenChange;
+    [SerializeField, ColorUsage(false, false), Tooltip("Default color restored when this cell is no longer hovered.")]
+    private Color normalColor = Color.white;
+    [FormerlySerializedAs("backgroundColorWhenChange")]
+    [SerializeField, ColorUsage(false, false), Tooltip("Color shown when this cell is hovered while dragging a person.")]
+    private Color hoverColor = Color.red;
+    [SerializeField, Tooltip("Preview Hover Color immediately in Scene/Prefab Mode. Turn this off to preview Normal Color.")]
+    private bool previewHoverColor;
     
     private Tween scaleTween;
     private Vector3 baseScale;
@@ -26,10 +34,21 @@ public class CellVisual : MonoBehaviour
 
     private void Start()
     {
-        baseScale = hoverSprite.transform.localScale;
-        baseOrderInLayer = hoverSprite.sortingOrder;
-        baseColor = backgroundSprite.color;
-        hoverSprite.enabled = false;
+        if (hoverSprite != null)
+        {
+            baseScale = hoverSprite.transform.localScale;
+            baseOrderInLayer = hoverSprite.sortingOrder;
+            hoverSprite.enabled = false;
+        }
+
+        baseColor = normalColor;
+        SetBackgroundColor(baseColor);
+    }
+
+    private void OnValidate()
+    {
+        if (Application.isPlaying || backgroundSprite == null) return;
+        SetBackgroundColor(previewHoverColor ? hoverColor : normalColor);
     }
 
     private void OnEnable()
@@ -50,7 +69,7 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualHover(float viewScale, int orderInLayer)
     {
-        if(!CanChange()) return;
+        if(!CanChange() || hoverSprite == null) return;
         if (scaleTween.isAlive)
             scaleTween.Stop();
         Vector3 targetScale = baseScale * viewScale;
@@ -61,28 +80,34 @@ public class CellVisual : MonoBehaviour
 
     private void ChangeVisualBackGround(Color c)
     {
-        if(!CanChange()) return;
-        if (backgroundSprite.color == c) return;
-        Color newColor = c;
-        newColor.a = 1;
-        backgroundSprite.color = newColor;
+        if(!CanChange() || backgroundSprite == null) return;
+        SetBackgroundColor(c);
+    }
+
+    private void SetBackgroundColor(Color color)
+    {
+        if (backgroundSprite == null) return;
+        color.a = 1f;
+        if (backgroundSprite.color == color) return;
+        backgroundSprite.color = color;
     }
 
     private void TurnOnHoverSprite()
     {
-        if(!CanChange()) return;
+        if(!CanChange() || hoverSprite == null) return;
         hoverSprite.enabled = true;
     }
     
     private void TurnOffHoverSprite()
     {
+        if (hoverSprite == null) return;
         hoverSprite.enabled = false;
     }
 
     public void ChangeVisualOnSelected()
     {
         ChangeVisualHover(changeViewScale, Constaints.MAX_SORTING_LAYER);
-        ChangeVisualBackGround(backgroundColorWhenChange);
+        ChangeVisualBackGround(hoverColor);
     }
 
     public void ChangeVisualOnDeselected()

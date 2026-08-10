@@ -26,7 +26,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2817100485411959711, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
       propertyPath: m_Name
-      value: Seat_wood
+      value: Seat_notthing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: hoverColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: backgroundSprite
+      value: 
+      objectReference: {fileID: 4944971171259322516}
+    - target: {fileID: 4908801257741630260, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
+      propertyPath: previewHoverColor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8494547447977979683, guid: 2a68e47331921064297d2c15cc294a31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89,6 +109,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5426322952650002127}
     m_Modifications:
+    - target: {fileID: 290297231350829831, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290297231350829831, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290297231350829831, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3717819783957089472, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
       propertyPath: m_Name
       value: cho ngoi_0 (3)
@@ -138,6 +170,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
+--- !u!212 &4944971171259322516 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 290297231350829831, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}
+  m_PrefabInstance: {fileID: 4658770265789399955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8971161968369133816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4384463801410743147, guid: 9ee6abec6b6d68b4abb3d6ecd6ed9435, type: 3}

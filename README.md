@@ -7,7 +7,11 @@
 **Vai trò:** Unity Developer
 
 **Xem gameplay tại đây:**
-[Video demo - Wanna Sit Here?]([Docs/Demo/wanna-sit-here-demo-under-10mb.mp4](https://github.com/user-attachments/assets/ce3f92ae-d024-4ffe-8b2d-b1e8e9ab680e))
+[Video demo - Wanna Sit Here?](
+
+Uploading wanna-sit-here-demo-under-10mb.mp4…
+
+)
 
 
 ---

@@ -6,7 +6,17 @@
 
 **Vai trò:** Unity Developer
 
-**Xem gameplay tại đây:** [Video demo - Wanna Sit Here?](Docs/Demo/wanna-sit-here-demo.mp4)
+**Xem gameplay tại đây:**
+
+<!--
+Để GitHub hiển thị video player giống ảnh demo:
+1. Mở README.md trên GitHub bằng Edit.
+2. Kéo-thả file Docs/Demo/wanna-sit-here-demo.mp4 vào đúng vị trí này.
+3. GitHub sẽ tạo link dạng https://github.com/user-attachments/assets/...
+4. Thay dòng link dự phòng bên dưới bằng link đó.
+-->
+
+[Video demo - Wanna Sit Here?](Docs/Demo/wanna-sit-here-demo.mp4)
 
 ---
 

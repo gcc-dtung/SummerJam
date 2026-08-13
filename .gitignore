@@ -112,3 +112,9 @@ claude-code-game-studios/
 
 GAME_DATA_DOCUMENTATION.md
 .codex-tmp
+
+# Local AI/editor workspace files
+/.ai/mcp/
+/.codex-tmp/video_frames/
+/.idea/.idea.SummerJam/.idea/
+/.vscode/

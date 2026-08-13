@@ -8,19 +8,11 @@
 
 **Xem gameplay tại đây:**
 
-<!--
-Để GitHub hiển thị video player giống ảnh demo:
-1. Mở README.md trên GitHub bằng Edit.
-2. Kéo-thả file Docs/Demo/wanna-sit-here-demo-under-10mb.mp4 vào đúng vị trí này.
-3. GitHub sẽ tạo link dạng https://github.com/user-attachments/assets/...
-4. Dán link đó ở ngay dòng trống bên dưới comment này.
--->
+[Video demo - Wanna Sit Here?](
 
-<!-- Dán GitHub video asset URL ở đây để hiện player:
-https://github.com/user-attachments/assets/PASTE_VIDEO_ASSET_URL_HERE
--->
+https://github.com/user-attachments/assets/ce3f92ae-d024-4ffe-8b2d-b1e8e9ab680e
 
-Video dự phòng: [Video demo - Wanna Sit Here?](Docs/Demo/wanna-sit-here-demo-under-10mb.mp4)
+)
 
 ---
 

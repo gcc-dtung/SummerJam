@@ -11,12 +11,16 @@
 <!--
 Để GitHub hiển thị video player giống ảnh demo:
 1. Mở README.md trên GitHub bằng Edit.
-2. Kéo-thả file Docs/Demo/wanna-sit-here-demo.mp4 vào đúng vị trí này.
+2. Kéo-thả file Docs/Demo/wanna-sit-here-demo-under-10mb.mp4 vào đúng vị trí này.
 3. GitHub sẽ tạo link dạng https://github.com/user-attachments/assets/...
-4. Thay dòng link dự phòng bên dưới bằng link đó.
+4. Dán link đó ở ngay dòng trống bên dưới comment này.
 -->
 
-[Video demo - Wanna Sit Here?](Docs/Demo/wanna-sit-here-demo.mp4)
+<!-- Dán GitHub video asset URL ở đây để hiện player:
+https://github.com/user-attachments/assets/PASTE_VIDEO_ASSET_URL_HERE
+-->
+
+Video dự phòng: [Video demo - Wanna Sit Here?](Docs/Demo/wanna-sit-here-demo-under-10mb.mp4)
 
 ---
 
